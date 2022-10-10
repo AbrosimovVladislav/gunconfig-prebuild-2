@@ -1,0 +1,2 @@
+pm2 start npm -- start
+pm2 start npm --name "aggregator-ui" -- start
