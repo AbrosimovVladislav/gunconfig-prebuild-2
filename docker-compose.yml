@@ -1,0 +1,15 @@
+version: '3.1'
+
+services:
+  db-gunconfig:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=gunconfig
+    volumes:
+      - ./init-gunconfig.sql:/docker-entrypoint-initdb.d/init-gunconfig.sql
+    ports:
+      - 35432:5432
+
