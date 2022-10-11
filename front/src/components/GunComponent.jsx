@@ -1,12 +1,8 @@
 import React, {useEffect, useState} from "react";
-import {Circle, Image, Layer, Rect} from "react-konva";
+import {Image, Layer } from "react-konva";
 
 
 export default function GunComponent({component, components}) {
-
-    const [currentX, setCurrentX] = useState(component.x);
-    const [currentY, setCurrentY] = useState(component.y);
-
     const [imageObject, setImageObject] = useState(new window.Image());
     const [targetComponent, setTargetComponent] = useState({});
 
@@ -23,10 +19,6 @@ export default function GunComponent({component, components}) {
         setTargetComponent(targetComp);
     },[])
 
-    useEffect(() => {
-        // console.log(imageObject)
-    },[imageObject])
-
     const handleDragEndFirst = e => {
         const xx = e.target.attrs.x;
         const yy = e.target.attrs.y;
@@ -35,24 +27,14 @@ export default function GunComponent({component, components}) {
 
     return (
             <Layer>
-                {component.target==="ROOT"
-                ? <Image
+                 <Image
                         visible={component.visible}
-                        x={currentX}
-                        y={currentY}
+                        x={component.target==="ROOT" ? component.x : targetComponent?.x - component.x }
+                        y={component.target==="ROOT" ? component.y : targetComponent?.y - component.y }
                         image={imageObject}
                         draggable
                         onDragEnd={handleDragEndFirst}
                     />
-                : <Image
-                        visible={component.visible}
-                        x={targetComponent.x - currentX}
-                        y={targetComponent.y - currentY}
-                        image={imageObject}
-                        draggable
-                        onDragEnd={handleDragEndFirst}
-                    />}
-
             </Layer>
     )
 }
