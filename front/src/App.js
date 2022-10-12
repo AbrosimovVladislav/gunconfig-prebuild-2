@@ -52,7 +52,7 @@ function App() {
             width:500,
             image: "https://line-f.ru///i/part/ar_dtk_1GRVztw.png",
             target: "AR_15_ROOT",
-            type: "DTK",
+            type: "MUZZLE_BREAK",
             visible:true
         },
         {
@@ -62,7 +62,7 @@ function App() {
             width:500,
             image: "https://line-f.ru///i/part/ar_mag_VLMHvIm.png",
             target: "AR_15_ROOT",
-            type: "MAG",
+            type: "MAGAZINE",
             visible:true
         },
         {
