@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Stage} from "react-konva";
+import CoordinatesInfo from "./CoordinatesInfo";
 import GunComponent from "./GunComponent";
 import {Select} from "@mantine/core";
 

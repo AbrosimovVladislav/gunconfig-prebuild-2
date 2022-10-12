@@ -6,7 +6,7 @@ function App() {
 
     const components = [
         {
-            x:370,
+            x:470,
             y:100,
             name: "AR_15_ROOT",
             width:3000,
@@ -56,8 +56,8 @@ function App() {
             visible:true
         },
         {
-            x:-210,
-            y:-168,
+            x:-224,
+            y:-175,
             name: "AR_15_MAG",
             width:500,
             image: "https://line-f.ru///i/part/ar_mag_VLMHvIm.png",
