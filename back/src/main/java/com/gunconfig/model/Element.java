@@ -28,12 +28,16 @@ public class Element {
   @Enumerated(EnumType.STRING)
   private Type type;
 
+  private Integer x;
+  private Integer y;
+  private Integer width;
+
   @ManyToMany
   @JoinColumn(name = "target_element_id")
   private List<Element> target;
 
   public enum Type {
-    GUN, PISTOL_GRIP, HANDGUARD, GAS_BLOCK, MUZZLE_BREAK,
+    ROOT, GUN, PISTOL_GRIP, HANDGUARD, GAS_BLOCK, MUZZLE_BREAK,
     MAGAZINE, CHARGING_HANDLE, SCOPE, STOCK_TUBE, STOCK
   }
 
