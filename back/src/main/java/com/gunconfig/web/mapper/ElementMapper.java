@@ -19,9 +19,9 @@ public class ElementMapper {
         element.getElementId());
     return ElementDto.builder()
         .elementId(element.getElementId())
-        .name(element.getName())
+        .name(element.getProduct().getName())
         .image(element.getImage())
-        .type(element.getType().toString())
+        .type(element.getProduct().getType().toString())
         .target(target.isEmpty() ? null : target)
         .children(children.isEmpty() ? null : children)
         .build();

@@ -1,0 +1,12 @@
+INSERT INTO public.product (product_id, name, type) VALUES (1, 'AR_15_ROOT', 'GUN');
+INSERT INTO public.product (product_id, name, type) VALUES (2, 'AR_15_PISTOL_GRIP', 'PISTOL_GRIP');
+INSERT INTO public.product (product_id, name, type) VALUES (3, 'AR_15_HANDGUARD', 'HANDGUARD');
+INSERT INTO public.product (product_id, name, type) VALUES (4, 'AR_15_GASBLOCK', 'GAS_BLOCK');
+INSERT INTO public.product (product_id, name, type) VALUES (5, 'AR_15_DTK', 'MUZZLE_BREAK');
+INSERT INTO public.product (product_id, name, type) VALUES (6, 'AR_15_MAG', 'MAGAZINE');
+INSERT INTO public.product (product_id, name, type) VALUES (7, 'AR_15_CHARGING_HANDLE', 'CHARGING_HANDLE');
+INSERT INTO public.product (product_id, name, type) VALUES (8, 'AR_15_SCOPE', 'SCOPE');
+INSERT INTO public.product (product_id, name, type) VALUES (9, 'AR_15_TUBE', 'STOCK_TUBE');
+INSERT INTO public.product (product_id, name, type) VALUES (10, 'AR_15_STOCK', 'STOCK');
+INSERT INTO public.product (product_id, name, type) VALUES (11, 'AR_15_MAGPUL_MOE', 'PISTOL_GRIP');
+INSERT INTO public.product (product_id, name, type) VALUES (12, 'AR_15_DGL_GRIP', 'PISTOL_GRIP');
