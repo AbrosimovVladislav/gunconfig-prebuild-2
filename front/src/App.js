@@ -1,6 +1,6 @@
 import "./App.scss";
 import { Box, MantineProvider } from "@mantine/core";
-import Engine from "./rendering-engine/engine/engine";
+import { Engine } from "./components/rendering-engine/components/engine";
 
 function App() {
     return (
