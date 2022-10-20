@@ -3,7 +3,7 @@ import { components } from "../../data/mockdata";
 import GunComponent from "../gun-component/gun-component";
 import { Canvas, RootWrapper } from "./engine.styles";
 
-const Engine = () => {
+export const Engine = () => {
     const [ratio, setRatio] = useState(0);
 
     return (
@@ -33,5 +33,3 @@ const Engine = () => {
         </Canvas>
     );
 };
-
-export default Engine;
