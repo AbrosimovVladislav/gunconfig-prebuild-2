@@ -1,6 +1,6 @@
 export const components = [
     {
-        x: 370,
+        x: 400,
         y: 100,
         name: "AR_15_ROOT",
         width: 3022,

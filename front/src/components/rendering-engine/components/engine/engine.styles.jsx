@@ -10,6 +10,7 @@ export const Canvas = styled.div`
 export const RootWrapper = styled.div`
     position: relative;
     max-width: 60%;
+    left: 10%;
 `;
 
 export const Element = styled.img`
