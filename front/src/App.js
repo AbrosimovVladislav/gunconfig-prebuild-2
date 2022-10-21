@@ -5,8 +5,6 @@ import { Engine } from "./components/rendering-engine/components/engine";
 function App() {
     return (
         <MantineProvider withGlobalStyles withNormalizeCSS>
-            {/* <Kanvas components={components} /> */}
-
             <Box sx={{ height: "100vh", display: "grid", placeItems: "center" }}>
                 <Engine />
             </Box>
