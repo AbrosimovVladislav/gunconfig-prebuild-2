@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { components } from "../../data/mockdata";
 import GunComponent from "../gun-component/gun-component";
 import { Canvas, RootWrapper } from "./engine.styles";
 
-export const Engine = () => {
+export const Engine = ({ components }) => {
     const [ratio, setRatio] = useState(0);
 
     return (
@@ -23,7 +22,6 @@ export const Engine = () => {
                     ratio &&
                         components.map(
                             (component, idx) =>
-                                component.visible &&
                                 component.target !== "ROOT" && (
                                     <GunComponent component={component} ratio={ratio} key={idx} />
                                 )

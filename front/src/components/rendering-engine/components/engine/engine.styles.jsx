@@ -8,14 +8,7 @@ export const Canvas = styled.div`
     place-items: center;
 `;
 export const RootWrapper = styled.div`
-    position: relative;
+    position: ${({ data }) => (data ? "relative" : "relative")};
     max-width: 60%;
     left: 10%;
-`;
-
-export const Element = styled.img`
-    position: ${({ target }) => (target === "ROOT" ? "relative" : "absolute")};
-    width: ${({ width }) => width}px;
-    left: ${({ x }) => x}px;
-    top: ${({ y }) => y}px;
 `;
