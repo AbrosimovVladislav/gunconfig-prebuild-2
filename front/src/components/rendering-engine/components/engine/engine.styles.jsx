@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Canvas = styled.div`
-    height: 700px;
+    height: 600px;
     width: 1000px;
     border: 1px solid black;
     display: grid;
