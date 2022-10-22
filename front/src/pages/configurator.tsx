@@ -1,11 +1,12 @@
-import "./App.scss";
 import { Box, MantineProvider } from "@mantine/core";
-import { Engine } from "./components/rendering-engine/components/engine";
-import Options from "./components/rendering-engine/components/options/options";
-import { components, componentTypes } from "./components/rendering-engine/data/mockdata";
+import { Engine } from "../components/rendering-engine/components/engine";
+import Options from "../components/rendering-engine/components/options/options";
+import { components, componentTypes } from "../components/rendering-engine/data/mockdata";
 import { useEffect, useState } from "react";
 
-function App() {
+type Props = {};
+
+const Configurator = (props: Props) => {
     const mapVisibleData = () => {
         let obj = [];
 
@@ -34,12 +35,14 @@ function App() {
 
     return (
         <MantineProvider withGlobalStyles withNormalizeCSS>
-            <Box sx={{ height: "100vh", display: "grid", placeItems: "center" }}>
+            <Box sx={{ display: "flex", justifyContent: "center", padding: "1rem" }}>
                 <Engine components={visibleData} />
-                <Box sx={{ display: "flex", gap: "5px" }}>{dropdownOptions}</Box>
+            </Box>
+            <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "5px", marginTop: "1rem" }}>
+                {dropdownOptions}
             </Box>
         </MantineProvider>
     );
-}
+};
 
-export default App;
+export default Configurator;
