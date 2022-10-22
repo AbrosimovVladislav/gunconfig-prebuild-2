@@ -1,34 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 1. Starting the app
 
-## Getting Started
+1. Run `npm i`
+2. Run `npm run dev`
+3. Open `localhost:3000`
 
-First, run the development server:
+## 2. Folder structure
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+-   `/assets` - all reusable assets (images, icons, etc.)
+-   `/components` - all components grouped by major features
+-   `/config` - project config files
+-   `/consts` - constant variables
+-   `/hooks` - globally reusable hooks
+-   `/pages` - file based routing
+-   `/providers` - we use this folder for global contexts only
+-   `/services` - folder for queries and mutations
+-   `/store` - we use [Zustand](https://zustand-demo.pmnd.rs/) for global store, everything else is loaded via React Query
+-   `/styles` - only global styles, rest goes into component styles
+-   `/utils` - globally reusable utility functions
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 3. Data fetching
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+We are working with data by using [React Query](https://tanstack.com/query/v4/).
+This provides us with state handling, caching, refetching, and much more.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## 4. Styling components
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Styles should be kept separate from the components which contain the logic.
+We are using [Emotion UI](https://emotion.sh/docs/introduction) in combination with [Mantine UI](https://mantine.dev/) library, and we keep styles in separate .jsx files within component folder.
 
-## Learn More
+## 5. Component folder structure example
 
-To learn more about Next.js, take a look at the following resources:
+Following is an example of component folder structure. When creating new component you will use only those folders and files that you need.
+All component files are exported from a single `index.ts` file according to [this practice](https://medium.com/bootstart/you-should-be-using-folder-components-b30b7d165c39).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+-   component-name
+    -   /hooks
+    -   /components
+    -   /contexts
+    -   /utils
+    -   /assets
+    -   component-name.tsx
+    -   component-name.styles.tsx
+    -   index.ts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 6. Core technologies
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+-   Next JS
+-   Mantine UI
+-   Emotion UI
+-   React Query
+-   Zustand
