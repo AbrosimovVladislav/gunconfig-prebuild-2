@@ -10,4 +10,3 @@ INSERT INTO public.element (element_id, image, width, x, y, product_id) VALUES (
 INSERT INTO public.element (element_id, image, width, x, y, product_id) VALUES (10, 'https://line-f.ru//i/part/ar_stock_rPaB1XY.png', 500, 1, 1, 10);
 INSERT INTO public.element (element_id, image, width, x, y, product_id) VALUES (11, 'https://line-f.ru//i/part/1_VjqeULE.png', 500, 1, 1, 11);
 INSERT INTO public.element (element_id, image, width, x, y, product_id) VALUES (12, 'https://line-f.ru//i/part/1_v4Nl9eZ.png', 500, 1, 1, 12);
-INSERT INTO public.element (element_id, image, width, x, y, product_id) VALUES (0, null, 500, 1, 1, null);
