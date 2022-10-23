@@ -1,4 +1,4 @@
-package com.gunconfig.web.dto;
+package com.gunconfig.web.dto.configurator;
 
 import com.gunconfig.model.Element;
 import java.util.List;
@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class ElementDto {
+public class ConfiguratorElementDto {
 
   private Long elementId;
   private String name;
