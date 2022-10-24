@@ -9,7 +9,6 @@ docker-compose up -d
 
 pm2 kill
 
-cd ..
 cd front
 npm i
 npm run build
