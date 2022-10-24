@@ -11,5 +11,4 @@ pm2 kill
 
 cd front
 npm i
-npm run build
-pm2 start npm --  dev
+npm run dev
