@@ -11,5 +11,4 @@ pm2 kill
 
 cd front
 npm i
-pm2 start npm --name "gunconfig" --interpreter bash -- start
-pm2 show gunconfig
+pm2 start npm --  run dev
