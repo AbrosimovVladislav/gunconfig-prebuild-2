@@ -21,6 +21,26 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQL9Dialect
         jdbc.lob.non_contextual_creation: true
+  boot:
+    admin:
+      client:
+        url: http://spring-admin:8085
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
 
 logging:
   file:

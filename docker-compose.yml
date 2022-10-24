@@ -1,15 +1,34 @@
 version: '3.1'
 
+networks:
+  spring:
+
 services:
-  db-gunconfig:
-    image: postgres
-    restart: always
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=gunconfig
-    volumes:
-      - ./init-gunconfig.sql:/docker-entrypoint-initdb.d/init-gunconfig.sql
+  spring-admin:
+    image: profidocker/spring-admin:1.0
+    container_name: spring-admin
     ports:
-      - 35432:5432
+      - "8085:8085"
+    networks:
+      - spring
+    depends_on:
+      - eureka-server
+
+  eureka-server:
+    image: profidocker/eureka-server:1.0
+    container_name: eureka-server
+    ports:
+      - 8761:8761
+    networks:
+      - spring
+
+  gunconfig-docker:
+    image: profidocker/back:1.0
+    ports:
+      - 8080:8080
+    networks:
+      - spring
+    depends_on:
+      - eureka-server
+      - spring-admin
 

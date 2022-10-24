@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: eureka-server
+  boot:
+    admin:
+      client:
+        url: http://spring-admin:8085
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+server:
+  port: 8761
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
