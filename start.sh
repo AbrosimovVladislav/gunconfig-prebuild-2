@@ -12,4 +12,4 @@ pm2 kill
 cd front
 npm i
 npm run build
-pm2 serve build 3000 --spa
+pm2 start npm --  dev
