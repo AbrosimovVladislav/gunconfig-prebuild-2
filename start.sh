@@ -11,4 +11,5 @@ pm2 kill
 
 cd front
 npm i
-npm run dev
+pm2 start npm --name "gunconfig" --interpreter bash -- start
+pm2 show nextjs
