@@ -1,17 +1,17 @@
 import { NFTCardDto } from "../../schema/NFTCatalogSchema";
 
 interface Props {
-    data: NFTCardDto;
+  item: NFTCardDto;
 }
 
-const NFTMicroCard = ({ data }: Props) => {
+const NFTMicroCard = ({ item }: Props) => {
     return (
         <div>
-            <span>Id: {data.id}</span>
-            <p>ProductId: {data.productId}</p>
-            <p>ProductName: {data.productName}</p>
-            <img src={data.nftImageUrl} />
-            <p>{JSON.stringify(data.buildDto)}</p>
+            <span>Id: {item.id}</span>
+            <p>ProductId: {item.productId}</p>
+            <p>ProductName: {item.productName}</p>
+            <img src={item.nftImageUrl} />
+            <p>{JSON.stringify(item.buildDto)}</p>
         </div>
     );
 };
