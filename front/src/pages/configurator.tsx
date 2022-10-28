@@ -1,7 +1,7 @@
 import { Box, MantineProvider } from "@mantine/core";
-import { Engine } from "../components/rendering-engine/components/engine";
-import Options from "../components/rendering-engine/components/options/options";
-import { components, componentTypes } from "../components/rendering-engine/data/mockdata";
+import { Engine } from "../rendering-engine/components/engine";
+import Options from "../rendering-engine/components/options/options";
+import { components, componentTypes } from "../rendering-engine/data/mockdata";
 import { useEffect, useState } from "react";
 
 type Props = {};
