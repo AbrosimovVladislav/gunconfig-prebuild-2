@@ -1,9 +1,27 @@
 import React from "react";
+import { useQuery } from "react-query";
+import { getAllNfts } from "../services/nftService";
+import { NFTMicroCard } from "../components/nft-micro-card";
+import { NFTCardDto } from "../schema/NFTCatalogSchema";
 
-type Props = {};
+const NFTCatalog = () => {
+    const { data, error, isLoading, isError } = useQuery("getAllNfts", getAllNfts);
 
-const NftCatalog = (props: Props) => {
-    return <div>NftCatalog</div>;
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    if (isError) {
+        return <div>Error</div>;
+    }
+
+    return (
+        <div>
+            {data.map((item: NFTCardDto) => (
+                <NFTMicroCard item={item} key={item.id} />
+            ))}
+        </div>
+    );
 };
 
-export default NftCatalog;
+export default NFTCatalog;

@@ -1,11 +1,16 @@
 import "../../styles/globals.css";
-import { PageWrapper } from "../components/page-wrapper/index";
+import {PageWrapper} from "../components/page-wrapper/index";
+import {QueryClientProvider, QueryClient} from "react-query";
 
-function MyApp({ Component, pageProps }) {
+const queryClient = new QueryClient();
+
+function MyApp({Component, pageProps}) {
     return (
-        <PageWrapper>
-            <Component {...pageProps} />
-        </PageWrapper>
+        <QueryClientProvider client={queryClient}>
+            <PageWrapper>
+                <Component {...pageProps} />
+            </PageWrapper>
+        </QueryClientProvider>
     );
 }
 
