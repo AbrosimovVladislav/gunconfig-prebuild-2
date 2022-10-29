@@ -22,7 +22,7 @@ public class NFTCardMapper {
     public NFTCardDto nftCardToDto(NFTCard nftCard) {
         return NFTCardDto.builder()
                 .id(nftCard.getNftCardId())
-                .nftName(nftCard.getNftName())
+                .nftName(nftCard.getRootGun().getName() + "_#" + nftCard.getNftCardId())
                 .productId(nftCard.getRootGun().getProductId())
                 .productName(nftCard.getRootGun().getName())
                 .nftImageUrl(nftCard.getNftImageUrl())

@@ -24,7 +24,6 @@ public class NFTCard {
   @ManyToOne
   @JoinColumn(name = "product_id")
   private Product rootGun;
-  private String nftName;
   private String nftImageUrl;
   @OneToOne
   @JoinColumn(name = "build_id")
