@@ -22,18 +22,11 @@ public class NFTCardMapper {
     public NFTCardDto nftCardToDto(NFTCard nftCard) {
         return NFTCardDto.builder()
                 .id(nftCard.getNftCardId())
+                .nftName(nftCard.getNftName())
                 .productId(nftCard.getRootGun().getProductId())
                 .productName(nftCard.getRootGun().getName())
                 .nftImageUrl(nftCard.getNftImageUrl())
                 .buildDto(buildMapper.buildToDto(nftCard.getBuild()))
                 .build();
     }
-
-    /*
-        private Integer id;
-    private Integer productId;
-    private String productName;
-    private String nftImageUrl;
-    private BuildDto buildDto;
-     */
 }
