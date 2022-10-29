@@ -599,7 +599,7 @@ export const componentTypes = [
     { name: "GAS_BLOCK" },
     { name: "MUZZLE_BREAK" },
     { name: "CHARGING_HANDLE" },
-    { name: "MAG" },
+    { name: "MAGAZINE" },
     { name: "SCOPE" },
     { name: "TUBE" },
     { name: "STOCK" },
