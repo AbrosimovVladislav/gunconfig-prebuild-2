@@ -2,7 +2,7 @@ export const components = [
     {
         x: 400,
         y: 100,
-        name: "AR_15_ROOT",
+        name: "COLT_AR-15",
         width: 3022,
         image: "https://line-f.ru/i/weapon/ar-15_16_base_DFopAAN.png",
         target: "ROOT",
@@ -12,7 +12,7 @@ export const components = [
     {
         x: -27,
         y: 80,
-        name: "AR_15_PISTOL_GRIP",
+        name: "AR-15_DEFAULT_PISTOL_GRIP",
         width: 459,
         image: "https://line-f.ru/i/part/ar_pistolgrip_iWaahlu.png",
         target: "AR_15_ROOT",
@@ -22,7 +22,7 @@ export const components = [
     {
         x: -23,
         y: 62,
-        name: "AR_15_MAGPUL_MOE",
+        name: "MAGPUL_MOE_PISTOL_GRIP_AR",
         width: 437,
         image: "https://line-f.ru/i/part/1_VjqeULE.png",
         target: "AR_15_ROOT",
@@ -32,7 +32,7 @@ export const components = [
     {
         x: -22,
         y: 80,
-        name: "AR_15_DGL_GRIP",
+        name: "DLG_PISTOL_GRIP_AR",
         width: 435,
         image: "https://line-f.ru/i/part/1_v4Nl9eZ.png",
         target: "AR_15_ROOT",
@@ -42,7 +42,7 @@ export const components = [
     {
         x: -32,
         y: 62,
-        name: "TIMBER_CREEK_ENFORCER_AR_PISTOL_GRIP",
+        name: "TIMBER_CREEK_ENFORCER_PISTOL_GRIP_AR",
         width: 486,
         image: "https://line-f.ru/i/part/1_MIJ4fpT.png",
         target: "AR_15_ROOT",
@@ -52,7 +52,7 @@ export const components = [
     {
         x: -12,
         y: 64,
-        name: "MAGPUL_MOE-K2+_GRIP_(BLK)",
+        name: "MAGPUL_MOE-K2+_GRIP_(BLK)_AR",
         width: 388,
         image: "https://line-f.ru//i/part/1_ZPmtzAx.png",
         target: "AR_15_ROOT",
@@ -62,7 +62,7 @@ export const components = [
     {
         x: -22,
         y: 63,
-        name: "MAGPUL_MOE_GRIP_(FDE)",
+        name: "MAGPUL_MOE_GRIP_(FDE)_AR",
         width: 439,
         image: "https://line-f.ru//i/part/1_q8m4DDE.png",
         target: "AR_15_ROOT",
@@ -72,7 +72,7 @@ export const components = [
     {
         x: -2,
         y: 69,
-        name: "FAB_DEFENSE_GRADUS_AR-15_(BLACK)",
+        name: "FAB_DEFENSE_GRADUS_(BLACK)_AR",
         width: 359,
         image: "https://line-f.ru//i/part/1_qutigHq.png",
         target: "AR_15_ROOT",
@@ -82,7 +82,7 @@ export const components = [
     {
         x: -2,
         y: 69,
-        name: "FAB_DEFENSE_GRADUS_AR-15_(TAN)",
+        name: "FAB_DEFENSE_GRADUS_(TAN)_AR",
         width: 359,
         image: "https://line-f.ru//i/part/1_FDJCWuW.png",
         target: "AR_15_ROOT",
@@ -92,7 +92,7 @@ export const components = [
     {
         x: 203,
         y: 2,
-        name: "AR_15_HANDGUARD",
+        name: "AR_15_DEFAULT_HANDGUARD",
         width: 1049,
         image: "https://line-f.ru/i/part/ar-15_middle_handguard_zTSZkYv.png",
         target: "AR_15_ROOT",
@@ -102,7 +102,7 @@ export const components = [
     {
         x: 201,
         y: 0,
-        name: "DANIEL_DEFENCE_MFR_13.5_KEYMOD",
+        name: "DANIEL_DEFENCE_MFR_13.5_KEYMOD_AR",
         width: 1798,
         image: "https://line-f.ru//i/part/1_OYSHgoH.png",
         target: "AR_15_ROOT",
@@ -112,7 +112,7 @@ export const components = [
     {
         x: 201,
         y: 2,
-        name: "MAGPUL_MOE_MLOK_HANDGUARD_MIDLENGTH_BLK",
+        name: "MAGPUL_MOE_MLOK_HANDGUARD_MIDLENGTH_BLK_AR",
         width: 1197,
         image: "https://line-f.ru/i/part/1_XTGN52H.png",
         target: "AR_15_ROOT",
@@ -122,7 +122,7 @@ export const components = [
     {
         x: 200,
         y: 0,
-        name: "NOVESKE_NSR_M-LOK_RAIL_15",
+        name: "NOVESKE_NSR_M-LOK_RAIL_15_AR",
         width: 1967,
         image: "https://line-f.ru//i/part/1_kiO8W0s.png",
         target: "AR_15_ROOT",
@@ -132,7 +132,7 @@ export const components = [
     {
         x: 201,
         y: 0,
-        name: "DANIEL_DEFENSE_MFR_10.0_(M-LOK)",
+        name: "DANIEL_DEFENSE_MFR_10.0_(M-LOK)_AR",
         width: 1373,
         image: "https://line-f.ru//i/part/1_WModqnW.png",
         target: "AR_15_ROOT",
@@ -142,7 +142,7 @@ export const components = [
     {
         x: 408,
         y: -36,
-        name: "AR_15_GASBLOCK",
+        name: "AR_15_DEFAULT_GASBLOCK",
         width: 310,
         image: "https://line-f.ru/i/part/ar_gasblock_N516v7K.png",
         target: "AR_15_ROOT",
