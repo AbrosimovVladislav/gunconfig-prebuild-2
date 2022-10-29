@@ -1,3 +1,18 @@
 ### GET request with a header
 GET http://localhost:8080/api/v1/nft-catalog
 Accept: application/json
+
+### Send POST request with json body
+POST http://localhost:8080/api/v1/nft-catalog
+Content-Type: application/json
+
+{
+  "productId": 1,
+  "nftImageUrl": "https://gunmarket.fra1.digitaloceanspaces.com/011.png",
+  "rootElementId": 1,
+  "elementsIds": [
+    2,3,4,5,6,18
+  ],
+  "buildImageUrl": "https://gunmarket.fra1.digitaloceanspaces.com/011.png"
+
+}
