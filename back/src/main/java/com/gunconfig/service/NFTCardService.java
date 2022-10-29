@@ -36,6 +36,8 @@ public class NFTCardService {
                 .setNftImageUrl(request.getNftImageUrl())
                 .setBuild(build);
         NFTCard savedNFT = nftCardRepo.save(nftCard);
+        savedNFT.setNftName(savedNFT.getRootGun().getName() + "_#" + savedNFT.getNftCardId());
+        nftCardRepo.save(savedNFT);
         return savedNFT;
     }
 }

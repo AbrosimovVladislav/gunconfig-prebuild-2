@@ -8,11 +8,11 @@ Content-Type: application/json
 
 {
   "productId": 1,
-  "nftImageUrl": "https://gunmarket.fra1.digitaloceanspaces.com/011.png",
+  "nftImageUrl": "https://gunmarket.fra1.digitaloceanspaces.com/012.png",
   "rootElementId": 1,
   "elementsIds": [
     2,3,4,5,6,18
   ],
-  "buildImageUrl": "https://gunmarket.fra1.digitaloceanspaces.com/011.png"
+  "buildImageUrl": "https://gunmarket.fra1.digitaloceanspaces.com/012.png"
 
 }

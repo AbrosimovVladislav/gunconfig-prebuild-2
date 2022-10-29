@@ -60,9 +60,9 @@ const NFTMicroCard = ({item}: Props) => {
 
             <Group position="apart" mt="md">
                 <div>
-                    <Text weight={500}>{item.productName}</Text>
+                    <Text weight={500}>{item.nftName}</Text>
                 </div>
-                <Badge variant="outline">25% off</Badge>
+                <Badge variant="outline">{item.id}</Badge>
             </Group>
 
             <Card.Section className={classes.section} mt="md">
