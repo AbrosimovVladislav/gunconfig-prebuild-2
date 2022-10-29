@@ -1,6 +1,6 @@
 import React from "react";
-import { Header } from "../header";
 import { links } from "../../consts/menu-links";
+import Header from "../header/header";
 
 type Props = {
     children: JSX.Element;

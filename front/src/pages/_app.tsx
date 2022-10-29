@@ -1,7 +1,7 @@
 import "../../styles/globals.css";
-import {PageWrapper} from "../components/page-wrapper/index";
 import {QueryClientProvider, QueryClient} from "react-query";
 import Head from "next/head";
+import PageWrapper from "../components/page-wrapper/page-wrapper";
 
 const queryClient = new QueryClient();
 

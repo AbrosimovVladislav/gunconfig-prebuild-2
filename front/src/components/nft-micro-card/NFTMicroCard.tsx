@@ -92,16 +92,6 @@ const NFTMicroCard = ({item}: Props) => {
         </Card.Section>
       </Card>
   );
-
-  // return (
-  //     <div>
-  //         <span>Id: {item.id}</span>
-  //         <p>ProductId: {item.productId}</p>
-  //         <p>ProductName: {item.productName}</p>
-  //         <img src={item.nftImageUrl} />
-  //         <p>{JSON.stringify(item.buildDto)}</p>
-  //     </div>
-  // );
 };
 
 export default NFTMicroCard;

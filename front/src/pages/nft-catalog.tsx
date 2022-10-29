@@ -1,7 +1,7 @@
 import React from "react";
 import {useGetAllNfts} from "../services/nftService";
-import {NFTMicroCard} from "../components/nft-micro-card";
 import {NFTCardDto} from "../schema/NFTCatalogSchema";
+import NFTMicroCard from "../components/nft-micro-card/NFTMicroCard";
 
 const NFTCatalog = () => {
   const [data, error, isLoading, isError] = useGetAllNfts();
