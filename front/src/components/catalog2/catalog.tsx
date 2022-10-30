@@ -1,6 +1,6 @@
-import {NFTCardDto} from "../../schema/NFTCatalogSchema";
+import { NFTCardDto } from "../../schema/NFTCatalogSchema";
 import React from "react";
-import {createStyles} from "@mantine/core";
+import { createStyles } from "@mantine/core";
 import NFTMicroCard from "../nft-micro-card/NFTMicroCard";
 
 const useStyles = createStyles((theme) => ({
@@ -24,9 +24,9 @@ const useStyles = createStyles((theme) => ({
     }
 }))
 
-const Catalog = ({nfts}) => {
+const Catalog = ({ nfts }) => {
 
-    const {classes} = useStyles();
+    const { classes } = useStyles();
 
     return <div className={classes.catalog}>
         {nfts.map((item: NFTCardDto) => (
