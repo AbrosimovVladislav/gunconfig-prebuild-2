@@ -1,15 +1,15 @@
 import React from "react";
 import { links } from "../../consts/menu-links";
-import Header from "../header/header";
+import HeaderSection from "../header/HeaderSection";
 
-type Props = {
+type PageWrapperProps = {
     children: JSX.Element;
 };
 
-const PageWrapper = ({ children }: Props) => {
+const PageWrapper = ({ children }: PageWrapperProps) => {
     return (
         <div>
-            <Header links={links} />
+            <HeaderSection links={links} />
             {children}
         </div>
     );

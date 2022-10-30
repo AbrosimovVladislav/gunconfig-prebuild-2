@@ -1,3 +1,4 @@
-export * from './header/header'
-export * from './page-wrapper/page-wrapper'
-export * from './nft-micro-card/NFTMicroCard'
+export * from "./header/HeaderSection";
+export * from "./page-wrapper/PageWrapper";
+export * from "./nft-micro-card/NFTMicroCard";
+export * from "./catalog/Catalog";

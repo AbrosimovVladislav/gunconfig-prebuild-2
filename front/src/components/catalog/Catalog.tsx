@@ -1,9 +1,13 @@
 import { NFTCardDto } from "../../schema/NFTCatalogSchema";
 import React from "react";
 import NFTMicroCard from "../nft-micro-card/NFTMicroCard";
-import { useStyles } from "./styles";
+import { useStyles } from "./CatalogStyles";
 
-const Catalog = ({ nfts }) => {
+interface CatalogProps {
+    nfts: NFTCardDto[];
+}
+
+const Catalog = ({ nfts }: CatalogProps) => {
     const { classes } = useStyles();
 
     return (
