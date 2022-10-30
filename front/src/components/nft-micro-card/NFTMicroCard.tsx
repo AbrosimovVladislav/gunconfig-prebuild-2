@@ -63,30 +63,11 @@ const NFTMicroCard = ({item}: Props) => {
                     <Text weight={500}>{item.nftName}</Text>
                 </div>
                 <Badge variant="outline">{item.productName}</Badge>
-            </Group>
-
-            <Card.Section className={classes.section} mt="md">
-                <Text size="sm" color="dimmed" className={classes.label}>
-                    Build options
+                <Text size="sm" color="dimmed" weight={500} sx={{lineHeight: 2}} mt={3}>
+                    Minting price
                 </Text>
-
-                <Group spacing={8} mb={-8}>
-                    {features}
-                </Group>
-            </Card.Section>
-
-            <Card.Section className={classes.section}>
-                <Group spacing={30}>
-                    <div>
-                        <Text size="xl" weight={700} sx={{lineHeight: 1}}>
-                            0,0031 ETH
-                        </Text>
-                        <Text size="sm" color="dimmed" weight={500} sx={{lineHeight: 2}} mt={3}>
-                            last price on mint
-                        </Text>
-                    </div>
-                </Group>
-            </Card.Section>
+                <Text variant="gradient">0,0031 ETH</Text>
+            </Group>
         </Card>
     );
 };
