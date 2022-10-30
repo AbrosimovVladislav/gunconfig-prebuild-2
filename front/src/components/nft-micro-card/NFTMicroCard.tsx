@@ -1,6 +1,6 @@
 import { NFTCardDto } from "../../schema/NFTCatalogSchema";
-import { Badge, Card, Group, Image, Text } from "@mantine/core";
 import { useStyles } from "./NFTMicroCardStyles";
+import { GCBadge, GCGroup, GCText, GCCard, GCCardSection, GCImage } from "../../gcComponents";
 
 interface NFTMicroCardProps {
     item: NFTCardDto;
@@ -10,22 +10,22 @@ const NFTMicroCard = ({ item }: NFTMicroCardProps) => {
     const { classes } = useStyles();
 
     return (
-        <Card withBorder radius="md" className={classes.card}>
-            <Card.Section className={classes.imageSection}>
-                <Image src={item.nftImageUrl} alt="gun" />
-            </Card.Section>
+        <GCCard withBorder radius="md" className={classes.card}>
+            <GCCardSection className={classes.imageSection}>
+                <GCImage src={item.nftImageUrl} alt="gun" />
+            </GCCardSection>
 
-            <Group position="apart" mt="md">
+            <GCGroup position="apart" mt="md">
                 <div>
-                    <Text weight={500}>{item.nftName}</Text>
+                    <GCText weight={500}>{item.nftName}</GCText>
                 </div>
-                <Badge variant="outline">{item.productName}</Badge>
-                <Text size="sm" color="dimmed" weight={500} sx={{ lineHeight: 2 }} mt={3}>
+                <GCBadge variant="outline">{item.productName}</GCBadge>
+                <GCText size="sm" color="dimmed" weight={500} sx={{ lineHeight: 2 }} mt={3}>
                     Minting price
-                </Text>
-                <Text variant="gradient">0,0031 ETH</Text>
-            </Group>
-        </Card>
+                </GCText>
+                <GCText variant="gradient">0,0031 ETH</GCText>
+            </GCGroup>
+        </GCCard>
     );
 };
 
