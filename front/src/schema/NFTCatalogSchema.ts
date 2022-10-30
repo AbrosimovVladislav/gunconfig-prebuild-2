@@ -1,5 +1,6 @@
 export interface NFTCardDto {
     id: number;
+    nftName: string;
     productId: number;
     productName: string;
     nftImageUrl: string;

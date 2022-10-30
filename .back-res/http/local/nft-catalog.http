@@ -6,13 +6,35 @@ Accept: application/json
 POST http://localhost:8080/api/v1/nft-catalog
 Content-Type: application/json
 
+#stock, tube, charging_handle, pistol_grip, trigger, trigger_guard, mag, scope, handguard, gas_block, dtk
+//10, stock
+//9, tube
+//7, charging_handle
+//14, pistol_grip
+//40, trigger
+//42, trigger_guard
+//34, mag
+//-, scope
+//3, handguard
+//4, gas_block
+//30 dtk
+
 {
   "productId": 1,
-  "nftImageUrl": "https://gunmarket.fra1.digitaloceanspaces.com/011.png",
+  "nftImageUrl": "https://gunmarket.fra1.digitaloceanspaces.com/012.png",
   "rootElementId": 1,
   "elementsIds": [
-    2,3,4,5,6,18
+    10,
+    9,
+    7,
+    14,
+    40,
+    42,
+    34,
+    36,
+    21,
+    22,
+    28
   ],
-  "buildImageUrl": "https://gunmarket.fra1.digitaloceanspaces.com/011.png"
-
+  "buildImageUrl": "https://gunmarket.fra1.digitaloceanspaces.com/012.png"
 }

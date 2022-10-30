@@ -10,6 +10,7 @@ public class NFTCardDto {
     private Long id;
     private Long productId;
     private String productName;
+    private String nftName;
     private String nftImageUrl;
     private BuildDto buildDto;
 
