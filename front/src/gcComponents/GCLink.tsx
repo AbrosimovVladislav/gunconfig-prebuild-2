@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import Link from "next/link";
 
 interface GCLinkProps {
-    key?: string;
+    key?: string | number;
     href: string;
     children: ReactNode;
 }
