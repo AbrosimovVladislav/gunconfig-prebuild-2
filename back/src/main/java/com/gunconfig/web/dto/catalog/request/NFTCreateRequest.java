@@ -1,4 +1,4 @@
-package com.gunconfig.web.dto.catalog;
+package com.gunconfig.web.dto.catalog.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,8 +15,8 @@ public class NFTCreateRequest {
 
     private Long productId;
     private String nftImageUrl;
-    private Long rootElementId;
-    private List<Long> elementsIds;
+    private Long rootGunId;
+    private List<Long> gunPartsIds;
     private String buildImageUrl;
 
 }

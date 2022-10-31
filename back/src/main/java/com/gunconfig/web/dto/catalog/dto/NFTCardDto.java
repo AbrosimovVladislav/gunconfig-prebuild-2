@@ -1,4 +1,4 @@
-package com.gunconfig.web.dto.catalog;
+package com.gunconfig.web.dto.catalog.dto;
 
 import lombok.Builder;
 import lombok.Data;
@@ -8,9 +8,9 @@ import lombok.Data;
 public class NFTCardDto {
 
     private Long id;
+    private String nftName;
     private Long productId;
     private String productName;
-    private String nftName;
     private String nftImageUrl;
     private BuildDto buildDto;
 

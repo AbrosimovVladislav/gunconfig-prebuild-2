@@ -1,7 +1,7 @@
 package com.gunconfig.web.mapper;
 
 import com.gunconfig.model.NFTCard;
-import com.gunconfig.web.dto.catalog.NFTCardDto;
+import com.gunconfig.web.dto.catalog.dto.NFTCardDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

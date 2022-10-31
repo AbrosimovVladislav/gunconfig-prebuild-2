@@ -1,19 +1,19 @@
-export interface NFTCardDto {
+export interface NFTCard {
     id: number;
     nftName: string;
     productId: number;
     productName: string;
     nftImageUrl: string;
-    buildDto: BuildDto
+    build: Build;
 }
 
-export interface BuildDto {
-    rootElement: ShortElementDto;
-    elements: ShortElementDto[];
+export interface Build {
+    rootGun: GunPart;
+    gunParts: GunPart[];
 }
 
-export interface ShortElementDto {
-    elementId: number;
+export interface GunPart {
+    gunPartId: number;
     productId: number;
     productName: string;
     productType: string;

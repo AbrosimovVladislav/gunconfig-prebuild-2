@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -24,11 +24,11 @@ public class Build {
   private Long buildId;
 
   @ManyToOne
-  @JoinColumn(name = "element_id")
-  private Element rootElement;
+  @JoinColumn(name = "root_gun_id")
+  private GunPart rootGunPart;
   @ManyToMany
-  @JoinColumn(name = "element_id")
-  private List<Element> elements;
+  @JoinColumn(name = "gun_part_id")
+  private List<GunPart> gunParts;
   private String buildImageUrl;
 
 }

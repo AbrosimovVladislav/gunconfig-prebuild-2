@@ -2,8 +2,8 @@ package com.gunconfig.web;
 
 import com.gunconfig.model.NFTCard;
 import com.gunconfig.service.NFTCardService;
-import com.gunconfig.web.dto.catalog.NFTCardDto;
-import com.gunconfig.web.dto.catalog.NFTCreateRequest;
+import com.gunconfig.web.dto.catalog.dto.NFTCardDto;
+import com.gunconfig.web.dto.catalog.request.NFTCreateRequest;
 import com.gunconfig.web.mapper.NFTCardMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +24,7 @@ public class NFTCatalogController {
     @GetMapping
     public List<NFTCardDto> findAll() {
         List<NFTCard> nftCards = nftCardService.findAll();
+        log.info("Find all nfts. Size: " + nftCards.size());
         return nftCardMapper.nftCardsToDtos(nftCards);
     }
 

@@ -16,11 +16,11 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @Accessors(chain = true)
-public class Element {
+public class GunPart {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long elementId;
+  private Long gunPartId;
 
   @OneToOne
   @JoinColumn(name = "product_id")
@@ -33,7 +33,7 @@ public class Element {
   private Integer width;
 
   @ManyToMany
-  @JoinColumn(name = "target_element_id")
-  private List<Element> target;
+  @JoinColumn(name = "target_gun_part_id")
+  private List<GunPart> target;
 
 }

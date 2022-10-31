@@ -1,7 +1,7 @@
 package com.gunconfig.web.mapper;
 
 import com.gunconfig.model.Build;
-import com.gunconfig.web.dto.catalog.BuildDto;
+import com.gunconfig.web.dto.catalog.dto.BuildDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -9,12 +9,12 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class BuildMapper {
 
-    private final ElementMapper elementMapper;
+    private final GunPartMapper gunPartMapper;
 
     public BuildDto buildToDto(Build build) {
         return BuildDto.builder()
-                .rootElement(elementMapper.elementToShortElementDto(build.getRootElement()))
-                .elements(elementMapper.elementsToShortElementDtos(build.getElements()))
+                .rootGun(gunPartMapper.gunPartToDto(build.getRootGunPart()))
+                .gunParts(gunPartMapper.gunPartsToDtos(build.getGunParts()))
                 .build();
     }
 }

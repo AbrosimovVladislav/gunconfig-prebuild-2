@@ -1,18 +1,18 @@
 package com.gunconfig.web.dto.configurator;
 
-import com.gunconfig.model.Element;
+import com.gunconfig.model.GunPart;
 import java.util.List;
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
-public class ConfiguratorElementDto {
+public class ConfiguratorGunPartDto {
 
-  private Long elementId;
+  private Long gunPartId;
   private String name;
   private String image;
   private String type;
-  private List<Element> target;
-  private List<Element> children;
+  private List<GunPart> target;
+  private List<GunPart> children;
 }

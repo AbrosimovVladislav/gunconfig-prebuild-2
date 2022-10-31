@@ -1,10 +1,10 @@
-import { NFTCardDto } from "../../schema/NFTCatalogSchema";
+import { NFTCard } from "../../schema/NFTCatalogSchema";
 import React from "react";
 import NFTMicroCard from "../nft-micro-card/NFTMicroCard";
 import { useStyles } from "./CatalogStyles";
 
 interface CatalogProps {
-    nfts: NFTCardDto[];
+    nfts: NFTCard[];
 }
 
 const Catalog = ({ nfts }: CatalogProps) => {
@@ -12,7 +12,7 @@ const Catalog = ({ nfts }: CatalogProps) => {
 
     return (
         <div className={classes.catalog}>
-            {nfts.map((item: NFTCardDto) => (
+            {nfts.map((item: NFTCard) => (
                 <div className={classes.card}>
                     <NFTMicroCard item={item} key={item.id} />
                 </div>

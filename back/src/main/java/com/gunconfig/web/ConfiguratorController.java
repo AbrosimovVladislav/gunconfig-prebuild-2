@@ -1,9 +1,9 @@
 package com.gunconfig.web;
 
-import com.gunconfig.model.Element;
-import com.gunconfig.service.ElementService;
-import com.gunconfig.web.dto.configurator.ConfiguratorElementDto;
-import com.gunconfig.web.mapper.ElementMapper;
+import com.gunconfig.model.GunPart;
+import com.gunconfig.service.GunPartService;
+import com.gunconfig.web.dto.configurator.ConfiguratorGunPartDto;
+import com.gunconfig.web.mapper.GunPartMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -20,20 +20,20 @@ import java.util.List;
 @RequestMapping("/api/v1/configurator")
 public class ConfiguratorController {
 
-    private final ElementService elementService;
-    private final ElementMapper elementMapper;
+    private final GunPartService gunPartService;
+    private final GunPartMapper gunPartMapper;
 
     @GetMapping(value = "/elements", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Element> findAll() {
-        return elementService.findAll();
+    public List<GunPart> findAll() {
+        return gunPartService.findAll();
     }
 
     @GetMapping(value = "/element/{id}")
-    public ConfiguratorElementDto findById(@PathVariable Long id) {
-        Element element = elementService.findById(id);
-        ConfiguratorElementDto configuratorElementDto = elementMapper.configuratorElementDto(element);
-        log.info("Element founded: " + configuratorElementDto);
-        return configuratorElementDto;
+    public ConfiguratorGunPartDto findById(@PathVariable Long id) {
+        GunPart gunPart = gunPartService.findById(id);
+        ConfiguratorGunPartDto configuratorGunPartDto = gunPartMapper.gunPartToConfiguratorGunPartDto(gunPart);
+        log.info("Gun part founded: " + configuratorGunPartDto);
+        return configuratorGunPartDto;
     }
 
 }

@@ -1,9 +1,9 @@
-import { NFTCardDto } from "../../schema/NFTCatalogSchema";
+import { NFTCard } from "../../schema/NFTCatalogSchema";
 import { useStyles } from "./NFTMicroCardStyles";
 import { GCBadge, GCGroup, GCText, GCCard, GCCardSection, GCImage } from "../../gcComponents";
 
 interface NFTMicroCardProps {
-    item: NFTCardDto;
+    item: NFTCard;
 }
 
 const NFTMicroCard = ({ item }: NFTMicroCardProps) => {
