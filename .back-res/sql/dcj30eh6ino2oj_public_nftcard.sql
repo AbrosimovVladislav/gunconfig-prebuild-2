@@ -1,0 +1,12 @@
+INSERT INTO public.nftcard (nft_card_id, nft_image_url, build_id, product_id) VALUES (2, 'https://gunmarket.fra1.digitaloceanspaces.com/02.png', 16, 1);
+INSERT INTO public.nftcard (nft_card_id, nft_image_url, build_id, product_id) VALUES (11, 'https://gunmarket.fra1.digitaloceanspaces.com/011.png', 25, 1);
+INSERT INTO public.nftcard (nft_card_id, nft_image_url, build_id, product_id) VALUES (3, 'https://gunmarket.fra1.digitaloceanspaces.com/03.png', 17, 1);
+INSERT INTO public.nftcard (nft_card_id, nft_image_url, build_id, product_id) VALUES (9, 'https://gunmarket.fra1.digitaloceanspaces.com/09.png', 23, 1);
+INSERT INTO public.nftcard (nft_card_id, nft_image_url, build_id, product_id) VALUES (10, 'https://gunmarket.fra1.digitaloceanspaces.com/010.png', 24, 1);
+INSERT INTO public.nftcard (nft_card_id, nft_image_url, build_id, product_id) VALUES (8, 'https://gunmarket.fra1.digitaloceanspaces.com/08.png', 22, 1);
+INSERT INTO public.nftcard (nft_card_id, nft_image_url, build_id, product_id) VALUES (5, 'https://gunmarket.fra1.digitaloceanspaces.com/05.png', 19, 1);
+INSERT INTO public.nftcard (nft_card_id, nft_image_url, build_id, product_id) VALUES (1, 'https://gunmarket.fra1.digitaloceanspaces.com/01.png', 15, 1);
+INSERT INTO public.nftcard (nft_card_id, nft_image_url, build_id, product_id) VALUES (12, 'https://gunmarket.fra1.digitaloceanspaces.com/012.png', 26, 1);
+INSERT INTO public.nftcard (nft_card_id, nft_image_url, build_id, product_id) VALUES (4, 'https://gunmarket.fra1.digitaloceanspaces.com/04.png', 18, 1);
+INSERT INTO public.nftcard (nft_card_id, nft_image_url, build_id, product_id) VALUES (6, 'https://gunmarket.fra1.digitaloceanspaces.com/06.png', 20, 1);
+INSERT INTO public.nftcard (nft_card_id, nft_image_url, build_id, product_id) VALUES (7, 'https://gunmarket.fra1.digitaloceanspaces.com/07.png', 21, 1);
