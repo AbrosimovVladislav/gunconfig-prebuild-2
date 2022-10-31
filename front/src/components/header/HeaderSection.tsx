@@ -1,7 +1,7 @@
 import { useDisclosure } from "@mantine/hooks";
 import { IconSearch } from "@tabler/icons";
 import { useStyles } from "./HeaderSectionStyles";
-import { GCAutocomplete, GCBurger, GCGroup, GCHeader, GCLink } from "../../gcComponents";
+import { GCAutocomplete, GCBurger, GCGroup, GCHeader, GCLink } from "../../gc-components";
 
 interface HeaderSectionProps {
     links: { link: string; label: string }[];

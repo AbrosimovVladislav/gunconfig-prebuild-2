@@ -1,6 +1,6 @@
 import { NFTCard } from "../../schema/NFTCatalogSchema";
 import { useStyles } from "./NFTMicroCardStyles";
-import { GCBadge, GCGroup, GCText, GCCard, GCCardSection, GCImage } from "../../gcComponents";
+import { GCBadge, GCGroup, GCText, GCCard, GCCardSection, GCImage } from "../../gc-components";
 
 interface NFTMicroCardProps {
     item: NFTCard;
