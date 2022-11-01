@@ -1,8 +1,8 @@
-import { ReactNode } from "react";
+import {Key, ReactNode} from "react";
 import Link from "next/link";
 
 interface GCLinkProps {
-    key?: string | number;
+    key?: string | number | null | undefined;
     href: string;
     children: ReactNode;
 }
