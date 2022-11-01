@@ -80,3 +80,6 @@ Back === Front - RequestName+Request (CreateNFTRequest)
 -   Emotion UI
 -   React Query
 -   Zustand
+
+## 9. Code style
+We are using [Prettier](https://prettier.io/) as code style tool
