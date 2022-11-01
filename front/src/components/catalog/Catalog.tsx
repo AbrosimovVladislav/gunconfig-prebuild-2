@@ -13,8 +13,8 @@ const Catalog = ({ nfts }: CatalogProps) => {
     return (
         <div className={classes.catalog}>
             {nfts.map((item: NFTCard) => (
-                <div className={classes.card}>
-                    <NFTMicroCard item={item} key={item.id} />
+                <div className={classes.card} key={item.id} >
+                    <NFTMicroCard item={item}/>
                 </div>
             ))}
         </div>
