@@ -5,9 +5,9 @@ spring:
   application:
     name: back
   datasource:
-    username: rqgebfemsnielf
-    password: 9a10859f9ad8cc7fbca9affa8904e5837ed6b88136eeb162f80dfcafc3470ced
-    url: jdbc:postgresql://ec2-99-80-170-190.eu-west-1.compute.amazonaws.com:5432/dcj30eh6ino2oj
+    username: xrbvyhiicttfhu
+    password: 241bf3c333fefc76181e365ef83efbe8bb90933ee2055e64dbbbd92af43c5b50
+    url: jdbc:postgresql://ec2-54-229-217-195.eu-west-1.compute.amazonaws.com:5432/d8nc6j0pgrb79n
     driver-class-name: org.postgresql.Driver
     initialization-mode: always
     separator: ;;
