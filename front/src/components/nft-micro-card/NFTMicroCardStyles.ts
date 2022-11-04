@@ -36,9 +36,7 @@ export const useStyles = createStyles((theme) => ({
         alignItems: "flex-end",
         justifyContent: "space-between",
         width: "100%",
-        padding: "24px",
-        paddingBottom: "10px",
-        paddingTop: "0",
+        padding: "0 24px 10px",
         marginTop: "0 !important"
     }
 }));
