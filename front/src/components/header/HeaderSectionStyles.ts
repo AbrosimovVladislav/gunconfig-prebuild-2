@@ -5,6 +5,7 @@ export const useStyles = createStyles((theme) => ({
         paddingLeft: theme.spacing.md,
         paddingRight: theme.spacing.md,
         marginBottom: "0px !important",
+        backgroundColor: "transparent",
     },
 
     inner: {

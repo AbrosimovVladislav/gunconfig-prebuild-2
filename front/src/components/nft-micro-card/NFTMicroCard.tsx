@@ -10,21 +10,22 @@ const NFTMicroCard = ({ item }: NFTMicroCardProps) => {
     const { classes } = useStyles();
 
     return (
-        <GCCard withBorder radius="md" className={classes.card}>
+        <GCCard  className={classes.card}>
             <GCCardSection className={classes.imageSection}>
-                <GCImage src={item.nftImageUrl} alt="gun" />
+                <GCImage className={classes.image} src={item.nftImageUrl} alt="gun" />
             </GCCardSection>
-
-            <GCGroup position="apart" mt="md">
-                <div>
-                    <GCText weight={500}>{item.nftName}</GCText>
+            <div className={classes.content}>
+                <div className={classes.section}>
+                    <GCText weight={700}>{item.nftName}</GCText>
+                    <GCBadge>{item.productName}</GCBadge>
                 </div>
-                <GCBadge variant="outline">{item.productName}</GCBadge>
-                <GCText size="sm" color="dimmed" weight={500} sx={{ lineHeight: 2 }} mt={3}>
-                    Minting price
-                </GCText>
-                <GCText variant="gradient">0,0031 ETH</GCText>
-            </GCGroup>
+                <div className={classes.section}>
+                    <GCText size="sm" color="" weight={500} sx={{lineHeight: 2}} mt={3}>
+                        Minting price
+                    </GCText>
+                    <GCText weight={700}>0,0031 ETH</GCText>
+                </div>
+            </div>
         </GCCard>
     );
 };
