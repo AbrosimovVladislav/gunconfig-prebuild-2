@@ -21,6 +21,7 @@
     "@mantine/prism": "^5.5.4",
     "@mantine/rte": "^5.5.4",
     "@mantine/spotlight": "^5.5.4",
+    "@next/font": "^13.0.2",
     "dayjs": "^1.11.5",
     "embla-carousel-react": "^7.0.3",
     "next": "12.3.1",
