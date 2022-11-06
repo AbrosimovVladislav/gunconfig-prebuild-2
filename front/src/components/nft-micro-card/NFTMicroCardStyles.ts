@@ -3,34 +3,40 @@ import { createStyles } from "@mantine/core";
 export const useStyles = createStyles((theme) => ({
     card: {
         backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
+        padding: "0 !important",
         maxWidth: "343px",
-        maxHeight: "550px",
+        maxHeight: "400px",
+        minHeight: "300px",
+
+        '&::after': {
+            content: "''",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            borderRadius: "8px"
+        }
     },
 
     imageSection: {
-        padding: theme.spacing.md,
+        padding: "10px 15px",
         display: "flex",
-        alignItems: "center",
+        alignItems: "flex-start",
         justifyContent: "center",
         minHeight: "248px",
-        borderBottom: `1px solid ${theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[3]}`,
     },
 
-    label: {
-        marginBottom: theme.spacing.xs,
-        lineHeight: 1,
-        fontWeight: 700,
-        fontSize: theme.fontSizes.xs,
-        letterSpacing: -0.25,
-        textTransform: "uppercase",
-    },
-
-    section: {
-        padding: theme.spacing.md,
-    },
-
-    icon: {
-        marginRight: 5,
-        color: theme.colorScheme === "dark" ? theme.colors.dark[2] : theme.colors.gray[5],
-    },
+    content: {
+        zIndex: 1,
+        position: "absolute",
+        bottom: 0,
+        left: 0,
+        display: "flex",
+        alignItems: "flex-end",
+        justifyContent: "space-between",
+        width: "100%",
+        padding: "0 24px 10px",
+        marginTop: "0 !important"
+    }
 }));
