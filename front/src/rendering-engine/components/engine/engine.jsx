@@ -5,28 +5,12 @@ import { Canvas, RootWrapper } from "./engine.styles";
 export const Engine = ({ components }) => {
     const [ratio, setRatio] = useState(0);
 
+    const rootComponent = components.find((el) => el.target === "ROOT");
+
     return (
         <Canvas>
             <RootWrapper>
-                {
-                    // map root component
-                    components
-                        .filter((component) => component.target === "ROOT")
-                        .map((component, idx) => (
-                            <GunComponent component={component} ratio={ratio} setRatio={setRatio} key={idx} />
-                        ))
-                }
-
-                {
-                    // map rest of the components
-                    ratio &&
-                        components.map(
-                            (component, idx) =>
-                                component.target !== "ROOT" && (
-                                    <GunComponent component={component} ratio={ratio} key={idx} />
-                                )
-                        )
-                }
+                <GunComponent component={rootComponent} ratio={ratio} setRatio={setRatio} />
             </RootWrapper>
         </Canvas>
     );
