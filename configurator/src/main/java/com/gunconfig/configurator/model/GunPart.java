@@ -33,7 +33,7 @@ public class GunPart {
   private Integer width;
 
   @ManyToMany
-  @JoinColumn(name = "target_gun_part_id")
-  private List<GunPart> target;
+  @JoinColumn(name = "children_gun_part_id")
+  private List<GunPart> children;
 
 }
