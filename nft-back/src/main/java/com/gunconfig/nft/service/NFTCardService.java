@@ -1,12 +1,7 @@
 package com.gunconfig.nft.service;
 
-import com.gunconfig.model.Build;
-import com.gunconfig.model.NFTCard;
 import com.gunconfig.nft.repo.NFTCardRepo;
-import com.gunconfig.repo.NFTCardRepo;
-import com.gunconfig.web.dto.catalog.request.NFTCreateRequest;
-import java.util.List;
-import java.util.stream.Collectors;
+import com.gunconfig.nft.service.client.ConfiguratorClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,28 +9,34 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class NFTCardService {
 
-    private final NFTCardRepo nftCardRepo;
-    private final ProductService productService;
-    private final GunPartService gunPartService;
-    private final BuildService buildService;
+  private final NFTCardRepo nftCardRepo;
+  private final ConfiguratorClient configuratorClient;
 
-    public List<NFTCard> findAll() {
-        return nftCardRepo.findAll();
-    }
+  public String test(String message) {
+    String test = configuratorClient.test(message);
+    return test;
+  }
+//    private final ProductService productService;
+//    private final GunPartService gunPartService;
+//    private final BuildService buildService;
 
-    public NFTCard createNft(NFTCreateRequest request) {
-        Build build = new Build()
-                .setRootGunPart(gunPartService.findById(request.getRootGunId()))
-                .setGunParts(request.getGunPartsIds().stream()
-                        .map(gunPartService::findById).collect(Collectors.toList()))
-                .setBuildImageUrl(request.getBuildImageUrl());
-        build = buildService.save(build);
+//    public List<NFTCard> findAll() {
+//        return nftCardRepo.findAll();
+//    }
 
-        NFTCard nftCard = new NFTCard()
-                .setRootGun(productService.findById(request.getProductId()))
-                .setNftImageUrl(request.getNftImageUrl())
-                .setBuild(build);
-        NFTCard savedNFT = nftCardRepo.save(nftCard);
-        return savedNFT;
-    }
+//    public NFTCard createNft(NFTCreateRequest request) {
+//        Build build = new Build()
+//                .setRootGunPart(gunPartService.findById(request.getRootGunId()))
+//                .setGunParts(request.getGunPartsIds().stream()
+//                        .map(gunPartService::findById).collect(Collectors.toList()))
+//                .setBuildImageUrl(request.getBuildImageUrl());
+//        build = buildService.save(build);
+//
+//        NFTCard nftCard = new NFTCard()
+//                .setRootGun(productService.findById(request.getProductId()))
+//                .setNftImageUrl(request.getNftImageUrl())
+//                .setBuild(build);
+//        NFTCard savedNFT = nftCardRepo.save(nftCard);
+//        return savedNFT;
+//    }
 }

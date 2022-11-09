@@ -45,3 +45,6 @@ eureka:
 logging:
   file:
     name: databasefiller-app.log
+
+configurator:
+  test: /test

@@ -22,6 +22,11 @@ public class ConfiguratorController {
   private final GunPartService gunPartService;
   private final GunPartMapper gunPartMapper;
 
+  @GetMapping(value = "/test/{message}", produces = MediaType.APPLICATION_JSON_VALUE)
+  public String test(@PathVariable String message) {
+    return "Test-" + message;
+  }
+
   @GetMapping(value = "/elements", produces = MediaType.APPLICATION_JSON_VALUE)
   public List<GunPart> findAll() {
     return gunPartService.findAll();
