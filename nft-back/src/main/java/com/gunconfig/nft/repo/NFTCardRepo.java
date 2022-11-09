@@ -1,8 +1,8 @@
 package com.gunconfig.nft.repo;
 
-import com.gunconfig.model.NFTCard;
+import com.gunconfig.nft.model.NFTCardEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface NFTCardRepo extends JpaRepository<NFTCard, Long> {
+public interface NFTCardRepo extends JpaRepository<NFTCardEntity, Long> {
 
 }

@@ -1,13 +1,16 @@
 package com.gunconfig.nft.model;
 
+import java.util.List;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
 @Data
 @Accessors(chain = true)
-public class NFTCard {
-  private Long nftCardId;
+public class GunPart {
+
+  private Long gunPartId;
   private Product product;
-  private String nftImageUrl;
-  private Build build;
+  private String image;
+  private List<GunPart> children;
+
 }

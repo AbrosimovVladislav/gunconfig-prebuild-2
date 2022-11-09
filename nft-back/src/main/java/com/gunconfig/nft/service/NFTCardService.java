@@ -2,6 +2,7 @@ package com.gunconfig.nft.service;
 
 import com.gunconfig.model.Build;
 import com.gunconfig.model.NFTCard;
+import com.gunconfig.nft.repo.NFTCardRepo;
 import com.gunconfig.repo.NFTCardRepo;
 import com.gunconfig.web.dto.catalog.request.NFTCreateRequest;
 import java.util.List;
