@@ -1,17 +1,17 @@
 import { ReactNode } from "react";
-import { Card } from "@mantine/core";
+import {Card, CardProps} from "@mantine/core";
 import { MantineNumberSize } from "@mantine/styles";
 
-interface GCCardProps {
+interface GCCardProps extends CardProps{
     children: ReactNode;
     withBorder?: boolean;
     radius?: MantineNumberSize;
     className?: string;
 }
 
-export const GCCard = ({ children, withBorder, radius, className }: GCCardProps) => {
+export const GCCard = ({ children, withBorder, radius, className, ...props }: GCCardProps) => {
     return (
-        <Card withBorder={withBorder} radius={radius} className={className}>
+        <Card withBorder={withBorder} radius={radius} className={className} {...props}>
             {children}
         </Card>
     );
