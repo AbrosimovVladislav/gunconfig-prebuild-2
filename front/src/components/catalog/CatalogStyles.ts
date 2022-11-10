@@ -28,7 +28,8 @@ export const useStyles = createStyles((theme) => ({
             marginRight: "10px",
         },
         '&:hover': {
-            outline: "1px solid #7B61FF",
+            outline: [`1px solid ${theme.colors.violet[7]}`],
+            boxShadow: [`${theme.shadows.md}`],
             borderRadius: "8px",
         }
     },

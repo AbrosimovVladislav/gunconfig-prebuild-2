@@ -16,6 +16,10 @@ export const useStyles = createStyles((theme) => ({
             width: "100%",
             height: "100%",
             borderRadius: "8px"
+        },
+
+        '&:hover': {
+            borderColor: "transparent !important",
         }
     },
 
