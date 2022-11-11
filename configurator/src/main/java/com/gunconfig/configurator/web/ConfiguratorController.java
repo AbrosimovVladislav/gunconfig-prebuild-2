@@ -6,12 +6,18 @@ import com.gunconfig.configurator.model.SchemaNode;
 import com.gunconfig.configurator.service.BuildService;
 import com.gunconfig.configurator.service.GunPartService;
 import com.gunconfig.configurator.web.dto.BuildCreateRequest;
-import com.gunconfig.configurator.web.dto.GunPartDto;
+import com.gunconfig.configurator.web.dto.GetGunPartsByParentAndTypeRequest;
+import com.gunconfig.configurator.web.dto.RenderingGunPartDto;
+import com.gunconfig.configurator.web.dto.ShortGunPartDto;
 import com.gunconfig.configurator.web.mapper.BuildMapper;
 import com.gunconfig.configurator.web.mapper.GunPartMapper;
+import com.gunconfig.configurator.web.preparer.Preparer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RestController
@@ -23,10 +29,11 @@ public class ConfiguratorController {
     private final GunPartService gunPartService;
     private final BuildMapper buildMapper;
     private final GunPartMapper gunPartMapper;
+    private final Preparer preparer;
 
     /**
      * First endpoint
-     * Get a tree of gun by provided shema
+     * Get a tree of gun by provided schema
      */
     @GetMapping(value = "/build/schema/{base64code}")
     public GunPart getBuildTreeBySchema(@PathVariable String base64code) {
@@ -39,15 +46,23 @@ public class ConfiguratorController {
      * Second endpoint
      * Get a list of gun parts for exact place by parent id and gunPart type
      */
+    @GetMapping(value = "/gunpart")
+    public List<ShortGunPartDto> getGunPartsByParentAndType(@RequestParam Map<String, String> requestParams){
+        GetGunPartsByParentAndTypeRequest request = preparer.prepareRequest(requestParams);
+        List<GunPart> gunParts = gunPartService.getGunPartsByParentAndType(request);
+        List<ShortGunPartDto> shortDtos = gunPartMapper.toShortDtos(gunParts);
+        List<ShortGunPartDto> finalShortDtos = gunPartService.checkOnIncompatible(shortDtos,request.getCurrentBuildIds());
+        return finalShortDtos;
+    }
 
     /**
      * Third endpoint
      * Get a rendering info for exact gun part by id
      */
     @GetMapping(value = "/gunpart/{id}")
-    public GunPartDto getGunPartById(@PathVariable Long id) {
+    public RenderingGunPartDto getGunPartById(@PathVariable Long id) {
         GunPart gunPart = gunPartService.findById(id);
-        GunPartDto dto = gunPartMapper.gunPartToDto(gunPart);
+        RenderingGunPartDto dto = gunPartMapper.toRenderingDto(gunPart);
         return dto;
     }
 

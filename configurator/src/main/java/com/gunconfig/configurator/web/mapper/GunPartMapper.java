@@ -1,15 +1,18 @@
 package com.gunconfig.configurator.web.mapper;
 
 import com.gunconfig.configurator.model.GunPart;
-import com.gunconfig.configurator.web.dto.GunPartDto;
+import com.gunconfig.configurator.web.dto.RenderingGunPartDto;
+import com.gunconfig.configurator.web.dto.ShortGunPartDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
 public class GunPartMapper {
-    public GunPartDto gunPartToDto(GunPart gunPart) {
-        return GunPartDto.builder()
+    public RenderingGunPartDto toRenderingDto(GunPart gunPart) {
+        return RenderingGunPartDto.builder()
                 .gunPartId(gunPart.getGunPartId())
                 .productId(gunPart.getProduct().getProductId())
                 .productName(gunPart.getProduct().getName())
@@ -21,4 +24,18 @@ public class GunPartMapper {
                 .build();
     }
 
+    public List<ShortGunPartDto> toShortDtos(List<GunPart> gunParts) {
+        return gunParts.stream().map(this::toShortDto).toList();
+    }
+
+    public ShortGunPartDto toShortDto(GunPart gunPart) {
+        return ShortGunPartDto.builder()
+                .gunPartId(gunPart.getGunPartId())
+                .productId(gunPart.getProduct().getProductId())
+                .name(gunPart.getProduct().getName())
+                .type(gunPart.getProduct().getType())
+                .thumbnailImage(gunPart.getThumbnailImage())
+                .incompatibleIds(gunPart.getIncompatibles().stream().map(GunPart::getGunPartId).toList())
+                .build();
+    }
 }

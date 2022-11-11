@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class GunPartDto {
+public class RenderingGunPartDto {
 
     private Long gunPartId;
     private Long productId;
