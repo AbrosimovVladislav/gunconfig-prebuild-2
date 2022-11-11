@@ -1,7 +1,7 @@
 package com.gunconfig.configurator.web.preparer;
 
 import com.gunconfig.configurator.model.Product;
-import com.gunconfig.configurator.web.dto.GetGunPartsByParentAndTypeRequest;
+import com.gunconfig.configurator.web.dto.request.GetGunPartsByParentAndTypeRequest;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

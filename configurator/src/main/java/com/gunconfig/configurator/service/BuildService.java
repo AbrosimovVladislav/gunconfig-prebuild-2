@@ -26,18 +26,18 @@ public class BuildService {
     }
 
     public GunPart getBuildTreeBySchema(SchemaNode schema) {
-        GunPart gunPart = recursiveBuildEnrich(schema, gunPartRepo.findByGunPartIdWithoutChildren(schema.getId()));
+        GunPart gunPart = recursiveBuildEnrich(schema, gunPartRepo.findByGunPartId(schema.getId()));
         return gunPart;
     }
 
     private GunPart recursiveBuildEnrich(SchemaNode schemaNode, GunPart gunPartTree) {
         List<SchemaNode> children = schemaNode.getChildren();
         List<GunPart> enrichedChildren = children.stream()
-                .map(e -> gunPartRepo.findByGunPartIdWithoutChildren(e.getId())).toList();
+                .map(e -> gunPartRepo.findByGunPartId(e.getId())).toList();
         gunPartTree.setChildren(enrichedChildren);
 
         if (!children.isEmpty()) {
-            children.forEach(e -> recursiveBuildEnrich(e, gunPartRepo.findByGunPartIdWithoutChildren(e.getId())));
+            children.forEach(e -> recursiveBuildEnrich(e, gunPartRepo.findByGunPartId(e.getId())));
         }
         return gunPartTree;
     }

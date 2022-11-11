@@ -5,8 +5,8 @@ import com.gunconfig.configurator.model.GunPart;
 import com.gunconfig.configurator.model.SchemaNode;
 import com.gunconfig.configurator.service.BuildService;
 import com.gunconfig.configurator.service.GunPartService;
-import com.gunconfig.configurator.web.dto.BuildCreateRequest;
-import com.gunconfig.configurator.web.dto.GetGunPartsByParentAndTypeRequest;
+import com.gunconfig.configurator.web.dto.request.BuildCreateRequest;
+import com.gunconfig.configurator.web.dto.request.GetGunPartsByParentAndTypeRequest;
 import com.gunconfig.configurator.web.dto.RenderingGunPartDto;
 import com.gunconfig.configurator.web.dto.ShortGunPartDto;
 import com.gunconfig.configurator.web.mapper.BuildMapper;
@@ -35,6 +35,7 @@ public class ConfiguratorController {
      * First endpoint
      * Get a tree of gun by provided schema
      */
+    @CrossOrigin
     @GetMapping(value = "/build/schema/{base64code}")
     public GunPart getBuildTreeBySchema(@PathVariable String base64code) {
         SchemaNode schema = buildMapper.fromBase64ToSchemaNode(base64code);
@@ -46,6 +47,7 @@ public class ConfiguratorController {
      * Second endpoint
      * Get a list of gun parts for exact place by parent id and gunPart type
      */
+    @CrossOrigin
     @GetMapping(value = "/gunpart")
     public List<ShortGunPartDto> getGunPartsByParentAndType(@RequestParam Map<String, String> requestParams){
         GetGunPartsByParentAndTypeRequest request = preparer.prepareRequest(requestParams);
@@ -59,6 +61,7 @@ public class ConfiguratorController {
      * Third endpoint
      * Get a rendering info for exact gun part by id
      */
+    @CrossOrigin
     @GetMapping(value = "/gunpart/{id}")
     public RenderingGunPartDto getGunPartById(@PathVariable Long id) {
         GunPart gunPart = gunPartService.findById(id);
@@ -66,12 +69,14 @@ public class ConfiguratorController {
         return dto;
     }
 
+    @CrossOrigin
     @GetMapping(value = "/build/{id}")
     public Build getBuildById(@PathVariable Long id) {
         Build build = buildService.getBuildById(id);
         return build;
     }
 
+    @CrossOrigin
     @PostMapping(value = "/build")
     public Build createBuild(@RequestBody BuildCreateRequest request) {
         Build build = buildMapper.fromRequestToBuild(request);

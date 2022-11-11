@@ -1,5 +1,6 @@
 package com.gunconfig.nft.service.client;
 
+import com.gunconfig.nft.model.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -9,27 +10,42 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+
 @Component
 @RequiredArgsConstructor
 public class ConfiguratorClient {
 
   @Value("http://CONFIGURATOR")
   public String CONFIGURATOR_BASE_PATH;
-  @Value("${configurator.test}")
-  public String CONFIGURATOR_TEST_PATH;
+  @Value("${configurator.product}")
+  public String PRODUCT_PATH;
+  @Value("${configurator.products}")
+  public String PRODUCTS_PATH;
 
   private final RestTemplate restTemplate;
 
-  public String test(String testMessage) {
-    String url = CONFIGURATOR_BASE_PATH + CONFIGURATOR_TEST_PATH + "/" + testMessage;
-    ResponseEntity<String> response = restTemplate.exchange(
-        url,
-        HttpMethod.GET,
-        new HttpEntity<>(null),
-        new ParameterizedTypeReference<>() {
-        }
+  public Product getProductById(Long rootGunProductId) {
+    String url = CONFIGURATOR_BASE_PATH + PRODUCT_PATH + "/" + rootGunProductId;
+    ResponseEntity<Product> response = restTemplate.exchange(
+            url,
+            HttpMethod.GET,
+            new HttpEntity<>(null),
+            new ParameterizedTypeReference<Product>() {
+            }
     );
     return response.getBody();
   }
 
+  public List<Product> getProductsByIds(List<Long> propertiesIds) {
+    String url = CONFIGURATOR_BASE_PATH + PRODUCTS_PATH + "/" + propertiesIds;
+    ResponseEntity<List<Product>> response = restTemplate.exchange(
+            url,
+            HttpMethod.GET,
+            new HttpEntity<>(null),
+            new ParameterizedTypeReference<List<Product>>() {
+            }
+    );
+    return response.getBody();
+  }
 }

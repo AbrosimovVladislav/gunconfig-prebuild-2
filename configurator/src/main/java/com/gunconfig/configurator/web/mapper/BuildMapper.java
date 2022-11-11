@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gunconfig.configurator.model.Build;
 import com.gunconfig.configurator.model.SchemaNode;
-import com.gunconfig.configurator.web.dto.BuildCreateRequest;
+import com.gunconfig.configurator.web.dto.request.BuildCreateRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

@@ -1,12 +1,14 @@
 package com.gunconfig.nft.web;
 
+import com.gunconfig.nft.model.NFTCard;
 import com.gunconfig.nft.service.NFTCardService;
+import com.gunconfig.nft.web.dto.NFTCardDto;
+import com.gunconfig.nft.web.mapper.NFTCardMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -14,29 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/nft-catalog")
 public class NFTCatalogController {
 
-  private final NFTCardService nftCardService;
+    private final NFTCardService nftCardService;
+    private final NFTCardMapper nftCardMapper;
 
-  @CrossOrigin
-  @GetMapping(value = "/test/{message}")
-  public String test(String message) {
-    String test = nftCardService.test(message);
-    return test;
-  }
+    @GetMapping
+    public List<NFTCardDto> getAllNFTs() {
+        List<NFTCard> nfts = nftCardService.findAll();
+        List<NFTCardDto> dtos = nftCardMapper.toDtos(nfts);
+        return dtos;
+    }
 
-//    private final NFTCardMapper nftCardMapper;
-//
-//    @CrossOrigin
-//    @GetMapping
-//    public List<NFTCardDto> findAll() {
-//        List<NFTCard> nftCards = nftCardService.findAll();
-//        log.info("Find all nfts. Size: " + nftCards.size());
-//        return nftCardMapper.nftCardsToDtos(nftCards);
-//    }
-//
-//    @CrossOrigin
-//    @PostMapping
-//    public NFTCardDto createNFT(@RequestBody NFTCreateRequest request){
-//        NFTCard createdNFT = nftCardService.createNft(request);
-//        return nftCardMapper.nftCardToDto(createdNFT);
-//    }
 }

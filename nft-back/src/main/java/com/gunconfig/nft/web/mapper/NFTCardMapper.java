@@ -1,27 +1,31 @@
 package com.gunconfig.nft.web.mapper;
 
+import com.gunconfig.nft.model.NFTCard;
+import com.gunconfig.nft.service.client.ConfiguratorClient;
+import com.gunconfig.nft.web.dto.NFTCardDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
 public class NFTCardMapper {
 
-//    private final BuildMapper buildMapper;
-//
-//
-//    public List<NFTCardDto> nftCardsToDtos(List<NFTCard> nftCards) {
-//        return nftCards.stream().map(this::nftCardToDto).collect(Collectors.toList());
-//    }
-//
-//    public NFTCardDto nftCardToDto(NFTCard nftCard) {
-//        return NFTCardDto.builder()
-//                .id(nftCard.getNftCardId())
-//                .nftName(nftCard.getRootGun().getName() + "_#" + nftCard.getNftCardId())
-//                .productId(nftCard.getRootGun().getProductId())
-//                .productName(nftCard.getRootGun().getName())
-//                .nftImageUrl(nftCard.getNftImageUrl())
-//                .buildDto(buildMapper.buildToDto(nftCard.getBuild()))
-//                .build();
-//    }
+    private final ConfiguratorClient configuratorClient;
+
+    public List<NFTCardDto> toDtos(List<NFTCard> nftCards) {
+        return nftCards.stream().map(this::toDto).toList();
+    }
+
+    private NFTCardDto toDto(NFTCard nftCard) {
+        return NFTCardDto.builder()
+                .nftCardId(nftCard.getNftCardId())
+                .name(nftCard.getName())
+                .rootGunProduct(configuratorClient.getProductById(nftCard.getRootGunProductId()))
+                .properties(configuratorClient.getProductsByIds(nftCard.getPropertiesIds()))
+                .nftImageUrl(nftCard.getNftImageUrl())
+                .build();
+    }
+
 }

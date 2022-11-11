@@ -22,6 +22,7 @@ public class Product {
 
   private String name;
   private String productImageUrl;
+  private String description;
 
   @Enumerated(EnumType.STRING)
   private Type type;

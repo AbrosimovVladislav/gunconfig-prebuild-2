@@ -5,14 +5,14 @@ spring:
   application:
     name: nft
   datasource:
-    username: xrbvyhiicttfhu
-    password: 241bf3c333fefc76181e365ef83efbe8bb90933ee2055e64dbbbd92af43c5b50
-    url: jdbc:postgresql://ec2-54-229-217-195.eu-west-1.compute.amazonaws.com:5432/d8nc6j0pgrb79n
+    username: cjjngwey
+    password: ghmxOuyL1vRQ0hlp_Uq3rxiUeFkx-D6o
+    url: jdbc:postgresql://mouse.db.elephantsql.com:5432/cjjngwey
     driver-class-name: org.postgresql.Driver
     initialization-mode: always
     separator: ;;
     hikari:
-      maximum-pool-size: 3
+      maximum-pool-size: 1
   jpa:
     database: postgresql
     hibernate:
@@ -47,4 +47,6 @@ logging:
     name: databasefiller-app.log
 
 configurator:
-  test: /test
+  product: /api/v1/product
+  products: /api/v1/product/batch
+

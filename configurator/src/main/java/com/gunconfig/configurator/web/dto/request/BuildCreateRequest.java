@@ -1,4 +1,4 @@
-package com.gunconfig.configurator.web.dto;
+package com.gunconfig.configurator.web.dto.request;
 
 import com.gunconfig.configurator.model.SchemaNode;
 import lombok.Data;

@@ -2,7 +2,7 @@ package com.gunconfig.configurator.service;
 
 import com.gunconfig.configurator.model.GunPart;
 import com.gunconfig.configurator.repo.GunPartRepo;
-import com.gunconfig.configurator.web.dto.GetGunPartsByParentAndTypeRequest;
+import com.gunconfig.configurator.web.dto.request.GetGunPartsByParentAndTypeRequest;
 import com.gunconfig.configurator.web.dto.ShortGunPartDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

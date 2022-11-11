@@ -1,4 +1,4 @@
-package com.gunconfig.configurator.web.dto;
+package com.gunconfig.configurator.web.dto.request;
 
 import com.gunconfig.configurator.model.Product;
 import lombok.Builder;
