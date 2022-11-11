@@ -1,6 +1,6 @@
 package com.gunconfig.configurator.model;
 
-import com.gunconfig.configurator.service.SchemaNodeConverter;
+import com.gunconfig.configurator.service.converter.SchemaNodeConverter;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
