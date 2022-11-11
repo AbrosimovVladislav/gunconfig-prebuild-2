@@ -26,7 +26,7 @@ public class GunPart {
   @JoinColumn(name = "product_id")
   private Product product;
 
-  private String image;
+  private String gunPartImageUrl;
 
   private Integer x;
   private Integer y;

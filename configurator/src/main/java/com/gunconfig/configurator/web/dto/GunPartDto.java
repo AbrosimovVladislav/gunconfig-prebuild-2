@@ -11,6 +11,9 @@ public class GunPartDto {
     private Long productId;
     private String productName;
     private String productType;
-    private String imageUrl;
+    private String gunPartImageUrl;
+    private Integer x;
+    private Integer y;
+    private Integer width;
 
 }

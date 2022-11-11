@@ -2,7 +2,6 @@ package com.gunconfig.configurator.service;
 
 import com.gunconfig.configurator.model.GunPart;
 import com.gunconfig.configurator.repo.GunPartRepo;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -12,14 +11,10 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class GunPartService {
 
-  private final GunPartRepo gunPartRepo;
+    private final GunPartRepo gunPartRepo;
 
-  public List<GunPart> findAll() {
-    return gunPartRepo.findAll();
-  }
-
-  public GunPart findById(Long id) {
-    return gunPartRepo.findById(id)
-        .orElseThrow(() -> new RuntimeException("There is no gun part with id: " + id));
-  }
+    public GunPart findById(Long id) {
+        return gunPartRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("There is no gun part with id: " + id));
+    }
 }

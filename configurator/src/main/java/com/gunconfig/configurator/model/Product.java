@@ -21,12 +21,13 @@ public class Product {
   private Long productId;
 
   private String name;
+  private String productImageUrl;
 
   @Enumerated(EnumType.STRING)
   private Type type;
 
   public enum Type {
     ROOT, GUN, PISTOL_GRIP, HANDGUARD, GAS_BLOCK, MUZZLE_BREAK,
-    MAGAZINE, CHARGING_HANDLE, SCOPE, STOCK_TUBE, STOCK, TRIGGER, TRIGGER_GUARD
+    MAGAZINE, CHARGING_HANDLE, SCOPE, STOCK_TUBE, STOCK, TRIGGER, TRIGGER_GUARD, TACTICAL_GRIP
   }
 }
