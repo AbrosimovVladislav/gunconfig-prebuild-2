@@ -12,8 +12,11 @@ public class NFTCardDto {
 
     private Long nftCardId;
     private String name;
-    private Product rootGunProduct;
-    private List<Product> properties;
+    private List<ProductDto> properties;
+    private Long buildId;
     private String nftImageUrl;
+    private String collection;
+    private Double mintingPrice;
+    private String rarity;
 
 }

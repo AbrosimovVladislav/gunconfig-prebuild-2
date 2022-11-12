@@ -1,15 +1,32 @@
 package com.gunconfig.nft.model;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 
-@Data
-@Builder
+import javax.persistence.*;
+
+@Entity
+@Getter
+@Setter
+@Accessors(chain = true)
 public class Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
+
     private String name;
     private String productImageUrl;
     private String description;
-    private String type;
+    //ToDo create as table
+    private String brand;
+
+    @Enumerated(EnumType.STRING)
+    private Type type;
+
+    public enum Type {
+        ROOT, GUN, PISTOL_GRIP, HANDGUARD, GAS_BLOCK, MUZZLE_BREAK,
+        MAGAZINE, CHARGING_HANDLE, SCOPE, STOCK_TUBE, STOCK, TRIGGER, TRIGGER_GUARD, TACTICAL_GRIP
+    }
 }

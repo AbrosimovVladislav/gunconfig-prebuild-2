@@ -23,6 +23,8 @@ public class Product {
   private String name;
   private String productImageUrl;
   private String description;
+  //ToDo create as table
+  private String brand;
 
   @Enumerated(EnumType.STRING)
   private Type type;

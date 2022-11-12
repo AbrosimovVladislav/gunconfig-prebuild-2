@@ -5,9 +5,9 @@ spring:
   application:
     name: nft
   datasource:
-    username: cjjngwey
-    password: ghmxOuyL1vRQ0hlp_Uq3rxiUeFkx-D6o
-    url: jdbc:postgresql://mouse.db.elephantsql.com:5432/cjjngwey
+    username: tgorpnnx
+    password: vIJMgTf0yIHpNOMT2E6T4oJUHYH2d9j6
+    url: jdbc:postgresql://mouse.db.elephantsql.com:5432/tgorpnnx
     driver-class-name: org.postgresql.Driver
     initialization-mode: always
     separator: ;;

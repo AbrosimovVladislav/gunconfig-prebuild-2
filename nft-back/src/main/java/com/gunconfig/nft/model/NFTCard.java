@@ -17,9 +17,18 @@ public class NFTCard {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long nftCardId;
     private String name;
-    private Long rootGunProductId;
-    @ElementCollection
-    private List<Long> propertiesIds;
+    private String collection;
+    private Double mintingPrice;
+    @Enumerated(EnumType.STRING)
+    private Rarity rarity;
+    private Long buildId;
+    @ManyToMany
+    @JoinColumn(name = "product_id")
+    private List<Product> products;
     private String nftImageUrl;
+
+    public enum Rarity {
+        USUAL, RARE, LEGENDARY
+    }
 
 }
