@@ -14,6 +14,8 @@
     <module>back</module>
     <module>spring-admin</module>
     <module>eureka-server</module>
+    <module>configurator</module>
+    <module>nft-back</module>
   </modules>
 
   <properties>

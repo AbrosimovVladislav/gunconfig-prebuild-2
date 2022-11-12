@@ -1,0 +1,49 @@
+### GET a tree of gun by provided schema (First Endpoint)
+GET http://localhost:8081/api/v1/configurator/build/schema/ewogICJpZCI6IDEsCiAgImNoaWxkcmVuIjogWwogICAgewogICAgICAiaWQiOiAyLAogICAgICAiY2hpbGRyZW4iOiBbXQogICAgfSwKICAgIHsKICAgICAgImlkIjogMywKICAgICAgImNoaWxkcmVuIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6IDQsCiAgICAgICAgICAiY2hpbGRyZW4iOiBbXQogICAgICAgIH0KICAgICAgXQogICAgfSwKICAgIHsKICAgICAgImlkIjogNiwKICAgICAgImNoaWxkcmVuIjogW10KICAgIH0KICBdCn0=
+Accept: application/json
+
+### GET a list of gun parts for exact place by parent id and gunPart type (Second Endpoint)
+GET http://localhost:8081/api/v1/configurator/gunpart?parentId=1&typeOfProduct=HANDGUARD&currentBuildIds=1,2,3,4,6
+Accept: application/json
+
+### GET a rendering info for exact gun part by id (Third Endpoint)
+GET http://localhost:8081/api/v1/configurator/gunpart/8
+Accept: application/json
+
+### GET build by id
+GET http://localhost:8081/api/v1/configurator/build/2
+Accept: application/json
+
+### Save new build
+POST http://localhost:8081/api/v1/configurator/build
+Content-Type: application/json
+
+{
+  "schemaNode": {
+    "id": 1,
+    "children": [
+      {
+        "id": 6,
+        "children": []
+      },
+      {
+        "id": 3,
+        "children": [
+          {
+            "id": 4,
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  "buildImageUrl": "qwe"
+}
+
+### GET a product by id
+GET http://localhost:8081/api/v1/product/2
+Accept: application/json
+
+### GET a products by ids
+GET http://localhost:8081/api/v1/product/batch/1,2,7,4,5
+Accept: application/json
