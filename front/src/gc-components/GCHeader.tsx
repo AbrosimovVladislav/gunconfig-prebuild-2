@@ -1,16 +1,16 @@
 import { ReactNode } from "react";
-import { Header } from "@mantine/core";
+import {Header, HeaderProps} from "@mantine/core";
 
-interface GCHeaderProps {
+interface GCHeaderProps extends HeaderProps{
     children: ReactNode;
     height: number;
     className?: string;
     mb?: number;
 }
 
-export const GCHeader = ({ children, height, className, mb }: GCHeaderProps) => {
+export const GCHeader = ({ children, height, className, mb, ...props }: GCHeaderProps) => {
     return (
-        <Header height={height} className={className} mb={mb}>
+        <Header height={height} className={className} mb={mb} {...props}>
             {children}
         </Header>
     );

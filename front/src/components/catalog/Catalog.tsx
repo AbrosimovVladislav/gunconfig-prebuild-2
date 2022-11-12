@@ -16,8 +16,8 @@ const Catalog = ({ nfts }: CatalogProps) => {
         <FilterSection />
         <div className={classes.catalog}>
             {nfts.map((item: NFTCard) => (
-                <div className={classes.card} key={item.id} >
-                    <NFTMicroCard item={item}/>
+                <div className={classes.card} key={item.nftCardId}>
+                    <NFTMicroCard item={item} />
                 </div>
             ))}
         </div>
