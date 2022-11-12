@@ -1,21 +1,19 @@
 export interface NFTCard {
-    id: number;
-    nftName: string;
-    productId: number;
-    productName: string;
+    nftCardId: number;
+    name: string;
+    buildId: number;
     nftImageUrl: string;
-    build: Build;
+    collection: string;
+    mintingPrice: number;
+    rarity: string;
+    properties: Product[];
 }
 
-export interface Build {
-    rootGun: GunPart;
-    gunParts: GunPart[];
-}
-
-export interface GunPart {
-    gunPartId: number;
+export interface Product {
     productId: number;
-    productName: string;
-    productType: string;
-    imageUrl: string;
+    name: string;
+    productImageUrl: string;
+    description: string;
+    brand: string;
+    type: string;
 }

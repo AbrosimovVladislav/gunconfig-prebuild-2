@@ -19,6 +19,7 @@ public class NFTCatalogController {
     private final NFTCardService nftCardService;
     private final NFTCardMapper nftCardMapper;
 
+    @CrossOrigin
     @GetMapping
     public List<NFTCardDto> getAllNFTs() {
         List<NFTCard> nfts = nftCardService.findAll();
