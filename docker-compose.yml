@@ -22,8 +22,18 @@ services:
     networks:
       - spring
 
-  gunconfig-docker:
-    image: profidocker/back:1.0
+  configurator-docker:
+    image: profidocker/configurator:1.0
+    ports:
+      - 8081:8081
+    networks:
+      - spring
+    depends_on:
+      - eureka-server
+      - spring-admin
+
+  nft-back-docker:
+    image: profidocker/nft-back:1.0
     ports:
       - 8080:8080
     networks:
