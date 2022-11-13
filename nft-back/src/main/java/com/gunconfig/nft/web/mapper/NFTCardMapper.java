@@ -19,7 +19,7 @@ public class NFTCardMapper {
         return nftCards.stream().map(this::toDto).toList();
     }
 
-    private NFTCardDto toDto(NFTCard nftCard) {
+    public NFTCardDto toDto(NFTCard nftCard) {
         return NFTCardDto.builder()
                 .nftCardId(nftCard.getNftCardId())
                 .name(nftCard.getName())
@@ -29,6 +29,8 @@ public class NFTCardMapper {
                 .collection(nftCard.getCollection())
                 .mintingPrice(nftCard.getMintingPrice())
                 .rarity(nftCard.getRarity().name())
+                .firstOwner(nftCard.getFirstOwner())
+                .mintingDate(nftCard.getMintingDate())
                 .build();
     }
 

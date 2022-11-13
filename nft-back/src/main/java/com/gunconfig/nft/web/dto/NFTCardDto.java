@@ -18,5 +18,7 @@ public class NFTCardDto {
     private String collection;
     private Double mintingPrice;
     private String rarity;
+    private String mintingDate;
+    private String firstOwner;
 
 }

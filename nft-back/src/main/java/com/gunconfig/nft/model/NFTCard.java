@@ -26,6 +26,8 @@ public class NFTCard {
     @JoinColumn(name = "product_id")
     private List<Product> products;
     private String nftImageUrl;
+    private String mintingDate;
+    private String firstOwner;
 
     public enum Rarity {
         USUAL, RARE, LEGENDARY
