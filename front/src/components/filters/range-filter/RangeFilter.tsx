@@ -1,10 +1,15 @@
 import React from "react";
 import { RangeFilter } from "../../../services/filterService";
 
-const RangeFilter = (filter: RangeFilter) => {
+interface RangeFilterProps {
+    filter: RangeFilter;
+}
+
+const RangeFilter = ({filter}: RangeFilterProps) => {
     console.log(filter);
+    console.log(filter.name);
     return <div>
-        {JSON.stringify(filter)}
+        {filter.name}
     </div>;
 }
 

@@ -8,19 +8,21 @@ interface CatalogProps {
     nfts: NFTCard[];
 }
 
-const Catalog = ({ nfts }: CatalogProps) => {
-    const { classes } = useStyles();
+const Catalog = ({nfts}: CatalogProps) => {
+    const {classes} = useStyles();
 
     return (
-        <div>
-        <FilterSection />
-        <div className={classes.catalog}>
-            {nfts.map((item: NFTCard) => (
-                <div className={classes.card} key={item.nftCardId}>
-                    <NFTMicroCard item={item} />
-                </div>
-            ))}
-        </div>
+        <div className={classes.page}>
+            <div className={classes.filters}>
+                <FilterSection/>
+            </div>
+            <div className={classes.catalog}>
+                {nfts.map((item: NFTCard) => (
+                    <div className={classes.card} key={item.nftCardId}>
+                        <NFTMicroCard item={item}/>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };

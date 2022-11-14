@@ -1,9 +1,13 @@
 import React from "react";
 import { CheckboxFilter } from "../../../services/filterService";
 
-const CheckboxFilter = (filter: CheckboxFilter) => {
+interface CheckboxFilterProps {
+    filter: CheckboxFilter;
+}
+
+const CheckboxFilter = ({filter}: CheckboxFilterProps) => {
     return <div>
-        {JSON.stringify(filter)}
+        {filter.name}
     </div>;
 }
 
