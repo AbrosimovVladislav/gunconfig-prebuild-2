@@ -1,4 +1,4 @@
-git checkout simple-nft-catalog-table
+git checkout test-test
 git pull
 
 mvn clean package -P build-docker-image
