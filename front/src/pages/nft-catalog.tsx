@@ -1,9 +1,9 @@
 import React from "react";
-import { useGetAllNfts } from "../services/nftService";
+import { useGetAllNFTs } from "../services/nftService";
 import Catalog from "../components/catalog/Catalog";
 
 const NFTCatalog = () => {
-    const [data, error, isLoading, isError] = useGetAllNfts();
+    const [data, error, isLoading, isError] = useGetAllNFTs();
 
     if (isLoading) {
         return <div>Loading...</div>;

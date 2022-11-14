@@ -1,12 +1,13 @@
 import { useQuery } from "react-query";
+import { get } from "./restClient";
+import { NFT_POSTFIX } from "../consts/back-paths";
 
-export function useGetAllNfts() {
-    const { data, error, isLoading, isError } = useQuery("getAllNfts", getAllNfts);
+export function useGetNFTById(id: number) {
+    const { data, error, isLoading, isError } = useQuery("GetNFTById:" + id, () => get(NFT_POSTFIX + id));
     return [data, error, isLoading, isError];
 }
 
-const getAllNfts = async () => {
-    const response = await fetch(`http://178.128.203.194:8080/api/v1/nft-catalog/`);
-    // const response = await fetch(`http://localhost:8080/api/v1/nft-catalog`);
-    return response.json();
-};
+export function useGetAllNFTs() {
+    const { data, error, isLoading, isError } = useQuery("getAllNfts", () => get(NFT_POSTFIX));
+    return [data, error, isLoading, isError];
+}
