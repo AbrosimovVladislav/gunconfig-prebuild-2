@@ -1,6 +1,6 @@
 import { createStyles } from "@mantine/core";
 
-export const useStyles = createStyles((theme) => ({
+export const useStyles = createStyles((theme, _params, getRef) => ({
     card: {
         backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
         padding: "0 !important",
@@ -18,17 +18,27 @@ export const useStyles = createStyles((theme) => ({
             borderRadius: "8px"
         },
 
-        '&:hover': {
-            borderColor: "transparent !important",
+        ':hover': {
+            borderColor: "transparent",
+            outline: "1px solid #7B61FF",
+            borderRadius: "8px",
+            boxShadow: theme.shadows.md,
+
+            [`& .${getRef('imageSection')}`]: {
+                padding: 0,
+
+            }
         }
     },
 
     imageSection: {
+        ref: getRef('imageSection'),
         padding: "10px 15px",
         display: "flex",
         alignItems: "flex-start",
         justifyContent: "center",
         minHeight: "248px",
+        transition: "padding 0.3s",
     },
 
     content: {
@@ -36,11 +46,12 @@ export const useStyles = createStyles((theme) => ({
         position: "absolute",
         bottom: 0,
         left: 0,
-        display: "flex",
-        alignItems: "flex-end",
+        display: "grid",
+        gridTemplateColumns: "auto auto",
+        alignItems: "center",
         justifyContent: "space-between",
         width: "100%",
         padding: "0 24px 10px",
         marginTop: "0 !important"
-    }
+    },
 }));
