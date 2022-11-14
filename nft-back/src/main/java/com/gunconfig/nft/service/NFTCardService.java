@@ -17,4 +17,8 @@ public class NFTCardService {
         return nftCardRepo.findAll();
     }
 
+    public NFTCard findById(Long nftCardId) {
+        return nftCardRepo.findById(nftCardId)
+                .orElseThrow(() -> new RuntimeException("There is no nft card with id: " + nftCardId));
+    }
 }

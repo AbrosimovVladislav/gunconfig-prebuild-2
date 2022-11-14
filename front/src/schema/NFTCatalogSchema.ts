@@ -6,6 +6,8 @@ export interface NFTCard {
     collection: string;
     mintingPrice: number;
     rarity: string;
+    mintingDate: string;
+    firstOwner: string;
     properties: Product[];
 }
 

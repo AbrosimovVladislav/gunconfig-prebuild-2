@@ -27,4 +27,12 @@ public class NFTCatalogController {
         return dtos;
     }
 
+    @CrossOrigin
+    @GetMapping(value = "/{nftCardId}")
+    public NFTCardDto getNftCardById(@PathVariable Long nftCardId){
+        NFTCard nftCard = nftCardService.findById(nftCardId);
+        NFTCardDto dto = nftCardMapper.toDto(nftCard);
+        return dto;
+    }
+
 }
