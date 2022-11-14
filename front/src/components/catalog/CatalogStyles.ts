@@ -27,8 +27,5 @@ export const useStyles = createStyles((theme) => ({
             marginLeft: "10px",
             marginRight: "10px",
         },
-        '&:hover': {
-
-        }
     },
 }));
