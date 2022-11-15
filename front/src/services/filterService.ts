@@ -1,17 +1,11 @@
-import {Filter, FilterType, RangeFilter, CheckboxFilter} from "../schema/FilterSchema";
+import { Filter, FilterType, RangeFilter, CheckboxFilter } from "../schema/FilterSchema";
 
 export function mockUseGetAllFilters(): Filter[] {
     return [{
         id: 0,
-        name: "ON SALE",
+        name: "Brand",
         type: FilterType.CHECKBOX,
-        value: "On Sale"
-    } as CheckboxFilter,
-        {
-        id: 0,
-        name: "ON PEPELE",
-        type: FilterType.CHECKBOX,
-        value: "On Pepele"
+        value: ["Colt", "Magpul", "Fab-Defence", "Daniel Defence"]
     } as CheckboxFilter,
         {
             id: 0,

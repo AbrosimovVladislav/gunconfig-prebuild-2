@@ -10,7 +10,7 @@ export interface Filter {
 }
 
 export interface CheckboxFilter extends Filter {
-    value: string;
+    value: string[];
 }
 
 export interface RangeFilter extends Filter {

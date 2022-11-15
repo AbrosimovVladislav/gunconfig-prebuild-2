@@ -7,7 +7,11 @@ interface CheckboxFilterProps {
 
 const CheckboxFilter = ({filter}: CheckboxFilterProps) => {
     return <div>
-        {filter.name}
+        {filter.value.map(value => {
+            return <div>
+                {value}
+            </div>;
+        })}
     </div>;
 }
 
