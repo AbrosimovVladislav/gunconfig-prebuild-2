@@ -1,5 +1,5 @@
 import React from "react";
-import { RangeFilter } from "../../../services/filterService";
+import { RangeFilter } from "../../../schema/FilterSchema";
 
 interface RangeFilterProps {
     filter: RangeFilter;

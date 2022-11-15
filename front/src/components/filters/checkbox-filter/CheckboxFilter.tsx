@@ -1,5 +1,5 @@
 import React from "react";
-import { CheckboxFilter } from "../../../services/filterService";
+import { CheckboxFilter } from "../../../schema/FilterSchema";
 
 interface CheckboxFilterProps {
     filter: CheckboxFilter;

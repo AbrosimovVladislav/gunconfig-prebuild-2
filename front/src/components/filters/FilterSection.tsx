@@ -1,8 +1,9 @@
 import React from "react";
-import { FilterType, mockUseGetAllFilters } from "../../services/filterService";
+import { FilterType } from "../../schema/FilterSchema";
+import { mockUseGetAllFilters } from "../../services/filterService";
 import { useStyles } from "./FilterSectionStyles";
-import { RangeFilter as RangeFilterType } from "../../services/filterService";
-import { CheckboxFilter as CheckboxFilterType } from "../../services/filterService";
+import { RangeFilter as RangeFilterType } from "../../schema/FilterSchema";
+import { CheckboxFilter as CheckboxFilterType } from "../../schema/FilterSchema";
 import RangeFilter from "./range-filter/RangeFilter";
 import CheckboxFilter from "./checkbox-filter/CheckboxFilter";
 
