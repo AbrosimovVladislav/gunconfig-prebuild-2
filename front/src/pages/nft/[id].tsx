@@ -13,7 +13,7 @@ type SingleNFTPageProps = {
 
 const SingleNFTPage = (props: SingleNFTPageProps) => {
     const id: number = Number(useRouter().query.id);
-    const [data, error, isLoading, isError] = useGetNFTById(id);
+    const [data, error, isLoading, isError, isSuccess] = useGetNFTById(id);
     const { classes } = useStyles();
 
     if (isLoading) {
@@ -24,13 +24,15 @@ const SingleNFTPage = (props: SingleNFTPageProps) => {
         return <div>Error</div>;
     }
 
-    return <>
-        <GCGrid className={classes.grid}>
-            <GCGridCol sm={12} md={6}>
-                <GCImage src={data.nftImageUrl} alt="gun"/>
-            </GCGridCol>
-        </GCGrid>
-    </>;
+    if (isSuccess) {
+        return <>
+            <GCGrid className={classes.grid}>
+                <GCGridCol sm={12} md={6}>
+                    <GCImage src={data.nftImageUrl} alt="gun"/>
+                </GCGridCol>
+            </GCGrid>
+        </>;
+    }
 };
 
 export default SingleNFTPage;
