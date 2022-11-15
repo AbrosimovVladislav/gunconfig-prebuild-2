@@ -1,10 +1,7 @@
 package com.gunconfig.nft.web.mapper;
 
 import com.gunconfig.nft.model.NFTCard;
-import com.gunconfig.nft.model.Product;
-import com.gunconfig.nft.service.client.ConfiguratorClient;
 import com.gunconfig.nft.web.dto.NFTCardDto;
-import com.gunconfig.nft.web.dto.ProductDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -31,6 +28,7 @@ public class NFTCardMapper {
                 .rarity(nftCard.getRarity().name())
                 .firstOwner(nftCard.getFirstOwner())
                 .mintingDate(nftCard.getMintingDate())
+                .gunDescription(nftCard.getRootGunDescription())
                 .build();
     }
 
