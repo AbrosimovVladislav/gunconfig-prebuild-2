@@ -11,6 +11,7 @@
   <packaging>pom</packaging>
 
   <modules>
+    <module>lib-query-builder</module>
     <module>spring-admin</module>
     <module>eureka-server</module>
     <module>configurator</module>

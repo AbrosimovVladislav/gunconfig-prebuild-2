@@ -1,5 +1,6 @@
 package com.gunconfig.nft.model;
 
+import com.gunconfig.querybuilder.BasicEntity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -11,7 +12,9 @@ import java.util.List;
 @Getter
 @Setter
 @Accessors(chain = true)
-public class NFTCard {
+public class NFTCard implements BasicEntity {
+
+    public static final String MINTING_PRICE = "mintingPrice";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,12 +22,15 @@ public class NFTCard {
     private String name;
     private String collection;
     private Double mintingPrice;
+
     @Enumerated(EnumType.STRING)
     private Rarity rarity;
+
     private Long buildId;
-    @ManyToOne
-    @JoinColumn(name = "root_gun_product_id")
-    private Product rootGun;
+    private Long rootGunId;
+    private String rootGunDescription;
+    private String rootGunBrand;
+    private String rootGunCaliber;
     @ManyToMany
     @JoinColumn(name = "product_id")
     private List<Product> products;

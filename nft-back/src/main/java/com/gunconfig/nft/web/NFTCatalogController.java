@@ -4,11 +4,17 @@ import com.gunconfig.nft.model.NFTCard;
 import com.gunconfig.nft.service.NFTCardService;
 import com.gunconfig.nft.web.dto.NFTCardDto;
 import com.gunconfig.nft.web.mapper.NFTCardMapper;
+import com.gunconfig.nft.web.preparer.FilterAndPageable;
+import com.gunconfig.nft.web.preparer.Preparer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RestController
@@ -19,12 +25,28 @@ public class NFTCatalogController {
     private final NFTCardService nftCardService;
     private final NFTCardMapper nftCardMapper;
 
+    private final List<Preparer> preparers;
+
+    private static final int DEFAULT_PAGE_NUMBER = 0;
+    private static final int DEFAULT_PAGE_SIZE = 3000;
+
     @CrossOrigin
-    @GetMapping
-    public List<NFTCardDto> getAllNFTs() {
-        List<NFTCard> nfts = nftCardService.findAll();
-        List<NFTCardDto> dtos = nftCardMapper.toDtos(nfts);
-        return dtos;
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<NFTCardDto> getByParams(@RequestParam Map<String, String> requestParams,
+                                        @PageableDefault(size = DEFAULT_PAGE_SIZE, page = DEFAULT_PAGE_NUMBER) Pageable pageable) {
+        FilterAndPageable filterAndPageable = new FilterAndPageable(requestParams, pageable);
+        preparers.forEach(preparer -> preparer.prepare(filterAndPageable, NFTCard.class));
+
+        List<NFTCard> nftCards = nftCardService.getAllByParameters(
+                filterAndPageable.getFilter(),
+                filterAndPageable.getPageable()
+        );
+
+        List<NFTCardDto> result = nftCardMapper.toDtos(nftCards);
+        log.info("Params: {}. {}. NFTCard list size: {}",
+                requestParams,
+                pageable, result.size());
+        return result;
     }
 
     @CrossOrigin
