@@ -1,8 +1,12 @@
 package com.gunconfig.nft.web;
 
 import com.gunconfig.nft.model.NFTCard;
+import com.gunconfig.nft.model.filtration.FilterItem;
+import com.gunconfig.nft.service.FilterItemService;
 import com.gunconfig.nft.service.NFTCardService;
+import com.gunconfig.nft.web.dto.FilterItemDto;
 import com.gunconfig.nft.web.dto.NFTCardDto;
+import com.gunconfig.nft.web.mapper.FilterItemMapper;
 import com.gunconfig.nft.web.mapper.NFTCardMapper;
 import com.gunconfig.nft.web.preparer.FilterAndPageable;
 import com.gunconfig.nft.web.preparer.Preparer;
@@ -15,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
@@ -24,7 +29,8 @@ public class NFTCatalogController {
 
     private final NFTCardService nftCardService;
     private final NFTCardMapper nftCardMapper;
-
+    private final FilterItemService filterItemService;
+    private final FilterItemMapper filterItemMapper;
     private final List<Preparer> preparers;
 
     private static final int DEFAULT_PAGE_NUMBER = 0;
@@ -51,10 +57,17 @@ public class NFTCatalogController {
 
     @CrossOrigin
     @GetMapping(value = "/{nftCardId}")
-    public NFTCardDto getNftCardById(@PathVariable Long nftCardId){
+    public NFTCardDto getNftCardById(@PathVariable Long nftCardId) {
         NFTCard nftCard = nftCardService.findById(nftCardId);
         NFTCardDto dto = nftCardMapper.toDto(nftCard);
         return dto;
+    }
+
+    @CrossOrigin
+    @GetMapping(value = "/filters", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<FilterItemDto> getFilterItems() {
+        List<FilterItem> filterItems = filterItemService.findAll();
+        return filterItemMapper.toDtos(filterItems);
     }
 
 }

@@ -37,3 +37,7 @@ Accept: application/json
 ### Get nft cards where any gun part have name = Magpul MOE mlok handguard midlength blk ar
 GET http://localhost:8080/api/v1/nft-catalog?products.name=Magpul MOE mlok handguard midlength blk ar
 Accept: application/json
+
+### Get filters
+GET http://localhost:8080/api/v1/nft-catalog/filters
+Accept: application/json
