@@ -6,8 +6,6 @@ interface RangeFilterProps {
 }
 
 const RangeFilter = ({filter}: RangeFilterProps) => {
-    console.log(filter);
-    console.log(filter.name);
     return <div>
         {filter.name}
     </div>;

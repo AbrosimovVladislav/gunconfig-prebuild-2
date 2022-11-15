@@ -1,31 +1,17 @@
-export enum FilterType {
-    CHECKBOX = "CHECKBOX",
-    RANGE = "RANGE"
-}
+import {Filter, FilterType, RangeFilter, CheckboxFilter} from "../schema/FilterSchema";
 
-export interface Filter {
-    id: number,
-    name: string
-    type: FilterType,
-}
-
-export interface CheckboxFilter extends Filter {
-    value: string;
-}
-
-export interface RangeFilter extends Filter {
-    value: {
-        start: number,
-        end: number,
-    }
-}
-
-export function getAllFilters(): Filter[] {
-    const filters = [{
+export function mockUseGetAllFilters(): Filter[] {
+    return [{
         id: 0,
         name: "ON SALE",
         type: FilterType.CHECKBOX,
         value: "On Sale"
+    } as CheckboxFilter,
+        {
+        id: 0,
+        name: "ON PEPELE",
+        type: FilterType.CHECKBOX,
+        value: "On Pepele"
     } as CheckboxFilter,
         {
             id: 0,
@@ -37,5 +23,4 @@ export function getAllFilters(): Filter[] {
             }
         } as RangeFilter,
     ]
-    return filters;
 }

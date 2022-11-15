@@ -1,5 +1,5 @@
 import React from "react";
-import { FilterType, getAllFilters } from "../../services/filterService";
+import { FilterType, mockUseGetAllFilters } from "../../services/filterService";
 import { useStyles } from "./FilterSectionStyles";
 import { RangeFilter as RangeFilterType } from "../../services/filterService";
 import { CheckboxFilter as CheckboxFilterType } from "../../services/filterService";
@@ -7,9 +7,8 @@ import RangeFilter from "./range-filter/RangeFilter";
 import CheckboxFilter from "./checkbox-filter/CheckboxFilter";
 
 const FilterSection = () => {
-    const filters = getAllFilters();
+    const filters = mockUseGetAllFilters();
     const {classes} = useStyles();
-    console.log(filters);
     return <div className={classes.section}>
         {filters.map((item) => (
             <div className={classes.section}>
