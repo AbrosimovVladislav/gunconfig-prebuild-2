@@ -27,9 +27,5 @@ export const useStyles = createStyles((theme) => ({
             marginLeft: "10px",
             marginRight: "10px",
         },
-        '&:hover': {
-            outline: "1px solid #7B61FF",
-            borderRadius: "8px",
-        }
     },
 }));
