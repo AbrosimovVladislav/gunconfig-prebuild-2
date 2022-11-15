@@ -22,6 +22,9 @@ public class NFTCard {
     @Enumerated(EnumType.STRING)
     private Rarity rarity;
     private Long buildId;
+    @ManyToOne
+    @JoinColumn(name = "root_gun_product_id")
+    private Product rootGun;
     @ManyToMany
     @JoinColumn(name = "product_id")
     private List<Product> products;
