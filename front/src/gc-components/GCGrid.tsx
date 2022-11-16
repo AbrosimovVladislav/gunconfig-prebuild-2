@@ -1,7 +1,7 @@
-import {Grid, GridProps} from "@mantine/core";
-import {ReactNode} from "react";
+import { Grid, GridProps } from "@mantine/core";
+import { ReactNode } from "react";
 
-interface GCGridProps extends GridProps{
+interface GCGridProps extends GridProps {
     children: ReactNode;
     columns?: number;
 }
