@@ -1,15 +1,12 @@
 import React from "react";
 import { useRouter } from "next/router";
-import {useGetNFTById} from "../../services/nftService";
-import {GCImage} from "../../gc-components";
-import {NFTCard} from "../../schema/NFTCatalogSchema";
-import {GCGrid} from "../../gc-components/GCGrid";
-import {GCGridCol} from "../../gc-components/GCGridCol";
-import {useStyles} from "./SingleNFTPageStyles";
+import { useGetNFTById } from "../../services/nftService";
+import { GCImage } from "../../gc-components";
+import { GCGrid } from "../../gc-components/GCGrid";
+import { GCGridCol } from "../../gc-components/GCGridCol";
+import { useStyles } from "./SingleNFTPageStyles";
 
-type SingleNFTPageProps = {
-    data: NFTCard
-};
+type SingleNFTPageProps = {};
 
 const SingleNFTPage = (props: SingleNFTPageProps) => {
     const id: number = Number(useRouter().query.id);
@@ -28,7 +25,7 @@ const SingleNFTPage = (props: SingleNFTPageProps) => {
         return <>
             <GCGrid className={classes.grid}>
                 <GCGridCol sm={12} md={6}>
-                    <GCImage src={data.nftImageUrl} alt="gun"/>
+                    <GCImage src={data.nftImageUrl} alt="gun" />
                 </GCGridCol>
             </GCGrid>
         </>;
