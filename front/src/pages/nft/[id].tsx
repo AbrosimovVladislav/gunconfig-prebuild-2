@@ -1,12 +1,35 @@
-import { useRouter } from "next/router";
 import React from "react";
+import { useRouter } from "next/router";
+import { useGetNFTById } from "../../services/nftService";
+import { GCImage } from "../../gc-components";
+import { GCGrid } from "../../gc-components/GCGrid";
+import { GCGridCol } from "../../gc-components/GCGridCol";
+import { useStyles } from "./SingleNFTPageStyles";
 
-type Props = {};
+type SingleNFTPageProps = {};
 
-const SingleNFTPage = (props: Props) => {
-    const id = useRouter().query.id;
+const SingleNFTPage = (props: SingleNFTPageProps) => {
+    const id: number = Number(useRouter().query.id);
+    const [data, isLoading, isError, isSuccess] = useGetNFTById(id);
+    const { classes } = useStyles();
 
-    return <div>NFT id: {id}</div>;
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    if (isError) {
+        return <div>Error</div>;
+    }
+
+    if (isSuccess) {
+        return <>
+            <GCGrid className={classes.grid}>
+                <GCGridCol sm={12} md={6}>
+                    <GCImage src={data.nftImageUrl} alt="gun" />
+                </GCGridCol>
+            </GCGrid>
+        </>;
+    }
 };
 
 export default SingleNFTPage;
