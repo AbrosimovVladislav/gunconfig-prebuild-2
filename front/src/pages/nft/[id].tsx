@@ -13,7 +13,7 @@ type SingleNFTPageProps = {
 
 const SingleNFTPage = (props: SingleNFTPageProps) => {
     const id: number = Number(useRouter().query.id);
-    const [data, error, isLoading, isError, isSuccess] = useGetNFTById(id);
+    const [data, isLoading, isError, isSuccess] = useGetNFTById(id);
     const { classes } = useStyles();
 
     if (isLoading) {
