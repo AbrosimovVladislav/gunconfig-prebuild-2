@@ -1,7 +1,43 @@
-### Test call
+### Get NFT card by id
+GET http://localhost:8080/api/v1/nft-catalog/1
+Accept: application/json
+
+### Get all nft cards
 GET http://localhost:8080/api/v1/nft-catalog
 Accept: application/json
 
-### Test call
-GET http://localhost:8080/api/v1/nft-catalog/1
+### Get first page of nft cards (size = 24)
+GET http://localhost:8080/api/v1/nft-catalog?page=0&size=24
+Accept: application/json
+
+### Get nft cards sorted by rarity
+GET http://localhost:8080/api/v1/nft-catalog?sort=rarity,asc
+Accept: application/json
+
+### Get nft cards where collection = AR-15
+GET http://localhost:8080/api/v1/nft-catalog?collection=AR-15
+Accept: application/json
+
+### Get nft cards where minting price between 0.0035 and 0.005
+GET http://localhost:8080/api/v1/nft-catalog?mintingPrice=0.0035interval0.005
+Accept: application/json
+
+### Get nft cards where rarity = LEGENDARY !!!
+GET http://localhost:8080/api/v1/nft-catalog?rarity.nameOf=LEGENDARY
+Accept: application/json
+
+### Get nft cards where any gun part have brand = Daniel Defence
+GET http://localhost:8080/api/v1/nft-catalog?products.brand=Daniel Defence
+Accept: application/json
+
+### Get nft cards where root gun caliber = 223
+GET http://localhost:8080/api/v1/nft-catalog?rootGunCaliber=223
+Accept: application/json
+
+### Get nft cards where any gun part have name = Magpul MOE mlok handguard midlength blk ar
+GET http://localhost:8080/api/v1/nft-catalog?products.name=Magpul MOE mlok handguard midlength blk ar
+Accept: application/json
+
+### Get filters
+GET http://localhost:8080/api/v1/nft-catalog/filters
 Accept: application/json

@@ -42,3 +42,15 @@ services:
       - eureka-server
       - spring-admin
 
+#  db-config:
+#    image: postgres
+#    restart: always
+#    environment:
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_PASSWORD=postgres
+#      - POSTGRES_DB=config
+#    volumes:
+#      - ./init-config.sql:/docker-entrypoint-initdb.d/init-config.sql
+#    ports:
+#      - 35432:5432
+

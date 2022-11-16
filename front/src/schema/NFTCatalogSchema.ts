@@ -8,6 +8,7 @@ export interface NFTCard {
     rarity: string;
     mintingDate: string;
     firstOwner: string;
+    gunDescription: string;
     properties: Product[];
 }
 
