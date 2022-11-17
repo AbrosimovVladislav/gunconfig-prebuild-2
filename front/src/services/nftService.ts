@@ -1,10 +1,15 @@
 import { useQuery } from "react-query";
 import { get } from "./restClient";
 import { NFT_POSTFIX } from "../consts/back-paths";
+import {NFTCard} from "../schema/NFTCatalogSchema";
 
-export function useGetNFTById(id: number) {
-    const { data, error, isLoading, isError } = useQuery("GetNFTById:" + id, () => get(NFT_POSTFIX + id));
-    return [data, error, isLoading, isError];
+export function useGetNFTById(id: number): [NFTCard, boolean, boolean, boolean] {
+    const { data, isLoading, isError, isSuccess } = useQuery("GetNFTById:" + id,
+        ():Promise<NFTCard> => get(NFT_POSTFIX + id),{
+        enabled: !!id,
+        refetchOnWindowFocus: false
+    });
+    return [data, isLoading, isError, isSuccess ];
 }
 
 export function useGetAllNFTs() {

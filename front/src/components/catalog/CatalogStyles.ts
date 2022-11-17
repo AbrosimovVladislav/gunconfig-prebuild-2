@@ -1,8 +1,25 @@
 import { createStyles } from "@mantine/core";
 
 export const useStyles = createStyles((theme) => ({
+    page: {
+        display: "grid",
+        grid: "'filters catalog'",
+        justifyContent: "center",
+        [`@media (max-width: ${theme.breakpoints.md}px)`]: {
+            grid: "'catalog'",
+        },
+    },
+
+    filters: {
+        gridArea: "filters",
+        [`@media (max-width: ${theme.breakpoints.md}px)`]: {
+            display: "none",
+        },
+    },
+
     catalog: {
         display: "grid",
+        gridArea: "catalog",
         gridTemplateColumns: "auto",
         justifyContent: "center",
 

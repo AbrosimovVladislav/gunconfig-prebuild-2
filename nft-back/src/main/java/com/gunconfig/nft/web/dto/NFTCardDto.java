@@ -1,6 +1,5 @@
 package com.gunconfig.nft.web.dto;
 
-import com.gunconfig.nft.model.Product;
 import lombok.Builder;
 import lombok.Data;
 
@@ -20,5 +19,6 @@ public class NFTCardDto {
     private String rarity;
     private String mintingDate;
     private String firstOwner;
+    private String gunDescription;
 
 }
