@@ -1,4 +1,4 @@
-import { List, MantineNumberSize } from "@mantine/core";
+import { List } from "@mantine/core";
 import { ReactNode } from "react";
 
 interface GCListItemProps {

@@ -5,7 +5,7 @@ export const useStyles = createStyles((theme) => ({
         padding: [`0 ${theme.spacing.xl}px 0 ${theme.spacing.xl}px`],
     },
 
-    position: {
+    gridPosition: {
         display: "flex",
     },
 
@@ -13,12 +13,25 @@ export const useStyles = createStyles((theme) => ({
         width: "50%",
     },
 
-    positionText: {
+    container: {
         width: "50%",
         padding: "25px",
     },
 
     listSize: {
+        margin: "20px 0 20px;",
+    },
+
+    textBold: {
+        fontWeight: 500,
+    },
+
+    priceText: {
         marginTop: "10px",
+        fontWeight: 400,
+    },
+
+    textDescription: {
+        marginBottom: "10px",
     },
 }));

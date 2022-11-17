@@ -25,17 +25,26 @@ const SingleNFTPage = (props: SingleNFTPageProps) => {
         return (
             <>
                 <GCGrid className={classes.grid}>
-                    <GCGridCol sm={12} md={6} className={classes.position}>
+                    <GCGridCol sm={12} md={12} className={classes.gridPosition}>
                         <div className={classes.nftImage}>
                             <GCImage src={data.nftImageUrl} alt="gun" />
                         </div>
-                        <div className={classes.positionText}>
-                            <GCText>{data.name}</GCText>
+                        <div className={classes.container}>
+                            <GCText size={20} className={classes.textBold}>
+                                {data.name}
+                            </GCText>
+                            <GCText className={classes.priceText}>Price: {data.mintingPrice}</GCText>
                             <div className={classes.listSize}>
                                 <GCList size={12}>
-                                    <GCListItem>{data.gunDescription}</GCListItem>
+                                    <GCListItem>{data.mintingDate}</GCListItem>
+                                    <GCListItem>{data.rarity}</GCListItem>
+                                    <GCListItem>{data.collection}</GCListItem>
+                                    <GCListItem>{data.firstOwner}</GCListItem>
                                 </GCList>
                             </div>
+                            <div className={classes.textDescription}>Description:</div>
+
+                            <GCText size={12}>{data.gunDescription}</GCText>
                         </div>
                     </GCGridCol>
                 </GCGrid>
