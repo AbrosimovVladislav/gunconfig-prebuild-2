@@ -1,14 +1,19 @@
 import React from "react";
-import { RangeFilter } from "../../../schema/FilterSchema";
+import { FilterItem } from "../../../schema/FilterSchema";
 
 interface RangeFilterProps {
-    filter: RangeFilter;
+    filter: FilterItem;
 }
 
-const RangeFilter = ({filter}: RangeFilterProps) => {
-    return <div>
-        {filter.name}
-    </div>;
-}
+const RangeFilter = ({ filter }: RangeFilterProps) => {
+    return (
+        <div>
+            <h2> RF : {filter.showName}</h2>
+            <div>
+                {filter.value[0]} - {filter.value[1]}
+            </div>
+        </div>
+    );
+};
 
 export default RangeFilter;

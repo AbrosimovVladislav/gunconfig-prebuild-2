@@ -1,24 +1,30 @@
 import React from "react";
 import { FilterType } from "../../schema/FilterSchema";
-import { mockUseGetAllFilters } from "../../services/filterService";
+import { useGetFilters } from "../../services/filterService";
 import { useStyles } from "./FilterSectionStyles";
-import { RangeFilter as RangeFilterType } from "../../schema/FilterSchema";
-import { CheckboxFilter as CheckboxFilterType } from "../../schema/FilterSchema";
 import RangeFilter from "./range-filter/RangeFilter";
 import CheckboxFilter from "./checkbox-filter/CheckboxFilter";
 
 const FilterSection = () => {
-    const filters = mockUseGetAllFilters();
-    const {classes} = useStyles();
-    return <div className={classes.section}>
-        {filters.map((item) => (
-            <div className={classes.section}>
-                {item.type == FilterType.RANGE ? <RangeFilter filter={item as RangeFilterType}/> :
-                    <CheckboxFilter filter={item as CheckboxFilterType}/>}
-            </div>
-        ))}
+    const [data, isLoading, isError, isSuccess] = useGetFilters();
 
-    </div>;
-}
+    const { classes } = useStyles();
+
+    if (isSuccess) {
+        return (
+            <div className={classes.section}>
+                {data.map((filterItem) => (
+                    <div className={classes.section}>
+                        {filterItem.filterType == FilterType.RANGE ? (
+                            <RangeFilter filter={filterItem} />
+                        ) : (
+                            <CheckboxFilter filter={filterItem} />
+                        )}
+                    </div>
+                ))}
+            </div>
+        );
+    }
+};
 
 export default FilterSection;

@@ -1,20 +1,15 @@
-import { Filter, FilterType, RangeFilter, CheckboxFilter } from "../schema/FilterSchema";
+import { FilterItem } from "../schema/FilterSchema";
+import { useQuery } from "react-query";
+import { get } from "./restClient";
+import { FILTERS_POSTFIX, NFT_POSTFIX } from "../consts/back-paths";
 
-export function mockUseGetAllFilters(): Filter[] {
-    return [{
-        id: 0,
-        name: "Brand",
-        type: FilterType.CHECKBOX,
-        value: ["Colt", "Magpul", "Fab-Defence", "Daniel Defence"]
-    } as CheckboxFilter,
+export function useGetFilters(): [FilterItem[], boolean, boolean, boolean] {
+    const { data, isLoading, isError, isSuccess } = useQuery(
+        "GetFilters",
+        (): Promise<FilterItem[]> => get(NFT_POSTFIX + FILTERS_POSTFIX),
         {
-            id: 0,
-            name: "PRICE",
-            type: FilterType.RANGE,
-            value: {
-                start: 0,
-                end: 10000,
-            }
-        } as RangeFilter,
-    ]
+            refetchOnWindowFocus: false,
+        }
+    );
+    return [data, isLoading, isError, isSuccess];
 }
