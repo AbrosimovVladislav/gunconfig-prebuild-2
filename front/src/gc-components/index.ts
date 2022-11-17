@@ -8,3 +8,4 @@ export * from "./GCBadge";
 export * from "./GCCard";
 export * from "./GCCardSection";
 export * from "./GCImage";
+export * from "./GCList";

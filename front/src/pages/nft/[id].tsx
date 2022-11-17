@@ -1,12 +1,16 @@
 import { useRouter } from "next/router";
 import React from "react";
+import { GCList } from "../../gc-components";
 
 type Props = {};
 
 const SingleNFTPage = (props: Props) => {
-    const id = useRouter().query.id;
+    const id: number = Number(useRouter().query.id);
 
-    return <div>NFT id: {id}</div>;
-};
+
+    return <>
+    <GCList></GCList>
+    </>
+    };
 
 export default SingleNFTPage;
