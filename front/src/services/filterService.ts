@@ -9,7 +9,7 @@ export function mockUseGetAllFilters(): Filter[] {
     } as CheckboxFilter,
         {
             id: 0,
-            name: "PRICE",
+            name: "Price",
             type: FilterType.RANGE,
             value: {
                 start: 0,
