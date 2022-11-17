@@ -1,10 +1,10 @@
 import React from "react";
-import { CheckboxFilter } from "../../../schema/FilterSchema";
+import { FilterItem } from "../../../schema/FilterSchema";
 import { GCCheckbox } from "../../../gc-components/GCCheckbox";
 import { useStyles } from "./CheckboxFilterStyles";
 
 interface CheckboxFilterProps {
-    filter: CheckboxFilter;
+    filter: FilterItem;
 }
 
 const CheckboxFilter = ({filter}: CheckboxFilterProps) => {
