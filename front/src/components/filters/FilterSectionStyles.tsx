@@ -5,15 +5,15 @@ export const useStyles = createStyles((theme) => ({
         display: "grid",
         gridTemplateColumns: "280px",
         gridGap: "16px",
-        margin: "20px 16px 16px 0",
+        margin: [`${theme.spacing.lg}px ${theme.spacing.md}px ${theme.spacing.md}px 0`],
         [`@media (max-width: ${theme.breakpoints.md}px)`]: {
             display: "none",
         },
     },
 
     filter: {
-        padding: "16px",
-        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.04)",
+        padding: theme.spacing.md,
+        boxShadow: theme.shadows.md,
         borderRadius: "8px",
         fontWeight: 700,
         fontSize: theme.fontSizes.sm,
