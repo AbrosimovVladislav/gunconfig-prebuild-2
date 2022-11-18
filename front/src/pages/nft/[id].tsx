@@ -26,11 +26,13 @@ const SingleNFTPage = (props: SingleNFTPageProps) => {
         return (
             <>
                 <GCGrid className={classes.grid}>
-                    <GCGridCol sm={12} md={12} className={classes.gridPosition}>
-                        <div className={classes.nftImage}>
+                    <GCGridCol sm={6} md={6}>
+                        <div>
                             <GCImage src={data.nftImageUrl} alt="gun" />
                         </div>
-                        <NftCardInformation data={data} ></NftCardInformation>
+                    </GCGridCol>
+                    <GCGridCol sm={6} md={6}>
+                        <NftCardInformation data={data}></NftCardInformation>
                     </GCGridCol>
                 </GCGrid>
             </>

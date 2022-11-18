@@ -7,7 +7,7 @@ interface GCListProps {
     size?: MantineNumberSize;
 }
 
-export const GCList = ({ size, children, ...props  }: GCListProps) => {
+export const GCList = ({ size, children, ...props }: GCListProps) => {
     return (
         <List size={size} {...props}>
             {children}

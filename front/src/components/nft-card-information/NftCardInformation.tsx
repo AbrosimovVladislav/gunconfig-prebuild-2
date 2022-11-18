@@ -1,6 +1,6 @@
 import { GCList, GCListItem, GCText } from "../../gc-components";
 import { NFTCard } from "../../schema/NFTCatalogSchema";
-import { useStyles } from "../header/HeaderSectionStyles";
+import { useStyles } from "./NftCardInformationStyle";
 
 interface NftCardInformationProps {
     data: NFTCard;
@@ -10,8 +10,7 @@ const NftCardInformation = ({ data }: NftCardInformationProps) => {
     const { classes } = useStyles();
 
     return (
-    
-        <div className={classes.container}>
+        <div>
             <GCText className={classes.textBold}>{data.name}</GCText>
             <GCText className={classes.priceText}>Price: {data.mintingPrice}</GCText>
             <div className={classes.listSize}>
@@ -26,7 +25,6 @@ const NftCardInformation = ({ data }: NftCardInformationProps) => {
 
             <GCText size={12}>{data.gunDescription}</GCText>
         </div>
-        
     );
 };
 

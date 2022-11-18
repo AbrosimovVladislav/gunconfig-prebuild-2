@@ -1,12 +1,6 @@
 import { createStyles } from "@mantine/core";
 
 export const useStyles = createStyles(() => ({
-    
-    container: {
-        width: "50%",
-        padding: "25%",
-    },
-
     textBold: {
         fontWeight: 400,
     },
