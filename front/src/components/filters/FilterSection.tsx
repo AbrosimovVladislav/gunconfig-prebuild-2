@@ -4,8 +4,7 @@ import { useGetFilters } from "../../services/filterService";
 import { useStyles } from "./FilterSectionStyles";
 import RangeFilter from "./range-filter/RangeFilter";
 import CheckboxFilter from "./checkbox-filter/CheckboxFilter";
-import { GCAccordion } from "../../gc-components/GCAccordion";
-import { Accordion } from "@mantine/core";
+import { GCAccordion } from "../../gc-components/accordion/GCAccordion";
 
 const FilterSection = () => {
     const [data, isLoading, isError, isSuccess] = useGetFilters();
@@ -13,17 +12,13 @@ const FilterSection = () => {
     if (isSuccess) {
         return <div className={classes.section}>
             {data.map((filterItem) => (
-                <GCAccordion className={classes.filter}>
-                    <Accordion.Item unstyled className={classes.filterItem} value={filterItem.showName}>
-                        <Accordion.Control>{filterItem.showName}</Accordion.Control>
-                        <Accordion.Panel>
-                            {filterItem.filterType == FilterType.RANGE ? <RangeFilter filter={filterItem}/> :
-                                <CheckboxFilter filter={filterItem}/>}
-                        </Accordion.Panel>
-                    </Accordion.Item>
-                </GCAccordion>
+                <GCAccordion className={classes.filter}
+                             children={<></>}
+                             showName={filterItem.showName}
+                             panel={filterItem.filterType == FilterType.RANGE ?
+                                 <RangeFilter filter={filterItem}/> :
+                                 <CheckboxFilter filter={filterItem}/>} />
             ))}
-
         </div>;
     }
 }

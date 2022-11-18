@@ -1,16 +1,6 @@
 import { createStyles } from "@mantine/core";
 
 export const useStyles = createStyles((theme) => ({
-    section: {
-        display: "grid",
-        gridTemplateColumns: "280px",
-        gridGap: "16px",
-        margin: "20px 16px 16px 0",
-        [`@media (max-width: ${theme.breakpoints.md}px)`]: {
-            display: "none",
-        },
-    },
-
     filter: {
         padding: "16px",
         boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.04)",
@@ -18,8 +8,8 @@ export const useStyles = createStyles((theme) => ({
         fontWeight: 700,
         fontSize: theme.fontSizes.sm,
         lineHeight: theme.lineHeight,
-    },
 
+    },
     filterItem: {
         border: "none",
     }
