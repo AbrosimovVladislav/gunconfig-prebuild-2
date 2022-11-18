@@ -3,31 +3,31 @@ import { NFTCard } from "../../schema/NFTCatalogSchema";
 import { useStyles } from "./NftCardInformationStyle";
 
 interface NftCardInformationProps {
-    data: NFTCard;
+  data: NFTCard;
 }
 
 const NftCardInformation = ({ data }: NftCardInformationProps) => {
-    const { classes } = useStyles();
+  const { classes } = useStyles();
 
-    return (
-        <div>
-            <GCText weight={500}>{data.name}</GCText>
-            <GCText weight={400} className={classes.priceText}>
-                Price: {data.mintingPrice}
-            </GCText>
-            <div className={classes.listSize}>
-                <GCList size={12}>
-                    <GCListItem>MINTING DATA: {data.mintingDate}</GCListItem>
-                    <GCListItem>RARITY: {data.rarity}</GCListItem>
-                    <GCListItem>COLLECTION: {data.collection}</GCListItem>
-                    <GCListItem>FIRST OWNER: {data.firstOwner}</GCListItem>
-                </GCList>
-            </div>
-            <div className={classes.textDescription}>Description:</div>
+  return (
+    <div>
+      <GCText weight={500}>{data.name}</GCText>
+      <GCText weight={400} className={classes.priceText}>
+        Price: {data.mintingPrice}
+      </GCText>
+      <div className={classes.listSize}>
+        <GCList size={12}>
+          <GCListItem>Rarity: {data.rarity}</GCListItem>
+          <GCListItem>Collection: {data.collection}</GCListItem>
+          <GCListItem>First owner: {data.firstOwner}</GCListItem>
+          <GCListItem>Creation date: {data.mintingDate}</GCListItem>
+        </GCList>
+      </div>
+      <div className={classes.textDescription}>Description:</div>
 
-            <GCText size={12}>{data.gunDescription}</GCText>
-        </div>
-    );
+      <GCText size={12}>{data.gunDescription}</GCText>
+    </div>
+  );
 };
 
 export default NftCardInformation;
