@@ -12,7 +12,7 @@ interface GCCheckboxProps extends CheckboxProps{
 
 export const GCCheckbox = ({ children, ml, className, size, checked, mt, ...props }: GCCheckboxProps) => {
     return (
-        <Checkbox ml={ml} className={className} mt={mt} {...props}>
+        <Checkbox ml={ml} className={className} mt={mt} {...props} styles={{label: {display: "flex"}}}>
             {children}
         </Checkbox>
     );
