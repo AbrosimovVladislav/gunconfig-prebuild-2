@@ -11,10 +11,7 @@ interface GCAccordionProps extends AccordionProps {
 export const GCAccordion = ({className, children, size, ...props}: GCAccordionProps) => {
     const [value, setValue] = useState<string[]>([]);
     return <Accordion multiple value={value} className={className} onChange={setValue} {...props}
-                      chevxron={<>
-                          <IconPlus size={16} />
-
-                      </>}
+                      chevron={<IconPlus size={16} />}
                       styles={{
                           chevron: {
                               '&[data-rotate]': {
