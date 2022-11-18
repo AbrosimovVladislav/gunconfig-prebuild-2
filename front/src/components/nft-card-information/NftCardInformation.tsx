@@ -11,8 +11,10 @@ const NftCardInformation = ({ data }: NftCardInformationProps) => {
 
     return (
         <div>
-            <GCText className={classes.textBold}>{data.name}</GCText>
-            <GCText className={classes.priceText}>Price: {data.mintingPrice}</GCText>
+            <GCText weight={500}>{data.name}</GCText>
+            <GCText weight={400} className={classes.priceText}>
+                Price: {data.mintingPrice}
+            </GCText>
             <div className={classes.listSize}>
                 <GCList size={12}>
                     <GCListItem>MINTING DATA: {data.mintingDate}</GCListItem>

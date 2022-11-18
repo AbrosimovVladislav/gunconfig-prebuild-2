@@ -24,18 +24,14 @@ const SingleNFTPage = (props: SingleNFTPageProps) => {
 
     if (isSuccess) {
         return (
-            <>
-                <GCGrid className={classes.grid}>
-                    <GCGridCol sm={6} md={6}>
-                        <div>
-                            <GCImage src={data.nftImageUrl} alt="gun" />
-                        </div>
-                    </GCGridCol>
-                    <GCGridCol sm={6} md={6}>
-                        <NftCardInformation data={data}></NftCardInformation>
-                    </GCGridCol>
-                </GCGrid>
-            </>
+            <GCGrid className={classes.grid}>
+                <GCGridCol sm={6} md={6}>
+                    <GCImage src={data.nftImageUrl} alt="gun" />
+                </GCGridCol>
+                <GCGridCol sm={6} md={6}>
+                    <NftCardInformation data={data}></NftCardInformation>
+                </GCGridCol>
+            </GCGrid>
         );
     }
 };
