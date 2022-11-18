@@ -19,7 +19,7 @@ export const GCAccordion = ({ className, children, showName, panel, size, ...pro
             multiple
             value={value}
             className={classes.filter}
-            onChange={setValue}
+            onChange={(arr: []) => setValue([...arr])}
             {...props}
             chevron={<IconPlus size={16} />}
             styles={{
