@@ -1,10 +1,11 @@
-import { List } from "@mantine/core";
+import { List, ListItemProps } from "@mantine/core";
 import { ReactNode } from "react";
 
-interface GCListItemProps {
-    children: ReactNode;
+interface GCListItemProps extends ListItemProps {
+  key?: string | number | null | undefined;
+  children: ReactNode;
 }
 
 export const GCListItem = ({ children, ...props }: GCListItemProps) => {
-    return <List.Item {...props}> {children}</List.Item>;
+  return <List.Item {...props}> {children}</List.Item>;
 };
