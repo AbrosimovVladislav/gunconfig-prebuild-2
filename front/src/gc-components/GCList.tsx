@@ -2,14 +2,14 @@ import { DefaultMantineColor, List, MantineNumberSize } from "@mantine/core";
 import { ReactNode } from "react";
 
 interface GCListProps {
+    key?: string | number | null | undefined;
     children: ReactNode;
     size?: MantineNumberSize;
-    color?: DefaultMantineColor;
 }
 
-export const GCList = ({ size, color, children }: GCListProps) => {
+export const GCList = ({ size, children, ...props  }: GCListProps) => {
     return (
-        <List size={size} color={color}>
+        <List size={size} {...props}>
             {children}
         </List>
     );

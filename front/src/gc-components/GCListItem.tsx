@@ -5,6 +5,6 @@ interface GCListItemProps {
     children: ReactNode;
 }
 
-export const GCListItem = ({ children }: GCListItemProps) => {
-    return <List.Item> {children}</List.Item>;
+export const GCListItem = ({ children, ...props }: GCListItemProps) => {
+    return <List.Item {...props}> {children}</List.Item>;
 };
