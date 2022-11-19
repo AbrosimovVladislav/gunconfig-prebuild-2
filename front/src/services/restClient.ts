@@ -1,7 +1,6 @@
-import { BASE_PATH_LOCAL, BASE_PATH_TEST } from "../consts/back-paths";
+import { BACK_BASE_PATH } from "../consts/back-paths";
 
 export const get = async (urlPostfix: string) => {
-    const response = await fetch(BASE_PATH_TEST + urlPostfix);
-    // const response = await fetch(BASE_PATH_LOCAL + urlPostfix);
-    return response.json();
+  const response = await fetch(BACK_BASE_PATH + urlPostfix);
+  return response.json();
 };
