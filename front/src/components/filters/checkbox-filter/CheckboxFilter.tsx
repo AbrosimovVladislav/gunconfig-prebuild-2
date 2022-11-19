@@ -1,16 +1,19 @@
 import React from "react";
-import { CheckboxFilter } from "../../../schema/FilterSchema";
+import { FilterItem } from "../../../schema/FilterSchema";
+import { GCCheckbox } from "../../../gc-components/GCCheckbox";
+import { useStyles } from "./CheckboxFilterStyles";
 
 interface CheckboxFilterProps {
-    filter: CheckboxFilter;
+    filter: FilterItem;
 }
 
 const CheckboxFilter = ({filter}: CheckboxFilterProps) => {
-    return <div>
+    const {classes} = useStyles();
+    return <div className={classes.filter}>
         {filter.value.map(value => {
-            return <div>
+            return <GCCheckbox className={classes.filter} label={value}>
                 {value}
-            </div>;
+            </GCCheckbox>;
         })}
     </div>;
 }
