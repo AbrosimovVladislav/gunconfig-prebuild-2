@@ -15,7 +15,7 @@ GET http://178.128.203.194:8080/api/v1/nft-catalog?sort=rarity,asc
 Accept: application/json
 
 ### Get nft cards where collection = AR-15
-GET http://178.128.203.194:8080/api/v1/nft-catalog?collection=AR-15
+GET http://178.128.203.194:8080/api/v1/nft-catalog?collection=AR-15-SPECIAL
 Accept: application/json
 
 ### Get nft cards where minting price between 0.0035 and 0.005

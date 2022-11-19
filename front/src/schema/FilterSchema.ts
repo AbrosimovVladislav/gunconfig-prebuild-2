@@ -1,21 +1,12 @@
 export enum FilterType {
     CHECKBOX = "CHECKBOX",
-    RANGE = "RANGE"
+    RANGE = "RANGE",
 }
 
-export interface Filter {
-    id: number,
-    name: string
-    type: FilterType,
-}
-
-export interface CheckboxFilter extends Filter {
+export interface FilterItem {
+    showName: string;
+    filterKey: string;
+    filterType: FilterType;
+    rank: number;
     value: string[];
-}
-
-export interface RangeFilter extends Filter {
-    value: {
-        start: number,
-        end: number,
-    }
 }
