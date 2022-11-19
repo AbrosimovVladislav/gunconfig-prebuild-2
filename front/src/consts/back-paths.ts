@@ -1,4 +1,5 @@
-export const BASE_PATH_TEST = `http://178.128.203.194:8080`;
-export const BASE_PATH_LOCAL = `http://localhost:8080`;
+import { BACK_CURRENT_PATH } from "./env-paths";
+
+export const BACK_BASE_PATH = BACK_CURRENT_PATH + `:8080`;
 export const NFT_POSTFIX = "/api/v1/nft-catalog";
 export const FILTERS_POSTFIX = "/filters";

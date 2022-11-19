@@ -5,6 +5,7 @@ import { GCImage } from "../../gc-components";
 import { GCGrid } from "../../gc-components/GCGrid";
 import { GCGridCol } from "../../gc-components/GCGridCol";
 import { useStyles } from "./SingleNFTPageStyles";
+import NftCardInformation from "../../components/nft-card-information/NftCardInformation";
 
 type SingleNFTPageProps = {};
 
@@ -22,13 +23,16 @@ const SingleNFTPage = (props: SingleNFTPageProps) => {
     }
 
     if (isSuccess) {
-        return <>
+        return (
             <GCGrid className={classes.grid}>
-                <GCGridCol sm={12} md={6}>
+                <GCGridCol sm={6} md={6}>
                     <GCImage src={data.nftImageUrl} alt="gun" />
                 </GCGridCol>
+                <GCGridCol sm={6} md={6}>
+                    <NftCardInformation data={data}></NftCardInformation>
+                </GCGridCol>
             </GCGrid>
-        </>;
+        );
     }
 };
 
