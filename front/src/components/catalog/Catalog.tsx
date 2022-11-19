@@ -3,7 +3,7 @@ import React from "react";
 import NFTMicroCard from "../nft-micro-card/NFTMicroCard";
 import { useStyles } from "./CatalogStyles";
 import Link from "next/link";
-import { FRONT_CURRENT_PATH } from "../../consts/env-paths";
+import { FRONT_CURRENT_PATH } from "../../config/env-paths";
 
 interface CatalogProps {
   nfts: NFTCard[];
