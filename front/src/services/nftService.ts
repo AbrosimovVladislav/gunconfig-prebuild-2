@@ -2,6 +2,7 @@ import { useQuery } from "react-query";
 import { get } from "./restClient";
 import { NFT_POSTFIX } from "../consts/back-paths";
 import { NFTCard } from "../schema/NFTCatalogSchema";
+import { FilterItem, FilterType } from "../schema/FilterSchema";
 
 export function useGetNFTById(
   id: number
@@ -17,9 +18,34 @@ export function useGetNFTById(
   return [data, isLoading, isError, isSuccess];
 }
 
-export function useGetAllNFTs() {
-  const { data, error, isLoading, isError } = useQuery("getAllNfts", () =>
-    get(NFT_POSTFIX)
+export function useGetAllNFTs(filters: FilterItem[]) {
+  const urlPostfix = createFilterPostfix(filters);
+
+  const { data, error, isLoading, isError } = useQuery(
+    "getAllNfts",
+    () => get(NFT_POSTFIX + "?" + urlPostfix)
+    // get(NFT_POSTFIX)
   );
   return [data, error, isLoading, isError];
+}
+
+function createFilterPostfix(filters: FilterItem[]): string {
+  let postfix = "";
+
+  filters?.map((filter) => {
+    let filterPostfix = "";
+    if (filter.filterType === FilterType.RANGE) {
+      filterPostfix = "";
+    }
+
+    if (filter.filterType === FilterType.CHECKBOX) {
+      filterPostfix +=
+        filter.filterKey + "=" + filter.value.map((value) => value + ",");
+    }
+    postfix += filterPostfix + "&";
+  });
+
+  console.log("postfix");
+  console.log(postfix);
+  return postfix;
 }
