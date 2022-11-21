@@ -7,32 +7,32 @@ export const useStyles = createStyles((theme, _params, getRef) => ({
         maxWidth: "343px",
         maxHeight: "400px",
         minHeight: "300px",
+        margin: "auto",
 
-        '&::after': {
+        "&::after": {
             content: "''",
             position: "absolute",
             top: 0,
             left: 0,
             width: "100%",
             height: "100%",
-            borderRadius: "8px"
+            borderRadius: "8px",
         },
 
-        ':hover': {
+        ":hover": {
             borderColor: "transparent",
             outline: "1px solid #7B61FF",
             borderRadius: "8px",
             boxShadow: theme.shadows.md,
 
-            [`& .${getRef('imageSection')}`]: {
+            [`& .${getRef("imageSection")}`]: {
                 padding: 0,
-
-            }
-        }
+            },
+        },
     },
 
     imageSection: {
-        ref: getRef('imageSection'),
+        ref: getRef("imageSection"),
         padding: "10px 15px",
         display: "flex",
         alignItems: "flex-start",
@@ -52,6 +52,6 @@ export const useStyles = createStyles((theme, _params, getRef) => ({
         justifyContent: "space-between",
         width: "100%",
         padding: "0 24px 10px",
-        marginTop: "0 !important"
+        marginTop: "0 !important",
     },
 }));

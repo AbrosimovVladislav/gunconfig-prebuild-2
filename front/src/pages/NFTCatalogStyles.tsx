@@ -2,8 +2,11 @@ import { createStyles } from "@mantine/core";
 
 export const useStyles = createStyles((theme) => ({
     page: {
-        display: "flex",
+        display: "grid",
         alignItems: "flex-start",
-        justifyContent: "center",
+
+        [`@media (min-width: ${theme.breakpoints.md}px)`]: {
+            gridTemplateColumns: "1fr auto",
+        },
     },
-}))
+}));
