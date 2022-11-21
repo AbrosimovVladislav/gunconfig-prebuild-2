@@ -8,7 +8,8 @@ import GCSegmentedControl from "../gc-components/segmented-control/GCSegmentedCo
 const NFTCatalog = () => {
     const [data, error, isLoading, isError] = useGetAllNFTs();
     const {classes} = useStyles();
-    const [layout, setLayout] = useState('grid-9');
+    const [layout, setLayout] = useState('catalogOfThree');
+
     if (isLoading) {
         return <div>Loading...</div>;
     }
@@ -19,9 +20,11 @@ const NFTCatalog = () => {
 
     return <div className={classes.page}>
         <FilterSection/>
-        <div className={classes.catalog}>
-            <GCSegmentedControl value={layout} onChange={setLayout}/>
-            <Catalog nfts={data}/>
+        <div className={classes.catalogAndControls}>
+            <div className={classes.controls}>
+                <GCSegmentedControl value={layout} onChange={setLayout}/>
+            </div>
+            <Catalog className={classes.catalog} layout={layout} nfts={data}/>
         </div>
     </div>;
 };
