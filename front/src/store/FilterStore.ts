@@ -3,20 +3,20 @@ import { FilterItem, FilterType } from "../schema/FilterSchema";
 
 interface FilterStoreState {
   filters: FilterItem[];
-  addFilterItem: (
+  addFilterItemToStore: (
     filterName: string,
     value: string,
     filterType: FilterType,
     filterKey: string
   ) => void;
-  removeFilterItem: (filterName: string) => void;
-  addFilterValue: (filterName: string, value: string) => void;
-  removeFilterValue: (filterName: string, value: string) => void;
+  removeFilterItemFromStore: (filterName: string) => void;
+  addFilterValueToStore: (filterName: string, value: string) => void;
+  removeFilterValueFromStore: (filterName: string, value: string) => void;
 }
 
 export const useFilterStore = create<FilterStoreState>((set) => ({
   filters: [],
-  addFilterItem: (
+  addFilterItemToStore: (
     filterName: string,
     value: string,
     filterType: FilterType,
@@ -32,24 +32,24 @@ export const useFilterStore = create<FilterStoreState>((set) => ({
       ),
     }));
   },
-  removeFilterItem: (filterName: string) => {
+  removeFilterItemFromStore: (filterName: string) => {
     set((state) => ({
       filters: removeFilterItem(state.filters, filterName),
     }));
   },
-  addFilterValue: (filterName: string, value: string) => {
+  addFilterValueToStore: (filterName: string, value: string) => {
     set((state) => ({
       filters: addFilterValue(state.filters, filterName, value),
     }));
   },
-  removeFilterValue: (filterName: string, value: string) => {
+  removeFilterValueFromStore: (filterName: string, value: string) => {
     set((state) => ({
       filters: removeFilterValue(state.filters, filterName, value),
     }));
   },
 }));
 
-function addFilterItem(
+export function addFilterItem(
   filters: FilterItem[],
   filterName: string,
   value: string,
@@ -62,46 +62,41 @@ function addFilterItem(
     filterType: filterType,
     filterKey: filterKey,
   };
-  filters.push(newFilterItem);
-
-  // console.log(filterName, value);
-  // console.log(filters);
-  return filters;
-}
-
-function removeFilterItem(
-  filters: FilterItem[],
-  filterName: string
-): FilterItem[] {
-  console.log("BEFORE FILTERS", filters);
-  const updatedFilters = filters.filter((e) => e.showName !== filterName);
-  console.log("FILTER NAME", filterName);
-  console.log("AFTER FILTERS", updatedFilters);
+  let updatedFilters = [...filters];
+  updatedFilters.push(newFilterItem);
   return updatedFilters;
 }
 
-function addFilterValue(
+export function removeFilterItem(
   filters: FilterItem[],
-  filterName: string,
-  value: string
+  filterName: string
 ): FilterItem[] {
-  filters.filter((e) => e.showName === filterName)[0].value.push(value);
-
-  // console.log(filterName, value);
-  // console.log(filters);
-  return filters;
+  let updatedFilters = [...filters];
+  updatedFilters = updatedFilters.filter((e) => e.showName !== filterName);
+  return updatedFilters;
 }
 
-function removeFilterValue(
+export function addFilterValue(
   filters: FilterItem[],
   filterName: string,
   value: string
 ): FilterItem[] {
-  const currentFilters = filters.filter((e) => e.showName === filterName)[0];
-  const updatedValues = currentFilters.value.filter((e) => e !== value);
-  filters.filter((e) => e.showName === filterName)[0].value = updatedValues;
+  let updatedFilters = [...filters];
+  updatedFilters.filter((e) => e.showName === filterName)[0].value.push(value);
+  return updatedFilters;
+}
 
-  // console.log(filterName, value);
-  // console.log(filters);
-  return filters;
+export function removeFilterValue(
+  filters: FilterItem[],
+  filterName: string,
+  value: string
+): FilterItem[] {
+  let updatedFilters = [...filters];
+  const currentFilters = updatedFilters.filter(
+    (e) => e.showName === filterName
+  )[0];
+  const updatedValues = currentFilters.value.filter((e) => e !== value);
+  updatedFilters.filter((e) => e.showName === filterName)[0].value =
+    updatedValues;
+  return updatedFilters;
 }

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { FilterItem } from "../../../schema/FilterSchema";
 import { GCCheckbox } from "../../../gc-components/GCCheckbox";
 import { useStyles } from "./CheckboxFilterStyles";
-import { useFilterStore } from "../../../store/FilterStore";
+import { addFilterValue, useFilterStore } from "../../../store/FilterStore";
 import { useRouter } from "next/router";
 import { createFilterPostfix } from "../../../services/nftService";
 
@@ -14,12 +14,17 @@ const CheckboxFilter = ({ filter }: CheckboxFilterProps) => {
   const { classes } = useStyles();
   const {
     filters,
-    addFilterItem,
-    removeFilterItem,
-    addFilterValue,
-    removeFilterValue,
+    addFilterItemToStore,
+    removeFilterItemFromStore,
+    addFilterValueToStore,
+    removeFilterValueFromStore,
   } = useFilterStore();
   const router = useRouter();
+
+  useEffect(() => {
+    const postfix = createFilterPostfix(filters);
+    router.push(postfix ? `/nft-catalog?${postfix}` : `/nft-catalog`);
+  }, [filters]);
 
   function clickOnFilterValue(filterName: string, value: string) {
     const filterItem: FilterItem = filters.filter(
@@ -27,6 +32,7 @@ const CheckboxFilter = ({ filter }: CheckboxFilterProps) => {
     )[0];
 
     // console.log("FILTERS BEFORE", filters);
+    let updatedFilters = [...filters];
 
     if (filterItem) {
       //when filterItem already exists
@@ -34,31 +40,24 @@ const CheckboxFilter = ({ filter }: CheckboxFilterProps) => {
         //when value already in the list
         if (filterItem.value.length == 1) {
           //when value in the list is the last
-          removeFilterItem(filter.showName);
+          removeFilterItemFromStore(filter.showName);
         } else {
           //when value in the list is not last
-          removeFilterValue(filter.showName, value);
+          removeFilterValueFromStore(filter.showName, value);
         }
       } else {
         //when value is not in the list
-        addFilterValue(filter.showName, value);
+        addFilterValueToStore(filter.showName, value);
       }
     } else {
       //when filterItem not exists
-      addFilterItem(
+      addFilterItemToStore(
         filter.showName,
         value,
         filter.filterType,
         filter.filterKey
       );
     }
-
-    const postfix = createFilterPostfix(filters);
-
-    // console.log("FILTERS AFTER", filters);
-    // console.log("POSTFIX", postfix);
-
-    router.push(postfix ? `/nft-catalog?${postfix}` : `/nft-catalog`);
   }
 
   return (
