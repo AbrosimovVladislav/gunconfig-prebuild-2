@@ -22,17 +22,17 @@ const CheckboxFilter = ({ filter }: CheckboxFilterProps) => {
   const router = useRouter();
 
   useEffect(() => {
+    console.log("FILTERS", filters);
+
     const postfix = createFilterPostfix(filters);
-    router.push(postfix ? `/nft-catalog?${postfix}` : `/nft-catalog`);
+
+    router.push(`/nft-catalog?${postfix}`);
   }, [filters]);
 
   function clickOnFilterValue(filterName: string, value: string) {
     const filterItem: FilterItem = filters.filter(
       (e) => e.showName === filter.showName
     )[0];
-
-    // console.log("FILTERS BEFORE", filters);
-    let updatedFilters = [...filters];
 
     if (filterItem) {
       //when filterItem already exists

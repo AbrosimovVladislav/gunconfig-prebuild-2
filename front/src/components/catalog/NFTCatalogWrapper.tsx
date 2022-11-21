@@ -1,23 +1,33 @@
 import { useFilterStore } from "../../store/FilterStore";
 import { useGetAllNFTs } from "../../services/nftService";
 import Catalog from "./Catalog";
-import React from "react";
+import React, { useEffect } from "react";
+import { useRouter } from "next/router";
 
 const NFTCatalogWrapper = () => {
-    const { filters } = useFilterStore();
-    const [data, error, isLoading, isError] = useGetAllNFTs(filters);
+  const { filters } = useFilterStore();
+  const router = useRouter();
+  let query = router.asPath.split("?")[1];
 
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
+  useEffect(() => {
+    console.log("DATA", query);
+    //update state
+    //create mapping function from url params to object
+    //and set it fully to state
+    //create new store function to replace whole state
+  }, []);
 
-    if (isError) {
-        return <div>Error</div>;
-    }
+  const [data, error, isLoading, isError] = useGetAllNFTs(filters);
 
-    return <Catalog nfts={data} />;
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
+  if (isError) {
+    return <div>Error</div>;
+  }
 
+  return <Catalog nfts={data} />;
 };
 
 export default NFTCatalogWrapper;

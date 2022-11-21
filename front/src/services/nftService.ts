@@ -19,7 +19,7 @@ export function useGetNFTById(
 }
 
 export function useGetAllNFTs(filters: FilterItem[]) {
-  const urlPostfix = createFilterPostfix(filters);
+  if (!urlPostfix) urlPostfix = createFilterPostfix(filters);
 
   const { data, error, isLoading, isError } = useQuery(
     "getAllNfts" + urlPostfix,
