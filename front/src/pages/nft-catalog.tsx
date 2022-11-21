@@ -3,6 +3,7 @@ import { useGetAllNFTs } from "../services/nftService";
 import Catalog from "../components/catalog/Catalog";
 import { useStyles } from "./NFTCatalogStyles";
 import FilterSection from "../components/filters/FilterSection";
+import Sorting from "../components/sorting/Sorting";
 
 const NFTCatalog = () => {
     const [data, error, isLoading, isError] = useGetAllNFTs();
@@ -17,6 +18,7 @@ const NFTCatalog = () => {
 
     return <div className={classes.page}>
         <FilterSection/>
+        <Sorting/>
         <Catalog nfts={data}/>
     </div>;
 };
