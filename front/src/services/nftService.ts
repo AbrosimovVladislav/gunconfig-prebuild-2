@@ -22,7 +22,7 @@ export function useGetAllNFTs(filters: FilterItem[]) {
   const urlPostfix = createFilterPostfix(filters);
 
   const { data, error, isLoading, isError } = useQuery(
-    "getAllNfts",
+    "getAllNfts" + urlPostfix,
     () => get(NFT_POSTFIX + "?" + urlPostfix)
     // get(NFT_POSTFIX)
   );
