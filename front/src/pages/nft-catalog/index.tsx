@@ -1,8 +1,8 @@
 import React from "react";
 import { useStyles } from "./NFTCatalogStyles";
-import FilterSection from "../components/filters/FilterSection";
-import NFTCatalogWrapper from "../components/catalog/NFTCatalogWrapper";
-import GCContainer from "../gc-components/GCContainer";
+import FilterSection from "../../components/filters/FilterSection";
+import NFTCatalogWrapper from "../../components/catalog/NFTCatalogWrapper";
+import GCContainer from "../../gc-components/GCContainer";
 
 const NFTCatalog = () => {
     const { classes } = useStyles();

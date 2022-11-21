@@ -3,6 +3,8 @@ import { FilterItem } from "../../../schema/FilterSchema";
 import { GCCheckbox } from "../../../gc-components/GCCheckbox";
 import { useStyles } from "./CheckboxFilterStyles";
 import { useFilterStore } from "../../../store/FilterStore";
+import { useRouter } from "next/router";
+import { createFilterPostfix } from "../../../services/nftService";
 
 interface CheckboxFilterProps {
     filter: FilterItem;
@@ -10,16 +12,13 @@ interface CheckboxFilterProps {
 
 const CheckboxFilter = ({ filter }: CheckboxFilterProps) => {
     const { classes } = useStyles();
-    const {
-        filters,
-        addFilterItem,
-        removeFilterItem,
-        addFilterValue,
-        removeFilterValue,
-    } = useFilterStore();
+    const { filters, addFilterItem, removeFilterItem, addFilterValue, removeFilterValue } = useFilterStore();
+    const router = useRouter();
 
     function clickOnFilterValue(filterName: string, value: string) {
         const filterItem: FilterItem = filters.filter((e) => e.showName === filter.showName)[0];
+
+        console.log("FILTERS", filters);
 
         if (filterItem) {
             //when filterItem already exists
@@ -40,6 +39,12 @@ const CheckboxFilter = ({ filter }: CheckboxFilterProps) => {
             //when filterItem not exists
             addFilterItem(filter.showName, value, filter.filterType, filter.filterKey);
         }
+
+        const postfix = createFilterPostfix(filters);
+
+        console.log("POSTFIX", postfix);
+
+        router.push(postfix ? `/nft-catalog?${postfix}` : `/nft-catalog`);
     }
 
     return (

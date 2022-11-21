@@ -11,8 +11,7 @@ interface FilterStoreState {
 
 export const useFilterStore = create<FilterStoreState>((set) => ({
     filters: [],
-    addFilterItem: (filterName: string, value: string, filterType: FilterType, filterKey: string,
-    ) => {
+    addFilterItem: (filterName: string, value: string, filterType: FilterType, filterKey: string) => {
         set((state) => ({
             filters: addFilterItem(state.filters, filterName, value, filterType, filterKey),
         }));
@@ -34,8 +33,13 @@ export const useFilterStore = create<FilterStoreState>((set) => ({
     },
 }));
 
-function addFilterItem(filters: FilterItem[], filterName: string, value: string,
-                       filterType: FilterType, filterKey: string): FilterItem[] {
+function addFilterItem(
+    filters: FilterItem[],
+    filterName: string,
+    value: string,
+    filterType: FilterType,
+    filterKey: string
+): FilterItem[] {
     let newFilterItem: FilterItem = {
         showName: filterName,
         value: [value],
@@ -43,26 +47,25 @@ function addFilterItem(filters: FilterItem[], filterName: string, value: string,
         filterKey: filterKey,
     };
     filters.push(newFilterItem);
-    console.log("ADD ITEM");
-    console.log(filterName, value);
-    console.log(filters);
+
+    // console.log(filterName, value);
+    // console.log(filters);
     return filters;
 }
 
 function removeFilterItem(filters: FilterItem[], filterName: string): FilterItem[] {
     const updatedFilters = filters.filter((e) => e.showName !== filterName);
-    console.log("REMOVE ITEM");
-    console.log(filterName);
-    console.log(filters);
+
+    // console.log(filterName);
+    // console.log(filters);
     return updatedFilters;
 }
 
 function addFilterValue(filters: FilterItem[], filterName: string, value: string): FilterItem[] {
     filters.filter((e) => e.showName === filterName)[0].value.push(value);
 
-    console.log("ADD VALUE");
-    console.log(filterName, value);
-    console.log(filters);
+    // console.log(filterName, value);
+    // console.log(filters);
     return filters;
 }
 
@@ -71,8 +74,7 @@ function removeFilterValue(filters: FilterItem[], filterName: string, value: str
     const updatedValues = currentFilters.value.filter((e) => e !== value);
     filters.filter((e) => e.showName === filterName)[0].value = updatedValues;
 
-    console.log("REMOVE VALUE");
-    console.log(filterName, value);
-    console.log(filters);
+    // console.log(filterName, value);
+    // console.log(filters);
     return filters;
 }
