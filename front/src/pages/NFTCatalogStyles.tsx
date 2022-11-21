@@ -5,5 +5,11 @@ export const useStyles = createStyles((theme) => ({
         display: "flex",
         alignItems: "flex-start",
         justifyContent: "center",
+        paddingTop: theme.spacing.lg,
     },
+    catalog: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-end"
+    }
 }))
