@@ -5,66 +5,59 @@ import { useStyles } from "./CheckboxFilterStyles";
 import { useFilterStore } from "../../../store/FilterStore";
 
 interface CheckboxFilterProps {
-  filter: FilterItem;
+    filter: FilterItem;
 }
 
 const CheckboxFilter = ({ filter }: CheckboxFilterProps) => {
-  const { classes } = useStyles();
-  const {
-    filters,
-    addFilterItem,
-    removeFilterItem,
-    addFilterValue,
-    removeFilterValue,
-  } = useFilterStore();
+    const { classes } = useStyles();
+    const {
+        filters,
+        addFilterItem,
+        removeFilterItem,
+        addFilterValue,
+        removeFilterValue,
+    } = useFilterStore();
 
-  function clickOnFilterValue(filterName: string, value: string) {
-    const filterItem: FilterItem = filters.filter(
-      (e) => e.showName === filter.showName
-    )[0];
+    function clickOnFilterValue(filterName: string, value: string) {
+        const filterItem: FilterItem = filters.filter((e) => e.showName === filter.showName)[0];
 
-    if (filterItem) {
-      //when filterItem already exists
-      if (filterItem.value.includes(value)) {
-        //when value already in the list
-        if (filterItem.value.length == 1) {
-          //when value in the list is the last
-          removeFilterItem(filter.showName);
+        if (filterItem) {
+            //when filterItem already exists
+            if (filterItem.value.includes(value)) {
+                //when value already in the list
+                if (filterItem.value.length == 1) {
+                    //when value in the list is the last
+                    removeFilterItem(filter.showName);
+                } else {
+                    //when value in the list is not last
+                    removeFilterValue(filter.showName, value);
+                }
+            } else {
+                //when value is not in the list
+                addFilterValue(filter.showName, value);
+            }
         } else {
-          //when value in the list is not last
-          removeFilterValue(filter.showName, value);
+            //when filterItem not exists
+            addFilterItem(filter.showName, value, filter.filterType, filter.filterKey);
         }
-      } else {
-        //when value is not in the list
-        addFilterValue(filter.showName, value);
-      }
-    } else {
-      //when filterItem not exists
-      addFilterItem(
-        filter.showName,
-        value,
-        filter.filterType,
-        filter.filterKey
-      );
     }
-  }
 
-  return (
-    <div className={classes.filter}>
-      {filter.value.map((value) => {
-        return (
-          <GCCheckbox
-            onClick={() => clickOnFilterValue(filter.showName, value)}
-            key={value}
-            className={classes.filter}
-            label={value}
-          >
-            {value}
-          </GCCheckbox>
-        );
-      })}
-    </div>
-  );
+    return (
+        <div className={classes.filter}>
+            {filter.value.map((value) => {
+                return (
+                    <GCCheckbox
+                        onClick={() => clickOnFilterValue(filter.showName, value)}
+                        key={value}
+                        className={classes.filter}
+                        label={value}
+                    >
+                        {value}
+                    </GCCheckbox>
+                );
+            })}
+        </div>
+    );
 };
 
 export default CheckboxFilter;
