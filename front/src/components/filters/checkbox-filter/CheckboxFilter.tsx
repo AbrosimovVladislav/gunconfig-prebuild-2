@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { FilterItem } from "../../../schema/FilterSchema";
+import { FilterItem, FilterType } from "../../../schema/FilterSchema";
 import { GCCheckbox } from "../../../gc-components/GCCheckbox";
 import { useStyles } from "./CheckboxFilterStyles";
-import { addFilterValue, useFilterStore } from "../../../store/FilterStore";
+import { useFilterStore } from "../../../store/FilterStore";
 import { useRouter } from "next/router";
 import { createFilterPostfix } from "../../../services/nftService";
 
@@ -22,16 +22,14 @@ const CheckboxFilter = ({ filter }: CheckboxFilterProps) => {
   const router = useRouter();
 
   useEffect(() => {
-    console.log("FILTERS", filters);
-
+    console.log("2.1 FILTERS CHANGED");
     const postfix = createFilterPostfix(filters);
-
     router.push(`/nft-catalog?${postfix}`);
   }, [filters]);
 
-  function clickOnFilterValue(filterName: string, value: string) {
+  function clickOnFilterValue(filterKey: string, value: string) {
     const filterItem: FilterItem = filters.filter(
-      (e) => e.showName === filter.showName
+      (e) => e.filterKey === filterKey
     )[0];
 
     if (filterItem) {
@@ -40,23 +38,18 @@ const CheckboxFilter = ({ filter }: CheckboxFilterProps) => {
         //when value already in the list
         if (filterItem.value.length == 1) {
           //when value in the list is the last
-          removeFilterItemFromStore(filter.showName);
+          removeFilterItemFromStore(filterKey);
         } else {
           //when value in the list is not last
-          removeFilterValueFromStore(filter.showName, value);
+          removeFilterValueFromStore(filterKey, value);
         }
       } else {
         //when value is not in the list
-        addFilterValueToStore(filter.showName, value);
+        addFilterValueToStore(filterKey, value);
       }
     } else {
       //when filterItem not exists
-      addFilterItemToStore(
-        filter.showName,
-        value,
-        filter.filterType,
-        filter.filterKey
-      );
+      addFilterItemToStore(filterKey, value, FilterType.CHECKBOX);
     }
   }
 
@@ -65,7 +58,7 @@ const CheckboxFilter = ({ filter }: CheckboxFilterProps) => {
       {filter.value.map((value) => {
         return (
           <GCCheckbox
-            onClick={() => clickOnFilterValue(filter.showName, value)}
+            onClick={() => clickOnFilterValue(filter.filterKey, value)}
             key={value}
             className={classes.filter}
             label={value}

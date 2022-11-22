@@ -8,16 +8,24 @@ const NFTCatalogWrapper = () => {
   const { filters } = useFilterStore();
   const router = useRouter();
   let query = router.asPath.split("?")[1];
+  const [data, error, isLoading, isError] = useGetAllNFTs(filters);
 
   useEffect(() => {
-    console.log("DATA", query);
+    console.log("2.2 FILTERS CHANGED");
+  }, [filters]);
+
+  // useEffect(() => {
+  //   console.log("3 DATA CHANGED");
+  //   console.log(data);
+  // }, [data]);
+
+  useEffect(() => {
+    console.log("QUERY", query);
     //update state
     //create mapping function from url params to object
     //and set it fully to state
     //create new store function to replace whole state
   }, []);
-
-  const [data, error, isLoading, isError] = useGetAllNFTs(filters);
 
   if (isLoading) {
     return <div>Loading...</div>;
