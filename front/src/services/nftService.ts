@@ -19,7 +19,7 @@ export function useGetNFTById(
 }
 
 export function useGetAllNFTs(filters: FilterItem[]) {
-  if (!urlPostfix) urlPostfix = createFilterPostfix(filters);
+  const urlPostfix = createFilterPostfix(filters);
 
   const { data, error, isLoading, isError } = useQuery(
     "getAllNfts" + urlPostfix,
@@ -43,8 +43,13 @@ export function createFilterPostfix(filters: FilterItem[]): string {
         filter.filterKey + "=" + filter.value.map((value) => value + ",");
     }
     postfix += filterPostfix + "&";
+    postfix = postfix.replaceAll(",,", ",");
+    postfix = postfix.replaceAll(",&", "&");
   });
 
+  if (postfix.endsWith("&")) {
+    postfix = postfix.slice(0, postfix.length - 1);
+  }
   // console.log("POSTFIX", postfix);
   return postfix;
 }
