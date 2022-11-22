@@ -6,7 +6,12 @@ import {useRouter} from "next/router";
 import {createFilterItemsFromUrlParams} from "../../services/filterService";
 import {FilterItem} from "../../schema/FilterSchema";
 
-const NFTCatalogWrapper = () => {
+interface NFTCatalogWrapperProps{
+    layout: string;
+    className?: string;
+}
+
+const NFTCatalogWrapper = ({layout, className}: NFTCatalogWrapperProps) => {
     const {filters, updateFilterStore} = useFilterStore();
     const router = useRouter();
     let urlParams = router.asPath.split("?")[1];
@@ -29,7 +34,7 @@ const NFTCatalogWrapper = () => {
     }
 
     if (isSuccess) {
-        return <Catalog nfts={data}/>;
+        return <Catalog layout={layout} className={className} nfts={data}/>;
     }
 
 };
