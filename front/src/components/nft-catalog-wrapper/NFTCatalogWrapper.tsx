@@ -1,6 +1,6 @@
 import { useFilterStore } from "../../store/FilterStore";
 import { useGetAllNFTs } from "../../services/nftService";
-import Catalog from "./Catalog";
+import Catalog from "../catalog/Catalog";
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 
