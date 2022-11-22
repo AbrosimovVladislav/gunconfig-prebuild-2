@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import {useStyles} from "./NFTCatalogStyles";
+import React, { useState } from "react";
+import { useStyles } from "./NFTCatalogStyles";
 import FilterSection from "../../components/filters/FilterSection";
 import NFTCatalogWrapper from "../../components/nft-catalog-wrapper/NFTCatalogWrapper";
 import GCContainer from "../../gc-components/GCContainer";
@@ -9,21 +9,23 @@ import Sorting from "../../components/sorting/Sorting";
 const NFTCatalog = () => {
     const {classes} = useStyles();
 
-    const [layout, setLayout] = useState('grid-9');
+    const [layout, setLayout] = useState('catalogOfFour');
 
     return (
-        <div className={classes.page}>
-            <GCContainer>
+        <GCContainer>
+            <div className={classes.page}>
+
                 <FilterSection/>
-                <Sorting/>
                 <div className={classes.catalogAndControls}>
-                    <NFTCatalogWrapper className={classes.catalog} layout={layout}/>
                     <div className={classes.controls}>
+                        <Sorting/>
                         <GCSegmentedControl value={layout} onChange={setLayout}/>
                     </div>
+                    <NFTCatalogWrapper className={classes.catalog} layout={layout}/>
                 </div>
-            </GCContainer>
-        </div>
+
+            </div>
+        </GCContainer>
     );
 };
 

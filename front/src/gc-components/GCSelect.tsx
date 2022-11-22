@@ -14,6 +14,7 @@ const GCSelect = ({icon, data}: GCSelectProps) => {
         transition="pop"
         transitionDuration={400}
         dropdownComponent="div"
+        size="md"
         icon={icon}
         data={data}/>
 }

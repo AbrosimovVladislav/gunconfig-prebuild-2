@@ -5,24 +5,24 @@ export const useStyles = createStyles((theme) => ({
         display: "flex",
         alignItems: "flex-start",
         justifyContent: "space-between",
-        padding: theme.spacing.lg,
-        maxWidth: theme.breakpoints.xl,
-        margin: "0 auto",
-        width: "100%",
+        margin: [`${theme.spacing.lg}px 0`],
+        maxWidth: "100%",
     },
 
     catalogAndControls: {
         display: "flex",
         flexDirection: "column",
-        alignItems: "flex-end",
+        alignItems: "center",
         width: "100%",
     },
 
     controls: {
         display: "grid",
-        gridTemplateColumns: "auto",
-        justifyContent: "center",
-        alignItems: "flex-start",
+        gridTemplateColumns: "auto auto",
+        gap: theme.spacing.md,
+        justifyContent: "flex-end",
+        alignItems: "center",
+        width: "100%",
 
         [`@media (max-width: ${theme.breakpoints.md}px)`]: {
             display: "none",
@@ -33,7 +33,7 @@ export const useStyles = createStyles((theme) => ({
         display: "flex",
         width: "100%",
         flexDirection: "column",
-        alignItems: "flex-end",
+        alignItems: "center",
         [`@media (max-width: ${theme.breakpoints.md}px)`]: {
             alignItems: "center",
         },
