@@ -13,38 +13,23 @@ interface FilterStoreState {
 export const useFilterStore = create<FilterStoreState>((set) => ({
     filters: [],
     addFilterItemToStore: (filterKey: string, value: string, type: FilterType) => {
-        set((state) => ({
-            filters: addFilterItem(state.filters, filterKey, value, type),
-        }));
+        set((state) => ({filters: addFilterItem(state.filters, filterKey, value, type)}));
     },
     removeFilterItemFromStore: (filterKey: string) => {
-        set((state) => ({
-            filters: removeFilterItem(state.filters, filterKey),
-        }));
+        set((state) => ({filters: removeFilterItem(state.filters, filterKey)}));
     },
     addFilterValueToStore: (filterKey: string, value: string) => {
-        set((state) => ({
-            filters: addFilterValue(state.filters, filterKey, value),
-        }));
+        set((state) => ({filters: addFilterValue(state.filters, filterKey, value)}));
     },
     removeFilterValueFromStore: (filterKey: string, value: string) => {
-        set((state) => ({
-            filters: removeFilterValue(state.filters, filterKey, value),
-        }));
+        set((state) => ({filters: removeFilterValue(state.filters, filterKey, value)}));
     },
     updateFilterStore: (filterItems: FilterItem[]) => {
-        set((state) => ({
-            filters: filterItems,
-        }));
+        set((state) => ({filters: filterItems}));
     },
 }));
 
-export function addFilterItem(
-    filters: FilterItem[],
-    filterKey: string,
-    value: string,
-    type: FilterType
-): FilterItem[] {
+export function addFilterItem(filters: FilterItem[], filterKey: string, value: string, type: FilterType): FilterItem[] {
     let newFilterItem: FilterItem = {
         filterType: type,
         value: [value],
@@ -55,36 +40,22 @@ export function addFilterItem(
     return updatedFilters;
 }
 
-export function removeFilterItem(
-    filters: FilterItem[],
-    filterKey: string
-): FilterItem[] {
+export function removeFilterItem(filters: FilterItem[], filterKey: string): FilterItem[] {
     let updatedFilters = [...filters];
     updatedFilters = updatedFilters.filter((e) => e.filterKey !== filterKey);
     return updatedFilters;
 }
 
-export function addFilterValue(
-    filters: FilterItem[],
-    filterKey: string,
-    value: string
-): FilterItem[] {
+export function addFilterValue(filters: FilterItem[], filterKey: string, value: string): FilterItem[] {
     let updatedFilters = [...filters];
     updatedFilters.filter((e) => e.filterKey === filterKey)[0].value.push(value);
     return updatedFilters;
 }
 
-export function removeFilterValue(
-    filters: FilterItem[],
-    filterKey: string,
-    value: string
-): FilterItem[] {
+export function removeFilterValue(filters: FilterItem[], filterKey: string, value: string): FilterItem[] {
     let updatedFilters = [...filters];
-    const currentFilters = updatedFilters.filter(
-        (e) => e.filterKey === filterKey
-    )[0];
+    const currentFilters = updatedFilters.filter((e) => e.filterKey === filterKey)[0];
     const updatedValues = currentFilters.value.filter((e) => e !== value);
-    updatedFilters.filter((e) => e.filterKey === filterKey)[0].value =
-        updatedValues;
+    updatedFilters.filter((e) => e.filterKey === filterKey)[0].value = updatedValues;
     return updatedFilters;
 }

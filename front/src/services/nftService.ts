@@ -3,14 +3,14 @@ import {get} from "./restClient";
 import {NFT_POSTFIX} from "../consts/back-paths";
 import {NFTCard} from "../schema/NFTCatalogSchema";
 import {FilterItem, FilterType} from "../schema/FilterSchema";
-import {createQueryPostfixFromFilterItems} from "./filterService";
+import {createUrlParamsFromFilterItems} from "./filterService";
 
 export function useGetNFTByFilters(filters: FilterItem[]): [NFTCard[], boolean, boolean, boolean] {
-    const urlPostfix = createQueryPostfixFromFilterItems(filters);
+    const urlParams = createUrlParamsFromFilterItems(filters);
 
     const {data, isLoading, isError, isSuccess} = useQuery(
-        "getAllNfts" + urlPostfix,
-        () => get(NFT_POSTFIX + "?" + urlPostfix)
+        "GetNFTByFilters" + urlParams,
+        (): Promise<NFTCard[]> => get(NFT_POSTFIX + "?" + urlParams)
     );
     return [data, isLoading, isError, isSuccess];
 }

@@ -3,25 +3,21 @@ import {useGetNFTByFilters} from "../../services/nftService";
 import Catalog from "../catalog/Catalog";
 import React, {useEffect} from "react";
 import {useRouter} from "next/router";
-import {createFilterItemsFromQueryPostfix} from "../../services/filterService";
+import {createFilterItemsFromUrlParams} from "../../services/filterService";
 import {FilterItem} from "../../schema/FilterSchema";
 
 const NFTCatalogWrapper = () => {
     const {filters, updateFilterStore} = useFilterStore();
     const router = useRouter();
-    let query = router.asPath.split("?")[1];
+    let urlParams = router.asPath.split("?")[1];
     const [data, isLoading, isError, isSuccess] = useGetNFTByFilters(filters);
 
     useEffect(() => {
-        console.log("QUERY", query);
-        if (query) {
-            const filterItems: FilterItem[] = createFilterItemsFromQueryPostfix(query);
+        //if url have some filtration params in it, refresh filter store according them
+        if (urlParams) {
+            const filterItems: FilterItem[] = createFilterItemsFromUrlParams(urlParams);
             updateFilterStore(filterItems);
         }
-        //update state
-        //create mapping function from url params to object
-        //and set it fully to state
-        //create new store function to replace whole state
     }, []);
 
     if (isLoading) {

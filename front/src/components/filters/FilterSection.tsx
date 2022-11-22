@@ -15,10 +15,13 @@ const FilterSection = () => {
         return (
             <div className={classes.section}>
                 {data.map((filterItem) => (
-                    <GCAccordion key={filterItem.filterKey} className={classes.filter} showName={filterItem.showName}
-                                 panel={filterItem.filterType == FilterType.RANGE
-                                     ? (<RangeFilter filter={filterItem}/>)
-                                     : (<CheckboxFilter filter={filterItem}/>)}
+                    <GCAccordion
+                        key={filterItem.filterKey}
+                        className={classes.filter}
+                        showName={filterItem.showName}
+                        panel={filterItem.filterType == FilterType.RANGE
+                            ? (<RangeFilter filter={filterItem}/>)
+                            : (<CheckboxFilter currentFilter={filterItem}/>)}
                     />
                 ))}
             </div>

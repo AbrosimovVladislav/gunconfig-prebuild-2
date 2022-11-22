@@ -7,22 +7,23 @@ export function useGetFilters(): [FilterItem[], boolean, boolean, boolean] {
     const {data, isLoading, isError, isSuccess} = useQuery(
         "GetFilters",
         (): Promise<FilterItem[]> => get(NFT_POSTFIX + FILTERS_POSTFIX),
-        {
-            refetchOnWindowFocus: false,
-        }
+        {refetchOnWindowFocus: false}
     );
     return [data, isLoading, isError, isSuccess];
 }
 
-export function createFilterItemsFromQueryPostfix(filtersString: string): FilterItem[] {
+export function createFilterItemsFromUrlParams(urlParams: string): FilterItem[] {
     let filterItems: FilterItem[] = [];
 
-    let separatedFilters = filtersString.split("&");
+    let separatedFilters = urlParams.split("&");
     separatedFilters.map((filter) => {
         const filterKey: string = filter.split("=")[0];
+
         let value: string[] = filter.split("=")[1].split(",");
-        value = value.map(e => e.replaceAll("%20"," "));
+        value = value.map(e => e.replaceAll("%20", " "));
+
         const type: FilterType = filter.includes("interval") ? FilterType.RANGE : FilterType.CHECKBOX;
+
         let newFilterItem: FilterItem = {
             value: value,
             filterKey: filterKey,
@@ -33,10 +34,10 @@ export function createFilterItemsFromQueryPostfix(filtersString: string): Filter
     return filterItems;
 }
 
-export function createQueryPostfixFromFilterItems(filters: FilterItem[]): string {
-    let postfix = "";
+export function createUrlParamsFromFilterItems(filterItems: FilterItem[]): string {
+    let urlParams = "";
 
-    filters?.map((filter) => {
+    filterItems?.map((filter) => {
         let filterPostfix = "";
         if (filter.filterType === FilterType.RANGE) {
             filterPostfix = "";
@@ -46,13 +47,13 @@ export function createQueryPostfixFromFilterItems(filters: FilterItem[]): string
             filterPostfix +=
                 filter.filterKey + "=" + filter.value.map((value) => value + ",");
         }
-        postfix += filterPostfix + "&";
-        postfix = postfix.replaceAll(",,", ",");
-        postfix = postfix.replaceAll(",&", "&");
+        urlParams += filterPostfix + "&";
+        urlParams = urlParams.replaceAll(",,", ",");
+        urlParams = urlParams.replaceAll(",&", "&");
     });
 
-    if (postfix.endsWith("&")) {
-        postfix = postfix.slice(0, postfix.length - 1);
+    if (urlParams.endsWith("&")) {
+        urlParams = urlParams.slice(0, urlParams.length - 1);
     }
-    return postfix;
+    return urlParams;
 }

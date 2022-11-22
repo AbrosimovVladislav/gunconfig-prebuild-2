@@ -4,13 +4,13 @@ import {GCCheckbox} from "../../../gc-components/GCCheckbox";
 import {useStyles} from "./CheckboxFilterStyles";
 import {useFilterStore} from "../../../store/FilterStore";
 import {useRouter} from "next/router";
-import {createQueryPostfixFromFilterItems} from "../../../services/filterService";
+import {createUrlParamsFromFilterItems} from "../../../services/filterService";
 
 interface CheckboxFilterProps {
-    filter: FilterItem;
+    currentFilter: FilterItem;
 }
 
-const CheckboxFilter = ({filter}: CheckboxFilterProps) => {
+const CheckboxFilter = ({currentFilter}: CheckboxFilterProps) => {
     const {classes} = useStyles();
 
     const {
@@ -19,19 +19,19 @@ const CheckboxFilter = ({filter}: CheckboxFilterProps) => {
     const router = useRouter();
 
     useEffect(() => {
-        //when we change filter store from here, we should also change url
-        const postfix = createQueryPostfixFromFilterItems(filters);
-        router.push(`/nft-catalog?${postfix}`);
+        //when we change filter store from clicking on checkbox, we should also change url
+        const urlParams = createUrlParamsFromFilterItems(filters);
+        router.push(`/nft-catalog?${urlParams}`);
     }, [filters]);
 
     function clickOnFilterValue(filterKey: string, value: string) {
-        const filterItem: FilterItem = filters.filter((e) => e.filterKey === filterKey)[0];
+        const clickedFilterItem: FilterItem = filters.filter((e) => e.filterKey === filterKey)[0];
 
-        if (filterItem) {
+        if (clickedFilterItem) {
             //when filterItem already exists
-            if (filterItem.value.includes(value)) {
+            if (clickedFilterItem.value.includes(value)) {
                 //when value already in the list
-                if (filterItem.value.length == 1) {
+                if (clickedFilterItem.value.length == 1) {
                     //when value in the list is the last
                     removeFilterItemFromStore(filterKey);
                 } else {
@@ -50,8 +50,8 @@ const CheckboxFilter = ({filter}: CheckboxFilterProps) => {
 
     //ToDo refactor (https://app.clickup.com/t/344vp8z)
     function isChecked(value: string) {
-        if (filter) {
-            const filterItem = filters.filter((e) => e.filterKey === filter.filterKey)[0];
+        if (currentFilter) {
+            const filterItem = filters.filter((e) => e.filterKey === currentFilter.filterKey)[0];
             if (filterItem) {
                 let currentFilterItemValue = filterItem.value;
                 currentFilterItemValue = currentFilterItemValue.map((e) => e.replaceAll("%20", " "));
@@ -66,11 +66,11 @@ const CheckboxFilter = ({filter}: CheckboxFilterProps) => {
 
     return (
         <div className={classes.filter}>
-            {filter.value.map((value) => {
+            {currentFilter.value.map((value) => {
                 return (
                     <GCCheckbox
                         checked={isChecked(value)}
-                        onClick={() => clickOnFilterValue(filter.filterKey, value)}
+                        onClick={() => clickOnFilterValue(currentFilter.filterKey, value)}
                         key={value}
                         className={classes.filter}
                         label={value}>
