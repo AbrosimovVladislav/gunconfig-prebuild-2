@@ -52,11 +52,30 @@ const CheckboxFilter = ({ filter }: CheckboxFilterProps) => {
     }
   }
 
+  function isChecked(value: string) {
+    if (filter) {
+      const filteritem = filters.filter(
+        (e) => e.filterKey === filter.filterKey
+      )[0];
+      if (filteritem) {
+        let currentFilterItemValue = filteritem.value;
+        currentFilterItemValue = currentFilterItemValue.map((e) =>
+          e.replaceAll("%20", " ")
+        );
+        if (currentFilterItemValue) {
+          return currentFilterItemValue.includes(value);
+        }
+      }
+    }
+    return false;
+  }
+
   return (
     <div className={classes.filter}>
       {filter.value.map((value) => {
         return (
           <GCCheckbox
+            checked={isChecked(value)}
             onClick={() => clickOnFilterValue(filter.filterKey, value)}
             key={value}
             className={classes.filter}

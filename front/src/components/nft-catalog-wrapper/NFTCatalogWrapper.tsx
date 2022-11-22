@@ -13,6 +13,11 @@ const NFTCatalogWrapper = () => {
   const [data, error, isLoading, isError] = useGetAllNFTs(filters);
 
   useEffect(() => {
+    console.log("filters");
+    console.log(filters);
+  }, [filters]);
+
+  useEffect(() => {
     console.log("QUERY", query);
     if (query) {
       const filterItems: FilterItem[] = fromStringToFilterItems(query);
