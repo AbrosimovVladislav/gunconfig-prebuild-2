@@ -21,8 +21,6 @@ export function useGetNFTById(
 export function useGetAllNFTs(filters: FilterItem[]) {
   const urlPostfix = createFilterPostfix(filters);
 
-  console.log("3 - urlPostfix");
-  console.log(urlPostfix);
   const { data, error, isLoading, isError } = useQuery(
     "getAllNfts" + urlPostfix,
     // "getAllNfts",
@@ -49,12 +47,8 @@ export function createFilterPostfix(filters: FilterItem[]): string {
     postfix = postfix.replaceAll(",&", "&");
   });
 
-  console.log("---postfix---");
-  console.log(postfix);
-
   if (postfix.endsWith("&")) {
     postfix = postfix.slice(0, postfix.length - 1);
   }
-  // console.log("POSTFIX", postfix);
   return postfix;
 }

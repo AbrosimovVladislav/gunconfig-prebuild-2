@@ -22,7 +22,6 @@ const CheckboxFilter = ({ filter }: CheckboxFilterProps) => {
   const router = useRouter();
 
   useEffect(() => {
-    console.log("2.1 FILTERS CHANGED");
     const postfix = createFilterPostfix(filters);
     router.push(`/nft-catalog?${postfix}`);
   }, [filters]);

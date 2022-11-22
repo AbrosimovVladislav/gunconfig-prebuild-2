@@ -11,6 +11,7 @@ interface FilterStoreState {
   removeFilterItemFromStore: (filterKey: string) => void;
   addFilterValueToStore: (filterKey: string, value: string) => void;
   removeFilterValueFromStore: (filterKey: string, value: string) => void;
+  updateFilterStore: (filters: FilterItem[]) => void;
 }
 
 export const useFilterStore = create<FilterStoreState>((set) => ({
@@ -39,6 +40,11 @@ export const useFilterStore = create<FilterStoreState>((set) => ({
       filters: removeFilterValue(state.filters, filterKey, value),
     }));
   },
+  updateFilterStore: (filterItems: FilterItem[]) => {
+    set((state) => ({
+      filters: filterItems,
+    }));
+  },
 }));
 
 export function addFilterItem(
@@ -54,8 +60,6 @@ export function addFilterItem(
   };
   let updatedFilters = [...filters];
   updatedFilters.push(newFilterItem);
-  console.log("1 - ADD_FILTER_ITEM");
-  console.log(updatedFilters);
   return updatedFilters;
 }
 
