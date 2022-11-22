@@ -9,4 +9,9 @@ export const useStyles = createStyles((theme) => ({
             gridTemplateColumns: "1fr auto",
         },
     },
-}));
+    catalog: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-end"
+    }
+}))
