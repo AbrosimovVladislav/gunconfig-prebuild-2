@@ -7,20 +7,24 @@ import { FRONT_CURRENT_PATH } from "../../config/env-paths";
 
 interface CatalogProps {
     nfts: NFTCard[];
+    layout: string;
+    className?: string;
 }
 
-const Catalog = ({ nfts }: CatalogProps) => {
-    const { classes } = useStyles();
+const Catalog = ({nfts, layout, className}: CatalogProps) => {
+    const {classes} = useStyles();
 
     return (
-        <div className={classes.catalog}>
-            {nfts.map((item: NFTCard) => (
-                <Link href={FRONT_CURRENT_PATH + ":3000/nft/" + item.nftCardId}>
-                    <div key={item.nftCardId}>
-                        <NFTMicroCard item={item} />
-                    </div>
-                </Link>
-            ))}
+        <div className={className}>
+            <div className={classes[layout]}>
+                {nfts.map((item: NFTCard) => (
+                    <Link href={FRONT_CURRENT_PATH + ":3000/nft/" + item.nftCardId}>
+                        <div className={classes.card} key={item.nftCardId}>
+                            <NFTMicroCard item={item}/>
+                        </div>
+                    </Link>
+                ))}
+            </div>
         </div>
     );
 };
