@@ -34,6 +34,7 @@ export const useStyles = createStyles((theme) => ({
         width: "100%",
         flexDirection: "column",
         alignItems: "center",
+        margin: [`${theme.spacing.md}px 0`],
         [`@media (max-width: ${theme.breakpoints.md}px)`]: {
             alignItems: "center",
         },

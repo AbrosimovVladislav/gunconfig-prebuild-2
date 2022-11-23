@@ -19,7 +19,7 @@ const Catalog = ({nfts, layout, className}: CatalogProps) => {
             <div className={classes[layout]}>
                 {nfts.map((item: NFTCard) => (
                     <Link href={FRONT_CURRENT_PATH + ":3000/nft/" + item.nftCardId}>
-                        <div className={classes.card} key={item.nftCardId}>
+                        <div key={item.nftCardId}>
                             <NFTMicroCard item={item}/>
                         </div>
                     </Link>
