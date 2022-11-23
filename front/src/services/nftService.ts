@@ -17,9 +17,9 @@ export function useGetNFTById(
   return [data, isLoading, isError, isSuccess];
 }
 
-export function useGetAllNFTs() {
-  const { data, error, isLoading, isError } = useQuery("getAllNfts", () =>
+export function useGetAllNFTs(): [NFTCard[], boolean, boolean, boolean] {
+  const { data, isLoading, isError, isSuccess } = useQuery("getAllNfts", () =>
     get(NFT_POSTFIX)
   );
-  return [data, error, isLoading, isError];
+  return [data, isLoading, isError, isSuccess];
 }
