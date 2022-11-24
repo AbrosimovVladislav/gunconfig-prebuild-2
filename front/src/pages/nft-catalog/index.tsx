@@ -7,23 +7,21 @@ import GCSegmentedControl from "../../gc-components/segmented-control/GCSegmente
 import Sorting from "../../components/sorting/Sorting";
 
 const NFTCatalog = () => {
-    const {classes} = useStyles();
+    const { classes } = useStyles();
 
-    const [layout, setLayout] = useState('catalogOfFour');
+    const [layout, setLayout] = useState("catalogOfFour");
 
     return (
         <GCContainer>
             <div className={classes.page}>
-
-                <FilterSection/>
+                <FilterSection />
                 <div className={classes.catalogAndControls}>
                     <div className={classes.controls}>
-                        <Sorting/>
-                        <GCSegmentedControl value={layout} onChange={setLayout}/>
+                        <Sorting />
+                        <GCSegmentedControl value={layout} onChange={setLayout} />
                     </div>
-                    <NFTCatalogWrapper className={classes.catalog} layout={layout}/>
+                    <NFTCatalogWrapper className={classes.catalog} layout={layout} />
                 </div>
-
             </div>
         </GCContainer>
     );
