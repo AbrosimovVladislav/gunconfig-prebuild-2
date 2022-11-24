@@ -12,9 +12,4 @@ export const useStyles = createStyles((theme) => ({
   filterItem: {
     border: "none",
   },
-
-  panel: {
-    borderTop: "1px solid #BDBDBD",
-  },
-
 }));

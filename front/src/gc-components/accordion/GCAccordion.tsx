@@ -48,7 +48,7 @@ export const GCAccordion = ({
         <Accordion.Control icon={<IconPhoto size={20} color={"#7666D7"} />}>
           {showName}
         </Accordion.Control>
-        <Accordion.Panel className={classes.panel}>{panel}</Accordion.Panel>
+        <Accordion.Panel>{panel}</Accordion.Panel>
       </Accordion.Item>
     </Accordion>
   );

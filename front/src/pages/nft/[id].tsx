@@ -1,12 +1,12 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { useGetNFTById } from "../../services/nftService";
-import { GCCard, GCImage } from "../../gc-components";
+import { GCImage } from "../../gc-components";
 import { GCGrid } from "../../gc-components/GCGrid";
 import { GCGridCol } from "../../gc-components/GCGridCol";
 import { useStyles } from "./SingleNFTPageStyles";
 import NftCardInformation from "../../components/nft-card-information/NftCardInformation";
-import NFTMicroCard from "../../components/nft-micro-card/NFTMicroCard";
+
 
 type SingleNFTPageProps = {};
 
