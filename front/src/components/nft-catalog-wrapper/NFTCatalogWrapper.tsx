@@ -16,7 +16,6 @@ const NFTCatalogWrapper = ({layout, className}: NFTCatalogWrapperProps) => {
     const router = useRouter();
     let urlParams = router.asPath.split("?")[1];
     const [data, isLoading, isError, isSuccess] = useGetNFTByFilters(filters);
-    console.log(layout);
 
     useEffect(() => {
         //if url have some filtration params in it, refresh filter store according them
