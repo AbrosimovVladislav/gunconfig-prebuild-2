@@ -1,6 +1,6 @@
 import { createStyles } from "@mantine/core";
 
-export const useStyles = createStyles((theme) => ({
+export const useStyles = createStyles((theme, _params, getRef) => ({
     catalogOfFour: {
         display: "grid",
         gridTemplateColumns: "auto",
@@ -20,6 +20,10 @@ export const useStyles = createStyles((theme) => ({
         [`@media (min-width: ${theme.breakpoints.xl}px)`]: {
             gridTemplateColumns: "auto auto auto",
         },
+
+        [`& .${getRef("card")}`]: {
+            height: theme.breakpoints.xs / 2,
+        }
     },
     catalogOfThree: {
         display: "grid",
@@ -40,5 +44,14 @@ export const useStyles = createStyles((theme) => ({
         [`@media (min-width: ${theme.breakpoints.xl}px)`]: {
             gridTemplateColumns: "auto auto auto auto",
         },
+
+        [`& .${getRef("card")}`]: {
+            height: theme.breakpoints.xs / 2.2,
+            fontSize: theme.fontSizes.sm,
+            whiteSpace: "pre",
+        },
     },
+    card: {
+        ref: getRef("card"),
+    }
 }));

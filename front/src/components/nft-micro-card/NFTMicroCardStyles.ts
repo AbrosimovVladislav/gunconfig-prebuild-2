@@ -5,8 +5,7 @@ export const useStyles = createStyles((theme, _params, getRef) => ({
         backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
         padding: "0 !important",
         maxWidth: "343px",
-        maxHeight: "400px",
-        minHeight: "300px",
+        height: "inherit",
         margin: "auto",
 
         "&::after": {
@@ -48,10 +47,11 @@ export const useStyles = createStyles((theme, _params, getRef) => ({
         left: 0,
         display: "grid",
         gridTemplateColumns: "auto auto",
+        gap: theme.spacing.xs,
         alignItems: "center",
         justifyContent: "space-between",
         width: "100%",
-        padding: "0 24px 10px",
+        padding: [`0 ${theme.spacing.lg}px ${theme.spacing.xs}px`],
         marginTop: "0 !important",
     },
 }));

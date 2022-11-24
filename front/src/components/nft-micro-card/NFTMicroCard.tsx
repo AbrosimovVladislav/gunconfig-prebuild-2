@@ -13,20 +13,18 @@ interface NFTMicroCardProps {
     item?: NFTCard;
 }
 
-const NFTMicroCard = ({ item }: NFTMicroCardProps) => {
-    const { classes } = useStyles();
+const NFTMicroCard = ({item}: NFTMicroCardProps) => {
+    const {classes} = useStyles();
 
     return (
         <GCCard withBorder radius="md" className={classes.card}>
             <GCCardSection className={classes.imageSection}>
-                <GCImage src={item.nftImageUrl} alt="gun" />
+                <GCImage src={item.nftImageUrl} alt="gun"/>
             </GCCardSection>
             <GCGroup className={classes.content} position="apart" mt="md">
-                <div>
-                    <GCText weight={500}>{item.name}</GCText>
-                </div>
+                <GCText weight={500}>{item.name}</GCText>
                 <GCBadge variant="gradient">{item.properties[0].name}</GCBadge>
-                <GCText size="sm" color="dimmed" weight={500} sx={{ lineHeight: 2 }} mt={3}>
+                <GCText size="sm" color="dimmed" weight={500} sx={{lineHeight: 2}} >
                     Minting price
                 </GCText>
                 <GCText variant="gradient">{item.mintingPrice} ETH</GCText>
