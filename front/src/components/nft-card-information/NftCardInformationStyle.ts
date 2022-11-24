@@ -3,23 +3,23 @@ import { createStyles } from "@mantine/core";
 export const useStyles = createStyles((theme) => ({
   listSize: {
     borderTop: "1px solid gray",
-    margin: "10px 0 0 0",
-    padding: "17px",
+    margin: [`${theme.spacing.xs}px 0 0`],
+    padding: [`${theme.spacing.md}px`],
     width: "100%",
   },
 
   gunDes: {
-    padding: "17px 0 0 0",
+    padding: [`${theme.spacing.xs}px 0 0`],
     borderTop: "1px solid #BDBDBD",
-    margin: "10px",
+    margin: [`${theme.spacing.sm}px`],
   },
 
   collectionText: {
-    padding: "10px 0 26px",
+    paddong: [`${theme.spacing.xs}px  0 ${theme.spacing.xl}px`],
   },
 
   descriptionPanel: {
-    padding: "10px",
+    padding: [`${theme.spacing.md}px`],
     boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
     borderRadius: "8px",
     fontWeight: 400,
@@ -30,7 +30,7 @@ export const useStyles = createStyles((theme) => ({
   containerList: {
     display: "flex",
     width: "100%",
-    padding: "5px 0 0 0",
+    padding: [`${theme.spacing.sm}px 0 0`],
 
     "& div": {
       flexDirection: "row",
@@ -45,7 +45,7 @@ export const useStyles = createStyles((theme) => ({
   },
 
   informationPanel: {
-    margin: "26px 0 0 0",
+    margin: [`${theme.spacing.lg}px 0 0`],
   },
 
   imageBox: {
@@ -53,6 +53,6 @@ export const useStyles = createStyles((theme) => ({
   },
 
   textPosition: {
-    padding: "0 0 0 10px",
+    padding: [`0 0${theme.spacing.xs}px`],
   },
 }));
