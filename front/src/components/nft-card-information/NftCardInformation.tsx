@@ -41,7 +41,7 @@ const NftCardInformation = ({ data }: NftCardInformationProps) => {
           size={12}
           color={"black"}
           weight={400}
-          className={classes.gunDes}
+          className={classes.panelSize}
         >
           {data.gunDescription}
         </GCText>
@@ -63,7 +63,7 @@ const NftCardInformation = ({ data }: NftCardInformationProps) => {
           </GCText>
         </div>
 
-        <GCList size={12} listStyleType="none" className={classes.listSize}>
+        <GCList size={12} listStyleType="none" className={classes.panelSize}>
           <GCListItem className={classes.containerList}>
             <div>Minting Price</div>
             <div className={classes.listInformation}>{data.mintingPrice}</div>

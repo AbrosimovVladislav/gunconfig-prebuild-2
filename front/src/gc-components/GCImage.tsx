@@ -6,6 +6,5 @@ interface GCImageProps extends ImageProps{
 }
 
 export const GCImage = ({ src, alt, ...props }: GCImageProps) => {
-    console.log(src,"jjh")
     return <Image src={src} alt={alt} {...props}/>;
 };

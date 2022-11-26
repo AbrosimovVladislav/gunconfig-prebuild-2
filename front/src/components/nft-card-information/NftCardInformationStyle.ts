@@ -1,17 +1,11 @@
 import { createStyles } from "@mantine/core";
 
 export const useStyles = createStyles((theme) => ({
-  listSize: {
-    borderTop: "1px solid gray",
+  panelSize: {
+    borderTop: "1px solid rgba(0, 0, 0, 0.09)" ,
     margin: [`${theme.spacing.xs}px 0 0`],
     padding: [`${theme.spacing.md}px`],
     width: "100%",
-  },
-
-  gunDes: {
-    padding: [`${theme.spacing.xs}px 0 0`],
-    borderTop: "1px solid #BDBDBD",
-    margin: [`${theme.spacing.sm}px`],
   },
 
   collectionText: {
@@ -20,7 +14,7 @@ export const useStyles = createStyles((theme) => ({
 
   descriptionPanel: {
     padding: [`${theme.spacing.md}px`],
-    boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+    boxShadow: theme.shadows.md,
     borderRadius: "8px",
     fontWeight: 400,
     fontSize: theme.fontSizes.sm,
