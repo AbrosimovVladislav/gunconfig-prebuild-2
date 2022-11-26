@@ -1,4 +1,4 @@
-import { GCList, GCListItem, GCText } from "../../gc-components";
+import { GCLink, GCList, GCListItem, GCText } from "../../gc-components";
 import { NFTCard } from "../../schema/NFTCatalogSchema";
 import { useStyles } from "./NftCardInformationStyle";
 import { IconAlertCircle } from "@tabler/icons";
@@ -19,7 +19,16 @@ const NftCardInformation = ({ data }: NftCardInformationProps) => {
 
       <div className={classes.collectionText}>
         <GCText weight={400} size={15} color={"black"}>
-          Collection:
+          Collection:{" "}
+          <GCText
+            size={15}
+            weight={700}
+            color={"black"}
+            className={classes.collectionName}
+          >
+            {" "}
+            Collection&apos;s name
+          </GCText>
         </GCText>
       </div>
 

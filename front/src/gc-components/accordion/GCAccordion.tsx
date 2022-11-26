@@ -1,13 +1,7 @@
-import {
-  Accordion,
-  AccordionProps,
-  MantineNumberSize,
-  useMantineTheme,
-} from "@mantine/core";
+import { Accordion, AccordionProps, MantineNumberSize } from "@mantine/core";
 import React, { ReactNode, useState } from "react";
 import { IconPlus } from "@tabler/icons";
 import { useStyles } from "./GCAccordionStyles";
-import { IconPhoto } from "@tabler/icons";
 
 interface GCAccordionProps extends AccordionProps {
   size?: MantineNumberSize;
@@ -27,7 +21,6 @@ export const GCAccordion = ({
 }: GCAccordionProps) => {
   const [value, setValue] = useState<string[]>([]);
   const { classes } = useStyles();
-
   return (
     <Accordion
       multiple
@@ -45,9 +38,7 @@ export const GCAccordion = ({
       }}
     >
       <Accordion.Item unstyled className={classes.filterItem} value={showName}>
-        <Accordion.Control icon={<IconPhoto size={20} color={"#7666D7"} />}>
-          {showName}
-        </Accordion.Control>
+        <Accordion.Control>{showName}</Accordion.Control>
         <Accordion.Panel>{panel}</Accordion.Panel>
       </Accordion.Item>
     </Accordion>

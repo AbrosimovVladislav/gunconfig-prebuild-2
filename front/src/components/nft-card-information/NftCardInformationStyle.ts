@@ -2,14 +2,22 @@ import { createStyles } from "@mantine/core";
 
 export const useStyles = createStyles((theme) => ({
   panelSize: {
-    borderTop: "1px solid rgba(0, 0, 0, 0.09)" ,
+    borderTop: "1px solid rgba(0, 0, 0, 0.09)",
     margin: [`${theme.spacing.xs}px 0 0`],
     padding: [`${theme.spacing.md}px`],
     width: "100%",
   },
 
   collectionText: {
-    paddong: [`${theme.spacing.xs}px  0 ${theme.spacing.xl}px`],
+    padding: [`${theme.spacing.xs}px  0 ${theme.spacing.xl}px`],
+
+    "& div": {
+      display: "flex",
+    },
+  },
+
+  collectionName: {
+    padding: [`0 0 0 ${theme.spacing.sm}px`],
   },
 
   descriptionPanel: {
@@ -19,6 +27,10 @@ export const useStyles = createStyles((theme) => ({
     fontWeight: 400,
     fontSize: theme.fontSizes.sm,
     lineHeight: theme.lineHeight,
+  },
+
+  informationPanel: {
+    margin: [`${theme.spacing.lg}px 0 0`],
   },
 
   containerList: {
@@ -36,10 +48,6 @@ export const useStyles = createStyles((theme) => ({
   listInformation: {
     fontWeight: 700,
     justifyContent: "flex-end",
-  },
-
-  informationPanel: {
-    margin: [`${theme.spacing.lg}px 0 0`],
   },
 
   imageBox: {
