@@ -9,4 +9,7 @@ export const useStyles = createStyles((theme) => ({
   nftImage: {
     height: "100%"
   },
+  catalogHeader: {
+    margin: [`${theme.spacing.xl}px 0`]
+  },
 }));
