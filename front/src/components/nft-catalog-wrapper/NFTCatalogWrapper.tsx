@@ -5,6 +5,9 @@ import React, {useEffect} from "react";
 import {useRouter} from "next/router";
 import {createFilterItemsFromUrlParams} from "../../services/filterService";
 import {FilterItem} from "../../schema/FilterSchema";
+import {NFTCard} from "../../schema/NFTCatalogSchema";
+import {useStyles} from "../catalog/CatalogStyles";
+import NFTMicroCard from "../nft-micro-card/NFTMicroCard";
 
 interface NFTCatalogWrapperProps{
     layout: string;
@@ -12,6 +15,7 @@ interface NFTCatalogWrapperProps{
 }
 
 const NFTCatalogWrapper = ({layout, className}: NFTCatalogWrapperProps) => {
+    const { classes } = useStyles();
     const {filters, updateFilterStore} = useFilterStore();
     const router = useRouter();
     let urlParams = router.asPath.split("?")[1];
@@ -34,7 +38,13 @@ const NFTCatalogWrapper = ({layout, className}: NFTCatalogWrapperProps) => {
     }
 
     if (isSuccess) {
-        return <Catalog layout={layout} className={className} nfts={data}/>;
+        return <Catalog layout={layout} className={className}>
+            {data.map((item: NFTCard) => (
+                <div key={item.nftCardId} className={classes.card}>
+                    <NFTMicroCard item={item}/>
+                </div>
+            ))}
+        </Catalog>;
     }
 
 };
