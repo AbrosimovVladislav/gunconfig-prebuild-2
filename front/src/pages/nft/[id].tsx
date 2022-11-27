@@ -28,7 +28,6 @@ const SingleNFTPage = (props: SingleNFTPageProps) => {
 
   if (isSuccess) {
     return (
-
             <GCContainer>
                 <GCGrid className={classes.grid}>
                     <GCGridCol sm={6} md={6}>
@@ -49,7 +48,6 @@ const SingleNFTPage = (props: SingleNFTPageProps) => {
                     </GCGridCol>
                 </GCGrid>
             </GCContainer>
-
     );
   }
 };
