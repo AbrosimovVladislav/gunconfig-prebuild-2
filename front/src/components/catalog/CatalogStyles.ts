@@ -1,7 +1,7 @@
 import { createStyles } from "@mantine/core";
 
 export const useStyles = createStyles((theme, _params, getRef) => ({
-    catalogOfFour: {
+    catalogOfThree: {
         display: "grid",
         gridTemplateColumns: "auto",
         gap: theme.spacing.md,
@@ -25,7 +25,7 @@ export const useStyles = createStyles((theme, _params, getRef) => ({
             height: theme.breakpoints.xs / 2,
         }
     },
-    catalogOfThree: {
+    catalogOfFour: {
         display: "grid",
         gridTemplateColumns: "auto",
         gap: theme.spacing.md,

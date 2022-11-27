@@ -7,7 +7,7 @@ import { FRONT_CURRENT_PATH } from "../../config/env-paths";
 
 interface CatalogProps {
     nfts: NFTCard[];
-    layout: string;
+    layout?: string;
     className?: string;
 }
 
@@ -30,3 +30,7 @@ const Catalog = ({nfts, layout, className}: CatalogProps) => {
 };
 
 export default Catalog;
+
+Catalog.defaultProps = {
+    layout: "catalogOfThree",
+};

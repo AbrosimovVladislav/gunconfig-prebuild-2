@@ -11,8 +11,8 @@ const GCSegmentedControl = (({value, onChange}: GCSegmentedControlProps) => {
         <SegmentedControl value={value}
                           onChange={onChange}
                           data={[
-                              {label: (<IconBorderAll/>), value: 'catalogOfFour'},
-                              {label: (<IconGridDots/>), value: 'catalogOfThree'},
+                              {label: (<IconBorderAll/>), value: 'catalogOfThree'},
+                              {label: (<IconGridDots/>), value: 'catalogOfFour'},
 
                           ]}/>
     );

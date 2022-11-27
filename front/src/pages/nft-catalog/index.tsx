@@ -9,7 +9,7 @@ import Sorting from "../../components/sorting/Sorting";
 const NFTCatalog = () => {
     const { classes } = useStyles();
 
-    const [layout, setLayout] = useState("catalogOfFour");
+    const [layout, setLayout] = useState("catalogOfThree");
 
     return (
         <GCContainer>
