@@ -1,52 +1,57 @@
 import { createStyles } from "@mantine/core";
 
-export const useStyles = createStyles((theme) => ({
-  catalogOfThree: {
-    display: "grid",
-    gridTemplateColumns: "auto",
-    justifyContent: "center",
-    alignItems: "flex-start",
-    [`@media (min-width: ${theme.breakpoints.sm}px)`]: {
-      gridTemplateColumns: "auto auto",
-      margin: "0 -10px",
-    },
-    [`@media (min-width: ${theme.breakpoints.md}px)`]: {
-      gridTemplateColumns: "auto auto",
-    },
-    [`@media (min-width: ${theme.breakpoints.lg}px)`]: {
-      gridTemplateColumns: "auto auto auto",
-    },
-    [`@media (min-width: ${theme.breakpoints.xl}px)`]: {
-      gridTemplateColumns: "auto auto auto",
-    },
-  },
+export const useStyles = createStyles((theme, _params, getRef) => ({
+    catalogOfThree: {
+        display: "grid",
+        gridTemplateColumns: "auto",
+        gap: theme.spacing.md,
+        justifyContent: "center",
+        alignItems: "flex-start",
 
-  catalogOfFour: {
-    display: "grid",
-    gridTemplateColumns: "auto",
-    justifyContent: "center",
-    alignItems: "flex-start",
+        [`@media (min-width: ${theme.breakpoints.sm}px)`]: {
+            gridTemplateColumns: "auto auto",
+        },
+        [`@media (min-width: ${theme.breakpoints.md}px)`]: {
+            gridTemplateColumns: "auto auto",
+        },
+        [`@media (min-width: ${theme.breakpoints.lg}px)`]: {
+            gridTemplateColumns: "auto auto auto",
+        },
+        [`@media (min-width: ${theme.breakpoints.xl}px)`]: {
+            gridTemplateColumns: "auto auto auto",
+        },
 
-    [`@media (min-width: ${theme.breakpoints.sm}px)`]: {
-      gridTemplateColumns: "auto auto",
-      margin: "0 -10px",
+        [`& .${getRef("card")}`]: {
+            height: theme.breakpoints.xs / 2,
+        }
     },
-    [`@media (min-width: ${theme.breakpoints.md}px)`]: {
-      gridTemplateColumns: "auto auto auto",
-    },
-    [`@media (min-width: ${theme.breakpoints.lg}px)`]: {
-      gridTemplateColumns: "auto auto auto auto",
-    },
-    [`@media (min-width: ${theme.breakpoints.xl}px)`]: {
-      gridTemplateColumns: "auto auto auto auto",
-    },
-  },
+    catalogOfFour: {
+        display: "grid",
+        gridTemplateColumns: "auto",
+        gap: theme.spacing.md,
+        justifyContent: "center",
+        alignItems: "flex-start",
 
-  card: {
-    marginTop: "20px",
-    [`@media (min-width: ${theme.breakpoints.sm}px)`]: {
-      marginLeft: "10px",
-      marginRight: "10px",
+        [`@media (min-width: ${theme.breakpoints.sm}px)`]: {
+            gridTemplateColumns: "auto auto",
+        },
+        [`@media (min-width: ${theme.breakpoints.md}px)`]: {
+            gridTemplateColumns: "auto auto auto",
+        },
+        [`@media (min-width: ${theme.breakpoints.lg}px)`]: {
+            gridTemplateColumns: "auto auto auto auto",
+        },
+        [`@media (min-width: ${theme.breakpoints.xl}px)`]: {
+            gridTemplateColumns: "auto auto auto auto",
+        },
+
+        [`& .${getRef("card")}`]: {
+            height: theme.breakpoints.xs / 2.2,
+            fontSize: theme.fontSizes.sm,
+            whiteSpace: "pre",
+        },
     },
-  },
+    card: {
+        ref: getRef("card"),
+    }
 }));

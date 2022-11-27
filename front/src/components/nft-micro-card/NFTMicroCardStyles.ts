@@ -5,34 +5,33 @@ export const useStyles = createStyles((theme, _params, getRef) => ({
         backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
         padding: "0 !important",
         maxWidth: "343px",
-        maxHeight: "400px",
-        minHeight: "300px",
+        height: "inherit",
+        margin: "auto",
 
-        '&::after': {
+        "&::after": {
             content: "''",
             position: "absolute",
             top: 0,
             left: 0,
             width: "100%",
             height: "100%",
-            borderRadius: "8px"
+            borderRadius: "8px",
         },
 
-        ':hover': {
+        ":hover": {
             borderColor: "transparent",
             outline: "1px solid #7B61FF",
             borderRadius: "8px",
             boxShadow: theme.shadows.md,
 
-            [`& .${getRef('imageSection')}`]: {
+            [`& .${getRef("imageSection")}`]: {
                 padding: 0,
-
-            }
-        }
+            },
+        },
     },
 
     imageSection: {
-        ref: getRef('imageSection'),
+        ref: getRef("imageSection"),
         padding: "10px 15px",
         display: "flex",
         alignItems: "flex-start",
@@ -48,10 +47,11 @@ export const useStyles = createStyles((theme, _params, getRef) => ({
         left: 0,
         display: "grid",
         gridTemplateColumns: "auto auto",
+        gap: theme.spacing.xs,
         alignItems: "center",
         justifyContent: "space-between",
         width: "100%",
-        padding: "0 24px 10px",
-        marginTop: "0 !important"
+        padding: [`0 ${theme.spacing.lg}px ${theme.spacing.xs}px`],
+        marginTop: "0 !important",
     },
 }));
