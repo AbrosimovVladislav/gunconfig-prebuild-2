@@ -11,10 +11,9 @@ import NFTMicroCard from "../nft-micro-card/NFTMicroCard";
 
 interface NFTCatalogWrapperProps{
     layout: string;
-    className?: string;
 }
 
-const NFTCatalogWrapper = ({layout, className}: NFTCatalogWrapperProps) => {
+const NFTCatalogWrapper = ({layout}: NFTCatalogWrapperProps) => {
     const { classes } = useStyles();
     const {filters, updateFilterStore} = useFilterStore();
     const router = useRouter();
@@ -38,7 +37,7 @@ const NFTCatalogWrapper = ({layout, className}: NFTCatalogWrapperProps) => {
     }
 
     if (isSuccess) {
-        return <Catalog layout={layout} className={className}>
+        return <Catalog layout={layout}>
             {data.map((item: NFTCard) => (
                 <div key={item.nftCardId} className={classes.card}>
                     <NFTMicroCard item={item}/>

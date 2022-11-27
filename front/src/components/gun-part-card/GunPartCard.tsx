@@ -11,13 +11,13 @@ const GunPartCard = ({ product }: GunPartCardProps) => {
   const { classes } = useStyles();
 
   return (
-    <GCCard withBorder radius="md" className={classes.card}>
+    <GCCard shadow="xs" radius="md" className={classes.card}>
       <GCCardSection className={classes.imageSection}>
         <GCImage
           src={product.productImageUrl}
           alt="gun"
-          width={220}
-          height={220}
+          width={240}
+          height={240}
           fit="contain"
         />
       </GCCardSection>

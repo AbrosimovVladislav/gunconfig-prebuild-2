@@ -42,7 +42,7 @@ export const useStyles = createStyles((theme, _params, getRef) => ({
             gridTemplateColumns: "auto auto auto auto",
         },
         [`@media (min-width: ${theme.breakpoints.xl}px)`]: {
-            gridTemplateColumns: "auto auto auto auto",
+            gridTemplateColumns: "1fr 1fr 1fr 1fr",
         },
 
         [`& .${getRef("card")}`]: {

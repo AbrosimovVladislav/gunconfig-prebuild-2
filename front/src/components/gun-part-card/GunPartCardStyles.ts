@@ -2,28 +2,27 @@ import { createStyles } from "@mantine/core";
 
 export const useStyles = createStyles((theme) => ({
   card: {
-    margin: theme.spacing.xs,
-    maxWidth: "242px",
-    minHeight: "370px",
-    boxShadow: "0px 4px 40px rgba(0, 0, 0, 0.1)",
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-end",
   },
 
   imageSection: {
-    padding: [`0 ${theme.spacing.xs}px 0 ${theme.spacing.xs}px`],
+    padding: theme.spacing.xs,
   },
 
   brand: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "flex-start",
+    alignItems: "center",
     fontSize: theme.fontSizes.md,
     lineHeight: 2,
   },
 
   brandIcon: {
-    margin: "0 4px 0 0",
-    width: "36px",
-    height: "36px",
+    margin: [`0 ${theme.spacing.xs}px 0 0`],
   },
 
   name: {
@@ -32,6 +31,10 @@ export const useStyles = createStyles((theme) => ({
   },
 
   infoSection: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-end",
+    alignItems: "flex-start",
     padding: [
       `${theme.spacing.lg}px ${theme.spacing.xs}px 0 ${theme.spacing.xs}px`,
     ],
