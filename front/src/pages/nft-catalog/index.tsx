@@ -20,7 +20,9 @@ const NFTCatalog = () => {
                         <Sorting />
                         <GCSegmentedControl value={layout} onChange={setLayout} />
                     </div>
-                    <NFTCatalogWrapper className={classes.catalog} layout={layout} />
+                    <div className={classes.catalog}>
+                        <NFTCatalogWrapper layout={layout} />
+                    </div>
                 </div>
             </div>
         </GCContainer>

@@ -1,32 +1,19 @@
-import {NFTCard} from "../../schema/NFTCatalogSchema";
-import React from "react";
-import NFTMicroCard from "../nft-micro-card/NFTMicroCard";
-import {useStyles} from "./CatalogStyles";
+import { ReactNode } from "react";
+import { useStyles } from "./CatalogStyles";
 
 interface CatalogProps {
-    nfts: NFTCard[];
-    layout?: string;
-    className?: string;
+  children: ReactNode;
+  layout?: string;
 }
 
-const Catalog = ({nfts, layout, className}: CatalogProps) => {
-    const {classes} = useStyles();
+const Catalog = ({ children, layout }: CatalogProps) => {
+  const { classes } = useStyles();
 
-    return (
-        <div className={className}>
-            <div className={classes[layout]}>
-                {nfts.map((item: NFTCard) => (
-                    <div key={item.nftCardId} className={classes.card}>
-                        <NFTMicroCard item={item}/>
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
+  return <div className={classes[layout]}>{children}</div>;
 };
 
 export default Catalog;
 
 Catalog.defaultProps = {
-    layout: "catalogOfThree",
+  layout: "catalogOfThree",
 };
