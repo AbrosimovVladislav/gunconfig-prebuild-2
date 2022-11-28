@@ -40,7 +40,7 @@ const SingleNFTPage = (props: SingleNFTPageProps) => {
                         <GCText className={classes.catalogHeader} size="xl" weight={700}>
                             What was used in this build
                         </GCText>
-                        <Catalog layout={"catalogOfFour"}>
+                        <Catalog>
                             {data.properties.map((product: Product) => (
                                 <GunPartCard product={product} key={product.productId} />
                             ))}
