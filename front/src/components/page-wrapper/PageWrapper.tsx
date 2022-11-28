@@ -1,6 +1,7 @@
 import React from "react";
 import { links } from "../../consts/menu-links";
 import HeaderSection from "../header/HeaderSection";
+import GCContainer from "../../gc-components/GCContainer";
 
 type PageWrapperProps = {
     children: JSX.Element;
@@ -8,10 +9,10 @@ type PageWrapperProps = {
 
 const PageWrapper = ({ children }: PageWrapperProps) => {
     return (
-        <div>
+        <GCContainer size="xl">
             <HeaderSection links={links} />
             {children}
-        </div>
+        </GCContainer>
     );
 };
 

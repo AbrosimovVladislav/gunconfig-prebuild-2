@@ -1,15 +1,15 @@
 import { Container } from "@mantine/core";
 import React, { ReactNode } from "react";
-import { GCAccordion } from "./accordion/GCAccordion";
 
 type Props = {
     children: ReactNode;
+    size?: "xs" | "sm" | "md" | "lg" | "xl";
     className?: any;
 };
 
-export default function GCContainer({ children, className }: Props) {
+export default function GCContainer({ children, size, className }: Props) {
     return (
-        <Container size="xl" className={className}>
+        <Container size={size ? size : "xl"} className={className}>
             {children}
         </Container>
     );
