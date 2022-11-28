@@ -62,10 +62,10 @@ public class ConfiguratorController {
      * Get a rendering info for exact gun part by id
      */
     @CrossOrigin
-    @GetMapping(value = "/gunpart/{id}")
-    public RenderingGunPartDto getGunPartById(@PathVariable Long id) {
+    @GetMapping(value = "/gunpart/{parentId}/{id}")
+    public RenderingGunPartDto getGunPartById(@PathVariable Long parentId, @PathVariable Long id) {
         GunPart gunPart = gunPartService.findById(id);
-        RenderingGunPartDto dto = gunPartMapper.toRenderingDto(gunPart);
+        RenderingGunPartDto dto = gunPartMapper.toRenderingDto(gunPart, parentId);
         return dto;
     }
 

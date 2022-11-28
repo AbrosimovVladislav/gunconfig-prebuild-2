@@ -24,9 +24,6 @@ public class GunPart {
 
     private String thumbnailImage;
     private String gunPartImageUrl;
-
-    private Integer x;
-    private Integer y;
     private Integer width;
 
     @ManyToMany

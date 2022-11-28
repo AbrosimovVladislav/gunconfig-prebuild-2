@@ -7,7 +7,7 @@ GET http://localhost:8081/api/v1/configurator/gunpart?parentId=1&typeOfProduct=H
 Accept: application/json
 
 ### GET a rendering info for exact gun part by id (Third Endpoint)
-GET http://localhost:8081/api/v1/configurator/gunpart/8
+GET http://localhost:8081/api/v1/configurator/gunpart/1/2
 Accept: application/json
 
 ### GET build by id

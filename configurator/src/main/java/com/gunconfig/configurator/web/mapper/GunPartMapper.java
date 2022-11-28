@@ -1,9 +1,11 @@
 package com.gunconfig.configurator.web.mapper;
 
 import com.gunconfig.configurator.model.GunPart;
+import com.gunconfig.configurator.service.CoordinatesService;
 import com.gunconfig.configurator.web.dto.RenderingGunPartDto;
 import com.gunconfig.configurator.web.dto.ShortGunPartDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -11,15 +13,19 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class GunPartMapper {
-    public RenderingGunPartDto toRenderingDto(GunPart gunPart) {
+
+    private final CoordinatesService coordinatesService;
+
+    public RenderingGunPartDto toRenderingDto(GunPart gunPart, Long parentId) {
+        Pair<Integer, Integer> coordinates = coordinatesService.getCoordinatesByParentIdAndChildId(parentId, gunPart.getGunPartId());
         return RenderingGunPartDto.builder()
                 .gunPartId(gunPart.getGunPartId())
                 .productId(gunPart.getProduct().getProductId())
                 .productName(gunPart.getProduct().getName())
                 .productType(gunPart.getProduct().getType().toString())
                 .gunPartImageUrl(gunPart.getGunPartImageUrl())
-                .x(gunPart.getX())
-                .y(gunPart.getY())
+                .x(coordinates.getFirst())
+                .y(coordinates.getSecond())
                 .width(gunPart.getWidth())
                 .build();
     }
