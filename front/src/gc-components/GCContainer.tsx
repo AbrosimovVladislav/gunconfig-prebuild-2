@@ -9,13 +9,14 @@ type Props = {
 
 export default function GCContainer({ children, size, className }: Props) {
     return (
-        <Container size={size ? size : "xl"} className={className}>
+        <Container size={size} className={className}>
             {children}
         </Container>
     );
 }
 
 GCContainer.defaultProps = {
-    className: {}
+    className: {},
+    size: "xl"
 };
 
