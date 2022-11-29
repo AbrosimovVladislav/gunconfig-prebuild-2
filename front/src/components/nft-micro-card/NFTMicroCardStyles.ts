@@ -2,11 +2,12 @@ import { createStyles } from "@mantine/core";
 
 export const useStyles = createStyles((theme, _params, getRef) => ({
     card: {
-        backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
         padding: "0 !important",
         maxWidth: "343px",
         height: "inherit",
         margin: "auto",
+        border: "none",
+        boxShadow: theme.shadows.md,
 
         "&::after": {
             content: "''",
@@ -20,9 +21,8 @@ export const useStyles = createStyles((theme, _params, getRef) => ({
 
         ":hover": {
             borderColor: "transparent",
-            outline: "1px solid #7B61FF",
+            outline: [`1px solid ${theme.colors.purple[0]}`],
             borderRadius: "8px",
-            boxShadow: theme.shadows.md,
 
             [`& .${getRef("imageSection")}`]: {
                 padding: 0,
