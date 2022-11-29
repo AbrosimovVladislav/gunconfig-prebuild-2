@@ -2,18 +2,20 @@ import { ReactNode } from "react";
 import { useStyles } from "./CatalogStyles";
 
 interface CatalogProps {
-  children: ReactNode;
-  layout?: string;
+    children: ReactNode;
+    layout?: string;
 }
 
-const Catalog = ({ children, layout }: CatalogProps) => {
-  const { classes } = useStyles();
+const Catalog = ({children, layout}: CatalogProps) => {
+    const {classes} = useStyles();
 
-  return <div className={classes[layout]}>{children}</div>;
+    return <div className={`${classes.catalog} ${classes[layout]}`}>
+            {children}
+    </div>;
 };
 
 export default Catalog;
 
 Catalog.defaultProps = {
-  layout: "catalogOfThree",
+    layout: "catalog344",
 };

@@ -6,7 +6,7 @@ import {useRouter} from "next/router";
 import {createFilterItemsFromUrlParams} from "../../services/filterService";
 import {FilterItem} from "../../schema/FilterSchema";
 import {NFTCard} from "../../schema/NFTCatalogSchema";
-import {useStyles} from "../catalog/CatalogStyles";
+import {useStyles} from "./NFTCatalogWrapperStyles";
 import NFTMicroCard from "../nft-micro-card/NFTMicroCard";
 
 interface NFTCatalogWrapperProps{
@@ -39,7 +39,7 @@ const NFTCatalogWrapper = ({layout}: NFTCatalogWrapperProps) => {
     if (isSuccess) {
         return <Catalog layout={layout}>
             {data.map((item: NFTCard) => (
-                <div key={item.nftCardId} className={classes.card}>
+                <div key={item.nftCardId} className={`${classes.card} ${classes[layout]}`}>
                     <NFTMicroCard item={item}/>
                 </div>
             ))}
