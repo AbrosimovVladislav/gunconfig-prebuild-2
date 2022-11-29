@@ -27,7 +27,10 @@ public class GunPart {
     private Integer width;
 
     @ManyToMany
-    @JoinColumn(name = "children_gun_part_id")
+    @JoinTable(name = "gun_part_children",
+            joinColumns = { @JoinColumn(name = "parent_id") },
+            inverseJoinColumns = { @JoinColumn(name = "children_id")}
+    )
     private List<GunPart> children;
 
     @JsonIgnore
