@@ -1,8 +1,7 @@
-import { GCLink, GCList, GCListItem, GCText } from "../../gc-components";
+import { GCList, GCListItem, GCText } from "../../gc-components";
 import { NFTCard } from "../../schema/NFTCatalogSchema";
 import { useStyles } from "./NftCardInformationStyle";
-import { IconAlertCircle } from "@tabler/icons";
-import { IconPhoto } from "@tabler/icons";
+import { IconAlertCircle, IconPhoto } from "@tabler/icons";
 
 interface NftCardInformationProps {
   data: NFTCard;
@@ -12,90 +11,54 @@ const NftCardInformation = ({ data }: NftCardInformationProps) => {
   const { classes } = useStyles();
 
   return (
-    <div>
-      <GCText weight={700} size={25} color={"black"}>
+    <>
+      <GCText weight={700} size={32} color={"black"}>
         {data.name}
       </GCText>
-
-      <div className={classes.collectionText}>
-        <GCText weight={400} size={15} color={"black"}>
-          Collection:{" "}
-          <GCText
-            size={15}
-            weight={700}
-            color={"black"}
-            className={classes.collectionName}
-          >
-            {" "}
-            Collection&apos;s name
-          </GCText>
+      <GCText weight={400} size={16} color={"black"} className={classes.collection}>
+        Collection:
+        <GCText size={16} weight={700} color={"darkviolet"}>
+          {data.collection}
         </GCText>
-      </div>
+      </GCText>
 
-      <div className={classes.descriptionPanel}>
-        <div className={classes.imageBox}>
-          <IconPhoto />
-
-          <GCText
-            size={13}
-            color={"black"}
-            weight={700}
-            className={classes.textPosition}
-          >
-            About the Build
-          </GCText>
-        </div>
-
-        <GCText
-          size={12}
-          color={"black"}
-          weight={400}
-          className={classes.panelSize}
-        >
+      <div className={classes.frame}>
+        <GCText size={16} color={"black"} weight={700} className={classes.frameTitle}>
+          <IconPhoto color={"darkviolet"} /> About the Build
+        </GCText>
+        <GCText size={16} color={"black"} weight={400} className={classes.frameText}>
           {data.gunDescription}
         </GCText>
       </div>
 
-      <div
-        className={`${classes.descriptionPanel} ${classes.informationPanel}`}
-      >
-        <div className={classes.imageBox}>
-          <IconAlertCircle />
-
-          <GCText
-            size={13}
-            color={"black"}
-            weight={700}
-            className={classes.textPosition}
-          >
-            More Info
-          </GCText>
-        </div>
-
-        <GCList size={12} listStyleType="none" className={classes.panelSize}>
-          <GCListItem className={classes.containerList}>
-            <div>Minting Price</div>
-            <div className={classes.listInformation}>{data.mintingPrice}</div>
+      <div className={classes.frame}>
+        <GCText size={16} color={"black"} weight={700} className={classes.frameTitle}>
+          <IconAlertCircle color={"darkviolet"} /> More Info
+        </GCText>
+        <GCList size={16} listStyleType="none" className={classes.list}>
+          <GCListItem className={classes.listItem}>
+            <GCText>Minting Price</GCText>
+            <GCText weight={700}>{data.mintingPrice}</GCText>
           </GCListItem>
-          <GCListItem className={classes.containerList}>
-            <div> Collection</div>
-            <div className={classes.listInformation}>{data.collection}</div>
+          <GCListItem className={classes.listItem}>
+            <GCText>Collection</GCText>
+            <GCText weight={700}>{data.collection}</GCText>
           </GCListItem>
-          <GCListItem className={classes.containerList}>
-            <div>First Owner</div>
-            <div className={classes.listInformation}>{data.firstOwner}</div>
+          <GCListItem className={classes.listItem}>
+            <GCText>First Owner</GCText>
+            <GCText weight={700}>{data.firstOwner}</GCText>
           </GCListItem>
-          <GCListItem className={classes.containerList}>
-            <div>Rarity</div>
-            <div className={classes.listInformation}>{data.rarity}</div>
+          <GCListItem className={classes.listItem}>
+            <GCText>Rarity</GCText>
+            <GCText weight={700}>{data.rarity}</GCText>
           </GCListItem>
-          <GCListItem className={classes.containerList}>
-            <div>Creation Date </div>
-            <div className={classes.listInformation}>{data.mintingDate}</div>
+          <GCListItem className={classes.listItem}>
+            <GCText>Creation Date</GCText>
+            <GCText weight={700}>{data.mintingDate}</GCText>
           </GCListItem>
         </GCList>
       </div>
-    </div>
+    </>
   );
 };
 

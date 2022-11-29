@@ -1,60 +1,41 @@
 import { createStyles } from "@mantine/core";
 
 export const useStyles = createStyles((theme) => ({
-  panelSize: {
-    borderTop: "1px solid rgba(0, 0, 0, 0.09)",
-    margin: [`${theme.spacing.xs}px 0 0`],
-    padding: [`${theme.spacing.md}px`],
-    width: "100%",
-  },
-
-  collectionText: {
+  collection: {
+    display: "flex",
+    columnGap: theme.spacing.xs,
     padding: [`${theme.spacing.xs}px  0 ${theme.spacing.xl}px`],
-
-    "& div": {
-      display: "flex",
-    },
   },
 
-  collectionName: {
+  frame: {
+    padding: [`${theme.spacing.md}px`],
+    boxShadow: theme.shadows.md,
+    borderRadius: theme.radius.md,
+    margin: [`0 0 ${theme.spacing.xl}px 0`]
+  },
+
+  frameTitle: {
+    display: "flex",
+    alignItems: "center",
+    columnGap: theme.spacing.xs,
+    padding: [`0 0 ${theme.spacing.md}px`],
+    borderBottom: "1px solid rgba(0, 0, 0, 0.09)",
+  },
+
+  frameText: {
+    padding: [`${theme.spacing.md}px  0 0`],
+  },
+
+  list: {
     padding: [`0 0 0 ${theme.spacing.sm}px`],
   },
 
-  descriptionPanel: {
-    padding: [`${theme.spacing.md}px`],
-    boxShadow: theme.shadows.md,
-    borderRadius: "8px",
-    fontWeight: 400,
-    fontSize: theme.fontSizes.sm,
-    lineHeight: theme.lineHeight,
-  },
-
-  informationPanel: {
-    margin: [`${theme.spacing.lg}px 0 0`],
-  },
-
-  containerList: {
-    display: "flex",
-    width: "100%",
-    padding: [`${theme.spacing.sm}px 0 0`],
-
+  listItem: {
+    padding: [`${theme.spacing.md}px  0 0`],
     "& div": {
-      flexDirection: "row",
       display: "flex",
-      width: "100%",
+      flexDirection:"row",
+      justifyContent: "space-between",
     },
-  },
-
-  listInformation: {
-    fontWeight: 700,
-    justifyContent: "flex-end",
-  },
-
-  imageBox: {
-    display: "flex",
-  },
-
-  textPosition: {
-    padding: [`0 0${theme.spacing.xs}px`],
   },
 }));
