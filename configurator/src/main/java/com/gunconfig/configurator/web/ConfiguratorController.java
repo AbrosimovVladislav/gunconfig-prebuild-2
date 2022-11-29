@@ -4,12 +4,14 @@ import com.gunconfig.configurator.model.Build;
 import com.gunconfig.configurator.model.GunPart;
 import com.gunconfig.configurator.model.SchemaNode;
 import com.gunconfig.configurator.service.BuildService;
+import com.gunconfig.configurator.service.CoordinatesService;
 import com.gunconfig.configurator.service.GunPartService;
 import com.gunconfig.configurator.web.dto.BuildGunPartDto;
 import com.gunconfig.configurator.web.dto.request.BuildCreateRequest;
 import com.gunconfig.configurator.web.dto.request.GetGunPartsByParentAndTypeRequest;
 import com.gunconfig.configurator.web.dto.RenderingGunPartDto;
 import com.gunconfig.configurator.web.dto.ShortGunPartDto;
+import com.gunconfig.configurator.web.dto.request.SetCoordinatesRequest;
 import com.gunconfig.configurator.web.mapper.BuildMapper;
 import com.gunconfig.configurator.web.mapper.GunPartMapper;
 import com.gunconfig.configurator.web.preparer.Preparer;
@@ -31,6 +33,7 @@ public class ConfiguratorController {
     private final BuildMapper buildMapper;
     private final GunPartMapper gunPartMapper;
     private final Preparer preparer;
+    private final CoordinatesService coordinatesService;
 
     /**
      * First endpoint
@@ -38,14 +41,6 @@ public class ConfiguratorController {
      */
     @CrossOrigin
     @GetMapping(value = "/build/schema/{base64code}")
-    public GunPart getBuildTreeBySchema(@PathVariable String base64code) {
-        SchemaNode schema = buildMapper.fromBase64ToSchemaNode(base64code);
-        GunPart buildTree = buildService.getBuildTreeBySchema(schema);
-        return buildTree;
-    }
-
-    @CrossOrigin
-    @GetMapping(value = "/build/schema/dto/{base64code}")
     public BuildGunPartDto getBuildTreeDtoBySchema(@PathVariable String base64code) {
         SchemaNode schema = buildMapper.fromBase64ToSchemaNode(base64code);
         GunPart buildTree = buildService.getBuildTreeBySchema(schema);
@@ -59,11 +54,11 @@ public class ConfiguratorController {
      */
     @CrossOrigin
     @GetMapping(value = "/gunpart")
-    public List<ShortGunPartDto> getGunPartsByParentAndType(@RequestParam Map<String, String> requestParams){
+    public List<ShortGunPartDto> getGunPartsByParentAndType(@RequestParam Map<String, String> requestParams) {
         GetGunPartsByParentAndTypeRequest request = preparer.prepareRequest(requestParams);
         List<GunPart> gunParts = gunPartService.getGunPartsByParentAndType(request);
         List<ShortGunPartDto> shortDtos = gunPartMapper.toShortDtos(gunParts);
-        List<ShortGunPartDto> finalShortDtos = gunPartService.checkOnIncompatible(shortDtos,request.getCurrentBuildIds());
+        List<ShortGunPartDto> finalShortDtos = gunPartService.checkOnIncompatible(shortDtos, request.getCurrentBuildIds());
         return finalShortDtos;
     }
 
@@ -92,6 +87,18 @@ public class ConfiguratorController {
         Build build = buildMapper.fromRequestToBuild(request);
         Build savedBuild = buildService.save(build);
         return savedBuild;
+    }
+
+    @CrossOrigin
+    @PostMapping(value = "/coordinates")
+    public List<Number> setCoordinatesForParentAndChild(@RequestBody SetCoordinatesRequest request) {
+        List<Number> coordinatesUpdateResponse = coordinatesService.setCoordinatesForParentAndChild(
+                request.getParentId(),
+                request.getChildId(),
+                request.getX(),
+                request.getY());
+
+        return coordinatesUpdateResponse;
     }
 
 
