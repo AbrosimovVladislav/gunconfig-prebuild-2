@@ -3,11 +3,11 @@ GET http://localhost:8081/api/v1/configurator/build/schema/ewogICJpZCI6IDEsCiAgI
 Accept: application/json
 
 ### GET a list of gun parts for exact place by parent id and gunPart type (Second Endpoint)
-GET http://localhost:8081/api/v1/configurator/gunpart?parentId=1&typeOfProduct=HANDGUARD&currentBuildIds=1,2,3,4,6
+GET http://localhost:8081/api/v1/configurator/gunpart?parentId=1&typeOfProduct=SCOPE&currentBuildIds=1,2,3,4,6
 Accept: application/json
 
 ### GET a rendering info for exact gun part by id (Third Endpoint)
-GET http://localhost:8081/api/v1/configurator/gunpart/1/2
+GET http://localhost:8081/api/v1/configurator/gunpart/3/4
 Accept: application/json
 
 ### GET build by id
@@ -47,8 +47,8 @@ Content-Type: application/json
 {
   "parentId": 1,
   "childId": 6,
-  "x": 3000,
-  "y": 900
+  "x": 100,
+  "y": 570
 }
 
 ### GET a product by id
@@ -56,5 +56,5 @@ GET http://localhost:8081/api/v1/product/2
 Accept: application/json
 
 ### GET a products by ids
-GET http://localhost:8081/api/v1/product/batch/1,2,7,4,5
+GET http://localhost:8081/api/v1/product/batch/1,2,6,4,5
 Accept: application/json
