@@ -5,6 +5,7 @@ import com.gunconfig.configurator.model.GunPart;
 import com.gunconfig.configurator.model.SchemaNode;
 import com.gunconfig.configurator.service.BuildService;
 import com.gunconfig.configurator.service.GunPartService;
+import com.gunconfig.configurator.web.dto.BuildGunPartDto;
 import com.gunconfig.configurator.web.dto.request.BuildCreateRequest;
 import com.gunconfig.configurator.web.dto.request.GetGunPartsByParentAndTypeRequest;
 import com.gunconfig.configurator.web.dto.RenderingGunPartDto;
@@ -41,6 +42,15 @@ public class ConfiguratorController {
         SchemaNode schema = buildMapper.fromBase64ToSchemaNode(base64code);
         GunPart buildTree = buildService.getBuildTreeBySchema(schema);
         return buildTree;
+    }
+
+    @CrossOrigin
+    @GetMapping(value = "/build/schema/dto/{base64code}")
+    public BuildGunPartDto getBuildTreeDtoBySchema(@PathVariable String base64code) {
+        SchemaNode schema = buildMapper.fromBase64ToSchemaNode(base64code);
+        GunPart buildTree = buildService.getBuildTreeBySchema(schema);
+        BuildGunPartDto buildGunPartDto = gunPartMapper.toBuildTreeDto(buildTree, -1L);
+        return buildGunPartDto;
     }
 
     /**

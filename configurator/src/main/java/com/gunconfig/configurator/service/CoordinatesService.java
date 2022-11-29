@@ -12,6 +12,9 @@ public class CoordinatesService {
     private final CoordinatesRepo coordinatesRepo;
 
     public Pair<Integer, Integer> getCoordinatesByParentIdAndChildId(Long parentId, Long childId) {
+        if (parentId <= 0) {
+            return Pair.of(0, 0);
+        }
         Object[] coordinatesByParentAndChildIds = coordinatesRepo.findCoordinatesByParentAndChildIds(parentId, childId);
         Object[] qwe = (Object[]) coordinatesByParentAndChildIds[0];
         Integer x = (Integer) qwe[2];

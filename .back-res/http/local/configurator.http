@@ -2,6 +2,10 @@
 GET http://localhost:8081/api/v1/configurator/build/schema/ewogICJpZCI6IDEsCiAgImNoaWxkcmVuIjogWwogICAgewogICAgICAiaWQiOiAyLAogICAgICAiY2hpbGRyZW4iOiBbXQogICAgfSwKICAgIHsKICAgICAgImlkIjogMywKICAgICAgImNoaWxkcmVuIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6IDQsCiAgICAgICAgICAiY2hpbGRyZW4iOiBbXQogICAgICAgIH0KICAgICAgXQogICAgfSwKICAgIHsKICAgICAgImlkIjogNiwKICAgICAgImNoaWxkcmVuIjogW10KICAgIH0KICBdCn0=
 Accept: application/json
 
+### GET a tree of gun by provided schema (First Endpoint)
+GET http://localhost:8081/api/v1/configurator/build/schema/dto/ewogICJpZCI6IDEsCiAgImNoaWxkcmVuIjogWwogICAgewogICAgICAiaWQiOiAyLAogICAgICAiY2hpbGRyZW4iOiBbXQogICAgfSwKICAgIHsKICAgICAgImlkIjogMywKICAgICAgImNoaWxkcmVuIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6IDQsCiAgICAgICAgICAiY2hpbGRyZW4iOiBbXQogICAgICAgIH0KICAgICAgXQogICAgfSwKICAgIHsKICAgICAgImlkIjogNiwKICAgICAgImNoaWxkcmVuIjogW10KICAgIH0KICBdCn0=
+Accept: application/json
+
 ### GET a list of gun parts for exact place by parent id and gunPart type (Second Endpoint)
 GET http://localhost:8081/api/v1/configurator/gunpart?parentId=1&typeOfProduct=HANDGUARD&currentBuildIds=1,2,3,4,6
 Accept: application/json
