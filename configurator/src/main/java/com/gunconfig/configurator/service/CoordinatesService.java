@@ -16,6 +16,7 @@ public class CoordinatesService {
 
     private final CoordinatesRepo coordinatesRepo;
 
+    //ToDo refactor to GunPartChildren
     @Transactional
     public List<Number> setCoordinatesForParentAndChild(Long parentId, Long childId, Integer x, Integer y) {
         Pair<Integer, Integer> existingCoordinates = getCoordinatesByParentIdAndChildId(parentId, childId);
@@ -32,6 +33,7 @@ public class CoordinatesService {
         return List.of(parentId, childId, x, y);
     }
 
+    //ToDo refactor to GunPartChildren
     public Pair<Integer, Integer> getCoordinatesByParentIdAndChildId(Long parentId, Long childId) {
         if (parentId <= 0) {
             return Pair.of(0, 0);
