@@ -1,9 +1,10 @@
 import "../../styles/globals.css";
-import { QueryClientProvider, QueryClient } from "react-query";
+import {QueryClientProvider, QueryClient} from "react-query";
 import Head from "next/head";
 import PageWrapper from "../components/page-wrapper/PageWrapper";
 import React from "react";
-import { MantineProvider } from "@mantine/core";
+import {MantineProvider} from "@mantine/core";
+import {globalTheme} from "../../styles/globalTheme";
 
 const queryClient = new QueryClient();
 
@@ -16,32 +17,7 @@ function MyApp({Component, pageProps}) {
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
             </Head>
             <QueryClientProvider client={queryClient}>
-                <MantineProvider withGlobalStyles
-                                 withNormalizeCSS
-                                 theme={{
-                                     globalStyles: () => ({
-                                         'header, body': {
-                                             backgroundColor: '#FAFAFB',
-                                         }
-                                     }),
-                                     colorScheme: 'light',
-                                     colors: {
-                                         defaultBlack: ['#494B4D'],
-                                         darkGray: ['#8D8E90'],
-                                         lightGray: ['#8D8E90'],
-                                         background: ['#FAFAFB'],
-                                         lightPurple: ['#7666D7'],
-                                         purple: ['#7C6BE7'],
-                                         white: ['#FFF']
-                                     },
-                                     primaryColor: 'purple',
-                                     primaryShade: 0,
-                                     defaultGradient: {from: 'purple', to: 'lightPurple'},
-                                     shadows: {
-                                         md: '0px 4px 10px rgba(0, 0, 0, 0.04)',
-                                     },
-
-                                 }}>
+                <MantineProvider withGlobalStyles withNormalizeCSS theme={globalTheme}>
                     <PageWrapper>
                         <Component {...pageProps} />
                     </PageWrapper>
