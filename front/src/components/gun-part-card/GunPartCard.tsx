@@ -24,19 +24,15 @@ const GunPartCard = ({ product }: GunPartCardProps) => {
       <GCCardSection className={classes.infoSection}>
         <GCText
           className={classes.name}
-          size="sm"
           lineClamp={2}
-          color="black"
-          weight={700}
+          bold
         >
           {product.name}
         </GCText>
         <GCText
           className={classes.brand}
-          size="sm"
           lineClamp={2}
-          color="black"
-          weight={700}
+          bold
         >
           <Icon3dCubeSphere className={classes.brandIcon} />
           {product.brand}
