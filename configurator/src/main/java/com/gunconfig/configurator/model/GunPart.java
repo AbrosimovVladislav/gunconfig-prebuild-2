@@ -24,13 +24,13 @@ public class GunPart {
 
     private String thumbnailImage;
     private String gunPartImageUrl;
-
-    private Integer x;
-    private Integer y;
     private Integer width;
 
     @ManyToMany
-    @JoinColumn(name = "children_gun_part_id")
+    @JoinTable(name = "gun_part_children",
+            joinColumns = { @JoinColumn(name = "parent_id") },
+            inverseJoinColumns = { @JoinColumn(name = "children_id")}
+    )
     private List<GunPart> children;
 
     @JsonIgnore

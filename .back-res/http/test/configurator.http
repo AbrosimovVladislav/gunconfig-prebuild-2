@@ -2,12 +2,16 @@
 GET http://178.128.203.194:8081/api/v1/configurator/build/schema/ewogICJpZCI6IDEsCiAgImNoaWxkcmVuIjogWwogICAgewogICAgICAiaWQiOiAyLAogICAgICAiY2hpbGRyZW4iOiBbXQogICAgfSwKICAgIHsKICAgICAgImlkIjogMywKICAgICAgImNoaWxkcmVuIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6IDQsCiAgICAgICAgICAiY2hpbGRyZW4iOiBbXQogICAgICAgIH0KICAgICAgXQogICAgfSwKICAgIHsKICAgICAgImlkIjogNiwKICAgICAgImNoaWxkcmVuIjogW10KICAgIH0KICBdCn0=
 Accept: application/json
 
+### GET a tree of gun by provided schema (First Endpoint)
+GET http://178.128.203.194:8081/api/v1/configurator/build/schema/ewogICJpZCI6IDksCiAgImNoaWxkcmVuIjogWwogICAgewogICAgICAiaWQiOiA1LAogICAgICAiY2hpbGRyZW4iOiBbXQogICAgfQogIF0KfQ==
+Accept: application/json
+
 ### GET a list of gun parts for exact place by parent id and gunPart type (Second Endpoint)
-GET http://178.128.203.194:8081/api/v1/configurator/gunpart?parentId=1&typeOfProduct=HANDGUARD&currentBuildIds=1,2,3,4,6
+GET http://178.128.203.194:8081/api/v1/configurator/gunpart?parentId=1&typeOfProduct=SCOPE&currentBuildIds=1,2,3,4,6
 Accept: application/json
 
 ### GET a rendering info for exact gun part by id (Third Endpoint)
-GET http://178.128.203.194:8081/api/v1/configurator/gunpart/8
+GET http://178.128.203.194:8081/api/v1/configurator/gunpart/3/4
 Accept: application/json
 
 ### GET build by id
@@ -40,10 +44,21 @@ Content-Type: application/json
   "buildImageUrl": "qwe"
 }
 
+### Create new coordinates or update existing
+POST http://178.128.203.194:8081/api/v1/configurator/coordinates
+Content-Type: application/json
+
+{
+  "parentId": 3,
+  "childId": 4,
+  "x": 300,
+  "y": 400
+}
+
 ### GET a product by id
 GET http://178.128.203.194:8081/api/v1/product/2
 Accept: application/json
 
 ### GET a products by ids
-GET http://178.128.203.194:8081/api/v1/product/batch/1,2,7,4,5
+GET http://178.128.203.194:8081/api/v1/product/batch/1,2,6,4,5
 Accept: application/json

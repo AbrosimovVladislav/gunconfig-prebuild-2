@@ -26,7 +26,7 @@ const NFTMicroCard = ({item}: NFTMicroCardProps) => {
                 </GCCardSection>
                 <GCGroup className={classes.content} position="apart" mt="md">
                     <GCText weight={500}>{item.name}</GCText>
-                    <GCBadge variant="gradient">{item.collection}</GCBadge>
+                    <GCBadge>{item.collection}</GCBadge>
                     <GCText size="sm" color="dimmed" weight={500} sx={{lineHeight: 2}}>
                         Minting price
                     </GCText>
