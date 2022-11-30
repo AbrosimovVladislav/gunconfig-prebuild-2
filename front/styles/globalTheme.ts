@@ -1,12 +1,13 @@
-import {MantineThemeOverride} from "@mantine/core";
+import { MantineThemeOverride } from "@mantine/core";
 
-export const globalTheme : MantineThemeOverride = {
+export const globalTheme: MantineThemeOverride = {
     globalStyles: () => ({
         'header, body': {
             // backgroundColor: '#FAFAFB',
             backgroundColor: "white",
         }
     }),
+    fontFamily: "Poppins, sans-serif",
     colorScheme: 'light',
     colors: {
         defaultBlack: ['#494B4D'],
