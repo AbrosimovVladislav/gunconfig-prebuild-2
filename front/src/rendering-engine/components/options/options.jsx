@@ -4,7 +4,7 @@ import { Menu, Button } from "@mantine/core";
 const Options = ({ title, components, setVisibleData, visibleData }) => {
     const handleClick = (el) => {
         setVisibleData((prev) => {
-            let tempData = prev.filter((comp) => comp.type !== el.type);
+            let tempData = prev.filter((comp) => comp?.type !== el.type);
             const data = [...tempData, el];
             return data;
         });
