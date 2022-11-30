@@ -9,46 +9,74 @@ import {
 
 const GunComponent = ({ component, ratio, setRatio }) => {
     const targetRef = useRef();
+
     useLayoutEffect(() => {
-        if (targetRef.current && component?.target === "ROOT") {
-            setRatio(targetRef.current.offsetWidth / component.width);
+        if (component && setRatio) {
+            setRatio(targetRef.current.offsetWidth / component?.width);
         }
-    }, []);
+    }, [component]);
 
-    return component?.target === "ROOT" ? (
+    return (
         <>
-            {/* ROOT ELEMENT */}
-            <RootComponent ref={targetRef} src={component.image} x={component.x} y={component.y} />
-
-            {/* CHILDREN OF ROOT ELEMENT */}
-            {(component.children ?? []).map((el) => {
-                return (
-                    <AbsoluteWrapper width={ratio !== 0 ? el.width * ratio : el.width} x={el.x} y={el.y}>
+            {component?.type === "GUN" ? (
+                <RootComponent
+                    ref={targetRef}
+                    src={component?.gunPartImageUrl}
+                    x={component?.x}
+                    y={component?.y}
+                />
+            ) : (
+                component && (
+                    <AbsoluteWrapper
+                        key={component.id}
+                        x={component.x}
+                        y={component.y}
+                        width={
+                            ratio !== 0
+                                ? component?.width * ratio
+                                : component?.width
+                        }
+                        height={component.height}
+                    >
                         <RelativeChildElementPlaceholder>
-                            <ImageWrapper src={el.image} />
-                            {(el.children ?? []).map((child) => {
-                                return <GunComponent component={child} ratio={ratio} />;
+                            <ImageWrapper src={component.gunPartImageUrl} />
+                            {(component.children ?? []).map((child) => {
+                                return (
+                                    <GunComponent
+                                        key={child.id}
+                                        component={child}
+                                        ratio={ratio}
+                                    />
+                                );
                             })}
                         </RelativeChildElementPlaceholder>
                     </AbsoluteWrapper>
-                );
-            })}
+                )
+            )}
+
+            {component?.children?.map((child) => (
+                <AbsoluteWrapper
+                    key={child.id}
+                    x={child.x}
+                    y={child.y}
+                    width={ratio !== 0 ? child?.width * ratio : child?.width}
+                    height={child.height}
+                >
+                    <RelativeChildElementPlaceholder>
+                        <ImageWrapper src={child.gunPartImageUrl} />
+                        {(child.children ?? []).map((child) => {
+                            return (
+                                <GunComponent
+                                    key={child.id}
+                                    component={child}
+                                    ratio={ratio}
+                                />
+                            );
+                        })}
+                    </RelativeChildElementPlaceholder>
+                </AbsoluteWrapper>
+            ))}
         </>
-    ) : (
-        // NON-ROOT ELEMENTS AND NON-CHILDREN OF ROOT ELEMENT
-        <AbsoluteWrapper
-            width={ratio !== 0 ? component.width * ratio : component.width}
-            x={component.x}
-            y={component.y}
-        >
-            <RelativeChildElementPlaceholder>
-                <ImageWrapper src={component.image} />
-                <RedDot />
-                {(component.children ?? []).map((child) => {
-                    return <GunComponent component={child} ratio={ratio} />;
-                })}
-            </RelativeChildElementPlaceholder>
-        </AbsoluteWrapper>
     );
 };
 
