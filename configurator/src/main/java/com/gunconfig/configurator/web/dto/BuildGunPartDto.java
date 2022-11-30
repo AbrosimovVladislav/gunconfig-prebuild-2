@@ -11,7 +11,7 @@ public class BuildGunPartDto {
     private Long id;
 
     private Long productId;
-    private String productName;
+    private String name;
     private String productImageUrl;
     private String description;
     private String brand;
@@ -21,7 +21,7 @@ public class BuildGunPartDto {
     private Integer y;
 
     private String thumbnailImage;
-    private String gunPartImageUrl;
+    private String image;
     private Integer width;
     private List<BuildGunPartDto> children;
 }

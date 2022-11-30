@@ -24,7 +24,7 @@ public class GunPartMapper {
         BuildGunPartDto build = BuildGunPartDto.builder()
                 .id(gunPart.getGunPartId())
                 .productId(gunPart.getProduct().getProductId())
-                .productName(gunPart.getProduct().getName())
+                .name(gunPart.getProduct().getName())
                 .productImageUrl(gunPart.getProduct().getProductImageUrl())
                 .description(gunPart.getProduct().getDescription())
                 .brand(gunPart.getProduct().getBrand())
@@ -32,7 +32,7 @@ public class GunPartMapper {
                 .x(coordinates.getFirst())
                 .y(coordinates.getSecond())
                 .thumbnailImage(gunPart.getThumbnailImage())
-                .gunPartImageUrl(gunPart.getGunPartImageUrl())
+                .image(gunPart.getGunPartImageUrl())
                 .width(gunPart.getWidth())
                 .build();
 
