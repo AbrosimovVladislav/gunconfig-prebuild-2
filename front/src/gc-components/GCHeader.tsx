@@ -10,7 +10,7 @@ interface GCHeaderProps extends HeaderProps{
 
 export const GCHeader = ({ children, height, className, mb, ...props }: GCHeaderProps) => {
     return (
-        <Header height={height} className={className} mb={mb} {...props}>
+        <Header height={height} className={className} mb={mb} style={{backgroundColor: "transparent"}} {...props}>
             {children}
         </Header>
     );
