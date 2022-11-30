@@ -1,6 +1,6 @@
 package com.gunconfig.configurator.repo;
 
-import com.gunconfig.configurator.model.GunPart;
+import com.gunconfig.configurator.model.GunPartChildren;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CoordinatesRepo extends CrudRepository<GunPart, Long> {
+public interface CoordinatesRepo extends CrudRepository<GunPartChildren, Long> {
 
     @Query(
             value = "SELECT * FROM gun_part_children gpc WHERE gpc.parent_id = :parentId AND gpc.children_id = :childId",

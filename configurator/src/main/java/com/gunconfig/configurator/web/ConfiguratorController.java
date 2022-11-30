@@ -97,7 +97,6 @@ public class ConfiguratorController {
                 request.getChildId(),
                 request.getX(),
                 request.getY());
-
         return coordinatesUpdateResponse;
     }
 
