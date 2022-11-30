@@ -49,10 +49,10 @@ POST http://localhost:8081/api/v1/configurator/coordinates
 Content-Type: application/json
 
 {
-  "parentId": 9,
-  "childId": 5,
-  "x": 900,
-  "y": 500
+  "parentId": 3,
+  "childId": 4,
+  "x": 300,
+  "y": 400
 }
 
 ### GET a product by id
