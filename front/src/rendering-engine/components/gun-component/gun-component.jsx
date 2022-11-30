@@ -12,7 +12,7 @@ const GunComponent = ({ component, ratio, setRatio }) => {
 
     useLayoutEffect(() => {
         if (component && setRatio) {
-            setRatio(targetRef.current.offsetWidth / component?.width);
+            setRatio(targetRef.current?.offsetWidth / component?.width);
         }
     }, [component]);
 
