@@ -35,7 +35,7 @@ const SingleNFTPage = (props: SingleNFTPageProps) => {
                     <NftCardInformation data={data}></NftCardInformation>
                 </GCGridCol>
                 <GCGridCol sm={12} md={12}>
-                    <GCText className={classes.catalogHeader} size="xl" weight={700}>
+                    <GCText className={classes.catalogHeader} h2 bold>
                         What was used in this build
                     </GCText>
                     <Catalog>
