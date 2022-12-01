@@ -12,12 +12,10 @@ const NftCardInformation = ({ data }: NftCardInformationProps) => {
 
   return (
     <div className={classes.infoContainer}>
-      <GCText weight={700} size={32}>
-        {data.name}
-      </GCText>
+      <GCText h1 bold}>{data.name}</GCText>
       <GCText weight={400} size={16} className={classes.collection}>
         Collection:
-        <GCText size={16} weight={700} className={classes.collectionName}>
+        <GCText className={classes.collectionName}>
           {data.collection}
         </GCText>
       </GCText>
@@ -58,6 +56,9 @@ const NftCardInformation = ({ data }: NftCardInformationProps) => {
           </GCListItem>
         </GCList>
       </div>
+      <div className={classes.textDescription}>Description:</div>
+
+      <GCText size={12}>{data.gunDescription}</GCText>
     </div>
   );
 };

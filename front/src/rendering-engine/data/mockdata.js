@@ -1,5 +1,30 @@
+const state = {
+    type: "ROOT",
+    children: null,
+    data: [
+        {
+            type: "TUBE",
+            children: null,
+            data: [
+                {
+                    type: "STOCK",
+                    children: null,
+                    data: null,
+                },
+            ],
+        },
+        {
+            type: "TUBE",
+            children: null,
+            data: null,
+        },
+    ],
+};
+
 export const components = [
     {
+        id: 1,
+        children: [2, 3, 4],
         x: 400,
         y: 100,
         name: "COLT_AR-15",
@@ -8,6 +33,40 @@ export const components = [
         target: "ROOT",
         type: "GUN",
         visible: true,
+        children: [
+            {
+                x: -187,
+                y: 13,
+                name: "AR_15_DEFAULT_TUBE",
+                width: 963,
+                image: "https://line-f.ru/i/part/ar_buffertube_XXdqgHx.png",
+                target: "COLT_AR-15",
+                type: "TUBE",
+                visible: true,
+                children: [
+                    {
+                        x: -46,
+                        y: -3,
+                        name: "AR_15_DEFAULT_STOCK",
+                        width: 915,
+                        image: "https://line-f.ru/i/part/ar_stock_rPaB1XY.png",
+                        target: "AR_15_DEFAULT_TUBE",
+                        type: "STOCK",
+                        visible: true,
+                    },
+                ],
+            },
+            {
+                x: -27,
+                y: 80,
+                name: "AR-15_DEFAULT_PISTOL_GRIP",
+                width: 459,
+                image: "https://line-f.ru/i/part/ar_pistolgrip_iWaahlu.png",
+                target: "COLT_AR-15",
+                type: "PISTOL_GRIP",
+                visible: true,
+            },
+        ],
     },
     {
         x: -27,
@@ -30,6 +89,7 @@ export const components = [
         visible: false,
     },
     {
+        id: 2354364756,
         x: -22,
         y: 80,
         name: "DLG_PISTOL_GRIP_AR",
@@ -448,6 +508,18 @@ export const components = [
         target: "COLT_AR-15",
         type: "TUBE",
         visible: true,
+        children: [
+            {
+                x: -233,
+                y: 11,
+                name: "AR_15_DEFAULT_STOCK",
+                width: 915,
+                image: "https://line-f.ru/i/part/ar_stock_rPaB1XY.png",
+                target: "AR_15_DEFAULT_TUBE",
+                type: "STOCK",
+                visible: true,
+            },
+        ],
     },
     {
         x: -233,
@@ -588,8 +660,7 @@ export const components = [
         target: "COLT_AR-15",
         type: "TRIGGER_GUARD",
         visible: true,
-    }
-
+    },
 ];
 
 export const componentTypes = [
