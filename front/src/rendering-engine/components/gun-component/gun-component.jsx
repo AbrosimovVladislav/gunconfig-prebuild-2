@@ -21,7 +21,7 @@ const GunComponent = ({ component, ratio, setRatio }) => {
             {component?.type === "GUN" ? (
                 <RootComponent
                     ref={targetRef}
-                    src={component?.gunPartImageUrl}
+                    src={component?.image}
                     x={component?.x}
                     y={component?.y}
                 />
@@ -39,7 +39,7 @@ const GunComponent = ({ component, ratio, setRatio }) => {
                         height={component.height}
                     >
                         <RelativeChildElementPlaceholder>
-                            <ImageWrapper src={component.gunPartImageUrl} />
+                            <ImageWrapper src={component.image} />
                             {(component.children ?? []).map((child) => {
                                 return (
                                     <GunComponent
@@ -63,7 +63,7 @@ const GunComponent = ({ component, ratio, setRatio }) => {
                     height={child.height}
                 >
                     <RelativeChildElementPlaceholder>
-                        <ImageWrapper src={child.gunPartImageUrl} />
+                        <ImageWrapper src={child.image} />
                         {(child.children ?? []).map((child) => {
                             return (
                                 <GunComponent
