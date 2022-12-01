@@ -28,7 +28,7 @@ export const useStyles = createStyles((theme) => ({
     alignItems: "center",
     columnGap: theme.spacing.sm,
     padding: [`0 0 ${theme.spacing.md}px`],
-    borderBottom: "1px solid rgba(0, 0, 0, 0.09)",
+    borderBottom: [`1px solid ${theme.colors.gray}`],
   },
 
   frameIcon: {

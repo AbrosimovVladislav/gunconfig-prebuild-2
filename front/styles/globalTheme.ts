@@ -16,6 +16,7 @@ export const globalTheme: MantineThemeOverride = {
     lightPurple: ["#7666D7"],
     purple: ["#7C6BE7"],
     white: ["#FFF"],
+    gray: ["#BDBDBD"],
   },
   primaryColor: "purple",
   primaryShade: 0,
