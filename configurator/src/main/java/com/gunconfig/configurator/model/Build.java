@@ -17,6 +17,8 @@ public class Build {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long buildId;
 
+    @Lob
+    @Column(length = 240000)
     @Convert(converter = SchemaNodeConverter.class)
     private SchemaNode schema;
 
