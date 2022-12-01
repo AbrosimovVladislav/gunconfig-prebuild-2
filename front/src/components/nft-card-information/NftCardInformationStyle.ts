@@ -9,7 +9,7 @@ export const useStyles = createStyles((theme) => ({
   collection: {
     display: "flex",
     columnGap: theme.spacing.sm,
-    margin: [`${theme.spacing.md}px  0 0`],
+    margin: [`${theme.spacing.sm}px  0 0`],
   },
 
   collectionName: {
