@@ -4,6 +4,7 @@ export const useStyles = createStyles((theme) => ({
   infoContainer: {
     display: "flex",
     flexDirection: "column",
+    color: theme.colors.defaultBlack
   },
 
   collection: {
@@ -41,6 +42,7 @@ export const useStyles = createStyles((theme) => ({
 
   list: {
     padding: [`0 0 0 ${theme.spacing.sm}px`],
+    color: theme.colors.defaultBlack
   },
 
   listItem: {
@@ -53,6 +55,6 @@ export const useStyles = createStyles((theme) => ({
   },
 
   listData: {
-    textAlign: "right",
+    textAlign: "right"
   },
 }));

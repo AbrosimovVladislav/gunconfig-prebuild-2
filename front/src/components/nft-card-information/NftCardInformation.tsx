@@ -12,10 +12,10 @@ const NftCardInformation = ({ data }: NftCardInformationProps) => {
 
   return (
     <div className={classes.infoContainer}>
-      <GCText weight={700} size={32} color={"black"}>
+      <GCText weight={700} size={32}>
         {data.name}
       </GCText>
-      <GCText weight={400} size={16} color={"black"} className={classes.collection}>
+      <GCText weight={400} size={16} className={classes.collection}>
         Collection:
         <GCText size={16} weight={700} className={classes.collectionName}>
           {data.collection}
@@ -23,16 +23,16 @@ const NftCardInformation = ({ data }: NftCardInformationProps) => {
       </GCText>
 
       <div className={classes.frame}>
-        <GCText size={16} color={"black"} weight={700} className={classes.frameTitle}>
+        <GCText size={16} weight={700} className={classes.frameTitle}>
           <IconPhoto className={classes.frameIcon} /> About the Build
         </GCText>
-        <GCText size={16} color={"black"} weight={400} className={classes.frameText}>
+        <GCText size={16} weight={400} className={classes.frameText}>
           {data.gunDescription}
         </GCText>
       </div>
 
       <div className={classes.frame}>
-        <GCText size={16} color={"black"} weight={700} className={classes.frameTitle}>
+        <GCText size={16} weight={700} className={classes.frameTitle}>
           <IconAlertCircle className={classes.frameIcon} /> More Info
         </GCText>
         <GCList size={16} listStyleType="none" className={classes.list}>
