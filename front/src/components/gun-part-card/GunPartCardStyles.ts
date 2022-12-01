@@ -9,7 +9,7 @@ export const useStyles = createStyles((theme) => ({
   },
 
   imageSection: {
-    padding: theme.spacing.xs,
+    padding: theme.spacing.sm,
   },
 
   brand: {
@@ -22,11 +22,11 @@ export const useStyles = createStyles((theme) => ({
   },
 
   brandIcon: {
-    margin: [`0 ${theme.spacing.xs}px 0 0`],
+    margin: [`0 ${theme.spacing.sm}px 0 0`],
   },
 
   name: {
-    padding: [`0 0 ${theme.spacing.xs}px 0`],
+    padding: [`0 0 ${theme.spacing.sm}px 0`],
     fontSize: theme.fontSizes.md,
   },
 
@@ -36,7 +36,7 @@ export const useStyles = createStyles((theme) => ({
     justifyContent: "flex-end",
     alignItems: "flex-start",
     padding: [
-      `${theme.spacing.lg}px ${theme.spacing.xs}px 0 ${theme.spacing.xs}px`,
+      `${theme.spacing.lg}px ${theme.spacing.sm}px 0 ${theme.spacing.sm}px`,
     ],
   },
 }));

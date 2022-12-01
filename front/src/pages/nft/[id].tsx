@@ -1,13 +1,13 @@
 import React from "react";
-import { useRouter } from "next/router";
-import { useGetNFTById } from "../../services/nftService";
-import { GCImage, GCText } from "../../gc-components";
-import { GCGrid } from "../../gc-components/GCGrid";
-import { GCGridCol } from "../../gc-components/GCGridCol";
-import { useStyles } from "./SingleNFTPageStyles";
+import {useRouter} from "next/router";
+import {useGetNFTById} from "../../services/nftService";
+import {GCImage, GCText} from "../../gc-components";
+import {GCGrid} from "../../gc-components/GCGrid";
+import {GCGridCol} from "../../gc-components/GCGridCol";
+import {useStyles} from "./SingleNFTPageStyles";
 import NftCardInformation from "../../components/nft-card-information/NftCardInformation";
 import Catalog from "../../components/catalog/Catalog";
-import { Product } from "../../schema/NFTCatalogSchema";
+import {Product} from "../../schema/NFTCatalogSchema";
 import GunPartCard from "../../components/gun-part-card/GunPartCard";
 
 type SingleNFTPageProps = {};
@@ -27,24 +27,24 @@ const SingleNFTPage = (props: SingleNFTPageProps) => {
 
     if (isSuccess) {
         return (
-            <GCGrid className={classes.grid}>
-                <GCGridCol sm={6} md={6}>
+            <>
+                <div className={classes.nftContainer}>
                     <GCImage src={data.nftImageUrl} alt="gun"/>
-                </GCGridCol>
-                <GCGridCol sm={6} md={6}>
                     <NftCardInformation data={data}></NftCardInformation>
-                </GCGridCol>
-                <GCGridCol sm={12} md={12}>
-                    <GCText className={classes.catalogHeader} h2 bold>
-                        What was used in this build
-                    </GCText>
-                    <Catalog>
-                        {data.properties.map((product: Product) => (
-                            <GunPartCard product={product} key={product.productId}/>
-                        ))}
-                    </Catalog>
-                </GCGridCol>
-            </GCGrid>
+                </div>
+                <GCGrid className={classes.grid}>
+                    <GCGridCol sm={12} md={12}>
+                        <GCText className={classes.catalogHeader} h2 bold>
+                            What was used in this build
+                        </GCText>
+                        <Catalog>
+                            {data.properties.map((product: Product) => (
+                                <GunPartCard product={product} key={product.productId}/>
+                            ))}
+                        </Catalog>
+                    </GCGridCol>
+                </GCGrid>
+            </>
         );
     }
 };
