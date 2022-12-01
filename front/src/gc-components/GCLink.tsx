@@ -1,12 +1,15 @@
 import { ReactNode } from "react";
-import Link, {LinkProps} from "next/link";
+import Link, { LinkProps } from "next/link";
 
-interface GCLinkProps extends LinkProps{
-    href: string;
-    className?: string;
-    children: ReactNode;
+interface GCLinkProps extends LinkProps {
+  href: string;
+  children: ReactNode;
 }
 
-export const GCLink = ({ href, children, className, ...props }: GCLinkProps) => {
-    return <Link href={href} {...props} className={className} >{children}</Link>;
+export const GCLink = ({ href, children, ...props }: GCLinkProps) => {
+  return (
+    <Link href={href} {...props}>
+      {children}
+    </Link>
+  );
 };

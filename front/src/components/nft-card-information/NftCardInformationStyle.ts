@@ -1,25 +1,38 @@
 import { createStyles } from "@mantine/core";
 
 export const useStyles = createStyles((theme) => ({
+  infoContainer: {
+    display: "flex",
+    flexDirection: "column",
+  },
+
   collection: {
     display: "flex",
-    columnGap: theme.spacing.xs,
-    padding: [`${theme.spacing.xs}px  0 ${theme.spacing.xl}px`],
+    columnGap: theme.spacing.sm,
+    margin: [`${theme.spacing.md}px  0 0`],
+  },
+
+  collectionName: {
+    color: theme.colors.purple[0],
   },
 
   frame: {
     padding: [`${theme.spacing.md}px`],
-    boxShadow: theme.shadows.md,
+    boxShadow: theme.shadows.xl,
     borderRadius: theme.radius.md,
-    margin: [`0 0 ${theme.spacing.xl}px 0`]
+    margin: [`${theme.spacing.xl}px 0 0`],
   },
 
   frameTitle: {
     display: "flex",
     alignItems: "center",
-    columnGap: theme.spacing.xs,
+    columnGap: theme.spacing.sm,
     padding: [`0 0 ${theme.spacing.md}px`],
     borderBottom: "1px solid rgba(0, 0, 0, 0.09)",
+  },
+
+  frameIcon: {
+    color: theme.colors.purple[0],
   },
 
   frameText: {
@@ -34,8 +47,12 @@ export const useStyles = createStyles((theme) => ({
     padding: [`${theme.spacing.md}px  0 0`],
     "& div": {
       display: "flex",
-      flexDirection:"row",
+      flexDirection: "row",
       justifyContent: "space-between",
     },
+  },
+
+  listData: {
+    textAlign: "right",
   },
 }));
