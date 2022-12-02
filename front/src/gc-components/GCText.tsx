@@ -23,10 +23,10 @@ export const GCText = ({ children, h1, h2, h3, caption, bold, defaultGradient, w
 
     return (
         <Text size={textSize}
-              color={white ? useMantineTheme().colors.white[0] :
-                  primary ? useMantineTheme().colors.purple[0] :
-                  gray ? useMantineTheme().colors.darkGray[0] :
-                      useMantineTheme().colors.defaultBlack[0]}
+              color={white ? useMantineTheme().colors.neutralLight[4] :
+                  primary ? useMantineTheme().primaryColor :
+                  gray ? useMantineTheme().colors.neutral[5] :
+                      useMantineTheme().colors.neutral[2]}
               weight={bold ? 700 : 400}
               variant={defaultGradient ? "gradient" : "text"}
               align={align}

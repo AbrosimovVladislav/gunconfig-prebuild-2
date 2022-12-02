@@ -15,7 +15,7 @@ const NftCardInformation = ({data}: NftCardInformationProps) => {
             <GCText h1 bold> {data.name} </GCText>
             <GCText weight={400} size={16} className={classes.collection}>
                 Collection:
-                <GCText className={classes.collectionName}>
+                <GCText primary>
                     {data.collection}
                 </GCText>
             </GCText>

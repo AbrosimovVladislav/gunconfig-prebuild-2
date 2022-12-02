@@ -8,7 +8,7 @@ export const useStyles = createStyles((theme) => ({
         fontWeight: 700,
         fontSize: theme.fontSizes.sm,
         lineHeight: theme.lineHeight,
-        backgroundColor: theme.colors.white[0],
+        backgroundColor: theme.colors.neutralLight[4],
     },
     filterItem: {
         border: "none",

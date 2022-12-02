@@ -4,17 +4,12 @@ export const useStyles = createStyles((theme) => ({
   infoContainer: {
     display: "flex",
     flexDirection: "column",
-    color: theme.colors.defaultBlack
   },
 
   collection: {
     display: "flex",
     columnGap: theme.spacing.sm,
     margin: [`${theme.spacing.sm}px  0 0`],
-  },
-
-  collectionName: {
-    color: theme.colors.purple[0],
   },
 
   frame: {
@@ -29,11 +24,11 @@ export const useStyles = createStyles((theme) => ({
     alignItems: "center",
     columnGap: theme.spacing.sm,
     padding: [`0 0 ${theme.spacing.md}px`],
-    borderBottom: [`1px solid ${theme.colors.gray}`],
+    borderBottom: [`1px solid ${theme.colors.neutralLight[1]}`],
   },
 
   frameIcon: {
-    color: theme.colors.purple[0],
+    color: theme.primaryColor,
   },
 
   frameText: {
@@ -42,7 +37,6 @@ export const useStyles = createStyles((theme) => ({
 
   list: {
     padding: [`0 0 0 ${theme.spacing.sm}px`],
-    color: theme.colors.defaultBlack
   },
 
   listItem: {

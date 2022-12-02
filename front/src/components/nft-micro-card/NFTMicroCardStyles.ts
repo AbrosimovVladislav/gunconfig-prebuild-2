@@ -21,7 +21,7 @@ export const useStyles = createStyles((theme, _params, getRef) => ({
 
         ":hover": {
             borderColor: "transparent",
-            outline: [`1px solid ${theme.colors.purple[0]}`],
+            outline: [`1px solid ${theme.primaryColor}`],
             borderRadius: "8px",
 
             [`& .${getRef("imageSection")}`]: {
