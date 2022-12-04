@@ -7,7 +7,7 @@ GET http://178.128.203.194:8081/api/v1/configurator/build/schema/ewogICJpZCI6IDE
 Accept: application/json
 
 ### GET a list of gun parts for exact place by parent id and gunPart type (Second Endpoint)
-GET http://178.128.203.194:8081/api/v1/configurator/gunpart?parentId=1&typeOfProduct=SCOPE&currentBuildIds=1,2,3,4,6
+GET http://178.128.203.194:8081/api/v1/configurator/gunpart?parentId=3&typeOfProduct=STOCK&currentBuildIds=1,2,3,4,6,9
 Accept: application/json
 
 ### GET a rendering info for exact gun part by id (Third Endpoint)

@@ -15,7 +15,6 @@ import java.util.List;
 public class GunPart {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long gunPartId;
 
     @OneToOne

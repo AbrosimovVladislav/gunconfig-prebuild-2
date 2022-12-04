@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -17,7 +18,7 @@ public class GunPartMapper {
 
     private final CoordinatesService coordinatesService;
 
-    public BuildGunPartDto toBuildTreeDto(GunPart gunPart, Long parentId){
+    public BuildGunPartDto toBuildTreeDto(GunPart gunPart, Long parentId) {
 
         Pair<Integer, Integer> coordinates = coordinatesService.getCoordinatesByParentIdAndChildId(parentId, gunPart.getGunPartId());
 
@@ -36,7 +37,7 @@ public class GunPartMapper {
                 .width(gunPart.getWidth())
                 .build();
 
-        if(gunPart.getChildren()!=null){
+        if (gunPart.getChildren() != null) {
             List<BuildGunPartDto> children = gunPart.getChildren().stream()
                     .map(childGunPart -> toBuildTreeDto(childGunPart, gunPart.getGunPartId()))
                     .toList();
@@ -65,13 +66,18 @@ public class GunPartMapper {
     }
 
     public ShortGunPartDto toShortDto(GunPart gunPart) {
+        List<Long> incompatibleIds = new ArrayList<>();
+        List<GunPart> incompatibles = gunPart.getIncompatibles();
+        if (incompatibles!=null && !incompatibles.isEmpty()) {
+            incompatibleIds = gunPart.getIncompatibles().stream().map(GunPart::getGunPartId).toList();
+        }
         return ShortGunPartDto.builder()
                 .gunPartId(gunPart.getGunPartId())
                 .productId(gunPart.getProduct().getProductId())
                 .name(gunPart.getProduct().getName())
                 .type(gunPart.getProduct().getType())
                 .thumbnailImage(gunPart.getThumbnailImage())
-                .incompatibleIds(gunPart.getIncompatibles().stream().map(GunPart::getGunPartId).toList())
+                .incompatibleIds(incompatibleIds)
                 .build();
     }
 }

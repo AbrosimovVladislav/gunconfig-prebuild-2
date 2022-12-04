@@ -54,3 +54,15 @@ services:
 #    ports:
 #      - 35432:5432
 
+#  db-nft:
+#    image: postgres
+#    restart: always
+#    environment:
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_PASSWORD=postgres
+#      - POSTGRES_DB=nft
+#    volumes:
+#      - ./init-config.sql:/docker-entrypoint-initdb.d/init-config.sql
+#    ports:
+#      - 35433:5432
+

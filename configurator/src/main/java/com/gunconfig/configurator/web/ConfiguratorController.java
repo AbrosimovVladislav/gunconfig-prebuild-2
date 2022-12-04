@@ -2,16 +2,16 @@ package com.gunconfig.configurator.web;
 
 import com.gunconfig.configurator.model.Build;
 import com.gunconfig.configurator.model.GunPart;
+import com.gunconfig.configurator.model.Product;
 import com.gunconfig.configurator.model.SchemaNode;
 import com.gunconfig.configurator.service.BuildService;
 import com.gunconfig.configurator.service.CoordinatesService;
 import com.gunconfig.configurator.service.GunPartService;
+import com.gunconfig.configurator.service.ProductService;
 import com.gunconfig.configurator.web.dto.BuildGunPartDto;
-import com.gunconfig.configurator.web.dto.request.BuildCreateRequest;
-import com.gunconfig.configurator.web.dto.request.GetGunPartsByParentAndTypeRequest;
+import com.gunconfig.configurator.web.dto.request.*;
 import com.gunconfig.configurator.web.dto.RenderingGunPartDto;
 import com.gunconfig.configurator.web.dto.ShortGunPartDto;
-import com.gunconfig.configurator.web.dto.request.SetCoordinatesRequest;
 import com.gunconfig.configurator.web.mapper.BuildMapper;
 import com.gunconfig.configurator.web.mapper.GunPartMapper;
 import com.gunconfig.configurator.web.preparer.Preparer;
@@ -34,6 +34,7 @@ public class ConfiguratorController {
     private final GunPartMapper gunPartMapper;
     private final Preparer preparer;
     private final CoordinatesService coordinatesService;
+    private final ProductService productService;
 
     /**
      * First endpoint
@@ -98,6 +99,24 @@ public class ConfiguratorController {
                 request.getX(),
                 request.getY());
         return coordinatesUpdateResponse;
+    }
+
+    @CrossOrigin
+    @PostMapping(value = "/gunpart")
+    public ShortGunPartDto createGunPart(@RequestBody CreateGunPartRequest request) {
+        Product savedProduct = productService.save(CreateProductRequest.builder()
+                .name(request.getName())
+                .brand(request.getBrand())
+                .type(request.getType())
+                .productImageUrl(request.getProductImageUrl())
+                .description(request.getDescription())
+                .build());
+        GunPart savedGunPart = gunPartService.save(new GunPart()
+                .setProduct(savedProduct)
+                .setThumbnailImage(request.getThumbnailImage())
+                .setGunPartImageUrl(request.getGunPartImageUrl())
+                .setWidth(request.getWidth()));
+        return gunPartMapper.toShortDto(savedGunPart);
     }
 
 

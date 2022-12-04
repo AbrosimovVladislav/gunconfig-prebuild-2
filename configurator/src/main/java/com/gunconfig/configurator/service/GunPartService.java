@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -16,6 +17,17 @@ import java.util.List;
 public class GunPartService {
 
     private final GunPartRepo gunPartRepo;
+
+    public GunPart save(GunPart gunPart) {
+        Optional<GunPart> gunPartOpt = gunPartRepo.findByProduct(gunPart.getProduct());
+        if (gunPartOpt.isPresent()) {
+            return gunPartOpt.get();
+        } else {
+            Long newGunPartId = gunPartRepo.getMaxGunPartId() + 1L;
+            gunPart.setGunPartId(newGunPartId);
+            return gunPartRepo.save(gunPart);
+        }
+    }
 
     public GunPart findById(Long id) {
         return gunPartRepo.findById(id)
