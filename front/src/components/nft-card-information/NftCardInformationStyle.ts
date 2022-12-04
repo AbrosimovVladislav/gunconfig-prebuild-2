@@ -28,7 +28,7 @@ export const useStyles = createStyles((theme) => ({
   },
 
   frameIcon: {
-    color: theme.primaryColor,
+    color: theme.fn.primaryColor(),
   },
 
   frameText: {

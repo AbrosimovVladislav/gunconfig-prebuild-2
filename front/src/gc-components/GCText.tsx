@@ -24,7 +24,7 @@ export const GCText = ({ children, h1, h2, h3, caption, bold, defaultGradient, w
     return (
         <Text size={textSize}
               color={white ? useMantineTheme().colors.neutralLight[4] :
-                  primary ? useMantineTheme().primaryColor :
+                  primary ? useMantineTheme().fn.primaryColor() :
                   gray ? useMantineTheme().colors.neutral[5] :
                       useMantineTheme().colors.neutral[2]}
               weight={bold ? 700 : 400}
