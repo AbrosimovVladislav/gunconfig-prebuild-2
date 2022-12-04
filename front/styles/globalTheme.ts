@@ -1,10 +1,11 @@
 import { MantineThemeOverride } from "@mantine/core";
+
 export const globalTheme: MantineThemeOverride = {
-  globalStyles: () => ({
+  globalStyles: (theme) => ({
     "header, body": {
-      // backgroundColor: '#FAFAFB',
+      // backgroundColor: "#FAFAFB",
       backgroundColor: "white",
-      color: "neutral[2]",
+      color: theme.colors.neutral[2],
     },
   }),
   colorScheme: "light",
@@ -18,7 +19,7 @@ export const globalTheme: MantineThemeOverride = {
     warning: ["#5B4A0E","#A2841A","#CDA720","#FDCE28","#FDD751","#FDE075","#FEEEB2"],
     lightPurple: ["","","","#988AEC"],
   },
-  primaryColor: 'primary',
+  primaryColor: "primary",
   primaryShade: 3,
   defaultGradient: { from: "primary", to: "lightPurple", deg: 105 },
   shadows: {
