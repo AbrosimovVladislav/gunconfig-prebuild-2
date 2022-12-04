@@ -1,0 +1,37 @@
+#### Create new Product
+#POST http://178.128.203.194:8081/api/v1/product
+#Content-Type: application/json
+#
+#{
+#  "name": "MOE+ Fde Pistol Grip AR",
+#  "brand": "Magpul",
+#  "type": "PISTOL_GRIP",
+#  "productImageUrl": "https://line-f.ru/i/part/1_VjqeULE.png",
+#  "description": "The MOE+ Grip combines reinforced polymer body construction with comfortable, wrap-around rubber overmolding for maximum weapon control in adverse environments."
+#}
+
+### Create new GunPart on base of new Product
+POST http://178.128.203.194:8081/api/v1/configurator/gunpart
+Content-Type: application/json
+
+{
+  "name": "Timber Creek Enforcer Pistol Grip AR",
+  "brand": "Timber Creek",
+  "type": "PISTOL_GRIP",
+  "productImageUrl": "https://line-f.ru/i/part/1_MIJ4fpT.png",
+  "description": "The Enforcer AR Pistol Grip is a drop in replacement that mounts to any standard mil spec lower receiver. Weighing in at just over 4oz it does not add unnecessary weight to your rifle.",
+  "width": 486,
+  "thumbnailImage": "https://line-f.ru/i/part/1_MIJ4fpT.png",
+  "gunPartImageUrl": "https://line-f.ru/i/part/1_MIJ4fpT.png"
+}
+
+### Create new coordinates or update existing
+POST http://178.128.203.194:8081/api/v1/configurator/coordinates
+Content-Type: application/json
+
+{
+  "parentId": 1,
+  "childId": 20,
+  "x": -32,
+  "y": 62
+}
