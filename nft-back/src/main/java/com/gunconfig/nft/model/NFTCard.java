@@ -22,24 +22,25 @@ public class NFTCard implements BasicEntity {
     private String name;
     private String collection;
     private Double mintingPrice;
+    private String nftImageUrl;
+    private String mintingDate;
+    private String firstOwner;
 
     @Enumerated(EnumType.STRING)
     private Rarity rarity;
+
+    @ManyToMany
+    @JoinColumn(name = "product_id")
+    private List<Product> products;
 
     private Long buildId;
     private Long rootGunId;
     private String rootGunDescription;
     private String rootGunBrand;
     private String rootGunCaliber;
-    @ManyToMany
-    @JoinColumn(name = "product_id")
-    private List<Product> products;
-    private String nftImageUrl;
-    private String mintingDate;
-    private String firstOwner;
 
     public enum Rarity {
-        USUAL, RARE, LEGENDARY
+        USUAL, UNUSUAL, RARE, EPIC, LEGENDARY
     }
 
 }

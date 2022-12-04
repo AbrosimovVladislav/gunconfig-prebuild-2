@@ -17,7 +17,6 @@ import lombok.experimental.Accessors;
 public class Product {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long productId;
 
   private String name;
