@@ -31,4 +31,12 @@ public class BuildMapper {
                 .setSchema(request.getSchemaNode())
                 .setBuildImageUrl(request.getBuildImageUrl());
     }
+
+    public Build fromImageAndCodeToBuild(String image, String code){
+        return new Build()
+                .setSchema(fromBase64ToSchemaNode(code))
+                .setBuildImageUrl(image);
+    }
+
+
 }
