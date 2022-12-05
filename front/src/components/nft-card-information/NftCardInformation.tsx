@@ -13,42 +13,42 @@ const NftCardInformation = ({data}: NftCardInformationProps) => {
     return (
         <div className={classes.infoContainer}>
             <GCText h1 bold> {data.name} </GCText>
-            <GCText weight={400} size={16} className={classes.collection}>
+            <GCText h3 gray  className={classes.collection}>
                 Collection:
-                <GCText primary>
+                <GCText h3 primary bold>
                     {data.collection}
                 </GCText>
             </GCText>
 
             <div className={classes.frame}>
-                <GCText size={16} weight={700} className={classes.frameTitle}>
+                <GCText h3 bold className={classes.frameTitle}>
                     <IconPhoto className={classes.frameIcon}/> About the Build
                 </GCText>
-                <GCText size={16} weight={400} className={classes.frameText}>
+                <GCText h3 className={classes.frameText}>
                     {data.gunDescription}
                 </GCText>
             </div>
 
             <div className={classes.frame}>
-                <GCText size={16} weight={700} className={classes.frameTitle}>
+                <GCText h3 bold className={classes.frameTitle}>
                     <IconAlertCircle className={classes.frameIcon}/> More Info
                 </GCText>
-                <GCList size={16} listStyleType="none" className={classes.list}>
+                <GCList listStyleType="none">
                     <GCListItem className={classes.listItem}>
-                        <GCText>Minting Price</GCText>
-                        <GCText weight={700} className={classes.listData}>{data.mintingPrice}</GCText>
+                        <GCText h3>Minting Price</GCText>
+                        <GCText h3 bold className={classes.listData}>{data.mintingPrice}</GCText>
                     </GCListItem>
                     <GCListItem className={classes.listItem}>
-                        <GCText>First Owner</GCText>
-                        <GCText weight={700} className={classes.listData}>{data.firstOwner}</GCText>
+                        <GCText h3>First Owner</GCText>
+                        <GCText h3 bold  className={classes.listData}>{data.firstOwner}</GCText>
                     </GCListItem>
                     <GCListItem className={classes.listItem}>
-                        <GCText>Rarity</GCText>
-                        <GCText weight={700} className={classes.listData}>{data.rarity}</GCText>
+                        <GCText h3>Rarity</GCText>
+                        <GCText h3 bold  className={classes.listData}>{data.rarity}</GCText>
                     </GCListItem>
                     <GCListItem className={classes.listItem}>
-                        <GCText>Creation Date</GCText>
-                        <GCText weight={700} className={classes.listData}>{data.mintingDate}</GCText>
+                        <GCText h3>Creation Date</GCText>
+                        <GCText h3 bold  className={classes.listData}>{data.mintingDate}</GCText>
                     </GCListItem>
                 </GCList>
             </div>
