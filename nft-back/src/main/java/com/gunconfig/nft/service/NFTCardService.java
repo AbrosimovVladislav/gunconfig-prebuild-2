@@ -40,7 +40,7 @@ public class NFTCardService {
                 //ToDo Set real caliber later
                 .setRootGunCaliber("223");
 
-        return nftCard;
+        return nftCardRepo.save(nftCard);
     }
 
     public List<NFTCard> getAllByParameters(Map<String, String> requestParams, Pageable pageable) {

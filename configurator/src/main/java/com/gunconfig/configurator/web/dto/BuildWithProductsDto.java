@@ -1,5 +1,6 @@
-package com.gunconfig.nft.service.client.response;
+package com.gunconfig.configurator.web.dto;
 
+import com.gunconfig.configurator.model.SchemaNode;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,9 +12,9 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BuildCreationResponse {
-
+public class BuildWithProductsDto {
     private Long buildId;
     private List<Long> productIds;
-
+    private SchemaNode schema;
+    private String buildImageUrl;
 }

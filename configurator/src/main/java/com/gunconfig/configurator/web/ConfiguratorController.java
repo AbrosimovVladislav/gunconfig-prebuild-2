@@ -9,9 +9,10 @@ import com.gunconfig.configurator.service.CoordinatesService;
 import com.gunconfig.configurator.service.GunPartService;
 import com.gunconfig.configurator.service.ProductService;
 import com.gunconfig.configurator.web.dto.BuildGunPartDto;
-import com.gunconfig.configurator.web.dto.request.*;
+import com.gunconfig.configurator.web.dto.BuildWithProductsDto;
 import com.gunconfig.configurator.web.dto.RenderingGunPartDto;
 import com.gunconfig.configurator.web.dto.ShortGunPartDto;
+import com.gunconfig.configurator.web.dto.request.*;
 import com.gunconfig.configurator.web.mapper.BuildMapper;
 import com.gunconfig.configurator.web.mapper.GunPartMapper;
 import com.gunconfig.configurator.web.preparer.Preparer;
@@ -84,10 +85,14 @@ public class ConfiguratorController {
 
     @CrossOrigin
     @PostMapping(value = "/build")
-    public Build createBuild(@RequestBody BuildCreateRequest request) {
+    public BuildWithProductsDto createBuild(@RequestBody BuildCreateRequest request) {
+        if (request.getSchemaNode() == null && request.getBase64Code() != null) {
+            SchemaNode schemaNode = buildMapper.fromBase64ToSchemaNode(request.getBase64Code());
+            request.setSchemaNode(schemaNode);
+        }
         Build build = buildMapper.fromRequestToBuild(request);
         Build savedBuild = buildService.save(build);
-        return savedBuild;
+        return buildMapper.fromEntityToBuildWithProductsDto(savedBuild);
     }
 
     @CrossOrigin

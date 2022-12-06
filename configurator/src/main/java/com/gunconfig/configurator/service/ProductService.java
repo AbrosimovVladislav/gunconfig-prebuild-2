@@ -48,4 +48,8 @@ public class ProductService {
             return productOpt.get();
         }
     }
+
+    public Long getProductIdByGunPartIds(Long gunPartId){
+        return productRepo.getProductIdByGunPartId(gunPartId);
+    }
 }

@@ -3,8 +3,9 @@ package com.gunconfig.nft.web;
 import com.gunconfig.nft.model.NFTCard;
 import com.gunconfig.nft.service.NFTCardService;
 import com.gunconfig.nft.service.client.ConfiguratorClient;
-import com.gunconfig.nft.service.client.response.BuildCreationResponse;
+import com.gunconfig.nft.web.dto.BuildWithProductsDto;
 import com.gunconfig.nft.web.dto.NFTCardDto;
+import com.gunconfig.nft.web.dto.request.BuildCreateRequest;
 import com.gunconfig.nft.web.dto.request.CreateNFTRequest;
 import com.gunconfig.nft.web.mapper.NFTCardMapper;
 import lombok.RequiredArgsConstructor;
@@ -24,10 +25,12 @@ public class NFTCreationController {
     @CrossOrigin
     @PostMapping
     public NFTCardDto createNftCard(@RequestBody CreateNFTRequest request) {
-        //create build and save to db
-        BuildCreationResponse response = configuratorClient.createBuild(request.getBuildImage(), request.getBase64Code());
+        BuildWithProductsDto response = configuratorClient.createBuild(
+                BuildCreateRequest.builder()
+                        .base64Code(request.getBase64Code())
+                        .buildImageUrl(request.getBuildImage())
+                        .build());
 
-        //create nft and save it
         NFTCard nftCard = nftCardService.create(response.getBuildId(),
                 response.getProductIds(),
                 request.getBuildImage(),
