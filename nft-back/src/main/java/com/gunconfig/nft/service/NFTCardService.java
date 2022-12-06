@@ -22,7 +22,10 @@ public class NFTCardService {
     public NFTCard create(Long buildId, List<Long> productIds, String buildImageUrl, String collection, String firstOwner, String name, Double mintingPrice) {
         Product rootGun = productService.findById(productIds.get(0));
 
+        Long newNftId = nftCardRepo.getMaxNftId() + 1L;
+
         NFTCard nftCard = new NFTCard()
+                .setNftCardId(newNftId)
                 .setName(name)
                 .setCollection(collection)
                 .setMintingPrice(mintingPrice)
