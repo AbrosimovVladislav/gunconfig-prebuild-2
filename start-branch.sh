@@ -1,4 +1,4 @@
-git checkout configurator-integration
+git checkout 33dy705-ProductSync-And-NftCreationFlow
 git pull
 
 mvn clean package -P build-docker-image

@@ -1,0 +1,3 @@
+### GET Sync products
+GET http://178.128.203.194:8080/product-refresh
+Accept: application/json

@@ -1,0 +1,12 @@
+### Create new coordinates or update existing
+POST http://localhost:8081/api/v1/
+Content-Type: application/json
+
+{
+  "buildImage": "",
+  "base64Code": "",
+  "collection": "",
+  "firstOwner": "",
+  "mintingPrice": "",
+  "name": ""
+}

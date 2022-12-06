@@ -17,7 +17,6 @@ public class NFTCard implements BasicEntity {
     public static final String MINTING_PRICE = "mintingPrice";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long nftCardId;
     private String name;
     private String collection;
@@ -25,6 +24,9 @@ public class NFTCard implements BasicEntity {
     private String nftImageUrl;
     private String mintingDate;
     private String firstOwner;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @Enumerated(EnumType.STRING)
     private Rarity rarity;
@@ -38,6 +40,10 @@ public class NFTCard implements BasicEntity {
     private String rootGunDescription;
     private String rootGunBrand;
     private String rootGunCaliber;
+
+    public enum Status {
+        DRAFT, MINTED
+    }
 
     public enum Rarity {
         USUAL, UNUSUAL, RARE, EPIC, LEGENDARY

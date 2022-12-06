@@ -14,7 +14,6 @@ import javax.persistence.*;
 public class Build {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long buildId;
 
     @Lob

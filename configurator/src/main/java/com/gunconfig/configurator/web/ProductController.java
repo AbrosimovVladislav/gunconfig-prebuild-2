@@ -27,6 +27,12 @@ public class ProductController {
         return productMapper.toDto(savedProduct);
     }
 
+    @GetMapping(value = "/ids")
+    public List<Long> getProductsIds(){
+        List<Long> ids = productService.getProductsIds();
+        return ids;
+    }
+
     @GetMapping(value = "/{productId}")
     public ProductDto getProductById(@PathVariable Long productId) {
         Product product = productService.getById(productId);
@@ -35,10 +41,9 @@ public class ProductController {
     }
 
     @GetMapping(value = "/batch/{productsIds}")
-    public List<ProductDto> getProductsByIds(@PathVariable String productsIds) {
+    public List<Product> getProductsByIds(@PathVariable String productsIds) {
         List<Product> products = productService.getByIds(productsIds);
-        List<ProductDto> dtos = productMapper.toDtos(products);
-        return dtos;
+        return products;
     }
 
 }
