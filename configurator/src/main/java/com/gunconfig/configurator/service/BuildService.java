@@ -18,6 +18,8 @@ public class BuildService {
     private final GunPartRepo gunPartRepo;
 
     public Build save(Build build) {
+        Long newBuildId = buildRepo.getMaxBuildId() + 1L;
+        build.setBuildId(newBuildId);
         return buildRepo.save(build);
     }
 
