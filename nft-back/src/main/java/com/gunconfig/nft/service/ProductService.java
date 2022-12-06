@@ -2,9 +2,11 @@ package com.gunconfig.nft.service;
 
 import com.gunconfig.nft.model.Product;
 import com.gunconfig.nft.repo.ProductRepo;
+import com.gunconfig.nft.service.client.ConfiguratorClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +15,7 @@ import java.util.Optional;
 public class ProductService {
 
     private final ProductRepo productRepo;
+    private final ConfiguratorClient configuratorClient;
 
     public Product findById(Long id) {
         return productRepo.findById(id).orElseThrow(
@@ -27,5 +30,17 @@ public class ProductService {
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .toList();
+    }
+
+    public List<Product> refreshProducts() {
+        List<Long> products = configuratorClient.getAllProductsIds();
+        List<Long> missingProductsIds = products.stream()
+                .filter(id -> productRepo.findById(id).isEmpty())
+                .toList();
+        if (missingProductsIds.size() <= 0) {
+            return Collections.emptyList();
+        }
+        List<Product> missingProducts = configuratorClient.getProductsByIds(missingProductsIds);
+        return productRepo.saveAll(missingProducts);
     }
 }

@@ -50,4 +50,5 @@ configurator:
   create-build: /api/v1/configurator/build
   product: /api/v1/product
   products: /api/v1/product/batch
+  products-ids: /api/v1/product/ids
 

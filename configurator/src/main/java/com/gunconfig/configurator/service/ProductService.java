@@ -23,6 +23,9 @@ public class ProductService {
     }
 
     public List<Product> getByIds(String productsIds) {
+        productsIds = productsIds.replaceAll("\\[","");
+        productsIds = productsIds.replaceAll("]","");
+        productsIds = productsIds.replaceAll(" ","");
         List<Long> ids = Arrays.stream(productsIds.split(",")).map(Long::valueOf).toList();
         return productRepo.findAllById(ids);
     }
@@ -51,5 +54,10 @@ public class ProductService {
 
     public Long getProductIdByGunPartIds(Long gunPartId){
         return productRepo.getProductIdByGunPartId(gunPartId);
+    }
+
+    public List<Long> getProductsIds() {
+        List<Long> productsIds = productRepo.getProductsIds();
+        return productsIds;
     }
 }
