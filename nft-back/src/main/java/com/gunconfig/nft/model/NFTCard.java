@@ -17,7 +17,6 @@ public class NFTCard implements BasicEntity {
     public static final String MINTING_PRICE = "mintingPrice";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long nftCardId;
     private String name;
     private String collection;
