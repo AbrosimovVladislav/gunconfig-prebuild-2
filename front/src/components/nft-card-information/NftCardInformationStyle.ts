@@ -59,8 +59,4 @@ export const useStyles = createStyles((theme) => ({
       padding: [`${theme.spacing.md}px  0 0`],
     },
   },
-
-  listData: {
-    textAlign: "right"
-  },
 }));

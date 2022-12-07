@@ -36,19 +36,19 @@ const NftCardInformation = ({data}: NftCardInformationProps) => {
                 <GCList listStyleType="none">
                     <GCListItem className={classes.listItem}>
                         <GCText h3>Minting Price</GCText>
-                        <GCText h3 bold className={classes.listData}>{data.mintingPrice}</GCText>
+                        <GCText h3 bold align="end">{data.mintingPrice}</GCText>
                     </GCListItem>
                     <GCListItem className={classes.listItem}>
                         <GCText h3>First Owner</GCText>
-                        <GCText h3 bold  className={classes.listData}>{data.firstOwner}</GCText>
+                        <GCText h3 bold  align="end">{data.firstOwner}</GCText>
                     </GCListItem>
                     <GCListItem className={classes.listItem}>
                         <GCText h3>Rarity</GCText>
-                        <GCText h3 bold  className={classes.listData}>{data.rarity}</GCText>
+                        <GCText h3 bold  align="end">{data.rarity}</GCText>
                     </GCListItem>
                     <GCListItem className={classes.listItem}>
                         <GCText h3>Creation Date</GCText>
-                        <GCText h3 bold  className={classes.listData}>{data.mintingDate}</GCText>
+                        <GCText h3 bold  align="end">{data.mintingDate}</GCText>
                     </GCListItem>
                 </GCList>
             </div>

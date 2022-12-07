@@ -1,5 +1,4 @@
 import { createStyles } from "@mantine/core";
-import calculateNodeHeight from "react-textarea-autosize/dist/declarations/src/calculateNodeHeight";
 
 export const useStyles = createStyles((theme) => ({
   nftContainer: {
