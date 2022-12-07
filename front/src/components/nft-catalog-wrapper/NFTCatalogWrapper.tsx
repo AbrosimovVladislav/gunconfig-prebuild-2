@@ -26,7 +26,7 @@ const NFTCatalogWrapper = ({layout}: NFTCatalogWrapperProps) => {
             const filterItems: FilterItem[] = createFilterItemsFromUrlParams(urlParams);
             updateFilterStore(filterItems);
         }
-    }, []);
+    }, [router.asPath]);
 
     if (isLoading) {
         return <div>Loading...</div>;
