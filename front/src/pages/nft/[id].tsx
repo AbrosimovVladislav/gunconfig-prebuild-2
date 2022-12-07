@@ -29,7 +29,9 @@ const SingleNFTPage = (props: SingleNFTPageProps) => {
         return (
             <>
                 <div className={classes.nftContainer}>
-                    <GCImage src={data.nftImageUrl} alt="gun"/>
+                    <div className={classes.nftWrapper}>
+                        <GCImage className={classes.nftImage} src={data.nftImageUrl} alt="gun"/>
+                    </div>
                     <NftCardInformation data={data}></NftCardInformation>
                 </div>
                 <GCGrid className={classes.grid}>

@@ -4,27 +4,37 @@ export const useStyles = createStyles((theme) => ({
   infoContainer: {
     display: "flex",
     flexDirection: "column",
+    flex: "1 0",
   },
 
   collection: {
     display: "flex",
     columnGap: theme.spacing.sm,
-    margin: [`${theme.spacing.sm}px  0 0`],
+    margin: [`${theme.spacing.xs}px  0 0`],
+    [`@media (min-width: ${theme.breakpoints.xl}px)`]: {
+      margin: [`${theme.spacing.sm}px  0 0`],
+    },
   },
 
   frame: {
     padding: [`${theme.spacing.md}px`],
     boxShadow: theme.shadows.xl,
     borderRadius: theme.radius.md,
-    margin: [`${theme.spacing.xl}px 0 0`],
+    margin: [`${theme.spacing.sm}px 0 0`],
+    [`@media (min-width: ${theme.breakpoints.xl}px)`]: {
+      margin: [`${theme.spacing.xl}px 0 0`],
+    },
   },
 
   frameTitle: {
     display: "flex",
     alignItems: "center",
     columnGap: theme.spacing.sm,
-    padding: [`0 0 ${theme.spacing.md}px`],
+    padding: [`0 0 ${theme.spacing.xs}px`],
     borderBottom: [`1px solid ${theme.colors.neutralLight[1]}`],
+    [`@media (min-width: ${theme.breakpoints.xl}px)`]: {
+      padding: [`0 0 ${theme.spacing.md}px`],
+    },
   },
 
   frameIcon: {
@@ -32,23 +42,21 @@ export const useStyles = createStyles((theme) => ({
   },
 
   frameText: {
-    padding: [`${theme.spacing.md}px  0 0`],
-  },
-
-  list: {
-    padding: [`0 0 0 ${theme.spacing.sm}px`],
+    padding: [`${theme.spacing.xs}px  0 0`],
+    [`@media (min-width: ${theme.breakpoints.xl}px)`]: {
+      padding: [`${theme.spacing.md}px  0 0`],
+    },
   },
 
   listItem: {
-    padding: [`${theme.spacing.md}px  0 0`],
+    padding: [`${theme.spacing.xs}px  0 0`],
     "& div": {
       display: "flex",
       flexDirection: "row",
       justifyContent: "space-between",
     },
-  },
-
-  listData: {
-    textAlign: "right"
+    [`@media (min-width: ${theme.breakpoints.xl}px)`]: {
+      padding: [`${theme.spacing.md}px  0 0`],
+    },
   },
 }));
