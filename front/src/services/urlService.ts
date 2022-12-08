@@ -5,7 +5,6 @@ export function createUrlRequestPostfixFromParams(router: NextRouter): string {
     let currentUrlLine: string = router.asPath;
     currentUrlLine = currentUrlLine.replaceAll("?", "");
     currentUrlLine = currentUrlLine.replaceAll("/nft-catalog", "");
-    console.log(currentUrlLine)
     return currentUrlLine;
 }
 
@@ -36,9 +35,7 @@ export function addParamValueToUrl(router: NextRouter, key: string, value: strin
 export function removeParamFromUrl(router: NextRouter, key: string) {
     const currentUrlLine: string = router.asPath;
     let currentUrlParams = fromUrlToParams(currentUrlLine);
-    currentUrlParams = currentUrlParams.filter(param => param.key !== key)
-    console.log("currentUrlParams")
-    console.log(currentUrlParams)
+    currentUrlParams = currentUrlParams.filter(param => param.key !== key);
     //if all params are empty, redirect just to /nft-catalog
     if (currentUrlParams.length == 0) {
         router.push("/nft-catalog");

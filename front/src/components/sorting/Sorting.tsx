@@ -15,7 +15,15 @@ const Sorting = () => {
     const [sortingValue, setSortingValue] = useState("mintingPrice,asc");
 
     useEffect(() => {
-        if(getParamFromUrlByKey(router, "sort")){
+        let value = getParamFromUrlByKey(router, "sort");
+        if (value) {
+            setSortingValue(value.value[0] + "," + value.value[1]);
+            changeSingleValueForParam(router, "sort", value.value[0] + "," + value.value[1])
+        }
+    }, [])
+
+    useEffect(() => {
+        if (getParamFromUrlByKey(router, "sort")) {
             changeSingleValueForParam(router, "sort", sortingValue)
         } else {
             addParamToUrl(router, {key: "sort", value: [sortingValue]})
