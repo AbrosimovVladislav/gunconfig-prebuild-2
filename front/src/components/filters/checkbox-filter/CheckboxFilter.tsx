@@ -6,9 +6,9 @@ import {useRouter} from "next/router";
 import {
     addParamToUrl,
     addParamValueToUrl,
-    getParamFromUrlByKey,
-    removeParamFromUrl, removeParamValueFromUrl
+    getParamFromUrlByKey, removeParamFromUrl, removeParamValueFromUrl
 } from "../../../services/urlService";
+import {UrlParam} from "../../../schema/UrlSchema";
 
 interface CheckboxFilterProps {
     currentFilter: FilterItem;
@@ -38,32 +38,24 @@ const CheckboxFilter = ({currentFilter}: CheckboxFilterProps) => {
             }
         } else {
             //when filterItem not exists
-            addParamToUrl(router, {key:filterKey, value:[value]});
+            addParamToUrl(router, {key: filterKey, value: [value]});
         }
     }
 
-    //ToDo refactor (https://app.clickup.com/t/344vp8z)
-    // function isChecked(value: string) {
-    //     if (currentFilter) {
-    //         const filterItem = filters.filter((e) => e.filterKey === currentFilter.filterKey)[0];
-    //         if (filterItem) {
-    //             let currentFilterItemValue = filterItem.value;
-    //             currentFilterItemValue = currentFilterItemValue.map((e) => e.replaceAll("%20", " "));
-    //             if (currentFilterItemValue) {
-    //                 return currentFilterItemValue.includes(value);
-    //             }
-    //         }
-    //     } else {
-    //         return false;
-    //     }
-    // }
+    function isChecked(value: string) {
+        let clickedFilter: UrlParam = getParamFromUrlByKey(router, currentFilter?.filterKey);
+        if (clickedFilter && clickedFilter.value) {
+            const valueArr = clickedFilter.value.map(v => v.replaceAll("%20", " "))
+            return valueArr.includes(value)
+        }
+    }
 
     return (
         <div className={classes.filter}>
             {currentFilter.value.map((value) => {
                 return (
                     <GCCheckbox
-                        // checked={isChecked(value)}
+                        checked={isChecked(value) || false}
                         onClick={() => clickOnFilterValue(currentFilter.filterKey, value)}
                         key={value}
                         className={classes.filter}
