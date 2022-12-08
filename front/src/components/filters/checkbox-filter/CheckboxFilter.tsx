@@ -45,7 +45,8 @@ const CheckboxFilter = ({currentFilter}: CheckboxFilterProps) => {
     function isChecked(value: string) {
         let clickedFilter: UrlParam = getParamFromUrlByKey(router, currentFilter?.filterKey);
         if (clickedFilter && clickedFilter.value) {
-            const valueArr = clickedFilter.value.map(v => v.replaceAll("%20", " "))
+            const valueArr = clickedFilter.value.map(clickedValue =>
+                clickedValue.replaceAll("%20", " "))
             return valueArr.includes(value)
         }
     }

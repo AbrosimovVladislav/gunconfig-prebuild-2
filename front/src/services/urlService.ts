@@ -3,8 +3,6 @@ import {UrlParam} from "../schema/UrlSchema";
 
 export function createUrlRequestPostfixFromParams(router: NextRouter): string {
     let currentUrlLine: string = router.asPath;
-    console.log("currentUrlLine")
-    console.log(currentUrlLine)
     if (currentUrlLine) {
         currentUrlLine = currentUrlLine.replace("?", "");
         currentUrlLine = currentUrlLine.replace("/nft-catalog", "");
@@ -54,7 +52,7 @@ export function removeParamValueFromUrl(router: NextRouter, key: string, value: 
     const currentUrlLine: string = router.asPath;
     let currentUrlParams = fromUrlToParams(currentUrlLine);
     const clickedParam = currentUrlParams.filter(param => param.key === key)[0];
-    clickedParam.value = clickedParam.value.filter(v => v !== value);
+    clickedParam.value = clickedParam.value.filter(clickedValue => clickedValue !== value);
     const newUrlLine = fromParamsToUrl(currentUrlParams);
     router.push("/nft-catalog" + newUrlLine)
 }

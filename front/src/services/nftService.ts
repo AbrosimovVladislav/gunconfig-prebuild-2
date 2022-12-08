@@ -10,7 +10,8 @@ export function useGetNFTByUrlParams(router: NextRouter): [NFTCard[], boolean, b
 
     const {data, isLoading, isError, isSuccess} = useQuery(
         "GetNFTByFilters" + urlParams,
-        (): Promise<NFTCard[]> => get(NFT_POSTFIX + "?" + urlParams)
+        (): Promise<NFTCard[]> => get(NFT_POSTFIX + "?" + urlParams),
+        {refetchOnWindowFocus: false}
     );
     return [data, isLoading, isError, isSuccess];
 }
