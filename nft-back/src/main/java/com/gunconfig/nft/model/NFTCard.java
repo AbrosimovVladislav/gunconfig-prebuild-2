@@ -24,12 +24,10 @@ public class NFTCard implements BasicEntity {
     private String nftImageUrl;
     private String mintingDate;
     private String firstOwner;
+    private String rarity;
 
     @Enumerated(EnumType.STRING)
     private Status status;
-
-    @Enumerated(EnumType.STRING)
-    private Rarity rarity;
 
     @ManyToMany
     @JoinColumn(name = "product_id")

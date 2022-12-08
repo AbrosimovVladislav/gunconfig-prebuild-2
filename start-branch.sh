@@ -1,4 +1,4 @@
-git checkout 33dy705-ProductSync-And-NftCreationFlow
+git checkout 344vu84-url-filtration
 git pull
 
 mvn clean package -P build-docker-image

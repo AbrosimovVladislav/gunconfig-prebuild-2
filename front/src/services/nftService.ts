@@ -2,15 +2,16 @@ import {useQuery} from "react-query";
 import {get} from "./restClient";
 import {NFT_POSTFIX} from "../consts/back-paths";
 import {NFTCard} from "../schema/NFTCatalogSchema";
-import {FilterItem, FilterType} from "../schema/FilterSchema";
-import {createUrlParamsFromFilterItems} from "./filterService";
+import {NextRouter} from "next/router";
+import {createUrlRequestPostfixFromParams} from "./urlService";
 
-export function useGetNFTByFilters(filters: FilterItem[]): [NFTCard[], boolean, boolean, boolean] {
-    const urlParams = createUrlParamsFromFilterItems(filters);
+export function useGetNFTByUrlParams(router: NextRouter): [NFTCard[], boolean, boolean, boolean] {
+    const urlParams = createUrlRequestPostfixFromParams(router);
 
     const {data, isLoading, isError, isSuccess} = useQuery(
         "GetNFTByFilters" + urlParams,
-        (): Promise<NFTCard[]> => get(NFT_POSTFIX + "?" + urlParams)
+        (): Promise<NFTCard[]> => get(NFT_POSTFIX + "?" + urlParams),
+        {refetchOnWindowFocus: false}
     );
     return [data, isLoading, isError, isSuccess];
 }

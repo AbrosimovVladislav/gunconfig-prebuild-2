@@ -25,7 +25,7 @@ public class NFTCardMapper {
                 .nftImageUrl(nftCard.getNftImageUrl())
                 .collection(nftCard.getCollection())
                 .mintingPrice(nftCard.getMintingPrice())
-                .rarity(nftCard.getRarity().name())
+                .rarity(nftCard.getRarity())
                 .firstOwner(nftCard.getFirstOwner())
                 .mintingDate(nftCard.getMintingDate())
                 .gunDescription(nftCard.getRootGunDescription())

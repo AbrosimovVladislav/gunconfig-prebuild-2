@@ -1,10 +1,14 @@
-import React, {useEffect} from "react";
-import {FilterItem, FilterType} from "../../../schema/FilterSchema";
+import React from "react";
+import {FilterItem} from "../../../schema/FilterSchema";
 import {GCCheckbox} from "../../../gc-components/GCCheckbox";
 import {useStyles} from "./CheckboxFilterStyles";
-import {useFilterStore} from "../../../store/FilterStore";
 import {useRouter} from "next/router";
-import {createUrlParamsFromFilterItems} from "../../../services/filterService";
+import {
+    addParamToUrl,
+    addParamValueToUrl,
+    getParamFromUrlByKey, removeParamFromUrl, removeParamValueFromUrl
+} from "../../../services/urlService";
+import {UrlParam} from "../../../schema/UrlSchema";
 
 interface CheckboxFilterProps {
     currentFilter: FilterItem;
@@ -12,55 +16,38 @@ interface CheckboxFilterProps {
 
 const CheckboxFilter = ({currentFilter}: CheckboxFilterProps) => {
     const {classes} = useStyles();
-
-    const {
-        filters, addFilterItemToStore, removeFilterItemFromStore, addFilterValueToStore, removeFilterValueFromStore,
-    } = useFilterStore();
     const router = useRouter();
 
-    useEffect(() => {
-        //when we change filter store from clicking on checkbox, we should also change url
-        const urlParams = createUrlParamsFromFilterItems(filters);
-        router.push(`/nft-catalog?${urlParams}`);
-    }, [filters]);
-
     function clickOnFilterValue(filterKey: string, value: string) {
-        const clickedFilterItem: FilterItem = filters.filter((e) => e.filterKey === filterKey)[0];
+        const clickedFilter = getParamFromUrlByKey(router, filterKey);
 
-        if (clickedFilterItem) {
+        if (clickedFilter) {
             //when filterItem already exists
-            if (clickedFilterItem.value.includes(value)) {
+            if (clickedFilter.value.includes(value)) {
                 //when value already in the list
-                if (clickedFilterItem.value.length == 1) {
+                if (clickedFilter.value.length == 1) {
                     //when value in the list is the last
-                    removeFilterItemFromStore(filterKey);
+                    removeParamFromUrl(router, filterKey);
                 } else {
                     //when value in the list is not last
-                    removeFilterValueFromStore(filterKey, value);
+                    removeParamValueFromUrl(router, filterKey, value);
                 }
             } else {
                 //when value is not in the list
-                addFilterValueToStore(filterKey, value);
+                addParamValueToUrl(router, filterKey, value);
             }
         } else {
             //when filterItem not exists
-            addFilterItemToStore(filterKey, value, FilterType.CHECKBOX);
+            addParamToUrl(router, {key: filterKey, value: [value]});
         }
     }
 
-    //ToDo refactor (https://app.clickup.com/t/344vp8z)
     function isChecked(value: string) {
-        if (currentFilter) {
-            const filterItem = filters.filter((e) => e.filterKey === currentFilter.filterKey)[0];
-            if (filterItem) {
-                let currentFilterItemValue = filterItem.value;
-                currentFilterItemValue = currentFilterItemValue.map((e) => e.replaceAll("%20", " "));
-                if (currentFilterItemValue) {
-                    return currentFilterItemValue.includes(value);
-                }
-            }
-        } else {
-            return false;
+        let clickedFilter: UrlParam = getParamFromUrlByKey(router, currentFilter?.filterKey);
+        if (clickedFilter && clickedFilter.value) {
+            const valueArr = clickedFilter.value.map(clickedValue =>
+                clickedValue.replaceAll("%20", " "))
+            return valueArr.includes(value)
         }
     }
 
@@ -69,7 +56,7 @@ const CheckboxFilter = ({currentFilter}: CheckboxFilterProps) => {
             {currentFilter.value.map((value) => {
                 return (
                     <GCCheckbox
-                        checked={isChecked(value)}
+                        checked={isChecked(value) || false}
                         onClick={() => clickOnFilterValue(currentFilter.filterKey, value)}
                         key={value}
                         className={classes.filter}

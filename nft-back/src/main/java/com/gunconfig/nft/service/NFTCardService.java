@@ -35,7 +35,7 @@ public class NFTCardService {
                 .setFirstOwner(firstOwner)
                 .setBuildId(buildId)
                 .setStatus(NFTCard.Status.DRAFT)
-                .setRarity(NFTCard.Rarity.USUAL)
+                .setRarity(NFTCard.Rarity.USUAL.toString())
                 .setProducts(productService.findByIds(productIds))
                 .setRootGunId(rootGun.getProductId())
                 .setRootGunDescription(rootGun.getDescription())

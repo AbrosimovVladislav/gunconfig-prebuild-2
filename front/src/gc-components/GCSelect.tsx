@@ -1,14 +1,15 @@
-import { Select } from "@mantine/core";
+import {Select, SelectProps} from "@mantine/core";
 import { IconChevronDown } from "@tabler/icons";
 import { ReactNode } from "react";
 
-interface GCSelectProps {
+interface GCSelectProps extends SelectProps{
     icon: ReactNode;
     data: string[];
 }
 
-const GCSelect = ({icon, data}: GCSelectProps) => {
+const GCSelect = ({icon, data, ...props}: GCSelectProps) => {
     return <Select
+        {...props}
         rightSection={<IconChevronDown size={14}/>}
         styles={{ rightSection: { pointerEvents: 'none' } }}
         transition="pop"
