@@ -1,6 +1,14 @@
 import {NextRouter} from "next/router";
 import {UrlParam} from "../schema/UrlSchema";
 
+export function createUrlRequestPostfixFromParams(router: NextRouter): string{
+    let currentUrlLine: string = router.asPath;
+    currentUrlLine = currentUrlLine.replaceAll("?", "");
+    currentUrlLine = currentUrlLine.replaceAll("/nft-catalog", "");
+    console.log(currentUrlLine)
+    return currentUrlLine;
+}
+
 export function addParamToUrl(router: NextRouter, urlParam: UrlParam) {
     const currentUrlLine: string = router.asPath;
     let currentUrlParams = fromUrlToParams(currentUrlLine);

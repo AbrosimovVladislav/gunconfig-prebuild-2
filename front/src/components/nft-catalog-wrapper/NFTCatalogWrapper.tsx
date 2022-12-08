@@ -1,10 +1,7 @@
-import {useFilterStore} from "../../store/FilterStore";
 import {useGetNFTByFilters} from "../../services/nftService";
 import Catalog from "../catalog/Catalog";
-import React, {useEffect} from "react";
+import React from "react";
 import {useRouter} from "next/router";
-import {createFilterItemsFromUrlParams} from "../../services/filterService";
-import {FilterItem} from "../../schema/FilterSchema";
 import {NFTCard} from "../../schema/NFTCatalogSchema";
 import {useStyles} from "./NFTCatalogWrapperStyles";
 import NFTMicroCard from "../nft-micro-card/NFTMicroCard";
@@ -15,18 +12,8 @@ interface NFTCatalogWrapperProps{
 
 const NFTCatalogWrapper = ({layout}: NFTCatalogWrapperProps) => {
     const { classes } = useStyles();
-    const {filters, updateFilterStore} = useFilterStore();
     const router = useRouter();
-    let urlParams = router.asPath.split("?")[1];
-    const [data, isLoading, isError, isSuccess] = useGetNFTByFilters(filters);
-
-    useEffect(() => {
-        //if url have some filtration params in it, refresh filter store according them
-        if (urlParams) {
-            const filterItems: FilterItem[] = createFilterItemsFromUrlParams(urlParams);
-            updateFilterStore(filterItems);
-        }
-    }, []);
+    const [data, isLoading, isError, isSuccess] = useGetNFTByFilters(router);
 
     if (isLoading) {
         return <div>Loading...</div>;
