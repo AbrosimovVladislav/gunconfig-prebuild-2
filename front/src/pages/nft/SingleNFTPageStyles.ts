@@ -48,8 +48,6 @@ export const useStyles = createStyles((theme) => ({
     borderRadius: theme.radius.md,
   },
 
-  grid: {},
-
   catalogHeader: {
     margin: [`${theme.spacing.xl}px 0`],
   },
