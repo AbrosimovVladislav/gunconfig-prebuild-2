@@ -1,12 +1,20 @@
 import {NextRouter} from "next/router";
 import {UrlParam} from "../schema/UrlSchema";
 
-export function createUrlRequestPostfixFromParams(router: NextRouter): string{
+export function createUrlRequestPostfixFromParams(router: NextRouter): string {
     let currentUrlLine: string = router.asPath;
     currentUrlLine = currentUrlLine.replaceAll("?", "");
     currentUrlLine = currentUrlLine.replaceAll("/nft-catalog", "");
     console.log(currentUrlLine)
     return currentUrlLine;
+}
+
+export function changeSingleValueForParam(router: NextRouter, key: string, newValue: string) {
+    const currentUrlLine: string = router.asPath;
+    let currentUrlParams = fromUrlToParams(currentUrlLine);
+    currentUrlParams.filter(param => param.key === key)[0].value = [newValue]
+    const newUrlLine = fromParamsToUrl(currentUrlParams);
+    router.push("/nft-catalog" + newUrlLine)
 }
 
 export function addParamToUrl(router: NextRouter, urlParam: UrlParam) {
@@ -29,6 +37,8 @@ export function removeParamFromUrl(router: NextRouter, key: string) {
     const currentUrlLine: string = router.asPath;
     let currentUrlParams = fromUrlToParams(currentUrlLine);
     currentUrlParams = currentUrlParams.filter(param => param.key !== key)
+    console.log("currentUrlParams")
+    console.log(currentUrlParams)
     //if all params are empty, redirect just to /nft-catalog
     if (currentUrlParams.length == 0) {
         router.push("/nft-catalog");
@@ -100,7 +110,7 @@ function fromParamsToUrl(params: UrlParam[]): string {
             url = url + paramLine
         })
 
-    url = url.replaceAll(",&","&");
+    url = url.replaceAll(",&", "&");
 
     if (url.endsWith("&")) {
         url = url.slice(0, url.length - 1);
