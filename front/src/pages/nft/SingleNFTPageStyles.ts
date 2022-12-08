@@ -51,6 +51,6 @@ export const useStyles = createStyles((theme) => ({
   grid: {},
 
   catalogHeader: {
-    margin: [`${theme.spacing.lg}px 0`],
+    margin: [`${theme.spacing.xl}px 0`],
   },
 }));
