@@ -54,4 +54,8 @@ public class NFTCardService {
         return nftCardRepo.findById(nftCardId)
                 .orElseThrow(() -> new RuntimeException("There is no nft card with id: " + nftCardId));
     }
+
+    public List<NFTCard> findEightNFTsFromSameCollection(String collectionName) {
+        return nftCardRepo.findTop8ByCollection(collectionName);
+    }
 }

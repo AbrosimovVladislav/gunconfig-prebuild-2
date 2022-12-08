@@ -6,6 +6,7 @@ import com.gunconfig.nft.service.FilterItemService;
 import com.gunconfig.nft.service.NFTCardService;
 import com.gunconfig.nft.web.dto.FilterItemDto;
 import com.gunconfig.nft.web.dto.NFTCardDto;
+import com.gunconfig.nft.web.dto.ShortNFTCardDto;
 import com.gunconfig.nft.web.mapper.FilterItemMapper;
 import com.gunconfig.nft.web.mapper.NFTCardMapper;
 import com.gunconfig.nft.web.preparer.FilterAndPageable;
@@ -19,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
@@ -35,6 +35,13 @@ public class NFTCatalogController {
 
     private static final int DEFAULT_PAGE_NUMBER = 0;
     private static final int DEFAULT_PAGE_SIZE = 3000;
+
+    @CrossOrigin
+    @GetMapping(value = "/collection/{collectionName}")
+    public List<ShortNFTCardDto> getEightNFTsFromSameCollection(@PathVariable String collectionName) {
+        List<NFTCard> nftCards = nftCardService.findEightNFTsFromSameCollection(collectionName);
+        return nftCardMapper.toShortDtos(nftCards);
+    }
 
     @CrossOrigin
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
