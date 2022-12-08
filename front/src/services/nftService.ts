@@ -5,7 +5,7 @@ import {NFTCard} from "../schema/NFTCatalogSchema";
 import {NextRouter} from "next/router";
 import {createUrlRequestPostfixFromParams} from "./urlService";
 
-export function useGetNFTByFilters(router: NextRouter): [NFTCard[], boolean, boolean, boolean] {
+export function useGetNFTByUrlParams(router: NextRouter): [NFTCard[], boolean, boolean, boolean] {
     const urlParams = createUrlRequestPostfixFromParams(router);
 
     const {data, isLoading, isError, isSuccess} = useQuery(

@@ -6,8 +6,8 @@ export function createUrlRequestPostfixFromParams(router: NextRouter): string {
     console.log("currentUrlLine")
     console.log(currentUrlLine)
     if (currentUrlLine) {
-        currentUrlLine = currentUrlLine.replaceAll("?", "");
-        currentUrlLine = currentUrlLine.replaceAll("/nft-catalog", "");
+        currentUrlLine = currentUrlLine.replace("?", "");
+        currentUrlLine = currentUrlLine.replace("/nft-catalog", "");
         return currentUrlLine;
     }
     return "";

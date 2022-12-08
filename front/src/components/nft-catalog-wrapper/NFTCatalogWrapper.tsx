@@ -1,10 +1,10 @@
-import {useGetNFTByFilters} from "../../services/nftService";
 import Catalog from "../catalog/Catalog";
 import React from "react";
 import {useRouter} from "next/router";
 import {NFTCard} from "../../schema/NFTCatalogSchema";
 import {useStyles} from "./NFTCatalogWrapperStyles";
 import NFTMicroCard from "../nft-micro-card/NFTMicroCard";
+import {useGetNFTByUrlParams} from "../../services/nftService";
 
 interface NFTCatalogWrapperProps{
     layout: string;
@@ -13,7 +13,7 @@ interface NFTCatalogWrapperProps{
 const NFTCatalogWrapper = ({layout}: NFTCatalogWrapperProps) => {
     const { classes } = useStyles();
     const router = useRouter();
-    const [data, isLoading, isError, isSuccess] = useGetNFTByFilters(router);
+    const [data, isLoading, isError, isSuccess] = useGetNFTByUrlParams(router);
 
     if (isLoading) {
         return <div>Loading...</div>;
