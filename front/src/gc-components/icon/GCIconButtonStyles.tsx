@@ -8,9 +8,6 @@ export const useStyles = createStyles((theme) => ({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        "& svg": {
-
-        }
     },
     buttonPrimary: {
         backgroundColor: theme.fn.primaryColor()
