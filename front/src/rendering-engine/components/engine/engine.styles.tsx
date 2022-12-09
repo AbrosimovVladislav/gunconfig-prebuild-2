@@ -8,7 +8,7 @@ export const Canvas = styled.div`
     place-items: center;
 `;
 export const RootWrapper = styled.div`
-    position: ${({ data }) => (data ? "relative" : "relative")};
+    position: relative;
     max-width: 60%;
     left: 10%;
 `;
