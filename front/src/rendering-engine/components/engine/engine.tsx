@@ -1,5 +1,6 @@
 import { useMantineTheme } from "@mantine/core";
 import React, { useEffect, useState } from "react";
+import { ClickedGunPart } from "../../../pages/configurator/[base64]";
 import { BuildTree } from "../../schema/BuildTreeSchema";
 
 import GunComponent from "../gun-component/gun-component";
@@ -7,9 +8,10 @@ import { Canvas, RootWrapper } from "./engine.styles";
 
 interface EngineProps {
     data: BuildTree;
+    setClickedGunPart: (clickedGunPart: ClickedGunPart) => void;
 }
 
-export const Engine = ({ data }: EngineProps) => {
+export const Engine = ({ data, setClickedGunPart }: EngineProps) => {
     const [ratio, setRatio] = useState<number | null>(null);
 
     const [componentSizes, setComponentSizes] = useState({
@@ -44,7 +46,12 @@ export const Engine = ({ data }: EngineProps) => {
     return (
         <Canvas width={componentSizes.canvas}>
             <RootWrapper width={componentSizes.rootGunComponent}>
-                <GunComponent component={data} ratio={ratio} rootGunComponentWidth={componentSizes.rootGunComponent} />
+                <GunComponent
+                    component={data}
+                    ratio={ratio}
+                    rootGunComponentWidth={componentSizes.rootGunComponent}
+                    setClickedGunPart={setClickedGunPart}
+                />
             </RootWrapper>
         </Canvas>
     );

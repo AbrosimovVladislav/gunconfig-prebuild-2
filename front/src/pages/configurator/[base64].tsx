@@ -1,39 +1,29 @@
-import {Box, Button, Center} from "@mantine/core";
-import {useRouter} from "next/router";
-import {Engine} from "../../rendering-engine/components/engine";
-import {useGetBuildTreeByBase64Code} from "../../rendering-engine/service/configuratorService";
+import { Box, Button, Center, Grid } from "@mantine/core";
+import { useRouter } from "next/router";
+import { Engine } from "../../rendering-engine/components/engine";
+import {
+    useGetBuildTreeByBase64Code,
+    useGetGunPartsByParentAndType,
+} from "../../rendering-engine/service/configuratorService";
 import Link from "next/link";
-import {useEffect} from "react";
-import {useBuildTreeStore} from "../../rendering-engine/store/BuildTreeStore";
+import { useEffect, useState } from "react";
+import { useBuildTreeStore } from "../../rendering-engine/store/BuildTreeStore";
+import GunPartList from "./components/gun-part-list";
+
+export interface ClickedGunPart {
+    itemId: number;
+    parentId: number;
+    type: string;
+}
 
 const Configurator = () => {
     const router = useRouter();
-    const {base64} = router.query;
+    const { base64 } = router.query;
 
     const [data] = useGetBuildTreeByBase64Code(base64 as string);
+    const { buildTree, setBuildTree } = useBuildTreeStore();
 
-    const {buildTree, setBuildTree, replaceGunPart} = useBuildTreeStore();
-
-    const newGrip = {
-        id: 20,
-        productId: 20,
-        name: "Timber Creek Enforcer Pistol Grip AR",
-        productImageUrl: "https://line-f.ru/i/part/1_MIJ4fpT.png",
-        description:
-            "The Enforcer AR Pistol Grip is a drop in replacement that mounts to any standard mil spec lower receiver. Weighing in at just over 4oz it does not add unnecessary weight to your rifle.",
-        brand: "Timber Creek",
-        type: "PISTOL_GRIP",
-        x: -5,
-        y: 54,
-        thumbnailImage: "https://line-f.ru/i/part/1_MIJ4fpT.png",
-        image: "https://line-f.ru/i/part/1_MIJ4fpT.png",
-        width: 486,
-        children: [],
-    };
-
-    const updateGrip = (id, newItem) => {
-        replaceGunPart(id, newItem);
-    };
+    const [clickedGunPart, setClickedGunPart] = useState<ClickedGunPart | null>(null);
 
     useEffect(() => {
         setBuildTree(data);
@@ -48,15 +38,13 @@ const Configurator = () => {
                     padding: "1rem",
                 }}
             >
-                {buildTree && <Engine data={buildTree}/>}
+                {buildTree && <Engine data={buildTree} setClickedGunPart={setClickedGunPart} />}
             </Box>
 
-            <Center>
-                <Button onClick={() => updateGrip(10, newGrip)}>Update Grip</Button>
-            </Center>
+            {clickedGunPart && <GunPartList clickedGunPart={clickedGunPart} setClickedGunPart={setClickedGunPart} />}
 
             <Center>
-                <Link href={{pathname: "/summary/" + base64}}>
+                <Link href={{ pathname: "/summary/" + base64 }}>
                     <Button>To Summary Page</Button>
                 </Link>
             </Center>

@@ -1,5 +1,6 @@
-import {BuildTree} from "../schema/BuildTreeSchema";
+import { BuildTree } from "../schema/BuildTreeSchema";
 import create from "zustand";
+import { mountStoreDevtool } from "simple-zustand-devtools";
 
 interface BuildTreeStore {
     buildTree: BuildTree | null;
@@ -10,12 +11,14 @@ interface BuildTreeStore {
 export const useBuildTreeStore = create<BuildTreeStore>((set) => ({
     buildTree: null,
     setBuildTree: (buildTree: BuildTree) => {
-        set((state) => ({buildTree: buildTree}));
+        set((state) => ({ buildTree: buildTree }));
     },
     replaceGunPart: (currentGunPartId: number, newGunPart: BuildTree) => {
-        set((state) => ({buildTree: replaceGunPartRecursively(state.buildTree, currentGunPartId, newGunPart)}));
-    }
+        set((state) => ({ buildTree: replaceGunPartRecursively(state.buildTree, currentGunPartId, newGunPart) }));
+    },
 }));
+
+mountStoreDevtool("Store", useBuildTreeStore);
 
 function replaceGunPartRecursively(buildTree: BuildTree, currentGunPartId: number, newGunPart: BuildTree): BuildTree {
     const newTree: BuildTree = searchForItem(buildTree, currentGunPartId, newGunPart);
@@ -23,7 +26,7 @@ function replaceGunPartRecursively(buildTree: BuildTree, currentGunPartId: numbe
 }
 
 const searchForItem = (buildTree, id, newItem) => {
-    let newBuildTree = {...buildTree};
+    let newBuildTree = { ...buildTree };
 
     let newChildren = buildTree.children?.map((el) => {
         let element = el.id === id ? newItem : el;
