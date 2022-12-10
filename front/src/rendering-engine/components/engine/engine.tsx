@@ -9,7 +9,7 @@ interface EngineProps {
 }
 
 export const Engine = ({ data }: EngineProps) => {
-    const [ratio, setRatio] = useState<number>(0);
+    const [ratio, setRatio] = useState<number | null>(null);
 
     return (
         <Canvas>

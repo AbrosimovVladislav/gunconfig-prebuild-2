@@ -1,0 +1,2 @@
+export const ENGINE_WIDTH = 1000;
+export const ROOT_GUN_COMPONENT_WIDTH = ENGINE_WIDTH * 0.6;
