@@ -1,4 +1,4 @@
-import { Box, MantineProvider } from "@mantine/core";
+import { Box, Button, Center } from "@mantine/core";
 import { useRouter } from "next/router";
 import { Engine } from "../../rendering-engine/components/engine";
 import { useGetBuildTreeByBase64Code } from "../../rendering-engine/service/configuratorService";
@@ -53,7 +53,7 @@ const Configurator = ({ testData }) => {
     }, [data]);
 
     return (
-        <MantineProvider withGlobalStyles withNormalizeCSS>
+        <>
             <Box
                 sx={{
                     display: "flex",
@@ -76,13 +76,4 @@ const Configurator = ({ testData }) => {
         </>
     );
 };
-
-export async function getServerSideProps() {
-    // fetch
-
-    return {
-        props: { testData: "test" },
-    };
-}
-
 export default Configurator;
