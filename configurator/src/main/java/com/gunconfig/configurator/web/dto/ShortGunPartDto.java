@@ -11,10 +11,10 @@ import java.util.List;
 public class ShortGunPartDto {
 
     private Long gunPartId;
-    private Long productId;
-    private String name;
-    private Product.Type type;
+    private Product product;
     private String thumbnailImage;
+    private String image;
+    private Integer width;
     private boolean incompatible;
     private List<Long> incompatibleIds;
 

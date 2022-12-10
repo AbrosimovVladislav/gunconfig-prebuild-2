@@ -73,10 +73,10 @@ public class GunPartMapper {
         }
         return ShortGunPartDto.builder()
                 .gunPartId(gunPart.getGunPartId())
-                .productId(gunPart.getProduct().getProductId())
-                .name(gunPart.getProduct().getName())
-                .type(gunPart.getProduct().getType())
+                .product(gunPart.getProduct())
                 .thumbnailImage(gunPart.getThumbnailImage())
+                .image(gunPart.getGunPartImageUrl())
+                .width(gunPart.getWidth())
                 .incompatibleIds(incompatibleIds)
                 .build();
     }
