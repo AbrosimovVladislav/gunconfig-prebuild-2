@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useState } from "react";
 import { BuildTree } from "../../schema/BuildTreeSchema";
 
 import GunComponent from "../gun-component/gun-component";
@@ -9,11 +9,7 @@ interface EngineProps {
 }
 
 export const Engine = ({ data }: EngineProps) => {
-    const [ratio, setRatio] = useState<number>(0);
-
-    useLayoutEffect(() => {
-        console.log("renderedCount");
-    }, [ratio]);
+    const [ratio, setRatio] = useState<number | null>(null);
 
     return (
         <Canvas>
