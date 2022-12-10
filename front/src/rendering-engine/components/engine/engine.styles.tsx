@@ -1,15 +1,14 @@
 import styled from "@emotion/styled";
-import { ENGINE_WIDTH, ROOT_GUN_COMPONENT_WIDTH } from "../../consts";
 
-export const Canvas = styled.div`
+export const Canvas = styled.div<{ width: number }>`
     height: 550px;
-    width: ${ENGINE_WIDTH}px;
+    width: ${(props) => props.width}px;
     border: 1px solid black;
     display: grid;
     place-items: center;
 `;
-export const RootWrapper = styled.div`
+export const RootWrapper = styled.div<{ width: number }>`
     position: relative;
-    max-width: ${ROOT_GUN_COMPONENT_WIDTH}px;
+    max-width: ${(props) => props.width}px;
     left: 10%;
 `;
