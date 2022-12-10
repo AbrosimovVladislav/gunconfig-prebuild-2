@@ -1,27 +1,20 @@
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useLayoutEffect } from "react";
 import { BuildTree } from "../../schema/BuildTreeSchema";
 import { ChildGunComponent } from "./child-gun-component";
 import { RootComponent } from "./gun-component.styles";
-import { ROOT_GUN_COMPONENT_WIDTH } from "../../consts";
 
 interface GunComponentProps {
     component: BuildTree;
     ratio: number;
-    setRatio?: (ratio: number) => void;
+    rootGunComponentWidth: number;
 }
 
-const GunComponent = ({ component, ratio, setRatio }: GunComponentProps) => {
-    const ref = useRef(null);
+const GunComponent = ({ component, ratio, rootGunComponentWidth }: GunComponentProps) => {
     const isRootComponent = component.type === "GUN";
-
-    useLayoutEffect(() => {
-        // TODO: Implement utility function to get component width based on device width
-        setRatio?.(ROOT_GUN_COMPONENT_WIDTH / component.width);
-    }, [ref]);
 
     return isRootComponent ? (
         <>
-            <RootComponent ref={ref} src={component?.image} />
+            <RootComponent src={component?.image} />
             {ratio &&
                 component?.children?.map((gunComponent) => (
                     <ChildGunComponent key={gunComponent.id} component={gunComponent} ratio={ratio} />
