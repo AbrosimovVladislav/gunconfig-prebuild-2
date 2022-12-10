@@ -3,10 +3,11 @@ import { useRouter } from "next/router";
 import { Engine } from "../../rendering-engine/components/engine";
 import { useGetBuildTreeByBase64Code } from "../../rendering-engine/service/configuratorService";
 import Link from "next/link";
+import { FRONT_CURRENT_PATH } from "../../config/env-paths";
 import { useEffect, useState } from "react";
 import { BuildTree } from "../../rendering-engine/schema/BuildTreeSchema";
 
-const Configurator = ({ testData }) => {
+const Configurator = () => {
     const router = useRouter();
     const { base64 } = router.query;
 
@@ -76,4 +77,5 @@ const Configurator = ({ testData }) => {
         </>
     );
 };
+
 export default Configurator;

@@ -11,11 +11,11 @@ export const RootComponent = styled.img`
     }
 `;
 
-export const AbsoluteWrapper = styled.div`
+export const AbsoluteWrapper = styled.div<{ width: number; x: number; y: number }>`
     position: absolute;
     width: ${({ width }) => width}px;
-    left: ${({ x }) => x}px;
-    top: ${({ y }) => y}px;
+    left: ${({ x }) => x}%;
+    top: ${({ y }) => y}%;
     line-height: 0;
 `;
 
