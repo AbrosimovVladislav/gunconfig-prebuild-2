@@ -46,7 +46,7 @@ export const useStyles = createStyles((theme, _params, getRef) => ({
         bottom: 0,
         left: 0,
         display: "grid",
-        gridTemplateColumns: "auto auto",
+        gridTemplateColumns: "1fr 1fr",
         gap: theme.spacing.xs,
         alignItems: "center",
         justifyContent: "space-between",
