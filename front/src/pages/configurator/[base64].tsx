@@ -1,18 +1,18 @@
-import { Box, Button, Center } from "@mantine/core";
-import { useRouter } from "next/router";
-import { Engine } from "../../rendering-engine/components/engine";
-import { useGetBuildTreeByBase64Code } from "../../rendering-engine/service/configuratorService";
+import {Box, Button, Center} from "@mantine/core";
+import {useRouter} from "next/router";
+import {Engine} from "../../rendering-engine/components/engine";
+import {useGetBuildTreeByBase64Code} from "../../rendering-engine/service/configuratorService";
 import Link from "next/link";
-import { FRONT_CURRENT_PATH } from "../../config/env-paths";
-import { useEffect, useState } from "react";
-import { BuildTree } from "../../rendering-engine/schema/BuildTreeSchema";
+import {useEffect} from "react";
+import {useBuildTreeStore} from "../../rendering-engine/store/BuildTreeStore";
 
 const Configurator = () => {
     const router = useRouter();
-    const { base64 } = router.query;
+    const {base64} = router.query;
 
     const [data] = useGetBuildTreeByBase64Code(base64 as string);
-    const [buildTree, setBuildTree] = useState<BuildTree | null>(null);
+
+    const {buildTree, setBuildTree, replaceGunPart} = useBuildTreeStore();
 
     const newGrip = {
         id: 20,
@@ -31,22 +31,8 @@ const Configurator = () => {
         children: [],
     };
 
-    const searchForItem = (buildTree, id, newItem) => {
-        let newBuildTree = { ...buildTree };
-
-        let newChildren = buildTree.children?.map((el) => {
-            let element = el.id === id ? newItem : el;
-            searchForItem(el, id, newItem);
-            return element;
-        });
-
-        newBuildTree.children = newChildren;
-        return newBuildTree;
-    };
-
     const updateGrip = (id, newItem) => {
-        const newTree = searchForItem(buildTree, id, newItem);
-        setBuildTree(newTree);
+        replaceGunPart(id, newItem);
     };
 
     useEffect(() => {
@@ -62,7 +48,7 @@ const Configurator = () => {
                     padding: "1rem",
                 }}
             >
-                {buildTree && <Engine data={buildTree} />}
+                {buildTree && <Engine data={buildTree}/>}
             </Box>
 
             <Center>
@@ -70,7 +56,7 @@ const Configurator = () => {
             </Center>
 
             <Center>
-                <Link href={{ pathname: "/summary/" + base64 }}>
+                <Link href={{pathname: "/summary/" + base64}}>
                     <Button>To Summary Page</Button>
                 </Link>
             </Center>
