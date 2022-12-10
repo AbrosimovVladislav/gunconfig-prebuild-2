@@ -72,10 +72,12 @@ public class GunPartMapper {
             incompatibleIds = gunPart.getIncompatibles().stream().map(GunPart::getGunPartId).toList();
         }
         return ShortGunPartDto.builder()
-                .gunPartId(gunPart.getGunPartId())
-                .product(gunPart.getProduct())
-                .thumbnailImage(gunPart.getThumbnailImage())
+                .id(gunPart.getGunPartId())
+                .name(gunPart.getProduct().getName())
+                .type(gunPart.getProduct().getType().toString())
                 .image(gunPart.getGunPartImageUrl())
+                .width(gunPart.getWidth())
+                .thumbnailImage(gunPart.getThumbnailImage())
                 .width(gunPart.getWidth())
                 .incompatibleIds(incompatibleIds)
                 .build();
