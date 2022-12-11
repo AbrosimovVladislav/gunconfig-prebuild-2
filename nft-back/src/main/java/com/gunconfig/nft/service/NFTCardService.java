@@ -35,7 +35,7 @@ public class NFTCardService {
                 .setFirstOwner(firstOwner)
                 .setBuildId(buildId)
                 .setStatus(NFTCard.Status.DRAFT)
-                .setRarity(NFTCard.Rarity.USUAL)
+                .setRarity(NFTCard.Rarity.USUAL.toString())
                 .setProducts(productService.findByIds(productIds))
                 .setRootGunId(rootGun.getProductId())
                 .setRootGunDescription(rootGun.getDescription())
@@ -53,5 +53,9 @@ public class NFTCardService {
     public NFTCard findById(Long nftCardId) {
         return nftCardRepo.findById(nftCardId)
                 .orElseThrow(() -> new RuntimeException("There is no nft card with id: " + nftCardId));
+    }
+
+    public List<NFTCard> findEightNFTsFromSameCollection(String collectionName) {
+        return nftCardRepo.findTop8ByCollection(collectionName);
     }
 }

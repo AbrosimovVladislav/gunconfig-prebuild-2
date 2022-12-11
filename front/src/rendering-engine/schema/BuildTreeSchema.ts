@@ -7,4 +7,5 @@ export interface BuildTree {
     y: number;
     width: number;
     visible?: boolean;
+    children?: BuildTree[];
 }
