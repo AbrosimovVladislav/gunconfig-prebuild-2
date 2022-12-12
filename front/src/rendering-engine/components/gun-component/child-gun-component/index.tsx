@@ -25,8 +25,8 @@ export const ChildGunComponent = ({component, ratio, parentId}: ChildGunComponen
             y={component.y}
             width={ratio !== 0 ? component?.width * ratio : component?.width}
         >
-            <RelativeChildElementPlaceholder onClick={() => setClickedGunPart(clickedGunPart)}>
-                <ImageWrapper src={component.image}/>
+            <RelativeChildElementPlaceholder >
+                <ImageWrapper src={component.image} onClick={() => setClickedGunPart(clickedGunPart)}/>
                 {(component.children ?? []).map((child) => {
                     return <ChildGunComponent key={child.id} component={child} parentId={component.id} ratio={ratio}/>;
                 })}
