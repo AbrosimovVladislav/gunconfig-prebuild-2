@@ -16,6 +16,8 @@ const GunPartList = () => {
         setClickedGunPart({
             itemId: newGunPart.id,
             //ToDo get real parent here
+            //potentially, when we calling gunParts for this list, we call it by ParentId and Type
+            //maybe in cardDto from back we can return parentId
             parentId: 1,
             type: newGunPart.type,
         });
