@@ -18,7 +18,7 @@ export const useBuildTreeStore = create<BuildTreeStore>((set) => ({
     },
 }));
 
-mountStoreDevtool("Store", useBuildTreeStore);
+mountStoreDevtool("BuildTreeStore", useBuildTreeStore);
 
 function replaceGunPartRecursively(buildTree: BuildTree, currentGunPartId: number, newGunPart: BuildTree): BuildTree {
     const newTree: BuildTree = searchForPartAndReplaceItToNew(buildTree, currentGunPartId, newGunPart);
@@ -29,18 +29,14 @@ const searchForPartAndReplaceItToNew = (buildTree, currentGunPartId, newGunPart)
     let newBuildTree = {...buildTree};
 
     let newChildren = buildTree.children?.map((child) => {
-        let resultChild;
-
+        let resultChild = child;
         if (child.id === currentGunPartId) {
             resultChild = newGunPart
             buildTree.children[0] = resultChild;
-        } else {
-            resultChild = child
         }
         searchForPartAndReplaceItToNew(child, currentGunPartId, newGunPart);
         return resultChild;
     });
-
     newBuildTree.children = newChildren;
     return newBuildTree;
 };

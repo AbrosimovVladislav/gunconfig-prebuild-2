@@ -16,4 +16,4 @@ export const useClickedGunPartStore = create<ClickedGunPartStore>((set) => ({
 }));
 
 
-mountStoreDevtool("Store", useClickedGunPartStore);
+mountStoreDevtool("ClickedGunPartStore", useClickedGunPartStore);
