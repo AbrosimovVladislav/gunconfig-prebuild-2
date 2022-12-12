@@ -1,17 +1,15 @@
-import { useMantineTheme } from "@mantine/core";
-import React, { useEffect, useState } from "react";
-import { ClickedGunPart } from "../../../pages/configurator/[base64]";
-import { BuildTree } from "../../schema/BuildTreeSchema";
+import {useMantineTheme} from "@mantine/core";
+import React, {useEffect, useState} from "react";
+import {BuildTree} from "../../schema/BuildTreeSchema";
 
 import GunComponent from "../gun-component/gun-component";
-import { Canvas, RootWrapper } from "./engine.styles";
+import {Canvas, RootWrapper} from "./engine.styles";
 
 interface EngineProps {
     data: BuildTree;
-    setClickedGunPart: (clickedGunPart: ClickedGunPart) => void;
 }
 
-export const Engine = ({ data, setClickedGunPart }: EngineProps) => {
+export const Engine = ({data}: EngineProps) => {
     const [ratio, setRatio] = useState<number | null>(null);
 
     const [componentSizes, setComponentSizes] = useState({
@@ -19,7 +17,7 @@ export const Engine = ({ data, setClickedGunPart }: EngineProps) => {
         rootGunComponent: 0,
     });
     const deviceWidth = window.innerWidth;
-    const { breakpoints } = useMantineTheme();
+    const {breakpoints} = useMantineTheme();
 
     const updateDimensions = (canvasSize, scaledSize) => {
         setRatio(scaledSize / data.width);
@@ -50,7 +48,6 @@ export const Engine = ({ data, setClickedGunPart }: EngineProps) => {
                     component={data}
                     ratio={ratio}
                     rootGunComponentWidth={componentSizes.rootGunComponent}
-                    setClickedGunPart={setClickedGunPart}
                 />
             </RootWrapper>
         </Canvas>

@@ -1,22 +1,20 @@
-import React, { useLayoutEffect } from "react";
-import { ClickedGunPart } from "../../../pages/configurator/[base64]";
-import { BuildTree } from "../../schema/BuildTreeSchema";
-import { ChildGunComponent } from "./child-gun-component";
-import { RootComponent } from "./gun-component.styles";
+import React from "react";
+import {BuildTree} from "../../schema/BuildTreeSchema";
+import {ChildGunComponent} from "./child-gun-component";
+import {RootComponent} from "./gun-component.styles";
 
 interface GunComponentProps {
     component: BuildTree;
     ratio: number;
     rootGunComponentWidth: number;
-    setClickedGunPart?: (clickedGunPart: ClickedGunPart) => void;
 }
 
-const GunComponent = ({ component, ratio, setClickedGunPart }: GunComponentProps) => {
+const GunComponent = ({component, ratio}: GunComponentProps) => {
     const isRootComponent = component.type === "GUN";
 
     return isRootComponent ? (
         <>
-            <RootComponent src={component?.image} />
+            <RootComponent src={component?.image}/>
             {ratio &&
                 component?.children?.map((gunComponent) => (
                     <ChildGunComponent
@@ -24,7 +22,6 @@ const GunComponent = ({ component, ratio, setClickedGunPart }: GunComponentProps
                         component={gunComponent}
                         parentId={component.id}
                         ratio={ratio}
-                        setClickedGunPart={setClickedGunPart}
                     />
                 ))}
         </>
@@ -34,7 +31,6 @@ const GunComponent = ({ component, ratio, setClickedGunPart }: GunComponentProps
                 component={component}
                 parentId={component.id}
                 ratio={ratio}
-                setClickedGunPart={setClickedGunPart}
             />
         )
     );
