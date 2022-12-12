@@ -20,7 +20,7 @@ public class GunPartMapper {
 
     public BuildGunPartDto toBuildTreeDto(GunPart gunPart, Long parentId) {
 
-        Pair<Integer, Integer> coordinates = coordinatesService.getCoordinatesByParentIdAndChildId(parentId, gunPart.getGunPartId());
+        Pair<Double, Double> coordinates = coordinatesService.getCoordinatesByParentIdAndChildId(parentId, gunPart.getGunPartId());
 
         BuildGunPartDto build = BuildGunPartDto.builder()
                 .id(gunPart.getGunPartId())
@@ -48,7 +48,7 @@ public class GunPartMapper {
     }
 
     public RenderingGunPartDto toRenderingDto(GunPart gunPart, Long parentId) {
-        Pair<Integer, Integer> coordinates = coordinatesService.getCoordinatesByParentIdAndChildId(parentId, gunPart.getGunPartId());
+        Pair<Double, Double> coordinates = coordinatesService.getCoordinatesByParentIdAndChildId(parentId, gunPart.getGunPartId());
         return RenderingGunPartDto.builder()
                 .gunPartId(gunPart.getGunPartId())
                 .productId(gunPart.getProduct().getProductId())
@@ -72,11 +72,13 @@ public class GunPartMapper {
             incompatibleIds = gunPart.getIncompatibles().stream().map(GunPart::getGunPartId).toList();
         }
         return ShortGunPartDto.builder()
-                .gunPartId(gunPart.getGunPartId())
-                .productId(gunPart.getProduct().getProductId())
+                .id(gunPart.getGunPartId())
                 .name(gunPart.getProduct().getName())
-                .type(gunPart.getProduct().getType())
+                .type(gunPart.getProduct().getType().toString())
+                .image(gunPart.getGunPartImageUrl())
+                .width(gunPart.getWidth())
                 .thumbnailImage(gunPart.getThumbnailImage())
+                .width(gunPart.getWidth())
                 .incompatibleIds(incompatibleIds)
                 .build();
     }

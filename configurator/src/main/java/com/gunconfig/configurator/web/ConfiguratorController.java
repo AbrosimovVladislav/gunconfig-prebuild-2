@@ -18,10 +18,12 @@ import com.gunconfig.configurator.web.mapper.GunPartMapper;
 import com.gunconfig.configurator.web.preparer.Preparer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.util.Pair;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
@@ -61,6 +63,13 @@ public class ConfiguratorController {
         List<GunPart> gunParts = gunPartService.getGunPartsByParentAndType(request);
         List<ShortGunPartDto> shortDtos = gunPartMapper.toShortDtos(gunParts);
         List<ShortGunPartDto> finalShortDtos = gunPartService.checkOnIncompatible(shortDtos, request.getCurrentBuildIds());
+        finalShortDtos = finalShortDtos.stream()
+                .map(gunPart -> {
+                    Pair<Double, Double> coords = coordinatesService.getCoordinatesByParentIdAndChildId(request.getParentId(), gunPart.getId());
+                    gunPart.setX(coords.getFirst());
+                    gunPart.setY(coords.getSecond());
+                    return gunPart;
+                }).collect(Collectors.toList());
         return finalShortDtos;
     }
 

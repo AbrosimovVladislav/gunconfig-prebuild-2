@@ -13,7 +13,7 @@ public class SetCoordinatesRequest {
 
     private Long parentId;
     private Long childId;
-    private Integer x;
-    private Integer y;
+    private Double x;
+    private Double y;
 
 }

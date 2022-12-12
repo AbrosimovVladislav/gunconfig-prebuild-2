@@ -18,8 +18,8 @@ public class CoordinatesService {
 
     //ToDo refactor to GunPartChildren
     @Transactional
-    public List<Number> setCoordinatesForParentAndChild(Long parentId, Long childId, Integer x, Integer y) {
-        Pair<Integer, Integer> existingCoordinates = getCoordinatesByParentIdAndChildId(parentId, childId);
+    public List<Number> setCoordinatesForParentAndChild(Long parentId, Long childId, Double x, Double y) {
+        Pair<Double, Double> existingCoordinates = getCoordinatesByParentIdAndChildId(parentId, childId);
         if (existingCoordinates == null) {
             coordinatesRepo.createCoordinates(parentId, childId, x, y);
             log.info("Coordinates creation successful: " + parentId + " : " + childId + " : " + x + " : " + y);
@@ -34,17 +34,17 @@ public class CoordinatesService {
     }
 
     //ToDo refactor to GunPartChildren
-    public Pair<Integer, Integer> getCoordinatesByParentIdAndChildId(Long parentId, Long childId) {
+    public Pair<Double, Double> getCoordinatesByParentIdAndChildId(Long parentId, Long childId) {
         if (parentId <= 0) {
-            return Pair.of(0, 0);
+            return Pair.of(0.0, 0.0);
         }
         Object[] coordinatesByParentAndChildIds = coordinatesRepo.findCoordinatesByParentAndChildIds(parentId, childId);
         if (coordinatesByParentAndChildIds == null || coordinatesByParentAndChildIds.length == 0) {
             return null;
         }
         Object[] dbResponse = (Object[]) coordinatesByParentAndChildIds[0];
-        Integer x = (Integer) dbResponse[0];
-        Integer y = (Integer) dbResponse[1];
+        Double x = (Double) dbResponse[0];
+        Double y = (Double) dbResponse[1];
         return Pair.of(x, y);
     }
 

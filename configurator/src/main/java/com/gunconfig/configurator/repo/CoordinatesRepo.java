@@ -21,8 +21,8 @@ public interface CoordinatesRepo extends CrudRepository<GunPartChildren, Long> {
     @Modifying
     void createCoordinates(@Param("parentId") Long parentId,
                            @Param("childId") Long childId,
-                           @Param("x") Integer x,
-                           @Param("y") Integer y);
+                           @Param("x") Double x,
+                           @Param("y") Double y);
 
     @Query(
             value = "UPDATE gun_part_children SET x=:x, y=:y WHERE (parent_id=:parentId AND children_id=:childId)",
@@ -30,6 +30,6 @@ public interface CoordinatesRepo extends CrudRepository<GunPartChildren, Long> {
     @Modifying
     void updateCoordinates(@Param("parentId") Long parentId,
                            @Param("childId") Long childId,
-                           @Param("x") Integer x,
-                           @Param("y") Integer y);
+                           @Param("x") Double x,
+                           @Param("y") Double y);
 }

@@ -17,8 +17,8 @@ public class BuildGunPartDto {
     private String brand;
     private String type;
 
-    private Integer x;
-    private Integer y;
+    private Double x;
+    private Double y;
 
     private String thumbnailImage;
     private String image;
