@@ -25,8 +25,8 @@ public class GunPartChildren {
     @MapsId("childId")
     private GunPart children;
 
-    private Integer x;
-    private Integer y;
+    private Double x;
+    private Double y;
 }
 
 @Getter

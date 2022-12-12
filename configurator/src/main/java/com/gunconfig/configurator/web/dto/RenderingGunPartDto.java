@@ -12,8 +12,8 @@ public class RenderingGunPartDto {
     private String productName;
     private String productType;
     private String gunPartImageUrl;
-    private Integer x;
-    private Integer y;
+    private Double x;
+    private Double y;
     private Integer width;
 
 }

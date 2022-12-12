@@ -16,8 +16,8 @@ public class ShortGunPartDto {
     private String image;
     private Integer width;
 
-    private Integer x;
-    private Integer y;
+    private Double x;
+    private Double y;
 
     private String thumbnailImage;
     private boolean incompatible;

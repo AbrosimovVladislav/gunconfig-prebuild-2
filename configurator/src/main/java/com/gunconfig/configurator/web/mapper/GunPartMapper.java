@@ -20,7 +20,7 @@ public class GunPartMapper {
 
     public BuildGunPartDto toBuildTreeDto(GunPart gunPart, Long parentId) {
 
-        Pair<Integer, Integer> coordinates = coordinatesService.getCoordinatesByParentIdAndChildId(parentId, gunPart.getGunPartId());
+        Pair<Double, Double> coordinates = coordinatesService.getCoordinatesByParentIdAndChildId(parentId, gunPart.getGunPartId());
 
         BuildGunPartDto build = BuildGunPartDto.builder()
                 .id(gunPart.getGunPartId())
@@ -48,7 +48,7 @@ public class GunPartMapper {
     }
 
     public RenderingGunPartDto toRenderingDto(GunPart gunPart, Long parentId) {
-        Pair<Integer, Integer> coordinates = coordinatesService.getCoordinatesByParentIdAndChildId(parentId, gunPart.getGunPartId());
+        Pair<Double, Double> coordinates = coordinatesService.getCoordinatesByParentIdAndChildId(parentId, gunPart.getGunPartId());
         return RenderingGunPartDto.builder()
                 .gunPartId(gunPart.getGunPartId())
                 .productId(gunPart.getProduct().getProductId())

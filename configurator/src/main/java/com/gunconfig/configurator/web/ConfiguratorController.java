@@ -65,7 +65,7 @@ public class ConfiguratorController {
         List<ShortGunPartDto> finalShortDtos = gunPartService.checkOnIncompatible(shortDtos, request.getCurrentBuildIds());
         finalShortDtos = finalShortDtos.stream()
                 .map(gunPart -> {
-                    Pair<Integer, Integer> coords = coordinatesService.getCoordinatesByParentIdAndChildId(request.getParentId(), gunPart.getId());
+                    Pair<Double, Double> coords = coordinatesService.getCoordinatesByParentIdAndChildId(request.getParentId(), gunPart.getId());
                     gunPart.setX(coords.getFirst());
                     gunPart.setY(coords.getSecond());
                     return gunPart;
