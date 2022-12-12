@@ -32,7 +32,7 @@ const SingleNFTPage = (props: SingleNFTPageProps) => {
                     <div className={classes.nftWrapper}>
                         <GCImage className={classes.nftImage} src={data.nftImageUrl} alt="gun"/>
                     </div>
-                    <NftCardInformation data={data}></NftCardInformation>
+                    <NftCardInformation data={data}/>
                 </div>
                 <GCGrid>
                     <GCGridCol sm={12} md={12}>
@@ -40,7 +40,7 @@ const SingleNFTPage = (props: SingleNFTPageProps) => {
                             What was used in this build
                         </GCText>
                         <Catalog>
-                            {data.properties.map((product: Product) => (
+                            {data?.properties.map((product: Product) => (
                                 <GunPartCard product={product} key={product.productId}/>
                             ))}
                         </Catalog>
