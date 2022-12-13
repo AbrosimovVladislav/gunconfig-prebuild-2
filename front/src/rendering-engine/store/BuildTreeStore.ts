@@ -32,6 +32,7 @@ const searchForPartAndReplaceItToNew = (buildTree, currentGunPartId, newGunPart)
         let resultChild = child;
         if (child.id === currentGunPartId) {
             resultChild = newGunPart
+            //maybe this solution is not good (bcs we can have more than one kid)
             buildTree.children[0] = resultChild;
         }
         searchForPartAndReplaceItToNew(child, currentGunPartId, newGunPart);
