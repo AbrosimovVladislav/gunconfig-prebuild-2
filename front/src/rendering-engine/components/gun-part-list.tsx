@@ -7,22 +7,9 @@ import {ClickedGunPart} from "../../pages/configurator/[base64]";
 import {BuildTree} from "../schema/BuildTreeSchema";
 
 const GunPartList = () => {
-    const {buildTree, replaceGunPart} = useBuildTreeStore();
+    const {buildIds, replaceGunPart} = useBuildTreeStore();
     const {clickedGunPart, setClickedGunPart} = useClickedGunPartStore();
-    const {data: gunParts} = useGetGunPartsByParentAndType(clickedGunPart.parentId, clickedGunPart.type, getIdsArrOfBuildTree());
-
-    function getIdsArrOfBuildTree(): string {
-        let idsArr = [];
-        getChildrenIdsRecursively(buildTree, idsArr);
-        return idsArr.toString();
-    }
-
-    function getChildrenIdsRecursively(buildTree: BuildTree, idsArr: number[]) {
-        idsArr.push(buildTree.id);
-        if (buildTree.children && buildTree.children.length > 0) {
-            buildTree.children.forEach(child => getChildrenIdsRecursively(child, idsArr));
-        }
-    }
+    const {data: gunParts} = useGetGunPartsByParentAndType(clickedGunPart.parentId, clickedGunPart.type, buildIds);
 
     function chooseGunPartFromList(oldGunPart: ClickedGunPart, newGunPart: BuildTree) {
         replaceGunPart(oldGunPart.itemId, newGunPart);
