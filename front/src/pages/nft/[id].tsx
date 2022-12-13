@@ -40,8 +40,8 @@ const SingleNFTPage = (props: SingleNFTPageProps) => {
                             What was used in this build
                         </GCText>
                         <Catalog>
-                            {data?.properties.map((product: Product) => (
-                                <GunPartCard product={product} key={product?.productId}/>
+                            {data?.properties?.map((product: Product) => (
+                                <GunPartCard product={product} key={product.productId}/>
                             ))}
                         </Catalog>
                     </GCGridCol>
