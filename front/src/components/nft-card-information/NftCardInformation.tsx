@@ -12,11 +12,11 @@ const NftCardInformation = ({data}: NftCardInformationProps) => {
 
     return (
         <div className={classes.infoContainer}>
-            <GCText h1 bold> {data.name} </GCText>
+            <GCText h1 bold> {data?.name} </GCText>
             <GCText h3 gray  className={classes.collection}>
                 Collection:
                 <GCText h3 primary bold>
-                    {data.collection}
+                    {data?.collection}
                 </GCText>
             </GCText>
 
@@ -25,7 +25,7 @@ const NftCardInformation = ({data}: NftCardInformationProps) => {
                     <IconPhoto className={classes.frameIcon}/> About the Build
                 </GCText>
                 <GCText h3 className={classes.frameText}>
-                    {data.gunDescription}
+                    {data?.gunDescription}
                 </GCText>
             </div>
 
@@ -36,19 +36,19 @@ const NftCardInformation = ({data}: NftCardInformationProps) => {
                 <GCList listStyleType="none">
                     <GCListItem className={classes.listItem}>
                         <GCText h3>Minting Price</GCText>
-                        <GCText h3 bold align="end">{data.mintingPrice}</GCText>
+                        <GCText h3 bold align="end">{data?.mintingPrice}</GCText>
                     </GCListItem>
                     <GCListItem className={classes.listItem}>
                         <GCText h3>First Owner</GCText>
-                        <GCText h3 bold  align="end">{data.firstOwner}</GCText>
+                        <GCText h3 bold  align="end">{data?.firstOwner}</GCText>
                     </GCListItem>
                     <GCListItem className={classes.listItem}>
                         <GCText h3>Rarity</GCText>
-                        <GCText h3 bold  align="end">{data.rarity}</GCText>
+                        <GCText h3 bold  align="end">{data?.rarity}</GCText>
                     </GCListItem>
                     <GCListItem className={classes.listItem}>
                         <GCText h3>Creation Date</GCText>
-                        <GCText h3 bold  align="end">{data.mintingDate}</GCText>
+                        <GCText h3 bold  align="end">{data?.mintingDate}</GCText>
                     </GCListItem>
                 </GCList>
             </div>
