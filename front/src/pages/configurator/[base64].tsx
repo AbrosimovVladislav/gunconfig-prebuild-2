@@ -33,7 +33,7 @@ const Configurator = () => {
                 sx={{
                     display: "flex",
                     justifyContent: "center",
-                    padding: "1rem",
+                    padding: "1rem 0",
                 }}
             >
                 {buildTree && <Engine data={buildTree}/>}

@@ -1,10 +1,12 @@
-import {Button, Center} from "@mantine/core";
 import React from "react";
-import {useGetGunPartsByParentAndType} from "../service/configuratorService";
-import {useBuildTreeStore} from "../store/BuildTreeStore";
-import {useClickedGunPartStore} from "../store/ClickedGunPartStore";
-import {ClickedGunPart} from "../../pages/configurator/[base64]";
-import {BuildTree} from "../schema/BuildTreeSchema";
+import { useGetGunPartsByParentAndType } from "../service/configuratorService";
+import { useBuildTreeStore } from "../store/BuildTreeStore";
+import { useClickedGunPartStore } from "../store/ClickedGunPartStore";
+import { ClickedGunPart } from "../../pages/configurator/[base64]";
+import { BuildTree } from "../schema/BuildTreeSchema";
+import GunPartCard from "../../components/gun-part-card/GunPartCard";
+import Catalog from "../../components/catalog/Catalog";
+
 
 const GunPartList = () => {
     const {buildIds, replaceGunPart} = useBuildTreeStore();
@@ -22,21 +24,32 @@ const GunPartList = () => {
         });
     }
 
+
     return (
-        <Center>
+        <Catalog>
             {gunParts?.map((part) => (
-                <Button
-                    disabled={part.incompatible}
+
+                <div
                     key={part.id}
-                    variant="subtle"
                     onClick={() => {
-                        chooseGunPartFromList(clickedGunPart, part)
+                        if (!part.incompatible) {chooseGunPartFromList(clickedGunPart, part)}
                     }}
                 >
-                    {part.name}
-                </Button>
+
+                    <GunPartCard hoverable
+                                 active={part.id == clickedGunPart.itemId}
+                                 disabled={part.incompatible}
+                                 product={{
+                                     productId: 1,
+                                     name: part.name,
+                                     productImageUrl: part.image,
+                                     description: "",
+                                     brand: "Brand",
+                                     type: part.type
+                                 }}/>
+                </div>
             ))}
-        </Center>
+        </Catalog>
     );
 };
 

@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
 
 export const Canvas = styled.div<{ width: number }>`
-    height: 550px;
+    height: ${(props) => props.width / 2}px;
     width: ${(props) => props.width}px;
-    border: 1px solid black;
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
     display: grid;
     place-items: center;
 `;
