@@ -15,10 +15,9 @@ const GunPartList = () => {
         replaceGunPart(oldGunPart.itemId, newGunPart);
         setClickedGunPart({
             itemId: newGunPart.id,
-            //ToDo get real parent here
-            //potentially, when we calling gunParts for this list, we call it by ParentId and Type
-            //maybe in cardDto from back we can return parentId
-            parentId: 1,
+            //we take parentId of clicked (existing) gun part,
+            // because we are trying to replace it, by brothers (kids of the same parent)
+            parentId: oldGunPart.parentId,
             type: newGunPart.type,
         });
     }
