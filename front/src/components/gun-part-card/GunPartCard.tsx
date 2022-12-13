@@ -13,15 +13,15 @@ const GunPartCard = ({product}: GunPartCardProps) => {
     return (
         <GCCard radius="md" className={classes.card}>
             <GCCardSection className={classes.imageSection}>
-                <GCImage height={304} src={product.productImageUrl} alt="gun" fit="contain"/>
+                <GCImage height={304} src={product?.productImageUrl} alt="gun" fit="contain"/>
             </GCCardSection>
             <GCCardSection className={classes.infoSection}>
                 <GCText h3 bold className={classes.name} lineClamp={2}>
-                    {product.name}
+                    {product?.name}
                 </GCText>
                 <GCText h3 bold className={classes.brand} lineClamp={2}>
                     <IconHexagon className={classes.brandIcon}/>
-                    {product.brand}
+                    {product?.brand}
                 </GCText>
             </GCCardSection>
         </GCCard>
