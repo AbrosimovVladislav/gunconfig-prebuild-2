@@ -40,7 +40,7 @@ const GunPartList = () => {
                                  active={part.id == clickedGunPart.itemId}
                                  disabled={part.incompatible}
                                  product={{
-                                     productId: 1,
+                                     productId: part.id,
                                      name: part.name,
                                      productImageUrl: part.image,
                                      description: "",
