@@ -5,7 +5,7 @@ import {useGetBuildTreeByBase64Code} from "../../rendering-engine/service/config
 import Link from "next/link";
 import {useEffect} from "react";
 import {useBuildTreeStore} from "../../rendering-engine/store/BuildTreeStore";
-import GunPartList from "../../rendering-engine/components/gun-part-list";
+import GunPartList from "../../rendering-engine/components/gun-part-list/gun-part-list";
 import {useClickedGunPartStore} from "../../rendering-engine/store/ClickedGunPartStore";
 
 export interface ClickedGunPart {

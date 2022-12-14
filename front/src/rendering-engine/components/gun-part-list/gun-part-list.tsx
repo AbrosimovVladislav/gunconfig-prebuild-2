@@ -1,11 +1,11 @@
 import React from "react";
-import { useGetGunPartsByParentAndType } from "../service/configuratorService";
-import { useBuildTreeStore } from "../store/BuildTreeStore";
-import { useClickedGunPartStore } from "../store/ClickedGunPartStore";
-import { ClickedGunPart } from "../../pages/configurator/[base64]";
-import { BuildTree } from "../schema/BuildTreeSchema";
-import GunPartCard from "../../components/gun-part-card/GunPartCard";
-import Catalog from "../../components/catalog/Catalog";
+import { useGetGunPartsByParentAndType } from "../../service/configuratorService";
+import { useBuildTreeStore } from "../../store/BuildTreeStore";
+import { useClickedGunPartStore } from "../../store/ClickedGunPartStore";
+import { ClickedGunPart } from "../../../pages/configurator/[base64]";
+import { BuildTree } from "../../schema/BuildTreeSchema";
+import GunPartCard from "../../../components/gun-part-card/GunPartCard";
+import Catalog from "../../../components/catalog/Catalog";
 
 
 const GunPartList = () => {
@@ -23,7 +23,6 @@ const GunPartList = () => {
             type: newGunPart.type,
         });
     }
-
 
     return (
         <Catalog>
