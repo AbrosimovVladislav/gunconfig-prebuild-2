@@ -7,6 +7,18 @@ export const useStyles = createStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "flex-start",
     boxShadow: theme.shadows.xl,
+    border: "1px solid transparent",
+  },
+
+  hoverable: {
+    ':hover': {
+      cursor: "pointer",
+      border: [`1px solid ${theme.fn.primaryColor()}`],
+    }
+  },
+
+  disabled: {
+    backgroundColor: theme.colors.neutralLight[2],
   },
 
   imageSection: {
@@ -31,7 +43,7 @@ export const useStyles = createStyles((theme) => ({
   },
 
   name: {
-    padding: [`0 0 ${theme.spacing.sm}px 0`],
+    margin: [`0 0 ${theme.spacing.sm}px 0`],
   },
 
   infoSection: {
