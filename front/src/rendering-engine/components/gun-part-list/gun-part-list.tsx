@@ -35,8 +35,7 @@ const GunPartList = () => {
                                  product={{
                                      productId: part.id,
                                      name: part.name,
-                                     productImageUrl: part.image,
-                                     description: "",
+                                     productImageUrl: part.thumbnailImage,
                                      brand: part.brand,
                                      type: part.type
                                  }}/>
