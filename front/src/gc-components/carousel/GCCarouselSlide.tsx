@@ -7,7 +7,7 @@ interface GCCarouselSlideProps extends CarouselProps {
 
 export const GCCarouselSlide = ({children, ...props}: GCCarouselSlideProps) => {
     return (
-        <Carousel.Slide>
+        <Carousel.Slide {...props}>
             {children}
         </Carousel.Slide>
     );

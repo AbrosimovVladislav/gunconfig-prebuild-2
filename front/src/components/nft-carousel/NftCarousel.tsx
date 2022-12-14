@@ -1,6 +1,6 @@
 import { NFTCard } from "../../schema/NFTCatalogSchema";
 import { useStyles } from "./NftCarouselStyles";
-import {GCCarousel} from "../../gc-components/GCCarousel";
+import {GCCarousel} from "../../gc-components/carousel/GCCarousel";
 
 interface NftCarouselProps {
   data: NFTCard;

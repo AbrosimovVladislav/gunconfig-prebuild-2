@@ -53,7 +53,7 @@ export const useStyles = createStyles((theme) => ({
   },
 
   carousel: {
-      marginTop: "200px"
+    margin: [`${theme.spacing.xl}px 0`],
   },
 
 }));

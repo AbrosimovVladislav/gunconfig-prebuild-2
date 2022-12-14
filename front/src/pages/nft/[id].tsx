@@ -10,8 +10,8 @@ import Catalog from "../../components/catalog/Catalog";
 import {NFTCard, Product} from "../../schema/NFTCatalogSchema";
 import GunPartCard from "../../components/gun-part-card/GunPartCard";
 import NFTMicroCard from "../../components/nft-micro-card/NFTMicroCard";
-import {GCCarousel} from "../../gc-components/GCCarousel";
-import {GCCarouselSlide} from "../../gc-components/GCCarouselSlide";
+import {GCCarousel} from "../../gc-components/carousel/GCCarousel";
+import {GCCarouselSlide} from "../../gc-components/carousel/GCCarouselSlide";
 
 type SingleNFTPageProps = {};
 
@@ -56,7 +56,7 @@ const SingleNFTPage = (props: SingleNFTPageProps) => {
                             <NFTMicroCard item={nft}/>
                         </GCCarouselSlide>
                     ))}
-                </GCCarousel>;
+                </GCCarousel>
             </>
         );
     }
