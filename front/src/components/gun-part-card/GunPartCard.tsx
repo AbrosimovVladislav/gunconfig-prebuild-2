@@ -1,10 +1,10 @@
-import { Product } from "../../schema/NFTCatalogSchema";
-import { useStyles } from "./GunPartCardStyles";
-import { GCCard, GCCardSection, GCImage, GCText } from "../../gc-components";
-import { IconHexagon } from "@tabler/icons";
-import { GCIconButton } from "../../gc-components/icon/GCIconButton";
-import { useHover } from "@mantine/hooks";
-import React from "react";
+import {Product} from "../../schema/NFTCatalogSchema";
+import {useStyles} from "./GunPartCardStyles";
+import {GCCard, GCCardSection, GCImage, GCText} from "../../gc-components";
+import {IconHexagon} from "@tabler/icons";
+import {GCIconButton} from "../../gc-components/icon/GCIconButton";
+import {useHover} from "@mantine/hooks";
+import React, {ReactNode} from "react";
 
 interface GunPartCardProps {
     product: Product;
@@ -17,15 +17,19 @@ const GunPartCard = ({product, hoverable, active, disabled}: GunPartCardProps) =
     const {classes} = useStyles();
     const {hovered, ref} = useHover();
 
+    const iconButton = (active: boolean, hovered: boolean): ReactNode => {
+        return active && hovered ? <GCIconButton top left primary icon={"close"}/> :
+            active ? <GCIconButton top left primary icon={"confirm"}/> :
+                <></>
+    }
+
     return (
         <div ref={ref}>
             <GCCard radius="md"
                     className={`${classes.card} 
                     ${hoverable && !disabled ? classes.hoverable : ""} 
                     ${disabled ? classes.disabled : ""}`}>
-                {active && hovered ? <GCIconButton top left primary icon={"close"}/> :
-                    active ? <GCIconButton top left primary icon={"confirm"}/> :
-                        <></>}
+                {iconButton(active, hovered)}
                 <GCCardSection className={classes.imageSection}>
                     <GCImage height={304} src={product?.productImageUrl} alt="" fit="contain"/>
                 </GCCardSection>
