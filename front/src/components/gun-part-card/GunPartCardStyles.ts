@@ -5,11 +5,29 @@ export const useStyles = createStyles((theme) => ({
     height: "100%",
     display: "flex",
     flexDirection: "column",
-    justifyContent: "flex-end",
+    justifyContent: "flex-start",
+    boxShadow: theme.shadows.xl,
+    border: "1px solid transparent",
+  },
+
+  hoverable: {
+    ':hover': {
+      cursor: "pointer",
+      border: [`1px solid ${theme.fn.primaryColor()}`],
+    }
+  },
+
+  disabled: {
+    backgroundColor: theme.colors.neutralLight[2],
   },
 
   imageSection: {
-    padding: theme.spacing.sm,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    marginLeft: "auto",
+    marginRight: "auto",
   },
 
   brand: {
@@ -17,17 +35,15 @@ export const useStyles = createStyles((theme) => ({
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
-    fontSize: theme.fontSizes.md,
-    lineHeight: 2,
   },
 
   brandIcon: {
-    margin: [`0 ${theme.spacing.sm}px 0 0`],
+    margin: [`0 ${theme.spacing.xs}px 0 0`],
+    fill: theme.colors.neutral[2],
   },
 
   name: {
-    padding: [`0 0 ${theme.spacing.sm}px 0`],
-    fontSize: theme.fontSizes.md,
+    margin: [`0 0 ${theme.spacing.sm}px 0`],
   },
 
   infoSection: {

@@ -3,9 +3,17 @@ export interface BuildTree {
     name: string;
     image: string;
     type: string;
+
     x: number;
     y: number;
     width: number;
-    visible?: boolean;
+
+    brand: string;
+    description: string;
+    thumbnailImage: string;
+
+    incompatible: boolean
+    incompatibleIds: number[]
+
     children?: BuildTree[];
 }

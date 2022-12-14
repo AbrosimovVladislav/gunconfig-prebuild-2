@@ -8,6 +8,7 @@ export const useStyles = createStyles((theme) => ({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        backgroundColor: theme.colors.neutralLight[4],
     },
     buttonPrimary: {
         backgroundColor: theme.fn.primaryColor()
@@ -28,26 +29,32 @@ export const useStyles = createStyles((theme) => ({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        padding: theme.spacing.md,
+        margin: theme.spacing.md,
+        position: "absolute",
+        zIndex: 10,
     },
     top: {
-        paddingTop: theme.spacing.md,
         display: "flex",
-        alignItems: "flex-start"
+        alignItems: "flex-start",
+        position: "absolute",
+        zIndex: 10,
     },
     bottom: {
-        paddingBottom: theme.spacing.md,
         display: "flex",
-        alignItems: "flex-end"
+        alignItems: "flex-end",
+        position: "absolute",
+        zIndex: 10,
     },
     left: {
-        paddingLeft: theme.spacing.md,
         display: "flex",
-        justifyContent: "flex-start"
+        justifyContent: "flex-start",
+        position: "absolute",
+        zIndex: 10,
     },
     right: {
-        paddingRight: theme.spacing.md,
         display: "flex",
-        justifyContent: "flex-end"
+        justifyContent: "flex-end",
+        position: "absolute",
+        zIndex: 10,
     }
 }))

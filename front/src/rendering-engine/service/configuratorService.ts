@@ -1,4 +1,4 @@
-import { isError, useQuery } from "react-query";
+import { useQuery } from "react-query";
 import { getConfiguratorBack } from "../../services/restClient";
 import { BUILD_TREE_POSTFIX, CONFIGURATOR_POSTFIX } from "../../consts/back-paths";
 import { BuildTree } from "../schema/BuildTreeSchema";
@@ -24,16 +24,17 @@ export function useGetGunPartsByParentAndType(
         (): Promise<BuildTree[]> =>
             getConfiguratorBack(
                 CONFIGURATOR_POSTFIX +
-                    "/gunpart?parentId=" +
-                    parentId +
-                    "&typeOfProduct=" +
-                    typeOfProduct +
-                    "&currentBuildIds=" +
-                    currentBuildIds
+                "/gunpart?parentId=" +
+                parentId +
+                "&typeOfProduct=" +
+                typeOfProduct +
+                "&currentBuildIds=" +
+                currentBuildIds
             ),
         {
+            enabled: !!currentBuildIds,
             refetchOnWindowFocus: false,
-        }
+        },
     );
     return { data, isLoading, isError, isSuccess };
 }

@@ -28,14 +28,12 @@ export const Engine = ({data}: EngineProps) => {
     };
 
     useEffect(() => {
-        let width = 0;
+        let width;
 
-        if (deviceWidth > breakpoints.lg) {
-            width = 1000;
-        } else if (deviceWidth > breakpoints.md) {
-            width = 600;
-        } else {
-            width = 300;
+        if (deviceWidth > breakpoints.xl) {
+            width = 1400;
+        } else  {
+            width = deviceWidth;
         }
 
         updateDimensions(width, width * 0.6);

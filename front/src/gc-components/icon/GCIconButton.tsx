@@ -1,11 +1,13 @@
 import {
     IconCheck,
     IconChevronLeft,
-    IconChevronRight, IconCircleMinus, IconCirclePlus,
-    IconCross,
+    IconChevronRight,
+    IconCircleMinus,
+    IconCirclePlus,
     IconPhoto,
     IconReload,
-    IconUpload
+    IconUpload,
+    IconX
 } from "@tabler/icons";
 import { useMantineTheme } from "@mantine/core";
 import { MouseEventHandler, ReactNode } from "react";
@@ -39,7 +41,7 @@ export const GCIconButton = ({icon, sm, lg, top, bottom, left, right, primary, p
             iconImage = <IconChevronLeft size={size} color={color}/>;
             break;
         case "close":
-            iconImage = <IconCross size={size} color={color}/>;
+            iconImage = <IconX size={size} color={color}/>;
             break;
         case "confirm":
             iconImage = <IconCheck size={size} color={color}/>;
