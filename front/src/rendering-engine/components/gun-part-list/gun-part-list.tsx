@@ -27,14 +27,8 @@ const GunPartList = () => {
     return (
         <Catalog>
             {gunParts?.map((part) => (
-
-                <div
-                    key={part.id}
-                    onClick={() => {
-                        if (!part.incompatible) {chooseGunPartFromList(clickedGunPart, part)}
-                    }}
-                >
-
+                <div key={part.id}
+                     onClick={() => !part.incompatible && chooseGunPartFromList(clickedGunPart, part)}>
                     <GunPartCard hoverable
                                  active={part.id == clickedGunPart.itemId}
                                  disabled={part.incompatible}
@@ -43,7 +37,7 @@ const GunPartList = () => {
                                      name: part.name,
                                      productImageUrl: part.image,
                                      description: "",
-                                     brand: "Brand",
+                                     brand: part.brand,
                                      type: part.type
                                  }}/>
                 </div>
