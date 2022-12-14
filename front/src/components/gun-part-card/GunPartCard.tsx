@@ -11,9 +11,10 @@ interface GunPartCardProps {
     hoverable?: boolean;
     active?: boolean;
     disabled?: boolean;
+    sm?: boolean;
 }
 
-const GunPartCard = ({product, hoverable, active, disabled}: GunPartCardProps) => {
+const GunPartCard = ({product, hoverable, active, disabled, sm}: GunPartCardProps) => {
     const {classes} = useStyles();
     const {hovered, ref} = useHover();
 
@@ -31,13 +32,13 @@ const GunPartCard = ({product, hoverable, active, disabled}: GunPartCardProps) =
                     ${disabled ? classes.disabled : ""}`}>
                 {iconButton(active, hovered)}
                 <GCCardSection className={classes.imageSection}>
-                    <GCImage height={304} src={product?.productImageUrl} alt="" fit="contain"/>
+                    <GCImage height={sm ? 180 : 304} src={product?.productImageUrl} alt="" fit="contain"/>
                 </GCCardSection>
                 <GCCardSection className={classes.infoSection}>
-                    <GCText h3 bold className={classes.name} lineClamp={1}>
+                    <GCText h3={!sm} bold className={classes.name} lineClamp={1}>
                         {product?.name}
                     </GCText>
-                    <GCText h3 bold className={classes.brand} lineClamp={1}>
+                    <GCText h3={!sm} bold className={classes.brand} lineClamp={1}>
                         <IconHexagon className={classes.brandIcon}/>
                         {product?.brand}
                     </GCText>

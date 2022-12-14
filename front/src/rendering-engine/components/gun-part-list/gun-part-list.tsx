@@ -32,11 +32,12 @@ const GunPartList = () => {
                     <GunPartCard hoverable
                                  active={part.id == clickedGunPart.itemId}
                                  disabled={part.incompatible}
+                                 sm
                                  product={{
                                      productId: part.id,
                                      name: part.name,
-                                     productImageUrl: part.thumbnailImage,
-                                     brand: part.brand,
+                                     productImageUrl: part.image,
+                                     brand: "Brand",
                                      type: part.type
                                  }}/>
                 </div>
