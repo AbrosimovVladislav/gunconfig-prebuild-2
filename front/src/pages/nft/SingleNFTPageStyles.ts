@@ -51,4 +51,9 @@ export const useStyles = createStyles((theme) => ({
   catalogHeader: {
     margin: [`${theme.spacing.xl}px 0`],
   },
+
+  carousel: {
+      marginTop: "200px"
+  },
+
 }));

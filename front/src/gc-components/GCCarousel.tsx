@@ -5,10 +5,10 @@ interface GCCarouselProps extends CarouselProps {
   children: ReactNode;
 }
 
-export const GCAccordion = ({children, ...props}: GCCarouselProps) => {
+export const GCCarousel = ({children, ...props}: GCCarouselProps) => {
   return (
-    <Carousel>
-      {children}
+    <Carousel slideSize="25%" slideGap="xl" align="start" >
+        {children}
     </Carousel>
   );
 };

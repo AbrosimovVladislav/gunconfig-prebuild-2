@@ -7,8 +7,11 @@ import {GCGridCol} from "../../gc-components/GCGridCol";
 import {useStyles} from "./SingleNFTPageStyles";
 import NftCardInformation from "../../components/nft-card-information/NftCardInformation";
 import Catalog from "../../components/catalog/Catalog";
-import {Product} from "../../schema/NFTCatalogSchema";
+import {NFTCard, Product} from "../../schema/NFTCatalogSchema";
 import GunPartCard from "../../components/gun-part-card/GunPartCard";
+import NFTMicroCard from "../../components/nft-micro-card/NFTMicroCard";
+import {GCCarousel} from "../../gc-components/GCCarousel";
+import {GCCarouselSlide} from "../../gc-components/GCCarouselSlide";
 
 type SingleNFTPageProps = {};
 
@@ -47,6 +50,13 @@ const SingleNFTPage = (props: SingleNFTPageProps) => {
                         </Catalog>
                     </GCGridCol>
                 </GCGrid>
+                <GCCarousel className={classes.carousel}>
+                    {collectionNFTs?.map((nft: NFTCard) => (
+                        <GCCarouselSlide key={nft.nftCardId}>
+                            <NFTMicroCard item={nft}/>
+                        </GCCarouselSlide>
+                    ))}
+                </GCCarousel>;
             </>
         );
     }
