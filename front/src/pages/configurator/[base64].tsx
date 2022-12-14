@@ -30,6 +30,7 @@ const Configurator = () => {
     return (
         <>
             <Box
+                //ToDo move styles from here to styles file
                 sx={{
                     display: "flex",
                     justifyContent: "center",
