@@ -36,7 +36,7 @@ export const Engine = ({data}: EngineProps) => {
             width = deviceWidth;
         }
 
-        updateDimensions(width, width * 0.6);
+        updateDimensions(width, width * 0.4);
     }, []);
 
     return (
