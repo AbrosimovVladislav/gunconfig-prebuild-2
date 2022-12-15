@@ -36,7 +36,7 @@ const GunPartCard = ({product, hoverable, active, disabled, sm}: GunPartCardProp
                 </GCCardSection>
                 <GCCardSection className={classes.infoSection}>
                     <GCText h3={!sm} bold className={classes.name} lineClamp={1}>
-                        {product?.name} {product?.productId}
+                        {product?.productId} {product?.name}
                     </GCText>
                     <GCText h3={!sm} bold className={classes.brand} lineClamp={1}>
                         <IconHexagon className={classes.brandIcon}/>
