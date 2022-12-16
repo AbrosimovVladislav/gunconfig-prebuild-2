@@ -38,12 +38,15 @@ const Configurator = () => {
         setIsShareLinkModalOpened(true)
     }
 
-    function onCopyLinkClick(copy) {
+    function onCopyLinkClick(copied, copy) {
+        console.log(copied)
         copy();
         setTimeout(() => {
             setIsShareLinkModalOpened(false);
         }, 750)
     }
+
+    // onClick={() => onCopyLinkClick(copied, copy)
 
     return (
         <>
@@ -72,7 +75,7 @@ const Configurator = () => {
                     <Center>
                         <CopyButton value={currentBuildUrl}>
                             {({copied, copy}) => (
-                                <Button color={copied ? 'teal' : 'blue'} onClick={() => onCopyLinkClick(copy)}>
+                                <Button color={copied ? 'teal' : 'blue'} onClick={copy}>
                                     {copied ? 'Copied url' : 'Copy url'}
                                 </Button>
                             )}
