@@ -46,8 +46,6 @@ const Configurator = () => {
         }, 750)
     }
 
-    // onClick={() => onCopyLinkClick(copied, copy)
-
     return (
         <>
             <Box
@@ -75,13 +73,21 @@ const Configurator = () => {
                     <Center>
                         <CopyButton value={currentBuildUrl}>
                             {({copied, copy}) => (
-                                <Button color={copied ? 'teal' : 'blue'} onClick={copy}>
+                                <Button color={copied ? 'teal' : 'blue'} onClick={() => onCopyLinkClick(copied, copy)}>
                                     {copied ? 'Copied url' : 'Copy url'}
                                 </Button>
                             )}
                         </CopyButton>
                     </Center>
                 </Modal>
+
+                <CopyButton value="https://mantine.dev">
+                    {({ copied, copy }) => (
+                        <Button color={copied ? 'teal' : 'blue'} onClick={copy}>
+                            {copied ? 'Copied url' : 'Copy url'}
+                        </Button>
+                    )}
+                </CopyButton>
 
                 <Group position="center">
                     <Button onClick={() => onShareYourBuildClick()}>Share My Build</Button>
