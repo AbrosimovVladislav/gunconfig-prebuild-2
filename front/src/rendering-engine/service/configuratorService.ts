@@ -1,7 +1,13 @@
 import { useQuery } from "react-query";
 import { getConfiguratorBack } from "../../services/restClient";
 import { BUILD_TREE_POSTFIX, CONFIGURATOR_POSTFIX } from "../../consts/back-paths";
-import { BuildTree } from "../schema/BuildTreeSchema";
+import { BuildTree, IdsBuildTree } from "../schema/BuildTreeSchema";
+
+export function getBuildLinkFromBuildTree(buildTree:BuildTree): string{
+    let idsTree : IdsBuildTree;
+
+
+}
 
 export function useGetBuildTreeByBase64Code(treeBase64Code: String): [BuildTree, boolean, boolean, boolean] {
     const { data, isLoading, isError, isSuccess } = useQuery(

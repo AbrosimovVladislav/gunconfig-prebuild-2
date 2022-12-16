@@ -17,3 +17,8 @@ export interface BuildTree {
 
     children?: BuildTree[];
 }
+
+export interface IdsBuildTree {
+    id: number;
+    children: IdsBuildTree[]
+}
