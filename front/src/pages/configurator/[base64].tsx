@@ -55,6 +55,7 @@ const Configurator = () => {
         setCopied(true);
         setTimeout(() => {
             setIsShareLinkModalOpened(false);
+            setCopied(false)
         }, 750)
     }
 
