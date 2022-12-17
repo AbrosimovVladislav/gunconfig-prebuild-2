@@ -5,6 +5,7 @@ import {
     getBuildLinkFromBuildTree,
     useGetBuildTreeByBase64Code
 } from "../../rendering-engine/service/configuratorService";
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {useEffect, useState} from "react";
 import {useBuildTreeStore} from "../../rendering-engine/store/BuildTreeStore";
 import GunPartList from "../../rendering-engine/components/gun-part-list/gun-part-list";
@@ -26,7 +27,7 @@ const Configurator = () => {
     const {buildTree, setBuildTree} = useBuildTreeStore();
     const [currentBuildUrl, setCurrentBuildUrl] = useState("");
     const [isShareLinkModalOpened, setIsShareLinkModalOpened] = useState(false);
-    const [copied, setCopied] = useState(false);
+    const [copy, setCopy] = useState({value: '', isCopied: false});
 
     const {clickedGunPart} = useClickedGunPartStore();
 
@@ -41,21 +42,11 @@ const Configurator = () => {
         setIsShareLinkModalOpened(true)
     }
 
-
-    async function copyTextToClipboard(text) {
-        if ('clipboard' in navigator) {
-            return await navigator.clipboard.writeText(text);
-        } else {
-            return document.execCommand('copy', true, text);
-        }
-    }
-
-    async function onCopyLinkClick(textToCopy: string) {
-        await copyTextToClipboard(textToCopy);
-        setCopied(true);
+    function onCopyLinkClick(textToCopy: string) {
+        setCopy({value: textToCopy, isCopied: true});
         setTimeout(() => {
             setIsShareLinkModalOpened(false);
-            setCopied(false)
+            setCopy({value: '', isCopied: false})
         }, 750)
     }
 
@@ -83,12 +74,12 @@ const Configurator = () => {
                         {currentBuildUrl}
                     </GCText>
                     <Center>
-                        <Button color={copied ? 'teal' : 'blue'}
-                                onClick={async () => {
-                                    await onCopyLinkClick(currentBuildUrl)
-                                }}>
-                            {copied ? 'Copied url' : 'Copy url'}
-                        </Button>
+                        <CopyToClipboard text={currentBuildUrl} onCopy={() => onCopyLinkClick(currentBuildUrl)}>
+                            <Button color={copy.isCopied ? 'teal' : 'blue'}>
+                                {copy.isCopied ? 'Copied url' : 'Copy url'}
+                            </Button>
+                        </CopyToClipboard>
+
                     </Center>
                 </Modal>
 
