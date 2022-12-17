@@ -26,10 +26,10 @@ const Configurator = () => {
     const {buildTree, setBuildTree} = useBuildTreeStore();
     const [currentBuildUrl, setCurrentBuildUrl] = useState("");
     const [isShareLinkModalOpened, setIsShareLinkModalOpened] = useState(false);
+    const [copied, setCopied] = useState(false);
 
     const {clickedGunPart} = useClickedGunPartStore();
 
-    const clipboard = useClipboard({ timeout: 500 });
 
     useEffect(() => {
         setBuildTree(data);
@@ -41,9 +41,9 @@ const Configurator = () => {
         setIsShareLinkModalOpened(true)
     }
 
-    function onCopyLinkClick(copied, copy) {
-        console.log(copied)
-        copy();
+    function onCopyLinkClick(textToCopy: string) {
+        navigator.clipboard.writeText(textToCopy);
+        setCopied(true);
         setTimeout(() => {
             setIsShareLinkModalOpened(false);
         }, 750)
@@ -68,28 +68,19 @@ const Configurator = () => {
                 <Modal
                     opened={isShareLinkModalOpened}
                     onClose={() => setIsShareLinkModalOpened(false)}
-                    title="Link to your build"
-                >
+                    title="Link to your build">
                     <GCText>
                         {currentBuildUrl}
                     </GCText>
                     <Center>
-                        <CopyButton value={currentBuildUrl}>
-                            {({copied, copy}) => (
-                                <Button color={copied ? 'teal' : 'blue'} onClick={() => onCopyLinkClick(copied, copy)}>
-                                    {copied ? 'Copied url' : 'Copy url'}
-                                </Button>
-                            )}
-                        </CopyButton>
+                        <Button color={copied ? 'teal' : 'blue'}
+                                onClick={() => {
+                                    onCopyLinkClick(currentBuildUrl)
+                                }}>
+                            {copied ? 'Copied url' : 'Copy url'}
+                        </Button>
                     </Center>
                 </Modal>
-
-                <Button
-                    color={clipboard.copied ? 'teal' : 'blue'}
-                    onClick={() => clipboard.copy('Hello, world!')}
-                >
-                    {clipboard.copied ? 'Copied' : 'Copy'}
-                </Button>
 
                 <Group position="center">
                     <Button onClick={() => onShareYourBuildClick()}>Share My Build</Button>
