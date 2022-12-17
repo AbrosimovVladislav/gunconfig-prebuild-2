@@ -10,6 +10,7 @@ import {useBuildTreeStore} from "../../rendering-engine/store/BuildTreeStore";
 import GunPartList from "../../rendering-engine/components/gun-part-list/gun-part-list";
 import {useClickedGunPartStore} from "../../rendering-engine/store/ClickedGunPartStore";
 import {GCText} from "../../gc-components";
+import {useClipboard} from "@mantine/hooks";
 
 export interface ClickedGunPart {
     itemId: number;
@@ -27,6 +28,8 @@ const Configurator = () => {
     const [isShareLinkModalOpened, setIsShareLinkModalOpened] = useState(false);
 
     const {clickedGunPart} = useClickedGunPartStore();
+
+    const clipboard = useClipboard({ timeout: 500 });
 
     useEffect(() => {
         setBuildTree(data);
@@ -81,13 +84,12 @@ const Configurator = () => {
                     </Center>
                 </Modal>
 
-                <CopyButton value="https://mantine.dev">
-                    {({ copied, copy }) => (
-                        <Button color={copied ? 'teal' : 'blue'} onClick={copy}>
-                            {copied ? 'Copied url' : 'Copy url'}
-                        </Button>
-                    )}
-                </CopyButton>
+                <Button
+                    color={clipboard.copied ? 'teal' : 'blue'}
+                    onClick={() => clipboard.copy('Hello, world!')}
+                >
+                    {clipboard.copied ? 'Copied' : 'Copy'}
+                </Button>
 
                 <Group position="center">
                     <Button onClick={() => onShareYourBuildClick()}>Share My Build</Button>
