@@ -41,8 +41,17 @@ const Configurator = () => {
         setIsShareLinkModalOpened(true)
     }
 
-    function onCopyLinkClick(textToCopy: string) {
-        navigator.clipboard.writeText(textToCopy);
+
+    async function copyTextToClipboard(text) {
+        if ('clipboard' in navigator) {
+            return await navigator.clipboard.writeText(text);
+        } else {
+            return document.execCommand('copy', true, text);
+        }
+    }
+
+    async function onCopyLinkClick(textToCopy: string) {
+        await copyTextToClipboard(textToCopy);
         setCopied(true);
         setTimeout(() => {
             setIsShareLinkModalOpened(false);
@@ -74,8 +83,8 @@ const Configurator = () => {
                     </GCText>
                     <Center>
                         <Button color={copied ? 'teal' : 'blue'}
-                                onClick={() => {
-                                    onCopyLinkClick(currentBuildUrl)
+                                onClick={async () => {
+                                    await onCopyLinkClick(currentBuildUrl)
                                 }}>
                             {copied ? 'Copied url' : 'Copy url'}
                         </Button>
