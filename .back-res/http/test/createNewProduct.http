@@ -1,28 +1,37 @@
 #### Create new Product
-#POST http://178.128.203.194:8081/api/v1/product
-#Content-Type: application/json
-#
-#{
-#  "name": "MOE+ Fde Pistol Grip AR",
-#  "brand": "Magpul",
-#  "type": "PISTOL_GRIP",
-#  "productImageUrl": "https://line-f.ru/i/part/1_VjqeULE.png",
-#  "description": "The MOE+ Grip combines reinforced polymer body construction with comfortable, wrap-around rubber overmolding for maximum weapon control in adverse environments."
-#}
+//HANDGUAR - Magpul +++
+//HANDGUAR - Fab-Defence ---
+
+//MAGAZINE - Magpul +++
+//MAGAZINE - Fab-Defence +++
+
+//TRIGGER_GUARD - Magpul +++
+//TRIGGER_GUARD - Fab-Defence ---
+
+//PISTOL_GRIP - Fab-Defence +++
+//PISTOL_GRIP - Magpul +++
+
+//STOCK_TUBE - Fab-Defence ---
+//STOCK_TUBE - Magpul +++
+
+//STOCK_TUBE - Fab-Defence (NOT YET)
+//STOCK - Magpul (IN PROCESS 1/16)
 
 ### Create new GunPart on base of new Product
+#3 42 43
+#"name": "Magpul MOE CS Mil-Spec (ODG)",
 POST http://178.128.203.194:8081/api/v1/configurator/gunpart
 Content-Type: application/json
 
 {
-  "name": "ADC AR15 Tactical",
-  "brand": "ADC",
-  "type": "MUZZLE_BREAK",
-  "productImageUrl": "https://line-f.ru//i/part/1_o84NBk5.png",
-  "description": "ADC AR15 Tactical",
-  "width": 269,
-  "thumbnailImage": "https://line-f.ru//i/part/1_o84NBk5.png",
-  "gunPartImageUrl": "https://line-f.ru//i/part/1_o84NBk5.png"
+  "name": "Magpul MIAD GEN 1.1 AR (BLK)",
+  "brand": "Magpul",
+  "type": "PISTOL_GRIP",
+  "width": 426,
+  "productImageUrl": "https://line-f.ru/i/part/1_PbCUD9I.png",
+  "thumbnailImage": "https://line-f.ru/i/part/1_PbCUD9I.png",
+  "gunPartImageUrl": "https://line-f.ru/i/part/1_PbCUD9I.png",
+  "description": "desc"
 }
 
 ### Create new coordinates or update existing
@@ -31,7 +40,8 @@ Content-Type: application/json
 
 {
   "parentId": 1,
-  "childId": 24,
-  "x": 580,
-  "y": 19
+  "childId": 89,
+  "x": 100,
+  "y": 100
 }
+
