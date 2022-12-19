@@ -1,27 +1,39 @@
 import { Carousel, CarouselProps } from "@mantine/carousel";
 import React, { ReactNode } from "react";
 import { useStyles } from "./GCCarouselStyles";
+import { useMantineTheme } from "@mantine/core";
+import { GCIconButton } from "../icon/GCIconButton";
 
 interface GCCarouselProps extends CarouselProps {
-  children: ReactNode;
+  children: ReactNode[];
 }
 
 export const GCCarousel = ({ children, ...props }: GCCarouselProps) => {
   const { classes } = useStyles();
+  const theme = useMantineTheme();
+
   return (
     <Carousel
         slideSize="25%"
         align="start"
+        loop
+        slidesToScroll={1}
         slideGap="xl"
         breakpoints={[
-            { maxWidth: "sm", slideSize: "100%" },
-            { maxWidth: "md", slideSize: "50%" },
-            { maxWidth: "xl", slideSize: "33%" },
+            { maxWidth: theme.breakpoints.sm, slideSize: "100%" },
+            { maxWidth: theme.breakpoints.md, slideSize: "50%" },
+            { maxWidth: theme.breakpoints.xl, slideSize: "33%" },
         ]}
-        className={classes.carousel}
+        classNames={classes}
+        previousControlIcon={ <GCIconButton primary icon="arrow-previous"/> }
+        nextControlIcon={ <GCIconButton  primary icon="arrow-next"/> }
       {...props}
     >
-      {children}
+            {children?.map((child) => (
+                <Carousel.Slide>
+                    {child}
+                </Carousel.Slide>
+            ))}
     </Carousel>
   );
 };

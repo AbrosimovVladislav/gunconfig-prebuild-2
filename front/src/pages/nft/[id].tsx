@@ -7,11 +7,10 @@ import {GCGridCol} from "../../gc-components/GCGridCol";
 import {useStyles} from "./SingleNFTPageStyles";
 import NftCardInformation from "../../components/nft-card-information/NftCardInformation";
 import Catalog from "../../components/catalog/Catalog";
-import {NFTCard, Product} from "../../schema/NFTCatalogSchema";
+import { Product } from "../../schema/NFTCatalogSchema";
 import GunPartCard from "../../components/gun-part-card/GunPartCard";
 import NFTMicroCard from "../../components/nft-micro-card/NFTMicroCard";
-import {GCCarousel} from "../../gc-components/carousel/GCCarousel";
-import {GCCarouselSlide} from "../../gc-components/carousel/GCCarouselSlide";
+import { GCCarousel } from "../../gc-components/carousel/GCCarousel";
 
 type SingleNFTPageProps = {};
 
@@ -36,7 +35,7 @@ const SingleNFTPage = (props: SingleNFTPageProps) => {
                     <div className={classes.nftWrapper}>
                         <GCImage className={classes.nftImage} src={nftInfo?.nftImageUrl} alt="gun"/>
                     </div>
-                    <NftCardInformation data={nftInfo}></NftCardInformation>
+                    <NftCardInformation data={nftInfo}/>
                 </div>
                 <GCGrid>
                     <GCGridCol sm={12} md={12}>
@@ -50,13 +49,12 @@ const SingleNFTPage = (props: SingleNFTPageProps) => {
                         </Catalog>
                     </GCGridCol>
                 </GCGrid>
-                <GCCarousel className={classes.carousel}>
-                    {collectionNFTs?.map((nft: NFTCard) => (
-                        <GCCarouselSlide key={nft.nftCardId}>
-                            <NFTMicroCard item={nft}/>
-                        </GCCarouselSlide>
-                    ))}
-                </GCCarousel>
+                {collectionNFTs && <GCCarousel className={classes.carousel}>
+                    {collectionNFTs?.map((nft) =>
+                        <NFTMicroCard key={nft.nftCardId} item={nft}/>)
+                    }
+                </GCCarousel>}
+
             </>
         );
     }
