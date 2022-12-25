@@ -19,6 +19,7 @@ export const GCCarousel = ({ children, ...props }: GCCarouselProps) => {
         loop
         slidesToScroll={1}
         slideGap="xl"
+        withControls
         breakpoints={[
             { maxWidth: theme.breakpoints.sm, slideSize: "100%" },
             { maxWidth: theme.breakpoints.md, slideSize: "50%" },

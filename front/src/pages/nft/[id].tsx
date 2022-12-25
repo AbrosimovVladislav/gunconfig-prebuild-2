@@ -1,16 +1,18 @@
 import React from "react";
-import {useRouter} from "next/router";
-import {useGetNFTById, useGetNFTsByCollection,} from "../../services/nftService";
-import {GCImage, GCText} from "../../gc-components";
-import {GCGrid} from "../../gc-components/GCGrid";
-import {GCGridCol} from "../../gc-components/GCGridCol";
-import {useStyles} from "./SingleNFTPageStyles";
+import { useRouter } from "next/router";
+import {
+  useGetNFTById,
+  useGetNFTsByCollection,
+} from "../../services/nftService";
+import { GCImage, GCText } from "../../gc-components";
+import { GCGrid } from "../../gc-components/GCGrid";
+import { GCGridCol } from "../../gc-components/GCGridCol";
+import { useStyles } from "./SingleNFTPageStyles";
 import NftCardInformation from "../../components/nft-card-information/NftCardInformation";
 import Catalog from "../../components/catalog/Catalog";
 import { Product } from "../../schema/NFTCatalogSchema";
 import GunPartCard from "../../components/gun-part-card/GunPartCard";
-import NFTMicroCard from "../../components/nft-micro-card/NFTMicroCard";
-import { GCCarousel } from "../../gc-components/carousel/GCCarousel";
+import NftCarousel from "../../components/nft-carousel/NftCarousel";
 
 type SingleNFTPageProps = {};
 
@@ -39,7 +41,7 @@ const SingleNFTPage = (props: SingleNFTPageProps) => {
                 </div>
                 <GCGrid>
                     <GCGridCol sm={12} md={12}>
-                        <GCText className={classes.catalogHeader} h2 bold>
+                        <GCText className={classes.header} h2 bold>
                             What was used in this build
                         </GCText>
                         <Catalog>
@@ -49,12 +51,7 @@ const SingleNFTPage = (props: SingleNFTPageProps) => {
                         </Catalog>
                     </GCGridCol>
                 </GCGrid>
-                {collectionNFTs && <GCCarousel className={classes.carousel}>
-                    {collectionNFTs?.map((nft) =>
-                        <NFTMicroCard key={nft.nftCardId} item={nft}/>)
-                    }
-                </GCCarousel>}
-
+                <NftCarousel data={collectionNFTs} header={"More from this collection"}/>
             </>
         );
     }

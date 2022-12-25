@@ -30,6 +30,15 @@ export const useStyles = createStyles((theme, _params, getRef) => ({
         },
     },
 
+    sliderCard: {
+        maxWidth: "100% !important",
+        ":hover": {
+            [`& .${getRef("imageSection")}`]: {
+                padding: [`0 0 45px !important`],
+            },
+        },
+    },
+
     imageSection: {
         ref: getRef("imageSection"),
         padding: "10px 15px",
@@ -38,6 +47,10 @@ export const useStyles = createStyles((theme, _params, getRef) => ({
         justifyContent: "center",
         minHeight: "248px",
         transition: "padding 0.3s",
+    },
+
+    sliderImageSection: {
+        padding: [`0 15px 60px !important`],
     },
 
     content: {
