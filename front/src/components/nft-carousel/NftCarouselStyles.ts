@@ -7,6 +7,5 @@ export const useStyles = createStyles((theme) => ({
 
     carousel: {
         margin: [`${theme.spacing.xl}px 0`],
-    },
-
+    }
 }));

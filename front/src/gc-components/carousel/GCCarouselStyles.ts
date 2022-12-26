@@ -3,16 +3,7 @@ import { createStyles } from "@mantine/core";
 export const useStyles = createStyles((theme,_params, getRef) => ({
     root: {
         ref: getRef('root'),
-        margin: 0,
-    },
-
-    slide: {
-        ref: getRef('slide'),
-    },
-
-    container: {
-        ref: getRef('container'),
-        margin: [`${theme.spacing.sm}px -23px ${theme.spacing.sm}px 1px`],
+        marginTop: 0,
     },
 
     controls: {

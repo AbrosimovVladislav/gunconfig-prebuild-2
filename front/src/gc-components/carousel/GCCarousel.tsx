@@ -21,9 +21,9 @@ export const GCCarousel = ({ children, ...props }: GCCarouselProps) => {
         slideGap="xl"
         withControls
         breakpoints={[
-            { maxWidth: theme.breakpoints.sm, slideSize: "100%" },
+            { maxWidth: theme.breakpoints.xs, slideSize: "100%" },
             { maxWidth: theme.breakpoints.md, slideSize: "50%" },
-            { maxWidth: theme.breakpoints.xl, slideSize: "33%" },
+            { maxWidth: theme.breakpoints.lg, slideSize: "33%" },
         ]}
         classNames={classes}
         previousControlIcon={ <GCIconButton primary icon="arrow-previous"/> }
