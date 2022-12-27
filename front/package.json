@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.4",
+    "@mantine/carousel": "^5.9.4",
     "@mantine/core": "^5.5.4",
     "@mantine/dates": "^5.5.4",
     "@mantine/dropzone": "^5.5.4",
@@ -23,7 +25,6 @@
     "@mantine/spotlight": "^5.5.4",
     "@next/font": "^13.0.2",
     "dayjs": "^1.11.5",
-    "@mantine/carousel": "^5.9.4",
     "embla-carousel-react": "^7.0.3",
     "next": "12.3.1",
     "react": "18.2.0",
