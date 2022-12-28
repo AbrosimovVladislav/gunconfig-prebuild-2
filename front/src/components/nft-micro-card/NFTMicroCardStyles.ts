@@ -3,8 +3,6 @@ import { createStyles } from "@mantine/core";
 export const useStyles = createStyles((theme, _params, getRef) => ({
     card: {
         padding: "0 !important",
-        maxWidth: "343px",
-        height: "inherit",
         margin: "auto",
         border: "none",
         boxShadow: theme.shadows.md,
@@ -22,8 +20,8 @@ export const useStyles = createStyles((theme, _params, getRef) => ({
         ":hover": {
             borderColor: "transparent",
             outline: [`1px solid ${theme.colors.primary[3]}`],
+            outlineOffset: "-1px",
             borderRadius: "8px",
-
             [`& .${getRef("imageSection")}`]: {
                 padding: 0,
             },
@@ -32,11 +30,10 @@ export const useStyles = createStyles((theme, _params, getRef) => ({
 
     imageSection: {
         ref: getRef("imageSection"),
-        padding: "10px 15px",
+        padding: theme.spacing.sm,
         display: "flex",
         alignItems: "flex-start",
         justifyContent: "center",
-        minHeight: "248px",
         transition: "padding 0.3s",
     },
 
