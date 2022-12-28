@@ -14,9 +14,7 @@ import { Product } from "../../schema/NFTCatalogSchema";
 import GunPartCard from "../../components/gun-part-card/GunPartCard";
 import NftCarousel from "../../components/nft-carousel/NftCarousel";
 
-type SingleNFTPageProps = {};
-
-const SingleNFTPage = (props: SingleNFTPageProps) => {
+const SingleNFTPage = () => {
     const id: number = Number(useRouter().query.id);
     const {data : nftInfo, isLoading, isError, isSuccess} = useGetNFTById(id);
     const {data : collectionNFTs} = useGetNFTsByCollection(nftInfo?.collection);
