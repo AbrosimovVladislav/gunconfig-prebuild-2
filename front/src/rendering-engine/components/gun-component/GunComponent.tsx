@@ -11,7 +11,7 @@ interface GunComponentProps {
 
 const GunComponent = ({component, ratio}: GunComponentProps) => {
     const isRootComponent = component.type === "GUN";
-    const {classes} = useStyles();
+    const {classes} = useStyles({width: ratio !== 0 ? component?.width * ratio : component?.width});
 
     return isRootComponent ? (
         <>

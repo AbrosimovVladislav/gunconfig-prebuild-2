@@ -5,7 +5,7 @@ export const useStyles = createStyles((theme) => ({
         height: "300px",
         width: "100%",
         boxShadow: theme.shadows.md,
-        borderRadius: "8px",
+        borderRadius: theme.other.spacing.xxs,
         display: "grid",
         placeItems: "center",
     },
