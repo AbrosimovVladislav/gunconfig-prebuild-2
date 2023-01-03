@@ -1,20 +1,25 @@
 import React from "react";
-import {useRouter} from "next/router";
-import {useGetNFTById} from "../../services/nftService";
-import {GCImage, GCText} from "../../gc-components";
-import {GCGrid} from "../../gc-components/GCGrid";
-import {GCGridCol} from "../../gc-components/GCGridCol";
-import {useStyles} from "./SingleNFTPageStyles";
+import { useRouter } from "next/router";
+import {
+  useGetNFTById,
+  useGetNFTsByCollection,
+} from "../../services/nftService";
+import { GCImage, GCText } from "../../gc-components";
+import { GCGrid } from "../../gc-components/GCGrid";
+import { GCGridCol } from "../../gc-components/GCGridCol";
+import { useStyles } from "./SingleNFTPageStyles";
 import NftCardInformation from "../../components/nft-card-information/NftCardInformation";
 import Catalog from "../../components/catalog/Catalog";
-import {Product} from "../../schema/NFTCatalogSchema";
+import { Product } from "../../schema/NFTCatalogSchema";
 import GunPartCard from "../../components/gun-part-card/GunPartCard";
+import NftCarousel from "../../components/nft-carousel/NftCarousel";
 
 type SingleNFTPageProps = {};
 
 const SingleNFTPage = (props: SingleNFTPageProps) => {
     const id: number = Number(useRouter().query.id);
-    const [data, isLoading, isError, isSuccess] = useGetNFTById(id);
+    const {data : nftInfo, isLoading, isError, isSuccess} = useGetNFTById(id);
+    const {data : collectionNFTs} = useGetNFTsByCollection(nftInfo?.collection);
     const {classes} = useStyles();
 
     if (isLoading) {
@@ -30,22 +35,23 @@ const SingleNFTPage = (props: SingleNFTPageProps) => {
             <>
                 <div className={classes.nftContainer}>
                     <div className={classes.nftWrapper}>
-                        <GCImage className={classes.nftImage} src={data?.nftImageUrl} alt="gun"/>
+                        <GCImage className={classes.nftImage} src={nftInfo?.nftImageUrl} alt="gun"/>
                     </div>
-                    <NftCardInformation data={data}/>
+                    <NftCardInformation data={nftInfo}/>
                 </div>
                 <GCGrid>
                     <GCGridCol sm={12} md={12}>
-                        <GCText className={classes.catalogHeader} h2 bold>
+                        <GCText className={classes.header} h2 bold>
                             What was used in this build
                         </GCText>
                         <Catalog>
-                            {data?.properties?.map((product: Product) => (
+                            {nftInfo?.properties?.map((product: Product) => (
                                 <GunPartCard product={product} key={product.productId}/>
                             ))}
                         </Catalog>
                     </GCGridCol>
                 </GCGrid>
+                <NftCarousel data={collectionNFTs} header={"More from this collection"}/>
             </>
         );
     }

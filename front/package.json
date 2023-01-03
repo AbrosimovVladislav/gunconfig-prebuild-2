@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.4",
+    "@mantine/carousel": "^5.9.4",
     "@mantine/core": "^5.5.4",
     "@mantine/dates": "^5.5.4",
     "@mantine/dropzone": "^5.5.4",

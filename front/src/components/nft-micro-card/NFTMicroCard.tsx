@@ -1,4 +1,5 @@
 import {NFTCard} from "../../schema/NFTCatalogSchema";
+import {GCSquareContainer} from "../../gc-components/square-container/GCSquareContainer";
 import {useStyles} from "./NFTMicroCardStyles";
 import {
     GCBadge,
@@ -21,8 +22,10 @@ const NFTMicroCard = ({item}: NFTMicroCardProps) => {
     return (
         <Link href={FRONT_CURRENT_PATH + ":3000/nft/" + item.nftCardId}>
             <GCCard withBorder radius="md" className={classes.card}>
-                <GCCardSection className={classes.imageSection}>
-                    <GCImage src={item.nftImageUrl} alt="gun"/>
+                <GCCardSection>
+                    <GCSquareContainer>
+                        <GCImage className={classes.imageSection} src={item.nftImageUrl} alt="gun"/>
+                    </GCSquareContainer>
                 </GCCardSection>
                 <GCGroup className={classes.content} position="apart" mt="md">
                     <GCText bold lineClamp={1}>{item.name}</GCText>
