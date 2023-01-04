@@ -12,13 +12,14 @@ interface EngineProps {
 export const Engine = ({data}: EngineProps) => {
     const [ratio, setRatio] = useState<number | null>(null);
     const {breakpoints} = useMantineTheme();
-    const {classes} = useStyles();
 
     useEffect(() => {
         setRatio(window.innerWidth < breakpoints.xl ?
             window.innerWidth * 0.4 / data.width :
             1400 * 0.4 / data.width);
     }, []);
+
+    const {classes} = useStyles({width: data.width * ratio});
 
     return (
         <div className={classes.canvas}>

@@ -1,6 +1,10 @@
 import { createStyles } from "@mantine/core";
 
-export const useStyles = createStyles((theme) => ({
+interface engineStylesProps {
+    width: number,
+}
+
+export const useStyles = createStyles((theme, {width}: engineStylesProps) => ({
     canvas: {
         height: "300px",
         width: "100%",
@@ -11,7 +15,7 @@ export const useStyles = createStyles((theme) => ({
     },
     root: {
         position: "relative",
-        maxWidth: "40%",
+        maxWidth: [`${width}px`],
         left: "10%",
         top: "-10%",
     }
