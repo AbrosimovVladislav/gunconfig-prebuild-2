@@ -8,7 +8,7 @@ import GunPartCard from "../../../components/gun-part-card/GunPartCard";
 import Catalog from "../../../components/catalog/Catalog";
 
 
-const GunPartList = () => {
+const GunPartsList = () => {
     const {buildIds, replaceGunPart} = useBuildTreeStore();
     const {clickedGunPart, setClickedGunPart} = useClickedGunPartStore();
     const {data: gunParts} = useGetGunPartsByParentAndType(clickedGunPart.parentId, clickedGunPart.type, buildIds);
@@ -46,4 +46,4 @@ const GunPartList = () => {
     );
 };
 
-export default GunPartList;
+export default GunPartsList;
