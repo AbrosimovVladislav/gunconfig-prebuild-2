@@ -1,4 +1,4 @@
-git checkout 37hetnj-gun-component-replacing-process
+git checkout sumamary
 git pull
 
 mvn clean package -P build-docker-image
