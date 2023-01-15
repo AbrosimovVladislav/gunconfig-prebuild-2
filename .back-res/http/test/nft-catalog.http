@@ -7,12 +7,12 @@ POST http://178.128.203.194:8080/api/v1/nft-creation
 Content-Type: application/json
 
 {
-  "buildImage": "https://gunmarket.fra1.digitaloceanspaces.com/AR-15-Forth_Build.png",
-  "base64Code": "ewogICJpZCI6IDEsCiAgImNoaWxkcmVuIjogWwogICAgewogICAgICAiaWQiOiAzLAogICAgICAiY2hpbGRyZW4iOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogNCwKICAgICAgICAgICJjaGlsZHJlbiI6IFtdCiAgICAgICAgfQogICAgICBdCiAgICB9LAogICAgewogICAgICAiaWQiOiA2LAogICAgICAiY2hpbGRyZW4iOiBbXQogICAgfSwKICAgIHsKICAgICAgImlkIjogMjAsCiAgICAgICJjaGlsZHJlbiI6IFtdCiAgICB9LAogICAgewogICAgICAiaWQiOiA4LAogICAgICAiY2hpbGRyZW4iOiBbXQogICAgfSwKICAgIHsKICAgICAgImlkIjogMTIsCiAgICAgICJjaGlsZHJlbiI6IFtdCiAgICB9LAogICAgewogICAgICAiaWQiOiAxMywKICAgICAgImNoaWxkcmVuIjogW10KICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDE0LAogICAgICAiY2hpbGRyZW4iOiBbXQogICAgfSwKICAgIHsKICAgICAgImlkIjogNSwKICAgICAgImNoaWxkcmVuIjogW10KICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDE2LAogICAgICAiY2hpbGRyZW4iOiBbXQogICAgfSwKICAgIHsKICAgICAgImlkIjogMTcsCiAgICAgICJjaGlsZHJlbiI6IFtdCiAgICB9CiAgXQp9",
+  "buildImage": "https://gunmarket.fra1.digitaloceanspaces.com/16-12-AR-Build-Ninja-Turtle.png",
+  "base64Code": "eyJpZCI6MSwiY2hpbGRyZW4iOlt7ImlkIjozLCJjaGlsZHJlbiI6W3siaWQiOjU5LCJjaGlsZHJlbiI6W119XX0seyJpZCI6NiwiY2hpbGRyZW4iOltdfSx7ImlkIjo1MiwiY2hpbGRyZW4iOltdfSx7ImlkIjoyNiwiY2hpbGRyZW4iOltdfSx7ImlkIjoxMiwiY2hpbGRyZW4iOltdfSx7ImlkIjozOCwiY2hpbGRyZW4iOltdfSx7ImlkIjoxNCwiY2hpbGRyZW4iOltdfSx7ImlkIjoxNSwiY2hpbGRyZW4iOltdfSx7ImlkIjoxNiwiY2hpbGRyZW4iOltdfSx7ImlkIjoxNywiY2hpbGRyZW4iOltdfV19",
   "collection": "AR-15",
-  "firstOwner": "Peter",
-  "name": "AR-15-Timber-Creek-BUILD",
-  "mintingPrice": 0.005
+  "firstOwner": "Nastya",
+  "name": "AR-15-Ninja-Turtle",
+  "mintingPrice": 0.85
 }
 
 ### POST Create NFT Card
