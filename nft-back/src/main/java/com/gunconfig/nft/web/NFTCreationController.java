@@ -1,6 +1,7 @@
 package com.gunconfig.nft.web;
 
 import com.gunconfig.nft.model.NFTCard;
+import com.gunconfig.nft.service.ImageService;
 import com.gunconfig.nft.service.NFTCardService;
 import com.gunconfig.nft.service.client.ConfiguratorClient;
 import com.gunconfig.nft.web.dto.BuildWithProductsDto;
@@ -21,19 +22,22 @@ public class NFTCreationController {
     private final ConfiguratorClient configuratorClient;
     private final NFTCardService nftCardService;
     private final NFTCardMapper nftCardMapper;
+    private final ImageService imageService;
 
     @CrossOrigin
     @PostMapping
     public NFTCardDto createNftCard(@RequestBody CreateNFTRequest request) {
+        String imageUrl = imageService.saveImageToStore(request.getBuildImage());
+
         BuildWithProductsDto response = configuratorClient.createBuild(
                 BuildCreateRequest.builder()
                         .base64Code(request.getBase64Code())
-                        .buildImageUrl(request.getBuildImage())
+                        .buildImageUrl(imageUrl)
                         .build());
 
         NFTCard nftCard = nftCardService.create(response.getBuildId(),
                 response.getProductIds(),
-                request.getBuildImage(),
+                imageUrl,
                 request.getCollection(),
                 request.getFirstOwner(),
                 request.getName(),
