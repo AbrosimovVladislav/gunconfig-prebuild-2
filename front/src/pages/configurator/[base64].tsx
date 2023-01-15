@@ -1,4 +1,4 @@
-import {Box, Button, Center, CopyButton, Group, Modal, Popover} from "@mantine/core";
+import {Box, Button, Center, Group, Modal} from "@mantine/core";
 import {useRouter} from "next/router";
 import {Engine} from "../../rendering-engine/components/engine";
 import {
@@ -8,7 +8,7 @@ import {
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {useEffect, useRef, useState} from "react";
 import {useBuildTreeStore} from "../../rendering-engine/store/BuildTreeStore";
-import GunPartList from "../../rendering-engine/components/gun-part-list/gun-part-list";
+import GunPartsList from "../../rendering-engine/components/gun-part-list/GunPartsList";
 import {useClickedGunPartStore} from "../../rendering-engine/store/ClickedGunPartStore";
 import {GCText} from "../../gc-components";
 import * as htmlToImage from 'html-to-image';
@@ -88,7 +88,7 @@ const Configurator = () => {
                 {buildTree && <Engine data={buildTree}/>}
             </Box>
 
-            {clickedGunPart && <GunPartList/>}
+            {clickedGunPart && <GunPartsList/>}
 
             <Center>
                 <Modal
