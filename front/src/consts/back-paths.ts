@@ -8,4 +8,5 @@ export const COLLECTION_POSTFIX = "/api/v1/nft-catalog/collection";
 export const FILTERS_POSTFIX = "/filters";
 
 export const CONFIGURATOR_POSTFIX = "/api/v1/configurator";
+export const NFT_CREATION_POSTFIX = "/api/v1/nft-creation";
 export const BUILD_TREE_POSTFIX = "/build/schema/";

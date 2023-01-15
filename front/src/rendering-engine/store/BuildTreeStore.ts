@@ -1,6 +1,6 @@
-import { BuildTree } from "../schema/BuildTreeSchema";
+import {BuildTree} from "../schema/BuildTreeSchema";
 import create from "zustand";
-import { mountStoreDevtool } from "simple-zustand-devtools";
+import {mountStoreDevtool} from "simple-zustand-devtools";
 
 interface BuildTreeStore {
     buildTree: BuildTree | null;
@@ -48,7 +48,7 @@ function replaceGunPartRecursively(buildTree: BuildTree, currentGunPartId: numbe
 }
 
 const searchForPartAndReplaceItToNew = (buildTree, currentGunPartId, newGunPart) => {
-    let newBuildTree = { ...buildTree };
+    let newBuildTree = {...buildTree};
 
     let newChildren = buildTree.children?.map((child) => {
         let resultChild = child;

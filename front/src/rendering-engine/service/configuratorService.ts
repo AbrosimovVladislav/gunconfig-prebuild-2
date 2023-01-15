@@ -1,8 +1,9 @@
 import {useQuery} from "react-query";
-import {getConfiguratorBack} from "../../services/restClient";
-import {BUILD_TREE_POSTFIX, CONFIGURATOR_POSTFIX} from "../../consts/back-paths";
+import {getConfiguratorBack, post} from "../../services/restClient";
+import {BUILD_TREE_POSTFIX, CONFIGURATOR_POSTFIX, NFT_CREATION_POSTFIX} from "../../consts/back-paths";
 import {BuildTree, IdsBuildTree} from "../schema/BuildTreeSchema";
 import {FRONT_CURRENT_PATH} from "../../config/env-paths";
+import {CreateNFTRequest} from "../schema/CreateNFTRequestSchema";
 
 export function getBuildLinkFromBuildTree(buildTree: BuildTree): string {
     let idsTree: IdsBuildTree = {id: 1, children: []};
@@ -10,6 +11,13 @@ export function getBuildLinkFromBuildTree(buildTree: BuildTree): string {
     const base64Code: string = btoa(JSON.stringify(idsTree))
     const url: string = FRONT_CURRENT_PATH + ":3000/configurator/" + base64Code;
     return url;
+}
+
+export function getBase64CodeByBuildTree(buildTree: BuildTree): string {
+    let idsTree: IdsBuildTree = {id: 1, children: []};
+    recursiveFillingOfIdsTree(idsTree, buildTree);
+    const base64Code: string = btoa(JSON.stringify(idsTree))
+    return base64Code;
 }
 
 function recursiveFillingOfIdsTree(idsTree: IdsBuildTree, buildTree: BuildTree) {
@@ -31,6 +39,19 @@ export function useGetBuildTreeByBase64Code(treeBase64Code: String): [BuildTree,
         }
     );
     return [data, isLoading, isError, isSuccess];
+}
+
+// export async function useCreateNFTRequest(createNFTRequest: CreateNFTRequest) {
+//     const {data, isLoading, isError} = useMutation(
+//         "CreateNFTRequest" + JSON.stringify(createNFTRequest),
+//         await post(NFT_CREATION_POSTFIX, createNFTRequest)
+//     )
+//     return {data, isLoading, isError};
+// }
+
+export async function useCreateNFTRequest(createNFTRequest: CreateNFTRequest) {
+    const response = await post(NFT_CREATION_POSTFIX, createNFTRequest);
+    return response;
 }
 
 export function useGetGunPartsByParentAndType(
