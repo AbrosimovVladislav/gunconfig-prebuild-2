@@ -30,6 +30,7 @@ public class ImageService {
     metadata.setContentType("image/png");
 
     try {
+      base64Image = base64Image.replace("data:image/png;base64,","");
       byte[] decodedBytes = Base64.getDecoder().decode(base64Image);
       InputStream inputStream = new ByteArrayInputStream(decodedBytes);
       s3Client.putObject(
