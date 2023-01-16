@@ -22,12 +22,26 @@ public class ConfiguratorClient {
     public String CONFIGURATOR_BASE_PATH;
     @Value("${configurator.create-build}")
     public String CREATE_BUILD_PATH;
+    @Value("${configurator.build-by-schema}")
+    public String BUILD_BY_SCHEMA_PATH;
     @Value("${configurator.products}")
     public String PRODUCTS_PATH;
     @Value("${configurator.products-ids}")
     public String PRODUCTS_IDS_PATH;
 
     private final RestTemplate restTemplate;
+
+    public Long getBuildIdBySchema(String base64CodeSchema) {
+        String url = CONFIGURATOR_BASE_PATH + BUILD_BY_SCHEMA_PATH + "/" + base64CodeSchema;
+        ResponseEntity<Long> response = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                new HttpEntity<>(null),
+                new ParameterizedTypeReference<Long>() {
+                }
+        );
+        return response.getBody();
+    }
 
     public BuildWithProductsDto createBuild(BuildCreateRequest request) {
         String url = CONFIGURATOR_BASE_PATH + CREATE_BUILD_PATH;

@@ -87,6 +87,14 @@ public class ConfiguratorController {
     }
 
     @CrossOrigin
+    @GetMapping("/buildBySchema/{schemaBase64Code}")
+    public Long getBuildIdBySchema(@PathVariable String schemaBase64Code) {
+        SchemaNode schemaNode = buildMapper.fromBase64ToSchemaNode(schemaBase64Code);
+        Build build = buildService.findBySchemaBase64Code(schemaNode);
+        return build.getBuildId();
+    }
+
+    @CrossOrigin
     @GetMapping(value = "/build/{id}")
     public Build getBuildById(@PathVariable Long id) {
         Build build = buildService.getBuildById(id);

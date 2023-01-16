@@ -51,6 +51,7 @@ configurator:
   product: /api/v1/product
   products: /api/v1/product/batch
   products-ids: /api/v1/product/ids
+  build-by-schema: /api/v1/configurator/buildBySchema
 
 do:
   spaces:

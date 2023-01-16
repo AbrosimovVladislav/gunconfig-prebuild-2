@@ -5,10 +5,13 @@ import com.gunconfig.configurator.model.GunPart;
 import com.gunconfig.configurator.model.SchemaNode;
 import com.gunconfig.configurator.repo.BuildRepo;
 import com.gunconfig.configurator.repo.GunPartRepo;
+import com.gunconfig.configurator.service.converter.SchemaNodeConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -16,6 +19,13 @@ public class BuildService {
 
     private final BuildRepo buildRepo;
     private final GunPartRepo gunPartRepo;
+    private final SchemaNodeConverter schemaNodeConverter;
+
+    @Transactional
+    public Build findBySchemaBase64Code(SchemaNode schemaNode) {
+        Build build = buildRepo.findBySchema(schemaNodeConverter.convertToDatabaseColumn(schemaNode));
+        return build == null ? new Build().setBuildId(-1L) : build;
+    }
 
     public Build save(Build build) {
         Long newBuildId = buildRepo.getMaxBuildId() + 1L;

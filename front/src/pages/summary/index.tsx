@@ -7,13 +7,13 @@ import GunPartCard from "../../components/gun-part-card/GunPartCard";
 import Catalog from "../../components/catalog/Catalog";
 import {
     getBase64CodeByBuildTree,
-    getBuildLinkFromBuildTree,
+    getBuildLinkFromBuildTree, isBuildAlreadyExists,
     useCreateNFTRequest
 } from "../../rendering-engine/service/configuratorService";
-import {GCText} from "../../gc-components";
 import {useBuildImageStore} from "../../rendering-engine/store/BuildImageStore";
 import Image from "next/image";
 import {CreateNFTRequest} from "../../rendering-engine/schema/CreateNFTRequestSchema";
+import {useGetNFTByUrlParams} from "../../services/nftService";
 
 const BuildSummary = ({}) => {
 
@@ -21,13 +21,23 @@ const BuildSummary = ({}) => {
     const {buildImage} = useBuildImageStore();
     const [products, setProducts] = useState<Product[]>([]);
     const [buildLink, setBuildLink] = useState("");
+    const [alreadyMintedNft, setAlreadyMintedNft] = useState();
+    const [base64BuildCode, setBase64BuildCode] = useState<string>();
+    const {data, isLoading, isError, isSuccess} = isBuildAlreadyExists(base64BuildCode);
 
     useEffect(() => {
         const productsList: Product[] = getListOfBuildTreeProducts(buildTree);
         setProducts(productsList);
         const link = getBuildLinkFromBuildTree(buildTree);
         setBuildLink(link);
+        const code = getBase64CodeByBuildTree(buildTree);
+        setBase64BuildCode(code);
     }, [buildTree])
+
+    useEffect(() => {
+        console.log("data")
+        console.log(data)
+    },[data])
 
     function getListOfBuildTreeProducts(buildTree: BuildTree): Product[] {
         if (!buildTree) return null;
@@ -81,7 +91,6 @@ const BuildSummary = ({}) => {
                     <GunPartCard product={product} key={product.productId}/>
                 ))}
             </Catalog>
-            <GCText>{buildLink && buildLink}</GCText>
             <Center>
                 <Button onClick={onMintNFTClick}>
                     Mint NFT

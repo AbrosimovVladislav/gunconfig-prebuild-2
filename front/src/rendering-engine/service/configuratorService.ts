@@ -1,6 +1,12 @@
 import {useQuery} from "react-query";
-import {getConfiguratorBack, post} from "../../services/restClient";
-import {BUILD_TREE_POSTFIX, CONFIGURATOR_POSTFIX, NFT_CREATION_POSTFIX} from "../../consts/back-paths";
+import {getConfiguratorBack, post, get} from "../../services/restClient";
+import {
+    BUILD_TREE_POSTFIX,
+    CONFIGURATOR_POSTFIX,
+    IS_BUILD_ALREADY_EXISTS_POSTFIX,
+    NFT_CREATION_POSTFIX,
+    NFT_POSTFIX
+} from "../../consts/back-paths";
 import {BuildTree, IdsBuildTree} from "../schema/BuildTreeSchema";
 import {FRONT_CURRENT_PATH} from "../../config/env-paths";
 import {CreateNFTRequest} from "../schema/CreateNFTRequestSchema";
@@ -52,6 +58,20 @@ export function useGetBuildTreeByBase64Code(treeBase64Code: String): [BuildTree,
 export async function useCreateNFTRequest(createNFTRequest: CreateNFTRequest) {
     const response = await post(NFT_CREATION_POSTFIX, createNFTRequest);
     return response;
+}
+
+export function isBuildAlreadyExists(base64BuildCode: string)
+    : { data: string; isLoading: boolean; isError: boolean; isSuccess: boolean } {
+
+    const {data, isLoading, isError, isSuccess} = useQuery(
+        "isBuildAlreadyExists" + base64BuildCode,
+        () => get(NFT_POSTFIX + IS_BUILD_ALREADY_EXISTS_POSTFIX + base64BuildCode),
+        {
+            enabled: !!base64BuildCode,
+            refetchOnWindowFocus: false,
+        }
+    )
+    return {data, isLoading, isError, isSuccess};
 }
 
 export function useGetGunPartsByParentAndType(

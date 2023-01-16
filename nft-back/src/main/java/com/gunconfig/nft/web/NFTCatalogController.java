@@ -4,6 +4,7 @@ import com.gunconfig.nft.model.NFTCard;
 import com.gunconfig.nft.model.filtration.FilterItem;
 import com.gunconfig.nft.service.FilterItemService;
 import com.gunconfig.nft.service.NFTCardService;
+import com.gunconfig.nft.service.client.ConfiguratorClient;
 import com.gunconfig.nft.web.dto.FilterItemDto;
 import com.gunconfig.nft.web.dto.NFTCardDto;
 import com.gunconfig.nft.web.dto.ShortNFTCardDto;
@@ -32,9 +33,21 @@ public class NFTCatalogController {
     private final FilterItemService filterItemService;
     private final FilterItemMapper filterItemMapper;
     private final List<Preparer> preparers;
+    private final ConfiguratorClient configuratorClient;
 
     private static final int DEFAULT_PAGE_NUMBER = 0;
     private static final int DEFAULT_PAGE_SIZE = 3000;
+
+    @CrossOrigin
+    @GetMapping("/isBuildExists/{buildCode}")
+    public String isBuildExists(@PathVariable String buildCode) {
+        Long buildId = configuratorClient.getBuildIdBySchema(buildCode);
+        if (buildId == -1L) {
+            return "false";
+        } else {
+            return "/nft/" + buildId;
+        }
+    }
 
     @CrossOrigin
     @GetMapping(value = "/collection/{collectionName}")
