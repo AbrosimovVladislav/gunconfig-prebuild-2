@@ -1,0 +1,3 @@
+### GET Resave images to S3 store
+GET http://localhost:8081/test/copy-images
+Accept: application/json

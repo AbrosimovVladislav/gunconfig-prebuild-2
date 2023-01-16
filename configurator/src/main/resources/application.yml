@@ -45,3 +45,11 @@ eureka:
 logging:
   file:
     name: databasefiller-app.log
+
+do:
+  spaces:
+    key: "EI6ML7AKJTFPJPUZGUZF"
+    secret: "DNxgO67ZyMF+CLN2gsxGrugdygOUwCOXsNh8H0pJQWg"
+    endpoint: "digitaloceanspaces.com"
+    region: "fra1"
+    bucket: "gunmarket.fra1"

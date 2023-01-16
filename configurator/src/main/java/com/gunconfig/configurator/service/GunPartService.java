@@ -16,43 +16,60 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class GunPartService {
 
-    private final GunPartRepo gunPartRepo;
+  private final GunPartRepo gunPartRepo;
 
-    public GunPart save(GunPart gunPart) {
-        Optional<GunPart> gunPartOpt = gunPartRepo.findByProduct(gunPart.getProduct());
-        if (gunPartOpt.isPresent()) {
-            return gunPartOpt.get();
-        } else {
-            Long newGunPartId = gunPartRepo.getMaxGunPartId() + 1L;
-            gunPart.setGunPartId(newGunPartId);
-            return gunPartRepo.save(gunPart);
-        }
+  public List<GunPart> findAll() {
+    return gunPartRepo.findAll();
+  }
+
+  public GunPart save(GunPart gunPart) {
+    Optional<GunPart> gunPartOpt = gunPartRepo.findByProduct(gunPart.getProduct());
+    if (gunPartOpt.isPresent()) {
+      return gunPartOpt.get();
+    } else {
+      Long newGunPartId = gunPartRepo.getMaxGunPartId() + 1L;
+      gunPart.setGunPartId(newGunPartId);
+      return gunPartRepo.save(gunPart);
     }
+  }
 
-    public GunPart findById(Long id) {
-        return gunPartRepo.findById(id)
-                .orElseThrow(() -> new RuntimeException("There is no gun part with id: " + id));
+  public GunPart saveOrUpdate(GunPart gunPart) {
+    Optional<GunPart> gunPartOpt = gunPartRepo.findByProduct(gunPart.getProduct());
+    if (gunPartOpt.isPresent()) {
+      return gunPartRepo.save(gunPartOpt.get());
+    } else {
+      Long newGunPartId = gunPartRepo.getMaxGunPartId() + 1L;
+      gunPart.setGunPartId(newGunPartId);
+      return gunPartRepo.save(gunPart);
     }
+  }
 
-    //ToDo refactor basic repo method for returning needed children, not full tree (https://app.clickup.com/t/33dx6te)
-    public List<GunPart> getGunPartsByParentAndType(GetGunPartsByParentAndTypeRequest request) {
-        GunPart parent = gunPartRepo.findById(request.getParentId())
-                .orElseThrow(() -> new RuntimeException("There is no gun part with id: " + request.getParentId()));
-        List<GunPart> children = parent.getChildren();
-        List<GunPart> childrenOfNeededType = children.stream()
-                .filter(child -> request.getTypeOfProduct().equals(child.getProduct().getType()))
-                .toList();
-        return childrenOfNeededType;
-    }
+  public GunPart findById(Long id) {
+    return gunPartRepo.findById(id)
+        .orElseThrow(() -> new RuntimeException("There is no gun part with id: " + id));
+  }
 
-    public List<ShortGunPartDto> checkOnIncompatible(List<ShortGunPartDto> shortDtos, List<Long> currentBuildIds) {
-        shortDtos.forEach(shortGunPartDto -> {
-            List<Long> incompatibleIds = shortGunPartDto.getIncompatibleIds();
-            currentBuildIds.stream()
-                    .filter(incompatibleIds::contains)
-                    .findAny().ifPresent(e -> shortGunPartDto.setIncompatible(true));
-        });
+  //ToDo refactor basic repo method for returning needed children, not full tree (https://app.clickup.com/t/33dx6te)
+  public List<GunPart> getGunPartsByParentAndType(GetGunPartsByParentAndTypeRequest request) {
+    GunPart parent = gunPartRepo.findById(request.getParentId())
+        .orElseThrow(
+            () -> new RuntimeException("There is no gun part with id: " + request.getParentId()));
+    List<GunPart> children = parent.getChildren();
+    List<GunPart> childrenOfNeededType = children.stream()
+        .filter(child -> request.getTypeOfProduct().equals(child.getProduct().getType()))
+        .toList();
+    return childrenOfNeededType;
+  }
 
-        return shortDtos;
-    }
+  public List<ShortGunPartDto> checkOnIncompatible(List<ShortGunPartDto> shortDtos,
+      List<Long> currentBuildIds) {
+    shortDtos.forEach(shortGunPartDto -> {
+      List<Long> incompatibleIds = shortGunPartDto.getIncompatibleIds();
+      currentBuildIds.stream()
+          .filter(incompatibleIds::contains)
+          .findAny().ifPresent(e -> shortGunPartDto.setIncompatible(true));
+    });
+
+    return shortDtos;
+  }
 }

@@ -27,7 +27,7 @@ public class NFTCreationController {
     @CrossOrigin
     @PostMapping
     public NFTCardDto createNftCard(@RequestBody CreateNFTRequest request) {
-        String imageUrl = imageService.saveImageToStore(request.getBuildImage());
+        String imageUrl = imageService.saveImageToStore(request.getName(), request.getBuildImage());
 
         BuildWithProductsDto response = configuratorClient.createBuild(
                 BuildCreateRequest.builder()
