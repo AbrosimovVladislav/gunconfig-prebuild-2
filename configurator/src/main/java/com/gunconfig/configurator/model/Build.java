@@ -21,6 +21,9 @@ public class Build {
     @Convert(converter = SchemaNodeConverter.class)
     private SchemaNode schema;
 
+    @Column(length = 240000)
+    private String schemaLineView;
+
     private String buildImageUrl;
 
 }
