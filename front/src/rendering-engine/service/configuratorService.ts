@@ -61,7 +61,7 @@ export async function useCreateNFTRequest(createNFTRequest: CreateNFTRequest) {
 }
 
 export function isBuildAlreadyExists(base64BuildCode: string)
-    : { data: string; isLoading: boolean; isError: boolean; isSuccess: boolean } {
+    : { data: any; isLoading: boolean; isError: boolean; isSuccess: boolean } {
 
     const {data, isLoading, isError, isSuccess} = useQuery(
         "isBuildAlreadyExists" + base64BuildCode,

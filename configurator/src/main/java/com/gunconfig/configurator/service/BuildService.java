@@ -23,7 +23,7 @@ public class BuildService {
 
     @Transactional
     public Build findBySchemaBase64Code(SchemaNode schemaNode) {
-        Build build = buildRepo.findBySchema(schemaNodeConverter.convertToDatabaseColumn(schemaNode));
+        Build build = buildRepo.findBySchemaLineView(schemaNodeConverter.convertToDatabaseColumn(schemaNode));
         return build == null ? new Build().setBuildId(-1L) : build;
     }
 

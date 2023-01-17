@@ -1,29 +1,31 @@
-import {BuildTree} from "../../rendering-engine/schema/BuildTreeSchema";
-import {Center, Button} from "@mantine/core";
-import {Product} from "../../schema/NFTCatalogSchema";
-import {useBuildTreeStore} from "../../rendering-engine/store/BuildTreeStore";
-import React, {useEffect, useState} from "react";
+import { BuildTree } from "../../rendering-engine/schema/BuildTreeSchema";
+import { Button, Center } from "@mantine/core";
+import { Product } from "../../schema/NFTCatalogSchema";
+import { useBuildTreeStore } from "../../rendering-engine/store/BuildTreeStore";
+import React, { useEffect, useState } from "react";
 import GunPartCard from "../../components/gun-part-card/GunPartCard";
 import Catalog from "../../components/catalog/Catalog";
 import {
     getBase64CodeByBuildTree,
-    getBuildLinkFromBuildTree, isBuildAlreadyExists,
-    useCreateNFTRequest
+    getBuildLinkFromBuildTree,
+    isBuildAlreadyExists,
+    useCreateNFTRequest,
 } from "../../rendering-engine/service/configuratorService";
-import {useBuildImageStore} from "../../rendering-engine/store/BuildImageStore";
+import { useBuildImageStore } from "../../rendering-engine/store/BuildImageStore";
 import Image from "next/image";
-import {CreateNFTRequest} from "../../rendering-engine/schema/CreateNFTRequestSchema";
-import {useGetNFTByUrlParams} from "../../services/nftService";
+import { CreateNFTRequest } from "../../rendering-engine/schema/CreateNFTRequestSchema";
+import { GCLink } from "../../gc-components";
+import { FRONT_CURRENT_PATH } from "../../config/env-paths";
 
 const BuildSummary = ({}) => {
 
-    const {buildTree} = useBuildTreeStore();
-    const {buildImage} = useBuildImageStore();
+    const { buildTree } = useBuildTreeStore();
+    const { buildImage } = useBuildImageStore();
     const [products, setProducts] = useState<Product[]>([]);
     const [buildLink, setBuildLink] = useState("");
     const [alreadyMintedNft, setAlreadyMintedNft] = useState();
     const [base64BuildCode, setBase64BuildCode] = useState<string>();
-    const {data, isLoading, isError, isSuccess} = isBuildAlreadyExists(base64BuildCode);
+    const { data, isLoading, isError, isSuccess } = isBuildAlreadyExists(base64BuildCode);
 
     useEffect(() => {
         const productsList: Product[] = getListOfBuildTreeProducts(buildTree);
@@ -32,12 +34,12 @@ const BuildSummary = ({}) => {
         setBuildLink(link);
         const code = getBase64CodeByBuildTree(buildTree);
         setBase64BuildCode(code);
-    }, [buildTree])
+    }, [buildTree]);
 
     useEffect(() => {
-        console.log("data")
-        console.log(data)
-    },[data])
+        console.log("data");
+        console.log(data);
+    }, [data]);
 
     function getListOfBuildTreeProducts(buildTree: BuildTree): Product[] {
         if (!buildTree) return null;
@@ -60,8 +62,8 @@ const BuildSummary = ({}) => {
             productImageUrl: buildTree.image,
             description: buildTree.description,
             brand: buildTree.brand,
-            type: buildTree.type
-        }
+            type: buildTree.type,
+        };
     }
 
     async function onMintNFTClick() {
@@ -73,8 +75,8 @@ const BuildSummary = ({}) => {
                 collection: "AutomaticallyCreated",
                 firstOwner: "BelChelovek",
                 name: "AR-15-AC" + Math.floor(Math.random() * 100).toString() + Math.floor(Math.random() * 100).toString(),
-                mintingPrice: 0.50
-            }
+                mintingPrice: 0.50,
+            };
             const response = await useCreateNFTRequest(nftCreateRequest);
             console.log(response);
         }
@@ -84,11 +86,15 @@ const BuildSummary = ({}) => {
         <div>
             Build Summary Page
             <Center>
-                {buildImage && <Image unoptimized width={1080} height={300} src={buildImage}/>}
+                {buildImage && <Image unoptimized width={1080} height={300} src={buildImage} />}
+            </Center>
+            <Center>
+                {data && !data.value.includes("false") &&
+                    <GCLink href={FRONT_CURRENT_PATH + ":3000/" + data.value}>This gun exists</GCLink>}
             </Center>
             <Catalog>
                 {products?.map((product: Product) => (
-                    <GunPartCard product={product} key={product.productId}/>
+                    <GunPartCard product={product} key={product.productId} />
                 ))}
             </Catalog>
             <Center>
