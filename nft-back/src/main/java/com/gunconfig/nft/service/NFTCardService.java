@@ -16,46 +16,53 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class NFTCardService {
 
-    private final NFTCardRepo nftCardRepo;
-    private final ProductService productService;
+  private final NFTCardRepo nftCardRepo;
+  private final ProductService productService;
 
-    public NFTCard create(Long buildId, List<Long> productIds, String buildImageUrl, String collection, String firstOwner, String name, Double mintingPrice) {
-        Product rootGun = productService.findById(productIds.get(0));
+  public NFTCard create(Long buildId, List<Long> productIds, String buildImageUrl,
+      String collection, String firstOwner, String name, Double mintingPrice) {
+    Product rootGun = productService.findById(productIds.get(0));
 
-        Long newNftId = nftCardRepo.getMaxNftId() + 1L;
+    Long newNftId = nftCardRepo.getMaxNftId() + 1L;
 
-        NFTCard nftCard = new NFTCard()
-                .setNftCardId(newNftId)
-                .setName(name)
-                .setCollection(collection)
-                .setMintingPrice(mintingPrice)
-                //ToDo For now we are setting buildImage, but we should change it to nft image
-                .setNftImageUrl(buildImageUrl)
-                .setMintingDate(String.valueOf(LocalDateTime.now().toInstant(ZoneOffset.UTC).toEpochMilli()))
-                .setFirstOwner(firstOwner)
-                .setBuildId(buildId)
-                .setStatus(NFTCard.Status.DRAFT)
-                .setRarity(NFTCard.Rarity.USUAL.toString())
-                .setProducts(productService.findByIds(productIds))
-                .setRootGunId(rootGun.getProductId())
-                .setRootGunDescription(rootGun.getDescription())
-                .setRootGunBrand(rootGun.getBrand())
-                //ToDo Set real caliber later
-                .setRootGunCaliber("223");
+    NFTCard nftCard = new NFTCard()
+        .setNftCardId(newNftId)
+        .setName(name)
+        .setCollection(collection)
+        .setMintingPrice(mintingPrice)
+        //ToDo For now we are setting buildImage, but we should change it to nft image
+        .setNftImageUrl(buildImageUrl)
+        .setMintingDate(
+            String.valueOf(LocalDateTime.now().toInstant(ZoneOffset.UTC).toEpochMilli()))
+        .setFirstOwner(firstOwner)
+        .setBuildId(buildId)
+        .setStatus(NFTCard.Status.DRAFT)
+        .setRarity(NFTCard.Rarity.USUAL.toString())
+        .setProducts(productService.findByIds(productIds))
+        .setRootGunId(rootGun.getProductId())
+        .setRootGunDescription(rootGun.getDescription())
+        .setRootGunBrand(rootGun.getBrand())
+        //ToDo Set real caliber later
+        .setRootGunCaliber("223");
 
-        return nftCardRepo.save(nftCard);
-    }
+    return nftCardRepo.save(nftCard);
+  }
 
-    public List<NFTCard> getAllByParameters(Map<String, String> requestParams, Pageable pageable) {
-        return nftCardRepo.findAllByParameters(requestParams, pageable, NFTCard.class);
-    }
+  public List<NFTCard> getAllByParameters(Map<String, String> requestParams, Pageable pageable) {
+    return nftCardRepo.findAllByParameters(requestParams, pageable, NFTCard.class);
+  }
 
-    public NFTCard findById(Long nftCardId) {
-        return nftCardRepo.findById(nftCardId)
-                .orElseThrow(() -> new RuntimeException("There is no nft card with id: " + nftCardId));
-    }
+  public NFTCard findById(Long nftCardId) {
+    return nftCardRepo.findById(nftCardId)
+        .orElseThrow(() -> new RuntimeException("There is no nft card with id: " + nftCardId));
+  }
 
-    public List<NFTCard> findEightNFTsFromSameCollection(String collectionName) {
-        return nftCardRepo.findTop8ByCollection(collectionName);
-    }
+  public List<NFTCard> findEightNFTsFromSameCollection(String collectionName) {
+    return nftCardRepo.findTop8ByCollection(collectionName);
+  }
+
+  public NFTCard findByBuildId(Long buildId) {
+    return nftCardRepo.findByBuildId(buildId)
+        .orElseThrow(() -> new RuntimeException("There is no nft with buildId: " + buildId));
+  }
 }

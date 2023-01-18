@@ -14,8 +14,9 @@ import {
 import { useBuildImageStore } from "../../rendering-engine/store/BuildImageStore";
 import Image from "next/image";
 import { CreateNFTRequest } from "../../rendering-engine/schema/CreateNFTRequestSchema";
-import { GCLink } from "../../gc-components";
+import { GCLink, GCText } from "../../gc-components";
 import { FRONT_CURRENT_PATH } from "../../config/env-paths";
+import { useRouter } from "next/router";
 
 const BuildSummary = ({}) => {
 
@@ -26,6 +27,7 @@ const BuildSummary = ({}) => {
     const [alreadyMintedNft, setAlreadyMintedNft] = useState();
     const [base64BuildCode, setBase64BuildCode] = useState<string>();
     const { data, isLoading, isError, isSuccess } = isBuildAlreadyExists(base64BuildCode);
+    const router = useRouter();
 
     useEffect(() => {
         const productsList: Product[] = getListOfBuildTreeProducts(buildTree);
@@ -35,11 +37,6 @@ const BuildSummary = ({}) => {
         const code = getBase64CodeByBuildTree(buildTree);
         setBase64BuildCode(code);
     }, [buildTree]);
-
-    useEffect(() => {
-        console.log("data");
-        console.log(data);
-    }, [data]);
 
     function getListOfBuildTreeProducts(buildTree: BuildTree): Product[] {
         if (!buildTree) return null;
@@ -74,11 +71,12 @@ const BuildSummary = ({}) => {
                 base64Code: base64Code,
                 collection: "AutomaticallyCreated",
                 firstOwner: "BelChelovek",
-                name: "AR-15-AC" + Math.floor(Math.random() * 100).toString() + Math.floor(Math.random() * 100).toString(),
+                name: "AC-" + Math.floor(Math.random() * 100).toString() + Math.floor(Math.random() * 100).toString(),
                 mintingPrice: 0.50,
             };
             const response = await useCreateNFTRequest(nftCreateRequest);
             console.log(response);
+            await router.push(FRONT_CURRENT_PATH + ":3000/nft/" + response.nftCardId);
         }
     }
 
@@ -88,17 +86,19 @@ const BuildSummary = ({}) => {
             <Center>
                 {buildImage && <Image unoptimized width={1080} height={300} src={buildImage} />}
             </Center>
-            <Center>
-                {data && !data.value.includes("false") &&
-                    <GCLink href={FRONT_CURRENT_PATH + ":3000/" + data.value}>This gun exists</GCLink>}
-            </Center>
             <Catalog>
                 {products?.map((product: Product) => (
                     <GunPartCard product={product} key={product.productId} />
                 ))}
             </Catalog>
             <Center>
-                <Button onClick={onMintNFTClick}>
+                {data && !data.value.includes("false") &&
+                    <GCLink href={FRONT_CURRENT_PATH + ":3000/" + data.value}>
+                        <GCText primary>NFT for this build already exists</GCText>
+                    </GCLink>}
+            </Center>
+            <Center>
+                <Button disabled={data && !data.value.includes("false")} onClick={onMintNFTClick}>
                     Mint NFT
                 </Button>
             </Center>

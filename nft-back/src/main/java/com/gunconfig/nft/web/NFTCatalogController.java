@@ -12,6 +12,8 @@ import com.gunconfig.nft.web.mapper.FilterItemMapper;
 import com.gunconfig.nft.web.mapper.NFTCardMapper;
 import com.gunconfig.nft.web.preparer.FilterAndPageable;
 import com.gunconfig.nft.web.preparer.Preparer;
+import java.util.List;
+import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -19,11 +21,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Map;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
@@ -48,7 +51,8 @@ public class NFTCatalogController {
     if (buildId == -1L) {
       return new StringResponse("url", "false");
     } else {
-      return new StringResponse("url", "/nft/" + buildId);
+      NFTCard nft = nftCardService.findByBuildId(buildId);
+      return new StringResponse("url", "/nft/" + nft.getNftCardId());
     }
   }
 

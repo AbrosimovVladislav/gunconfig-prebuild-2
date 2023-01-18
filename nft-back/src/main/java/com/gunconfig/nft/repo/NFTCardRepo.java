@@ -2,6 +2,7 @@ package com.gunconfig.nft.repo;
 
 import com.gunconfig.nft.model.NFTCard;
 import com.gunconfig.querybuilder.FilterAndSortingRepository;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -16,4 +17,5 @@ public interface NFTCardRepo extends JpaRepository<NFTCard, Long>, FilterAndSort
 
     List<NFTCard> findTop8ByCollection(String collection);
 
+  Optional<NFTCard> findByBuildId(Long buildId);
 }
