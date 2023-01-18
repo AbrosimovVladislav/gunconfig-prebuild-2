@@ -18,7 +18,7 @@ const Configurator2 = () => {
             {data && data.map(gun =>
                 <div onClick={() => handleClick(gun.buildSchemaCode)}>
                     <GunPartCard product={{
-                        productId: Math.floor(Math.random()),
+                        productId: gun.gunForChooseId,
                         name: gun.name,
                         productImageUrl: gun.gunImageUrl,
                         description: "desc",

@@ -1,31 +1,41 @@
 package com.gunconfig.configurator.web;
 
 import com.gunconfig.configurator.model.Build;
+import com.gunconfig.configurator.model.GunForChoose;
 import com.gunconfig.configurator.model.GunPart;
 import com.gunconfig.configurator.model.Product;
 import com.gunconfig.configurator.model.SchemaNode;
 import com.gunconfig.configurator.service.BuildService;
 import com.gunconfig.configurator.service.CoordinatesService;
+import com.gunconfig.configurator.service.GunForChooseService;
 import com.gunconfig.configurator.service.GunPartService;
 import com.gunconfig.configurator.service.ProductService;
 import com.gunconfig.configurator.web.dto.BuildGunPartDto;
 import com.gunconfig.configurator.web.dto.BuildWithProductsDto;
 import com.gunconfig.configurator.web.dto.RenderingGunPartDto;
 import com.gunconfig.configurator.web.dto.ShortGunPartDto;
-import com.gunconfig.configurator.web.dto.request.*;
+import com.gunconfig.configurator.web.dto.request.BuildCreateRequest;
+import com.gunconfig.configurator.web.dto.request.CreateGunPartRequest;
+import com.gunconfig.configurator.web.dto.request.CreateProductRequest;
+import com.gunconfig.configurator.web.dto.request.GetGunPartsByParentAndTypeRequest;
+import com.gunconfig.configurator.web.dto.request.SetCoordinatesRequest;
 import com.gunconfig.configurator.web.mapper.BuildMapper;
 import com.gunconfig.configurator.web.mapper.GunPartMapper;
 import com.gunconfig.configurator.web.preparer.Preparer;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.util.Pair;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.util.Pair;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
@@ -40,6 +50,7 @@ public class ConfiguratorController {
   private final Preparer preparer;
   private final CoordinatesService coordinatesService;
   private final ProductService productService;
+  private final GunForChooseService gunForChooseService;
 
   /**
    * First endpoint Get a tree of gun by provided schema
@@ -146,24 +157,8 @@ public class ConfiguratorController {
 
   @CrossOrigin
   @GetMapping("/gunsForChoose")
-  public List<GunForChooseDto> getGunsForChoose() {
-    return List.of(
-        new GunForChooseDto("Colt AR-15", "https://gunmarket.fra1.digitaloceanspaces.com/AC-149",
-            "ewogICJpZCI6IDEsCiAgImNoaWxkcmVuIjogWwogICAgewogICAgICAiaWQiOiAzLAogICAgICAiY2hpbGRyZW4iOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogOSwKICAgICAgICAgICJjaGlsZHJlbiI6IFtdCiAgICAgICAgfQogICAgICBdCiAgICB9LAogICAgewogICAgICAiaWQiOiA2LAogICAgICAiY2hpbGRyZW4iOiBbXQogICAgfSwKICAgIHsKICAgICAgImlkIjogMTAsCiAgICAgICJjaGlsZHJlbiI6IFtdCiAgICB9LAogICAgewogICAgICAiaWQiOiAxMSwKICAgICAgImNoaWxkcmVuIjogW10KICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDEyLAogICAgICAiY2hpbGRyZW4iOiBbXQogICAgfSwKICAgIHsKICAgICAgImlkIjogMTMsCiAgICAgICJjaGlsZHJlbiI6IFtdCiAgICB9LAogICAgewogICAgICAiaWQiOiAxNCwKICAgICAgImNoaWxkcmVuIjogW10KICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDE1LAogICAgICAiY2hpbGRyZW4iOiBbXQogICAgfSwKICAgIHsKICAgICAgImlkIjogMTYsCiAgICAgICJjaGlsZHJlbiI6IFtdCiAgICB9LAogICAgewogICAgICAiaWQiOiAxNywKICAgICAgImNoaWxkcmVuIjogW10KICAgIH0KICBdCn0="),
-        new GunForChooseDto("ADC AR-9", "https://gunmarket.fra1.digitaloceanspaces.com/AC-6185",
-            "ewogICJpZCI6IDkwLAogICJjaGlsZHJlbiI6IFsKICAgIHsKICAgICAgImlkIjogOTEsCiAgICAgICJjaGlsZHJlbiI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiA0LAogICAgICAgICAgImNoaWxkcmVuIjogW10KICAgICAgICB9CiAgICAgIF0KICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDk1LAogICAgICAiY2hpbGRyZW4iOiBbXQogICAgfSwKICAgIHsKICAgICAgImlkIjogOTgsCiAgICAgICJjaGlsZHJlbiI6IFtdCiAgICB9LAogICAgewogICAgICAiaWQiOiA1MCwKICAgICAgImNoaWxkcmVuIjogW10KICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDE3LAogICAgICAiY2hpbGRyZW4iOiBbXQogICAgfSwKICAgIHsKICAgICAgImlkIjogOTIsCiAgICAgICJjaGlsZHJlbiI6IFtdCiAgICB9LAogICAgewogICAgICAiaWQiOjUsCiAgICAgICJjaGlsZHJlbiI6IFtdCiAgICB9LAogICAgewogICAgICAiaWQiOiA5MywKICAgICAgImNoaWxkcmVuIjogW10KICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDk0LAogICAgICAiY2hpbGRyZW4iOiBbXQogICAgfSwKICAgIHsKICAgICAgImlkIjogOTYsCiAgICAgICJjaGlsZHJlbiI6IFtdCiAgICB9LAogICAgewogICAgICAiaWQiOiA5NywKICAgICAgImNoaWxkcmVuIjogW10KICAgIH0KICBdCn0="),
-        new GunForChooseDto("AK-103", "https://gunmarket.fra1.digitaloceanspaces.com/AC-1825",
-            "ewogICJpZCI6IDEwMCwKICAiY2hpbGRyZW4iOiBbCiAgICB7CiAgICAgICJpZCI6IDEwMSwKICAgICAgImNoaWxkcmVuIjogW10KICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDEwMiwKICAgICAgImNoaWxkcmVuIjogW10KICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDEwMywKICAgICAgImNoaWxkcmVuIjogW10KICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDEwNCwKICAgICAgImNoaWxkcmVuIjogW10KICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDEwNSwKICAgICAgImNoaWxkcmVuIjogW10KICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDEwNiwKICAgICAgImNoaWxkcmVuIjogW10KICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDEwNywKICAgICAgImNoaWxkcmVuIjogW10KICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDEwOCwKICAgICAgImNoaWxkcmVuIjogW10KICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDEwOSwKICAgICAgImNoaWxkcmVuIjogW10KICAgIH0KICBdCn0=")
-    );
+  public List<GunForChoose> getGunsForChoose() {
+    return gunForChooseService.findALl();
   }
 
-}
-
-@Data
-@AllArgsConstructor
-class GunForChooseDto {
-
-  private String name;
-  private String gunImageUrl;
-  private String buildSchemaCode;
 }
