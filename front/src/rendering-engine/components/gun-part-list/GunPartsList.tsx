@@ -9,9 +9,9 @@ import Catalog from "../../../components/catalog/Catalog";
 
 
 const GunPartsList = () => {
-    const {buildIds, replaceGunPart} = useBuildTreeStore();
-    const {clickedGunPart, setClickedGunPart} = useClickedGunPartStore();
-    const {data: gunParts} = useGetGunPartsByParentAndType(clickedGunPart.parentId, clickedGunPart.type, buildIds);
+    const { buildIds, replaceGunPart } = useBuildTreeStore();
+    const { clickedGunPart, setClickedGunPart } = useClickedGunPartStore();
+    const { data: gunParts } = useGetGunPartsByParentAndType(clickedGunPart.parentId, clickedGunPart.type, buildIds);
 
     function chooseGunPartFromList(oldGunPart: ClickedGunPart, newGunPart: BuildTree) {
         replaceGunPart(oldGunPart.itemId, newGunPart);
@@ -38,8 +38,8 @@ const GunPartsList = () => {
                                      name: part.name,
                                      productImageUrl: part.thumbnailImage,
                                      brand: part.brand,
-                                     type: part.type
-                                 }}/>
+                                     type: part.type,
+                                 }} />
                 </div>
             ))}
         </Catalog>

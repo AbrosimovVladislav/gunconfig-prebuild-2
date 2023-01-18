@@ -7,7 +7,6 @@ import GunPartCard from "../../components/gun-part-card/GunPartCard";
 import Catalog from "../../components/catalog/Catalog";
 import {
     getBase64CodeByBuildTree,
-    getBuildLinkFromBuildTree,
     isBuildAlreadyExists,
     useCreateNFTRequest,
 } from "../../rendering-engine/service/configuratorService";
@@ -23,17 +22,13 @@ const BuildSummary = ({}) => {
     const { buildTree } = useBuildTreeStore();
     const { buildImage } = useBuildImageStore();
     const [products, setProducts] = useState<Product[]>([]);
-    const [buildLink, setBuildLink] = useState("");
-    const [alreadyMintedNft, setAlreadyMintedNft] = useState();
     const [base64BuildCode, setBase64BuildCode] = useState<string>();
-    const { data, isLoading, isError, isSuccess } = isBuildAlreadyExists(base64BuildCode);
+    const { data } = isBuildAlreadyExists(base64BuildCode);
     const router = useRouter();
 
     useEffect(() => {
         const productsList: Product[] = getListOfBuildTreeProducts(buildTree);
         setProducts(productsList);
-        const link = getBuildLinkFromBuildTree(buildTree);
-        setBuildLink(link);
         const code = getBase64CodeByBuildTree(buildTree);
         setBase64BuildCode(code);
     }, [buildTree]);

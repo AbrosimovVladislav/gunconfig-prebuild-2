@@ -1,18 +1,18 @@
-import {Box, Button, Center, Group, Modal} from "@mantine/core";
-import {useRouter} from "next/router";
-import {Engine} from "../../rendering-engine/components/engine";
+import { Box, Button, Center, Group, Modal } from "@mantine/core";
+import { useRouter } from "next/router";
+import { Engine } from "../../rendering-engine/components/engine";
 import {
     getBuildLinkFromBuildTree,
-    useGetBuildTreeByBase64Code
+    useGetBuildTreeByBase64Code,
 } from "../../rendering-engine/service/configuratorService";
-import {CopyToClipboard} from 'react-copy-to-clipboard';
-import {useEffect, useRef, useState} from "react";
-import {useBuildTreeStore} from "../../rendering-engine/store/BuildTreeStore";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { useEffect, useRef, useState } from "react";
+import { useBuildTreeStore } from "../../rendering-engine/store/BuildTreeStore";
 import GunPartsList from "../../rendering-engine/components/gun-part-list/GunPartsList";
-import {useClickedGunPartStore} from "../../rendering-engine/store/ClickedGunPartStore";
-import {GCText} from "../../gc-components";
-import * as htmlToImage from 'html-to-image';
-import {useBuildImageStore} from "../../rendering-engine/store/BuildImageStore";
+import { useClickedGunPartStore } from "../../rendering-engine/store/ClickedGunPartStore";
+import { GCText } from "../../gc-components";
+import * as htmlToImage from "html-to-image";
+import { useBuildImageStore } from "../../rendering-engine/store/BuildImageStore";
 
 export interface ClickedGunPart {
     itemId: number;
@@ -22,16 +22,16 @@ export interface ClickedGunPart {
 
 const Configurator = () => {
     const router = useRouter();
-    const {base64} = router.query;
+    const { base64 } = router.query;
 
     const [data] = useGetBuildTreeByBase64Code(base64 as string);
-    const {buildTree, setBuildTree} = useBuildTreeStore();
-    const {setBuildImage} = useBuildImageStore();
+    const { buildTree, setBuildTree } = useBuildTreeStore();
+    const { setBuildImage } = useBuildImageStore();
     const [currentBuildUrl, setCurrentBuildUrl] = useState("");
     const [isShareLinkModalOpened, setIsShareLinkModalOpened] = useState(false);
-    const [copy, setCopy] = useState({value: '', isCopied: false});
+    const [copy, setCopy] = useState({ value: "", isCopied: false });
 
-    const {clickedGunPart} = useClickedGunPartStore();
+    const { clickedGunPart } = useClickedGunPartStore();
 
 
     useEffect(() => {
@@ -41,39 +41,24 @@ const Configurator = () => {
     function onShareYourBuildClick() {
         const url = getBuildLinkFromBuildTree(buildTree);
         setCurrentBuildUrl(url);
-        setIsShareLinkModalOpened(true)
+        setIsShareLinkModalOpened(true);
     }
 
     function onCopyLinkClick(textToCopy: string) {
-        setCopy({value: textToCopy, isCopied: true});
+        setCopy({ value: textToCopy, isCopied: true });
         setTimeout(() => {
             setIsShareLinkModalOpened(false);
-            setCopy({value: '', isCopied: false})
-        }, 750)
+            setCopy({ value: "", isCopied: false });
+        }, 750);
     }
 
     async function onSummaryClick() {
-        //build image +++
-        //list of used gun products +++
-        //gun description
-        //link with base64code +++
         const buildImageData = await htmlToImage.toPng(domEl.current);
-        setBuildImage(buildImageData)
-        router.push('/summary')
+        setBuildImage(buildImageData);
+        router.push("/summary");
     }
 
     const domEl = useRef(null);
-
-    const downloadImage = async () => {
-        const dataUrl = await htmlToImage.toPng(domEl.current);
-        console.log(dataUrl)
-
-        // download image
-        const link = document.createElement('a');
-        link.download = "html-to-img.png";
-        link.href = dataUrl;
-        link.click();
-    }
 
     return (
         <>
@@ -85,10 +70,10 @@ const Configurator = () => {
                      padding: "1rem 0",
                  }}
             >
-                {buildTree && <Engine data={buildTree}/>}
+                {buildTree && <Engine data={buildTree} />}
             </Box>
 
-            {clickedGunPart && <GunPartsList/>}
+            {clickedGunPart && <GunPartsList />}
 
             <Center>
                 <Modal
@@ -99,9 +84,10 @@ const Configurator = () => {
                         {currentBuildUrl}
                     </GCText>
                     <Center>
-                        <CopyToClipboard text={currentBuildUrl} onCopy={() => onCopyLinkClick(currentBuildUrl)}>
-                            <Button color={copy.isCopied ? 'teal' : 'blue'}>
-                                {copy.isCopied ? 'Copied url' : 'Copy url'}
+                        <CopyToClipboard text={currentBuildUrl}
+                                         onCopy={() => onCopyLinkClick(currentBuildUrl)}>
+                            <Button color={copy.isCopied ? "teal" : "blue"}>
+                                {copy.isCopied ? "Copied url" : "Copy url"}
                             </Button>
                         </CopyToClipboard>
 
@@ -114,13 +100,8 @@ const Configurator = () => {
             </Center>
 
             <Center>
-                <Button onClick={onSummaryClick} color={'teal'}>
+                <Button onClick={onSummaryClick} color={"teal"}>
                     Build Summary
-                </Button>
-            </Center>
-            <Center>
-                <Button onClick={downloadImage} color={'red'}>
-                    Picture
                 </Button>
             </Center>
         </>
