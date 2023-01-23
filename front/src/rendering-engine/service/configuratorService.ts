@@ -11,6 +11,46 @@ import { BuildTree, IdsBuildTree } from "../schema/BuildTreeSchema";
 import { FRONT_CURRENT_PATH } from "../../config/env-paths";
 import { CreateNFTRequest } from "../schema/CreateNFTRequestSchema";
 import { GunForChoose } from "../../schema/Configurator";
+import {Product} from "../../schema/NFTCatalogSchema";
+
+export function getListOfBuildTreeProducts(buildTree: BuildTree): Product[] {
+    if (!buildTree) return null;
+    let products = [];
+    getChildrenProductsRecursively(buildTree, products);
+    return products;
+}
+
+function getChildrenProductsRecursively(buildTree: BuildTree, products: Product[]) {
+    products.push(mapBuildTreeToProducts(buildTree));
+    if (buildTree.children && buildTree.children.length > 0) {
+        buildTree.children.forEach(child => getChildrenProductsRecursively(child, products));
+    }
+}
+
+function mapBuildTreeToProducts(buildTree: BuildTree): Product {
+    return {
+        productId: buildTree.id,
+        name: buildTree.name,
+        productImageUrl: buildTree.image,
+        description: buildTree.description,
+        brand: buildTree.brand,
+        type: buildTree.type,
+    };
+}
+
+export function getIdsArrOfBuildTree(buildTree: BuildTree): string {
+    if (!buildTree) return null;
+    let idsArr = [];
+    getChildrenIdsRecursively(buildTree, idsArr);
+    return idsArr.toString();
+}
+
+function getChildrenIdsRecursively(buildTree: BuildTree, idsArr: number[]) {
+    idsArr.push(buildTree.id);
+    if (buildTree.children && buildTree.children.length > 0) {
+        buildTree.children.forEach(child => getChildrenIdsRecursively(child, idsArr));
+    }
+}
 
 export function getBuildLinkFromBuildTree(buildTree: BuildTree): string {
     let idsTree: IdsBuildTree = { id: 1, children: [] };
@@ -47,14 +87,6 @@ export function useGetBuildTreeByBase64Code(treeBase64Code: String): [BuildTree,
     );
     return [data, isLoading, isError, isSuccess];
 }
-
-// export async function useCreateNFTRequest(createNFTRequest: CreateNFTRequest) {
-//     const {data, isLoading, isError} = useMutation(
-//         "CreateNFTRequest" + JSON.stringify(createNFTRequest),
-//         await post(NFT_CREATION_POSTFIX, createNFTRequest)
-//     )
-//     return {data, isLoading, isError};
-// }
 
 export async function useCreateNFTRequest(createNFTRequest: CreateNFTRequest) {
     const response = await post(NFT_CREATION_POSTFIX, createNFTRequest);

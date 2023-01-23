@@ -1,17 +1,18 @@
 import React from "react";
-import { useGetGunPartsByParentAndType } from "../../service/configuratorService";
-import { useBuildTreeStore } from "../../store/BuildTreeStore";
-import { useClickedGunPartStore } from "../../store/ClickedGunPartStore";
-import { ClickedGunPart } from "../../../pages/configurator/[base64]";
-import { BuildTree } from "../../schema/BuildTreeSchema";
+import {getIdsArrOfBuildTree, useGetGunPartsByParentAndType} from "../../service/configuratorService";
+import {useBuildTreeStore} from "../../store/BuildTreeStore";
+import {useClickedGunPartStore} from "../../store/ClickedGunPartStore";
+import {ClickedGunPart} from "../../../pages/configurator/[base64]";
+import {BuildTree} from "../../schema/BuildTreeSchema";
 import GunPartCard from "../../../components/gun-part-card/GunPartCard";
 import Catalog from "../../../components/catalog/Catalog";
 
 
 const GunPartsList = () => {
-    const { buildIds, replaceGunPart } = useBuildTreeStore();
-    const { clickedGunPart, setClickedGunPart } = useClickedGunPartStore();
-    const { data: gunParts } = useGetGunPartsByParentAndType(clickedGunPart.parentId, clickedGunPart.type, buildIds);
+    const {buildTree, replaceGunPart} = useBuildTreeStore();
+    const {clickedGunPart, setClickedGunPart} = useClickedGunPartStore();
+    const {data: gunParts} = useGetGunPartsByParentAndType(
+        clickedGunPart.parentId, clickedGunPart.type, getIdsArrOfBuildTree(buildTree));
 
     function chooseGunPartFromList(oldGunPart: ClickedGunPart, newGunPart: BuildTree) {
         replaceGunPart(oldGunPart.itemId, newGunPart);
@@ -39,7 +40,7 @@ const GunPartsList = () => {
                                      productImageUrl: part.thumbnailImage,
                                      brand: part.brand,
                                      type: part.type,
-                                 }} />
+                                 }}/>
                 </div>
             ))}
         </Catalog>

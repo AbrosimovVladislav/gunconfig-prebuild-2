@@ -2,7 +2,7 @@ import { Box, Button, Center, Group, Modal } from "@mantine/core";
 import { useRouter } from "next/router";
 import { Engine } from "../../rendering-engine/components/engine";
 import {
-    getBuildLinkFromBuildTree,
+    getBuildLinkFromBuildTree, getListOfBuildTreeProducts,
     useGetBuildTreeByBase64Code,
 } from "../../rendering-engine/service/configuratorService";
 import { CopyToClipboard } from "react-copy-to-clipboard";
@@ -13,6 +13,7 @@ import { useClickedGunPartStore } from "../../rendering-engine/store/ClickedGunP
 import { GCText } from "../../gc-components";
 import * as htmlToImage from "html-to-image";
 import { useBuildImageStore } from "../../rendering-engine/store/BuildImageStore";
+import {useGunPartListCarouselStore} from "../../rendering-engine/store/GunPartListCarouselStore";
 
 export interface ClickedGunPart {
     itemId: number;
@@ -27,15 +28,18 @@ const Configurator = () => {
     const [data] = useGetBuildTreeByBase64Code(base64 as string);
     const { buildTree, setBuildTree } = useBuildTreeStore();
     const { setBuildImage } = useBuildImageStore();
+
     const [currentBuildUrl, setCurrentBuildUrl] = useState("");
     const [isShareLinkModalOpened, setIsShareLinkModalOpened] = useState(false);
     const [copy, setCopy] = useState({ value: "", isCopied: false });
 
     const { clickedGunPart } = useClickedGunPartStore();
+    const {setGunParts} = useGunPartListCarouselStore();
 
 
     useEffect(() => {
         setBuildTree(data);
+        const productsList = getListOfBuildTreeProducts(data);
     }, [data]);
 
     function onShareYourBuildClick() {
