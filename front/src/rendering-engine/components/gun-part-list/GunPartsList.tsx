@@ -1,19 +1,20 @@
 import React from "react";
-import { useGetGunPartsByParentAndType } from "../../service/configuratorService";
-import { useBuildTreeStore } from "../../store/BuildTreeStore";
-import { useClickedGunPartStore } from "../../store/ClickedGunPartStore";
-import { ClickedGunPart } from "../../../pages/configurator/[base64]";
-import { BuildTree } from "../../schema/BuildTreeSchema";
+import {useBuildTreeStore} from "../../store/BuildTreeStore";
+import {useClickedGunPartStore} from "../../store/ClickedGunPartStore";
+import {ClickedGunPart} from "../../../pages/configurator/[base64]";
+import {BuildTree} from "../../schema/BuildTreeSchema";
 import GunPartCard from "../../../components/gun-part-card/GunPartCard";
 import Catalog from "../../../components/catalog/Catalog";
+import {useGunPartListCarouselStore} from "../../store/GunPartListCarouselStore";
 
 
 const GunPartsList = () => {
-    const { buildIds, replaceGunPart } = useBuildTreeStore();
-    const { clickedGunPart, setClickedGunPart } = useClickedGunPartStore();
-    const { data: gunParts } = useGetGunPartsByParentAndType(clickedGunPart.parentId, clickedGunPart.type, buildIds);
+    const {replaceGunPart} = useBuildTreeStore();
+    const {clickedGunPart, setClickedGunPart} = useClickedGunPartStore();
+    const {gunParts} = useGunPartListCarouselStore();
 
     function chooseGunPartFromList(oldGunPart: ClickedGunPart, newGunPart: BuildTree) {
+        //ToDo make backend call for get build tree product info
         replaceGunPart(oldGunPart.itemId, newGunPart);
         setClickedGunPart({
             itemId: newGunPart.id,
@@ -24,13 +25,17 @@ const GunPartsList = () => {
         });
     }
 
+    if (!gunParts) {
+        return <div></div>
+    }
+
     return (
         <Catalog>
-            {gunParts?.map((part) => (
+            {gunParts && gunParts.length > 0 && gunParts?.map((part) => (
                 <div key={part.id}
-                     onClick={() => !part.incompatible && chooseGunPartFromList(clickedGunPart, part)}>
+                     onClick={() => !part.incompatible && clickedGunPart && chooseGunPartFromList(clickedGunPart, part)}>
                     <GunPartCard hoverable
-                                 active={part.id == clickedGunPart.itemId}
+                                 active={clickedGunPart && part.id == clickedGunPart.itemId}
                                  disabled={part.incompatible}
                                  sm
                                  product={{
@@ -39,7 +44,7 @@ const GunPartsList = () => {
                                      productImageUrl: part.thumbnailImage,
                                      brand: part.brand,
                                      type: part.type,
-                                 }} />
+                                 }}/>
                 </div>
             ))}
         </Catalog>
