@@ -32,6 +32,7 @@ const Configurator = () => {
     const [isShareLinkModalOpened, setIsShareLinkModalOpened] = useState(false);
     const [copy, setCopy] = useState({value: "", isCopied: false});
     const {setGunParts} = useGunPartListCarouselStore();
+    const {setClickedGunPart} = useClickedGunPartStore();
 
 
     useEffect(() => {
@@ -59,6 +60,11 @@ const Configurator = () => {
         router.push("/summary");
     }
 
+    function onShowCurrentPartsClick() {
+        setGunParts(getListOfProducts(buildTree));
+        setClickedGunPart(null);
+    }
+
     const domEl = useRef(null);
 
     return (
@@ -72,6 +78,12 @@ const Configurator = () => {
                  }}>
                 {buildTree && <Engine data={buildTree}/>}
             </Box>
+
+            <Center>
+                <Button onClick={onShowCurrentPartsClick} color={"teal"}>
+                    Show current parts
+                </Button>
+            </Center>
 
             <GunPartsList/>
 
