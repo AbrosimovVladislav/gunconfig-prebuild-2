@@ -2,6 +2,7 @@ import {GCList, GCListItem, GCText} from "../../gc-components";
 import {NFTCard} from "../../schema/NFTCatalogSchema";
 import {useStyles} from "./NftCardInformationStyle";
 import {IconAlertCircle, IconPhoto} from "@tabler/icons";
+import Link from "next/link";
 
 interface NftCardInformationProps {
     data: NFTCard;
@@ -13,7 +14,7 @@ const NftCardInformation = ({data}: NftCardInformationProps) => {
     return (
         <div className={classes.infoContainer}>
             <GCText h1 bold> {data?.name} </GCText>
-            <GCText h3 gray  className={classes.collection}>
+            <GCText h3 gray className={classes.collection}>
                 Collection:
                 <GCText h3 primary bold>
                     {data?.collection}
@@ -40,15 +41,19 @@ const NftCardInformation = ({data}: NftCardInformationProps) => {
                     </GCListItem>
                     <GCListItem className={classes.listItem}>
                         <GCText h3>First Owner</GCText>
-                        <GCText h3 bold  align="end">{data?.firstOwner}</GCText>
+                        <GCText h3 bold align="end">{data?.firstOwner}</GCText>
                     </GCListItem>
                     <GCListItem className={classes.listItem}>
                         <GCText h3>Rarity</GCText>
-                        <GCText h3 bold  align="end">{data?.rarity}</GCText>
+                        <GCText h3 bold align="end">{data?.rarity}</GCText>
                     </GCListItem>
                     <GCListItem className={classes.listItem}>
                         <GCText h3>Creation Date</GCText>
-                        <GCText h3 bold  align="end">{data?.mintingDate}</GCText>
+                        <GCText h3 bold align="end">{data?.mintingDate}</GCText>
+                    </GCListItem>
+                    <GCListItem className={classes.listItem}>
+                        <GCText h3>Link to build</GCText>
+                        <Link href={data?.buildLink}>Link</Link>
                     </GCListItem>
                 </GCList>
             </div>

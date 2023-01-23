@@ -10,6 +10,7 @@ export interface NFTCard {
     firstOwner: string;
     gunDescription: string;
     properties: Product[];
+    buildLink: string;
 }
 
 export interface Product {

@@ -9,9 +9,10 @@ import com.gunconfig.configurator.service.converter.SchemaNodeConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.SerializationUtils;
 
+import java.util.Base64;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -19,11 +20,11 @@ public class BuildService {
 
     private final BuildRepo buildRepo;
     private final GunPartRepo gunPartRepo;
-    private final SchemaNodeConverter schemaNodeConverter;
+    private final SchemaNodeConverter converter;
 
     @Transactional
-    public Build findBySchemaBase64Code(SchemaNode schemaNode) {
-        Build build = buildRepo.findBySchemaLineView(schemaNodeConverter.convertToDatabaseColumn(schemaNode));
+    public Build findBySchemaBase64Code(String schemaNode) {
+        Build build = buildRepo.findBySchema(schemaNode);
         return build == null ? new Build().setBuildId(-1L) : build;
     }
 
@@ -37,8 +38,9 @@ public class BuildService {
         return buildRepo.findById(id).orElseThrow(() -> new RuntimeException("There is no build with id: " + id));
     }
 
-    public GunPart getBuildTreeBySchema(SchemaNode schema) {
-        GunPart gunPart = recursiveBuildEnrich(schema, gunPartRepo.findByGunPartId(schema.getId()));
+    public GunPart getBuildTreeBySchema(String schema) {
+        SchemaNode schemaNode = converter.convertToEntityAttribute(schema);
+        GunPart gunPart = recursiveBuildEnrich(schemaNode, gunPartRepo.findByGunPartId(schemaNode.getId()));
         return gunPart;
     }
 
@@ -52,6 +54,14 @@ public class BuildService {
             children.forEach(e -> recursiveBuildEnrich(e, gunPartRepo.findByGunPartId(e.getId())));
         }
         return gunPartTree;
+    }
+
+    public String getBase64CodeByBuildId(Long buildId) {
+        Build build = buildRepo.findById(buildId).orElseThrow(
+                () -> new RuntimeException("Build with id " + buildId + " not found"));
+
+        byte[] schema = SerializationUtils.serialize(build.getSchema());
+        return new String(Base64.getEncoder().encode(schema));
     }
 
 //    private GunPart recursiveBuildEnrich(BuildNode buildNode, GunPart gunPartTree) {

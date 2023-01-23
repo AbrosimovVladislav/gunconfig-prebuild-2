@@ -11,5 +11,5 @@ public interface BuildRepo extends JpaRepository<Build, Long> {
       nativeQuery = true)
   Long getMaxBuildId();
 
-  Build findBySchemaLineView(String schemaLineView);
+  Build findBySchema(String schema);
 }

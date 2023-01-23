@@ -28,6 +28,8 @@ public class ConfiguratorClient {
     public String PRODUCTS_PATH;
     @Value("${configurator.products-ids}")
     public String PRODUCTS_IDS_PATH;
+    @Value("${configurator.base64code-by-build-id}")
+    public String BASE64CODE_BY_BUILD_ID;
 
     private final RestTemplate restTemplate;
 
@@ -74,6 +76,18 @@ public class ConfiguratorClient {
                 HttpMethod.GET,
                 new HttpEntity<>(null),
                 new ParameterizedTypeReference<List<Long>>() {
+                }
+        );
+        return response.getBody();
+    }
+
+    public String getBase64CodeByBuildId(Long buildId) {
+        String url = CONFIGURATOR_BASE_PATH + BASE64CODE_BY_BUILD_ID + buildId;
+        ResponseEntity<String> response = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                new HttpEntity<>(null),
+                new ParameterizedTypeReference<String>() {
                 }
         );
         return response.getBody();
