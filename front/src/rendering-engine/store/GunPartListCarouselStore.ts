@@ -15,4 +15,4 @@ export const useGunPartListCarouselStore = create<GunPartListCarouselStore>((set
 }));
 
 
-mountStoreDevtool("ClickedGunPartStore", useGunPartListCarouselStore);
+mountStoreDevtool("GunPartListCarouselStore", useGunPartListCarouselStore);
