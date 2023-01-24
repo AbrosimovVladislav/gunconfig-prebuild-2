@@ -1,20 +1,20 @@
 import React from "react";
-import {useBuildTreeStore} from "../../store/BuildTreeStore";
-import {useClickedGunPartStore} from "../../store/ClickedGunPartStore";
-import {ClickedGunPart} from "../../../pages/configurator/[base64]";
-import {BuildTree} from "../../schema/BuildTreeSchema";
-import GunPartCard from "../../../components/gun-part-card/GunPartCard";
-import {useGunPartListCarouselStore} from "../../store/GunPartListCarouselStore";
 import { GCCarousel } from "../../../gc-components/carousel/GCCarousel";
 import { GCText } from "../../../gc-components";
 import { useStyles } from "./GunPartsListStyles";
+import { useBuildTreeStore } from "../../../store/BuildTreeStore";
+import { useClickedGunPartStore } from "../../../store/ClickedGunPartStore";
+import { useGunPartListCarouselStore } from "../../../store/GunPartListCarouselStore";
+import { ClickedGunPart } from "../../../pages/configurator/[base64]";
+import { BuildTree } from "../../../schema/configurator/BuildTree";
+import GunPartCard from "../../common/gun-part-card/GunPartCard";
 
 
 const GunPartsList = () => {
-    const {replaceGunPart} = useBuildTreeStore();
-    const {clickedGunPart, setClickedGunPart} = useClickedGunPartStore();
-    const {gunParts} = useGunPartListCarouselStore();
-    const {classes} = useStyles();
+    const { replaceGunPart } = useBuildTreeStore();
+    const { clickedGunPart, setClickedGunPart } = useClickedGunPartStore();
+    const { gunParts } = useGunPartListCarouselStore();
+    const { classes } = useStyles();
 
     function chooseGunPartFromList(oldGunPart: ClickedGunPart, newGunPart: BuildTree) {
         //ToDo make backend call for get build tree product info
@@ -51,7 +51,7 @@ const GunPartsList = () => {
                                          productImageUrl: part.thumbnailImage,
                                          brand: part.brand,
                                          type: part.type,
-                                     }}/>
+                                     }} />
                     </div>
                 ))}
             </GCCarousel>
