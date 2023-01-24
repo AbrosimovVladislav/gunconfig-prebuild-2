@@ -3,7 +3,13 @@ import { createStyles } from "@mantine/core";
 export const useStyles = createStyles((theme,_params, getRef) => ({
     root: {
         ref: getRef('root'),
-        marginTop: 0,
+        margin: "0 !important",
+        overflow: "visible !important"
+    },
+
+    viewport: {
+        ref: getRef('viewport'),
+        padding: [`${theme.spacing.xl}px 0`],
     },
 
     controls: {
