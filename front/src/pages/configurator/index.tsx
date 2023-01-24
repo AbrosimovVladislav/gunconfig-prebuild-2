@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import React from "react";
-import { useGetGunsForChoosing } from "../../rendering-engine/service/configuratorService";
-import GunPartCard from "../../components/gun-part-card/GunPartCard";
-import Catalog from "../../components/catalog/Catalog";
+import { useGetGunsForChoosing } from "../../services/configuratorService";
+import GunPartCard from "../../components/common/gun-part-card/GunPartCard";
+import Catalog from "../../components/common/catalog/Catalog";
 
 const Configurator2 = () => {
 

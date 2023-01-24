@@ -14,13 +14,12 @@ import com.gunconfig.nft.web.preparer.FilterAndPageable;
 import com.gunconfig.nft.web.preparer.Preparer;
 import java.util.List;
 import java.util.Map;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,26 +43,22 @@ public class NFTCatalogController {
   private static final int DEFAULT_PAGE_NUMBER = 0;
   private static final int DEFAULT_PAGE_SIZE = 3000;
 
+  /**
+   * Get NFTId by base64code If build with given base64code exists, and NFT with this build exists
+   * then, return NFT id
+   **/
   @CrossOrigin
-  @GetMapping("/isBuildExists/{buildCode}")
-  public StringResponse isBuildExists(@PathVariable String buildCode) {
-    Long buildId = configuratorClient.getBuildIdBySchema(buildCode);
-    if (buildId == -1L) {
-      return new StringResponse("url", "false");
-    } else {
-      NFTCard nft = nftCardService.findByBuildId(buildId);
-      return new StringResponse("url", "/nft/" + nft.getNftCardId());
-    }
+  @GetMapping("/nftId/{base64Code}")
+  public ResponseEntity<Long> getNftIdByBase64Code(@PathVariable String base64Code) {
+    Long buildId = configuratorClient.getBuildIdByBase64Code(base64Code);
+    return buildId == -1L
+        ? ResponseEntity.ok(-1L)
+        : ResponseEntity.ok(nftCardService.findByBuildId(buildId).getNftCardId());
   }
 
-  @Data
-  @AllArgsConstructor
-  class StringResponse {
-
-    String key;
-    String value;
-  }
-
+  /**
+   * Get 8 NFTs from given collection, return List of ShortNFTCardDto
+   **/
   @CrossOrigin
   @GetMapping(value = "/collection/{collectionName}")
   public List<ShortNFTCardDto> getEightNFTsFromSameCollection(@PathVariable String collectionName) {

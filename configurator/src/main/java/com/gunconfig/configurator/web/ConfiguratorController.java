@@ -4,7 +4,6 @@ import com.gunconfig.configurator.model.Build;
 import com.gunconfig.configurator.model.GunForChoose;
 import com.gunconfig.configurator.model.GunPart;
 import com.gunconfig.configurator.model.Product;
-import com.gunconfig.configurator.model.SchemaNode;
 import com.gunconfig.configurator.service.BuildService;
 import com.gunconfig.configurator.service.CoordinatesService;
 import com.gunconfig.configurator.service.GunForChooseService;
@@ -58,7 +57,7 @@ public class ConfiguratorController {
   @CrossOrigin
   @GetMapping(value = "/build/schema/{base64code}")
   public BuildGunPartDto getBuildTreeDtoBySchema(@PathVariable String base64code) {
-    SchemaNode schema = buildMapper.fromBase64ToSchemaNode(base64code);
+    String schema = buildMapper.fromBase64ToSchemaNode(base64code);
     GunPart buildTree = buildService.getBuildTreeBySchema(schema);
     BuildGunPartDto buildGunPartDto = gunPartMapper.toBuildTreeDto(buildTree, -1L);
     return buildGunPartDto;
@@ -100,14 +99,6 @@ public class ConfiguratorController {
   }
 
   @CrossOrigin
-  @GetMapping("/buildBySchema/{schemaBase64Code}")
-  public Long getBuildIdBySchema(@PathVariable String schemaBase64Code) {
-    SchemaNode schemaNode = buildMapper.fromBase64ToSchemaNode(schemaBase64Code);
-    Build build = buildService.findBySchemaBase64Code(schemaNode);
-    return build.getBuildId();
-  }
-
-  @CrossOrigin
   @GetMapping(value = "/build/{id}")
   public Build getBuildById(@PathVariable Long id) {
     Build build = buildService.getBuildById(id);
@@ -118,7 +109,7 @@ public class ConfiguratorController {
   @PostMapping(value = "/build")
   public BuildWithProductsDto createBuild(@RequestBody BuildCreateRequest request) {
     if (request.getSchemaNode() == null && request.getBase64Code() != null) {
-      SchemaNode schemaNode = buildMapper.fromBase64ToSchemaNode(request.getBase64Code());
+      String schemaNode = buildMapper.fromBase64ToSchemaNode(request.getBase64Code());
       request.setSchemaNode(schemaNode);
     }
     Build build = buildMapper.fromRequestToBuild(request);

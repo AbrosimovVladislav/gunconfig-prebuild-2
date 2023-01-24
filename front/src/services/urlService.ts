@@ -1,5 +1,5 @@
-import {NextRouter} from "next/router";
-import {UrlParam} from "../schema/UrlSchema";
+import { NextRouter } from "next/router";
+import { UrlParam } from "../schema/common/UrlParam";
 
 export function createUrlRequestPostfixFromParams(router: NextRouter): string {
     let currentUrlLine: string = router.asPath;
@@ -14,9 +14,9 @@ export function createUrlRequestPostfixFromParams(router: NextRouter): string {
 export function changeSingleValueForParam(router: NextRouter, key: string, newValue: string) {
     const currentUrlLine: string = router.asPath;
     let currentUrlParams = fromUrlToParams(currentUrlLine);
-    currentUrlParams.filter(param => param.key === key)[0].value = [newValue]
+    currentUrlParams.filter(param => param.key === key)[0].value = [newValue];
     const newUrlLine = fromParamsToUrl(currentUrlParams);
-    router.push("/nft-catalog" + newUrlLine)
+    router.push("/nft-catalog" + newUrlLine);
 }
 
 export function addParamToUrl(router: NextRouter, urlParam: UrlParam) {
@@ -24,15 +24,15 @@ export function addParamToUrl(router: NextRouter, urlParam: UrlParam) {
     let currentUrlParams = fromUrlToParams(currentUrlLine);
     currentUrlParams.push(urlParam);
     const newUrlLine = fromParamsToUrl(currentUrlParams);
-    router.push("/nft-catalog" + newUrlLine)
+    router.push("/nft-catalog" + newUrlLine);
 }
 
 export function addParamValueToUrl(router: NextRouter, key: string, value: string) {
     const currentUrlLine: string = router.asPath;
     let currentUrlParams = fromUrlToParams(currentUrlLine);
-    currentUrlParams.filter(param => param.key === key)[0].value.push(value)
+    currentUrlParams.filter(param => param.key === key)[0].value.push(value);
     const newUrlLine = fromParamsToUrl(currentUrlParams);
-    router.push("/nft-catalog" + newUrlLine)
+    router.push("/nft-catalog" + newUrlLine);
 }
 
 export function removeParamFromUrl(router: NextRouter, key: string) {
@@ -44,7 +44,7 @@ export function removeParamFromUrl(router: NextRouter, key: string) {
         router.push("/nft-catalog");
     } else {
         const newUrlLine = fromParamsToUrl(currentUrlParams);
-        router.push("/nft-catalog" + newUrlLine)
+        router.push("/nft-catalog" + newUrlLine);
     }
 }
 
@@ -54,7 +54,7 @@ export function removeParamValueFromUrl(router: NextRouter, key: string, value: 
     const clickedParam = currentUrlParams.filter(param => param.key === key)[0];
     clickedParam.value = clickedParam.value.filter(clickedValue => clickedValue !== value);
     const newUrlLine = fromParamsToUrl(currentUrlParams);
-    router.push("/nft-catalog" + newUrlLine)
+    router.push("/nft-catalog" + newUrlLine);
 }
 
 export function getParamFromUrlByKey(router: NextRouter, key: string): UrlParam {
@@ -79,18 +79,18 @@ function fromUrlToParams(urlParamsLine: string): UrlParam[] {
     urlParamsLine = urlParamsLine.replaceAll("%20", " ");
 
     const urlParamsArr: UrlParam[] = urlParamsLine.split("&")
-        .map(param => {
-            const keyAndValue = param.split("=");
-            let valueLine = keyAndValue[1];
-            let valueArr = [];
-            valueLine.split(",")
-                .forEach(value => valueArr.push(value))
+    .map(param => {
+        const keyAndValue = param.split("=");
+        let valueLine = keyAndValue[1];
+        let valueArr = [];
+        valueLine.split(",")
+        .forEach(value => valueArr.push(value));
 
-            return {
-                key: keyAndValue[0],
-                value: valueArr
-            }
-        })
+        return {
+            key: keyAndValue[0],
+            value: valueArr,
+        };
+    });
 
     return urlParamsArr;
 }
@@ -101,14 +101,14 @@ function fromParamsToUrl(params: UrlParam[]): string {
         let paramLine: string = "";
         paramLine = paramLine + param.key + "=";
         param.value.forEach(value => {
-            paramLine = paramLine + value + ","
+            paramLine = paramLine + value + ",";
         });
         paramLine = paramLine + "&";
         return paramLine;
     })
-        .forEach(paramLine => {
-            url = url + paramLine
-        })
+    .forEach(paramLine => {
+        url = url + paramLine;
+    });
 
     url = url.replaceAll(",&", "&");
 

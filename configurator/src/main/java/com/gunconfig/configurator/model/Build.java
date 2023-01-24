@@ -16,13 +16,8 @@ public class Build {
     @Id
     private Long buildId;
 
-    @Lob
     @Column(length = 240000)
-    @Convert(converter = SchemaNodeConverter.class)
-    private SchemaNode schema;
-
-    @Column(length = 240000)
-    private String schemaLineView;
+    private String schema;
 
     private String buildImageUrl;
 

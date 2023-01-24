@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class BuildCreateRequest {
 
-    private SchemaNode schemaNode;
+    private String schemaNode;
     private String buildImageUrl;
     private String base64Code;
 

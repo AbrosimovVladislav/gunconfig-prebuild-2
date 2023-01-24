@@ -1,6 +1,7 @@
 package com.gunconfig.nft.web.mapper;
 
 import com.gunconfig.nft.model.NFTCard;
+import com.gunconfig.nft.service.client.ConfiguratorClient;
 import com.gunconfig.nft.web.dto.NFTCardDto;
 import com.gunconfig.nft.web.dto.ShortNFTCardDto;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class NFTCardMapper {
     private final ProductMapper productMapper;
+    private final ConfiguratorClient configuratorClient;
 
     public List<NFTCardDto> toDtos(List<NFTCard> nftCards) {
         if (nftCards == null || nftCards.size() == 0) {
@@ -56,6 +58,7 @@ public class NFTCardMapper {
                 .firstOwner(nftCard.getFirstOwner())
                 .mintingDate(nftCard.getMintingDate())
                 .gunDescription(nftCard.getRootGunDescription())
+                .buildLink(configuratorClient.getBase64CodeByBuildId(nftCard.getBuildId()))
                 .build();
     }
 

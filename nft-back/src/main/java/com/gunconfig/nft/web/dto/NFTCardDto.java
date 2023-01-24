@@ -20,5 +20,6 @@ public class NFTCardDto {
     private String mintingDate;
     private String firstOwner;
     private String gunDescription;
+    private String buildLink;
 
 }
