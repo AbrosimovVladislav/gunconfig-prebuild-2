@@ -4,14 +4,17 @@ import {useClickedGunPartStore} from "../../store/ClickedGunPartStore";
 import {ClickedGunPart} from "../../../pages/configurator/[base64]";
 import {BuildTree} from "../../schema/BuildTreeSchema";
 import GunPartCard from "../../../components/gun-part-card/GunPartCard";
-import Catalog from "../../../components/catalog/Catalog";
 import {useGunPartListCarouselStore} from "../../store/GunPartListCarouselStore";
+import { GCCarousel } from "../../../gc-components/carousel/GCCarousel";
+import { GCText } from "../../../gc-components";
+import { useStyles } from "./GunPartsListStyles";
 
 
 const GunPartsList = () => {
     const {replaceGunPart} = useBuildTreeStore();
     const {clickedGunPart, setClickedGunPart} = useClickedGunPartStore();
     const {gunParts} = useGunPartListCarouselStore();
+    const {classes} = useStyles();
 
     function chooseGunPartFromList(oldGunPart: ClickedGunPart, newGunPart: BuildTree) {
         //ToDo make backend call for get build tree product info
@@ -30,24 +33,30 @@ const GunPartsList = () => {
     }
 
     return (
-        <Catalog>
-            {gunParts && gunParts.length > 0 && gunParts?.map((part) => (
-                <div key={part.id}
-                     onClick={() => !part.incompatible && clickedGunPart && chooseGunPartFromList(clickedGunPart, part)}>
-                    <GunPartCard hoverable
-                                 active={clickedGunPart && part.id == clickedGunPart.itemId}
-                                 disabled={part.incompatible}
-                                 sm
-                                 product={{
-                                     productId: part.id,
-                                     name: part.name,
-                                     productImageUrl: part.thumbnailImage,
-                                     brand: part.brand,
-                                     type: part.type,
-                                 }}/>
-                </div>
-            ))}
-        </Catalog>
+        <div>
+            <GCText className={classes.header} h2 bold>
+                {clickedGunPart ? clickedGunPart.type + " to change" : "Current gun parts"}
+            </GCText>
+            {gunParts && gunParts.length > 0 && <GCCarousel className={classes.carousel}>
+                {gunParts?.map((part) => (
+                    <div key={part.id}
+                         onClick={() => !part.incompatible && clickedGunPart && chooseGunPartFromList(clickedGunPart, part)}>
+                        <GunPartCard hoverable
+                                     active={clickedGunPart && part.id == clickedGunPart.itemId}
+                                     disabled={part.incompatible}
+                                     sm
+                                     product={{
+                                         productId: part.id,
+                                         name: part.name,
+                                         productImageUrl: part.thumbnailImage,
+                                         brand: part.brand,
+                                         type: part.type,
+                                     }}/>
+                    </div>
+                ))}
+            </GCCarousel>
+            }
+        </div>
     );
 };
 
