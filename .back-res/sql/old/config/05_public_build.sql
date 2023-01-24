@@ -11,3 +11,11 @@ INSERT INTO public.build (build_id, build_image_url, schema) VALUES (10, 'https:
 INSERT INTO public.build (build_id, build_image_url, schema) VALUES (11, 'https://gunmarket.fra1.digitaloceanspaces.com/Build-08-12-03.png', '1010007');
 INSERT INTO public.build (build_id, build_image_url, schema) VALUES (12, 'https://gunmarket.fra1.digitaloceanspaces.com/Build-08-12-04.png', '1010040');
 INSERT INTO public.build (build_id, build_image_url, schema) VALUES (13, 'https://gunmarket.fra1.digitaloceanspaces.com/Build-08-12-05.png', '1010073');
+INSERT INTO public.build (build_id, build_image_url, schema) VALUES (14, 'https://gunmarket.fra1.digitaloceanspaces.com/16-12-AR-Build.png', '1307459');
+INSERT INTO public.build (build_id, build_image_url, schema) VALUES (15, 'https://gunmarket.fra1.digitaloceanspaces.com/16-12-AR-Build-Ninja-Turtle.png', '1307636');
+INSERT INTO public.build (build_id, build_image_url, schema) VALUES (16, 'https://gunmarket.fra1.digitaloceanspaces.com/AR-15-Default_Build.png', '1871280');
+INSERT INTO public.build (build_id, build_image_url, schema) VALUES (17, 'https://gunmarket.fra1.digitaloceanspaces.com/AR-15-Default_Build.png', '1871306');
+INSERT INTO public.build (build_id, build_image_url, schema) VALUES (18, 'https://gunmarket.fra1.digitaloceanspaces.com/AR-15-Default_Build.png', '1871307');
+INSERT INTO public.build (build_id, build_image_url, schema) VALUES (19, 'https://gunmarket.fra1.digitaloceanspaces.com/AR-15-Default_Build.png', '1873376');
+INSERT INTO public.build (build_id, build_image_url, schema) VALUES (20, 'https://gunmarket.fra1.digitaloceanspaces.com/AR-15-Default_Build.png', '1873386');
+INSERT INTO public.build (build_id, build_image_url, schema) VALUES (21, 'https://gunmarket.fra1.digitaloceanspaces.com/AR-15-Default_Build.png', '1873395');

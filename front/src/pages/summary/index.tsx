@@ -44,7 +44,6 @@ const BuildSummary = ({}) => {
                 mintingPrice: 0.50,
             };
             const response = await useCreateNFTRequest(nftCreateRequest);
-            console.log(response);
             await router.push(FRONT_CURRENT_PATH + ":3000/nft/" + response.nftCardId);
         }
     }
@@ -61,7 +60,7 @@ const BuildSummary = ({}) => {
                 ))}
             </Catalog>
             <Center>
-                {data && !data.value.includes("false") &&
+                {data && data.value && !data.value.includes("false") &&
                     <GCLink href={FRONT_CURRENT_PATH + ":3000/" + data.value}>
                         <GCText primary>NFT for this build already exists</GCText>
                     </GCLink>}
