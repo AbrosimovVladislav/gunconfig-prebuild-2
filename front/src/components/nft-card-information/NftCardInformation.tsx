@@ -3,6 +3,7 @@ import {NFTCard} from "../../schema/NFTCatalogSchema";
 import {useStyles} from "./NftCardInformationStyle";
 import {IconAlertCircle, IconPhoto} from "@tabler/icons";
 import Link from "next/link";
+import {FRONT_CURRENT_PATH} from "../../config/env-paths";
 
 interface NftCardInformationProps {
     data: NFTCard;
@@ -53,7 +54,7 @@ const NftCardInformation = ({data}: NftCardInformationProps) => {
                     </GCListItem>
                     <GCListItem className={classes.listItem}>
                         <GCText h3>Link to build</GCText>
-                        <Link href={data?.buildLink}>Link</Link>
+                        <Link href={data && FRONT_CURRENT_PATH + ":3000/configurator/" + data?.buildLink}>Link</Link>
                     </GCListItem>
                 </GCList>
             </div>

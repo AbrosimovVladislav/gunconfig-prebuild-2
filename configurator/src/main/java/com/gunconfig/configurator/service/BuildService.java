@@ -9,7 +9,6 @@ import com.gunconfig.configurator.service.converter.SchemaNodeConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.SerializationUtils;
 
 import java.util.Base64;
 import java.util.List;
@@ -60,8 +59,7 @@ public class BuildService {
         Build build = buildRepo.findById(buildId).orElseThrow(
                 () -> new RuntimeException("Build with id " + buildId + " not found"));
 
-        byte[] schema = SerializationUtils.serialize(build.getSchema());
-        return new String(Base64.getEncoder().encode(schema));
+        return Base64.getEncoder().encodeToString(build.getSchema().getBytes());
     }
 
 //    private GunPart recursiveBuildEnrich(BuildNode buildNode, GunPart gunPartTree) {
