@@ -5,7 +5,7 @@ import {
     NFT_CATALOG_ENDPOINT,
     NFT_ID_BY_BASE64CODE_POSTFIX,
 } from "../consts/back-paths";
-import { NFTCard } from "../schema/NFTCatalogSchema";
+import { NFTCard } from "../schema/nft/NFTCard";
 import { NextRouter } from "next/router";
 import { createUrlRequestPostfixFromParams } from "./urlService";
 

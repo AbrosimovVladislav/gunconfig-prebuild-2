@@ -43,8 +43,12 @@ public class NFTCatalogController {
   private static final int DEFAULT_PAGE_NUMBER = 0;
   private static final int DEFAULT_PAGE_SIZE = 3000;
 
+  /**
+   * Get NFTId by base64code If build with given base64code exists, and NFT with this build exists
+   * then, return NFT id
+   **/
   @CrossOrigin
-  @GetMapping("/nftId/base64Code/{base64Code}")
+  @GetMapping("/nftId/{base64Code}")
   public ResponseEntity<Long> getNftIdByBase64Code(@PathVariable String base64Code) {
     Long buildId = configuratorClient.getBuildIdByBase64Code(base64Code);
     return buildId == -1L
@@ -52,6 +56,9 @@ public class NFTCatalogController {
         : ResponseEntity.ok(nftCardService.findByBuildId(buildId).getNftCardId());
   }
 
+  /**
+   * Get 8 NFTs from given collection, return List of ShortNFTCardDto
+   **/
   @CrossOrigin
   @GetMapping(value = "/collection/{collectionName}")
   public List<ShortNFTCardDto> getEightNFTsFromSameCollection(@PathVariable String collectionName) {

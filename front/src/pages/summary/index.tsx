@@ -1,21 +1,21 @@
 import { Button, Center } from "@mantine/core";
-import { Product } from "../../schema/NFTCatalogSchema";
-import { useBuildTreeStore } from "../../rendering-engine/store/BuildTreeStore";
+import { useBuildTreeStore } from "../../store/BuildTreeStore";
 import React, { useEffect, useState } from "react";
-import GunPartCard from "../../components/gun-part-card/GunPartCard";
-import Catalog from "../../components/catalog/Catalog";
+import GunPartCard from "../../components/common/gun-part-card/GunPartCard";
+import Catalog from "../../components/common/catalog/Catalog";
 import {
     getBase64CodeByBuildTree,
     getListOfBuildTreeProducts,
     useCreateNFTRequest,
-} from "../../rendering-engine/service/configuratorService";
-import { useBuildImageStore } from "../../rendering-engine/store/BuildImageStore";
+} from "../../services/configuratorService";
+import { useBuildImageStore } from "../../store/BuildImageStore";
 import Image from "next/image";
-import { CreateNFTRequest } from "../../rendering-engine/schema/CreateNFTRequestSchema";
+import { CreateNFTRequest } from "../../schema/common/CreateNFTRequest";
 import { GCLink, GCText } from "../../gc-components";
 import { FRONT_CURRENT_PATH } from "../../config/env-paths";
 import { useRouter } from "next/router";
 import { getNFTIdByBase64Code } from "../../services/nftService";
+import { Product } from "../../schema/common/Product";
 
 const BuildSummary = ({}) => {
 
