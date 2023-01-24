@@ -53,6 +53,9 @@ configurator:
   products-ids: /api/v1/product/ids
   build-by-schema: /api/v1/configurator/buildBySchema
   base64code-by-build-id: /api/v1/build/base64/
+  build-controller:
+    build-by-base-64-code: /api/v1/build/buildId/
+
 
 do:
   spaces:
