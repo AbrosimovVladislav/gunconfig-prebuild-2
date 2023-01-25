@@ -1,12 +1,12 @@
-import { NFTCard } from "../../../schema/nft/NFTCard";
 import { GCSquareContainer } from "../../../gc-components/square-container/GCSquareContainer";
 import { useStyles } from "./NFTMicroCardStyles";
 import { GCBadge, GCCard, GCCardSection, GCGroup, GCImage, GCText } from "../../../gc-components";
 import { FRONT_CURRENT_PATH } from "../../../config/env-paths";
 import Link from "next/link";
+import { ShortNFTCard } from "../../../schema/nft/ShortNFTCard";
 
 interface NFTMicroCardProps {
-    item?: NFTCard;
+    item?: ShortNFTCard;
 }
 
 const NFTMicroCard = ({ item }: NFTMicroCardProps) => {

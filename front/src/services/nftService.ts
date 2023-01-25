@@ -8,25 +8,36 @@ import {
 import { NFTCard } from "../schema/nft/NFTCard";
 import { NextRouter } from "next/router";
 import { createUrlRequestPostfixFromParams } from "./urlService";
+import { ShortNFTCard } from "../schema/nft/ShortNFTCard";
 
-export function useGetNFTsByCollection(collection: string): { data: NFTCard[]; isLoading: boolean; isError: boolean; isSuccess: boolean } {
+/***
+ * Get 8 nfts from collection with the provided name
+ */
+export function getNFTsByCollection(collection: string)
+    : { nftsByCollection: ShortNFTCard[]; isLoading: boolean; isError: boolean; isSuccess: boolean } {
+
     const { data, isLoading, isError, isSuccess } = useQuery(
-        "GetCollectionByName" + collection,
-        (): Promise<NFTCard[]> => get(COLLECTION_POSTFIX + "/" + collection),
+        "getNFTsByCollection" + collection,
+        (): Promise<ShortNFTCard[]> => get(COLLECTION_POSTFIX + "/" + collection),
         { enabled: !!collection, refetchOnWindowFocus: false },
     );
-    return { data, isLoading, isError, isSuccess };
+    return { nftsByCollection: data, isLoading, isError, isSuccess };
 }
 
-export function useGetNFTByUrlParams(router: NextRouter): [NFTCard[], boolean, boolean, boolean] {
+/***
+ * Get nfts by provided parameters
+ */
+export function getNFTsByUrlParams(router: NextRouter)
+    : { nfts: ShortNFTCard[], isLoading: boolean, isError: boolean, isSuccess: boolean } {
+
     const urlParams = createUrlRequestPostfixFromParams(router);
 
     const { data, isLoading, isError, isSuccess } = useQuery(
-        "GetNFTByFilters" + urlParams,
-        (): Promise<NFTCard[]> => get(NFT_CATALOG_ENDPOINT + "?" + urlParams),
+        "getNFTsByUrlParams" + urlParams,
+        (): Promise<ShortNFTCard[]> => get(NFT_CATALOG_ENDPOINT + "?" + urlParams),
         { refetchOnWindowFocus: false },
     );
-    return [data, isLoading, isError, isSuccess];
+    return { nfts: data, isLoading, isError, isSuccess };
 }
 
 export function useGetNFTById(id: number): { data: NFTCard; isLoading: boolean; isError: boolean; isSuccess: boolean } {

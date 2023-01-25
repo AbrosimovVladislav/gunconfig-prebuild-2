@@ -50,10 +50,13 @@ public class NFTCatalogController {
   @CrossOrigin
   @GetMapping("/nftId/{base64Code}")
   public ResponseEntity<Long> getNftIdByBase64Code(@PathVariable String base64Code) {
+    log.info("Start GetNftIdByBase64Code. Params: base64Code:<{}>", base64Code);
+
     Long buildId = configuratorClient.getBuildIdByBase64Code(base64Code);
-    return buildId == -1L
-        ? ResponseEntity.ok(-1L)
-        : ResponseEntity.ok(nftCardService.findByBuildId(buildId).getNftCardId());
+    Long nftId = buildId == -1L ? -1L : nftCardService.findByBuildId(buildId).getNftCardId();
+
+    log.info("Finish GetNftIdByBase64Code. Answer: <{}>", nftId);
+    return ResponseEntity.ok(nftId);
   }
 
   /**
@@ -61,15 +64,27 @@ public class NFTCatalogController {
    **/
   @CrossOrigin
   @GetMapping(value = "/collection/{collectionName}")
-  public List<ShortNFTCardDto> getEightNFTsFromSameCollection(@PathVariable String collectionName) {
+  public ResponseEntity<List<ShortNFTCardDto>> getEightNFTsFromSameCollection(
+      @PathVariable String collectionName) {
+    log.info("Start GetEightNFTsFromSameCollection. Params: collectionName:<{}>", collectionName);
+
     List<NFTCard> nftCards = nftCardService.findEightNFTsFromSameCollection(collectionName);
-    return nftCardMapper.toShortDtos(nftCards);
+    List<ShortNFTCardDto> shortNFTCardDtos = nftCardMapper.toShortDtos(nftCards);
+
+    log.info("Finish GetEightNFTsFromSameCollection. Answer: <{}>", shortNFTCardDtos);
+    return ResponseEntity.ok(shortNFTCardDtos);
   }
 
+  /**
+   * Get NFTs by parameters
+   **/
   @CrossOrigin
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-  public List<NFTCardDto> getByParams(@RequestParam Map<String, String> requestParams,
+  public List<ShortNFTCardDto> getNFTsByParams(@RequestParam Map<String, String> requestParams,
       @PageableDefault(size = DEFAULT_PAGE_SIZE, page = DEFAULT_PAGE_NUMBER) Pageable pageable) {
+    log.info("Start GetNFTsByParams. Params: requestParams:<{}>, pageable:<{}>"
+        , requestParams, pageable);
+
     FilterAndPageable filterAndPageable = new FilterAndPageable(requestParams, pageable);
     preparers.forEach(preparer -> preparer.prepare(filterAndPageable, NFTCard.class));
 
@@ -78,10 +93,9 @@ public class NFTCatalogController {
         filterAndPageable.getPageable()
     );
 
-    List<NFTCardDto> result = nftCardMapper.toDtos(nftCards);
-    log.info("Params: {}. {}. NFTCard list size: {}",
-        requestParams,
-        pageable, result.size());
+    List<ShortNFTCardDto> result = nftCardMapper.toShortDtos(nftCards);
+
+    log.info("Finish GetNFTsByParams. Answer size: <{}>", result.size());
     return result;
   }
 

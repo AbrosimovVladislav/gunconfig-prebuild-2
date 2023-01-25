@@ -16,13 +16,9 @@ public class NFTCardMapper {
     private final ProductMapper productMapper;
     private final ConfiguratorClient configuratorClient;
 
-    public List<NFTCardDto> toDtos(List<NFTCard> nftCards) {
-        if (nftCards == null || nftCards.size() == 0) {
-            return Collections.emptyList();
-        }
-        return nftCards.stream().map(this::toDto).toList();
-    }
-
+    /**
+     * Map List of NFTCard to List of ShortNFTCardDto
+     **/
     public List<ShortNFTCardDto> toShortDtos(List<NFTCard> nftCards) {
         if (nftCards == null || nftCards.size() == 0) {
             return Collections.emptyList();
@@ -30,21 +26,24 @@ public class NFTCardMapper {
         return nftCards.stream().map(this::toShortDto).toList();
     }
 
+    /**
+     * Map NFTCard to ShortNFTCardDto
+     **/
     public ShortNFTCardDto toShortDto(NFTCard nftCard) {
         return ShortNFTCardDto.builder()
                 .nftCardId(nftCard.getNftCardId())
                 .name(nftCard.getName())
-                .buildId(nftCard.getBuildId())
                 .nftImageUrl(nftCard.getNftImageUrl())
                 .collection(nftCard.getCollection())
                 .mintingPrice(nftCard.getMintingPrice())
                 .rarity(nftCard.getRarity())
                 .firstOwner(nftCard.getFirstOwner())
-                .mintingDate(nftCard.getMintingDate())
-                .gunDescription(nftCard.getRootGunDescription())
                 .build();
     }
 
+    /**
+     * Map NFTCard to NFTCardDto
+     **/
     public NFTCardDto toDto(NFTCard nftCard) {
         return NFTCardDto.builder()
                 .nftCardId(nftCard.getNftCardId())

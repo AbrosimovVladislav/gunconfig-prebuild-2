@@ -1,6 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { useGetNFTById, useGetNFTsByCollection } from "../../services/nftService";
+import { useGetNFTById, getNFTsByCollection } from "../../services/nftService";
 import { GCImage, GCText } from "../../gc-components";
 import { GCGrid } from "../../gc-components/GCGrid";
 import { GCGridCol } from "../../gc-components/GCGridCol";
@@ -17,7 +17,7 @@ type SingleNFTPageProps = {};
 const SingleNFTPage = (props: SingleNFTPageProps) => {
     const id: number = Number(useRouter().query.id);
     const { data: nftInfo, isLoading, isError, isSuccess } = useGetNFTById(id);
-    const { data: collectionNFTs } = useGetNFTsByCollection(nftInfo?.collection);
+    const { nftsByCollection } = getNFTsByCollection(nftInfo?.collection);
     const { classes } = useStyles();
 
     if (isLoading) {
@@ -50,7 +50,7 @@ const SingleNFTPage = (props: SingleNFTPageProps) => {
                         </Catalog>
                     </GCGridCol>
                 </GCGrid>
-                <NftCarousel data={collectionNFTs} header={"More from this collection"} />
+                <NftCarousel data={nftsByCollection} header={"More from this collection"} />
             </>
         );
     }

@@ -1,10 +1,10 @@
 import Catalog from "../../common/catalog/Catalog";
 import React from "react";
 import { useRouter } from "next/router";
-import { NFTCard } from "../../../schema/nft/NFTCard";
 import { useStyles } from "./NFTCatalogWrapperStyles";
 import NFTMicroCard from "../nft-micro-card/NFTMicroCard";
-import { useGetNFTByUrlParams } from "../../../services/nftService";
+import { getNFTsByUrlParams } from "../../../services/nftService";
+import { ShortNFTCard } from "../../../schema/nft/ShortNFTCard";
 
 interface NFTCatalogWrapperProps {
     layout: string;
@@ -13,7 +13,7 @@ interface NFTCatalogWrapperProps {
 const NFTCatalogWrapper = ({ layout }: NFTCatalogWrapperProps) => {
     const { classes } = useStyles();
     const router = useRouter();
-    const [data, isLoading, isError, isSuccess] = useGetNFTByUrlParams(router);
+    const {nfts, isLoading, isError, isSuccess} = getNFTsByUrlParams(router);
 
     if (isLoading) {
         return <div>Loading...</div>;
@@ -25,7 +25,7 @@ const NFTCatalogWrapper = ({ layout }: NFTCatalogWrapperProps) => {
 
     if (isSuccess) {
         return <Catalog layout={layout}>
-            {data.map((item: NFTCard) => (
+            {nfts.map((item: ShortNFTCard) => (
                 <div key={item.nftCardId} className={`${classes.card} ${classes[layout]}`}>
                     <NFTMicroCard item={item} />
                 </div>
