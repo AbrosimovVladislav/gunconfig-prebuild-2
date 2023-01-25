@@ -16,6 +16,9 @@ import { FRONT_CURRENT_PATH } from "../../config/env-paths";
 import { useRouter } from "next/router";
 import { getNFTIdByBase64Code } from "../../services/nftService";
 import { Product } from "../../schema/common/Product";
+import { getCurrentUserName } from "../../services/authService";
+import { getNameForNewNFTByRandom } from "../../services/randomService";
+import { calculateNFTPrice } from "../../services/priceService";
 
 const BuildSummary = ({}) => {
 
@@ -36,13 +39,15 @@ const BuildSummary = ({}) => {
     async function onMintNFTClick() {
         if (buildImage && buildTree) {
             const base64Code = getBase64CodeByBuildTree(buildTree);
+            const collectionName = "GC " + buildTree.name;
             const nftCreateRequest: CreateNFTRequest = {
                 buildImage: buildImage,
                 base64Code: base64Code,
-                collection: "AutomaticallyCreated",
-                firstOwner: "BelChelovek",
-                name: "AC-" + Math.floor(Math.random() * 100).toString() + Math.floor(Math.random() * 100).toString(),
-                mintingPrice: 0.50,
+                collection: collectionName,
+                firstOwner: getCurrentUserName(),
+                name: getNameForNewNFTByRandom(collectionName),
+                mintingPrice: calculateNFTPrice(),
+                rarity: "USUAL",
             };
             const response = await useCreateNFTRequest(nftCreateRequest);
             await router.push(FRONT_CURRENT_PATH + ":3000/nft/" + response.nftCardId);
