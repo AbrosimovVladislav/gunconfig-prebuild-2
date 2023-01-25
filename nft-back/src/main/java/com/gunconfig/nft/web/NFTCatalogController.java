@@ -80,7 +80,8 @@ public class NFTCatalogController {
    **/
   @CrossOrigin
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-  public List<ShortNFTCardDto> getNFTsByParams(@RequestParam Map<String, String> requestParams,
+  public ResponseEntity<List<ShortNFTCardDto>> getNFTsByParams(
+      @RequestParam Map<String, String> requestParams,
       @PageableDefault(size = DEFAULT_PAGE_SIZE, page = DEFAULT_PAGE_NUMBER) Pageable pageable) {
     log.info("Start GetNFTsByParams. Params: requestParams:<{}>, pageable:<{}>"
         , requestParams, pageable);
@@ -96,7 +97,7 @@ public class NFTCatalogController {
     List<ShortNFTCardDto> result = nftCardMapper.toShortDtos(nftCards);
 
     log.info("Finish GetNFTsByParams. Answer size: <{}>", result.size());
-    return result;
+    return ResponseEntity.ok(result);
   }
 
   /**
@@ -104,12 +105,12 @@ public class NFTCatalogController {
    **/
   @CrossOrigin
   @GetMapping(value = "/{nftCardId}")
-  public NFTCardDto getNftCardById(@PathVariable Long nftCardId) {
+  public ResponseEntity<NFTCardDto> getNftCardById(@PathVariable Long nftCardId) {
     log.info("Start GetNftCardById. Params: nftCardId:<{}>", nftCardId);
     NFTCard nftCard = nftCardService.findById(nftCardId);
     NFTCardDto dto = nftCardMapper.toDto(nftCard);
     log.info("Finish GetNftCardById. Answer: <{}>", dto);
-    return dto;
+    return ResponseEntity.ok(dto);
   }
 
   /**
@@ -117,9 +118,12 @@ public class NFTCatalogController {
    **/
   @CrossOrigin
   @GetMapping(value = "/filters", produces = MediaType.APPLICATION_JSON_VALUE)
-  public List<FilterItemDto> getFilterItems() {
+  public ResponseEntity<List<FilterItemDto>> getFilterItems() {
+    log.info("Start GetFilterItems");
     List<FilterItem> filterItems = filterItemService.findAll();
-    return filterItemMapper.toDtos(filterItems);
+    List<FilterItemDto> dtos = filterItemMapper.toDtos(filterItems);
+    log.info("Finish GetFilterItems. Answer: <{}>", dtos);
+    return ResponseEntity.ok(dtos);
   }
 
 }
