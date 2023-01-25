@@ -34,6 +34,9 @@ public class ConfiguratorClient {
 
   private final RestTemplate restTemplate;
 
+  /**
+   * Get Build Id by Base64Code
+   **/
   public Long getBuildIdByBase64Code(String base64Code) {
     String url = CONFIGURATOR_SERVICE + BUILD_ID_BY_BASE_64_CODE + base64Code;
     ResponseEntity<Long> response = restTemplate.exchange(

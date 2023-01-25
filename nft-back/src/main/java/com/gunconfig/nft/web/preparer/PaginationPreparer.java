@@ -7,6 +7,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class PaginationPreparer implements Preparer {
+
+    /**
+     * Extract and prepare page and size parameter for next request
+     **/
     @Override
     public void prepare(FilterAndPageable filterAndPageable, Class<? extends BasicEntity> entityClass) {
         Pageable pageable = filterAndPageable.getPageable();

@@ -11,10 +11,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class FilterItemMapper {
 
+    /**
+     * Map List of FilterItem to List of FilterItemDto
+     **/
     public List<FilterItemDto> toDtos(List<FilterItem> filterItems) {
         return filterItems.stream().map(this::toDto).toList();
     }
 
+    /**
+     * Map FilterItem to FilterItemDto
+     **/
     public FilterItemDto toDto(FilterItem filterItem) {
         return new FilterItemDto()
                 .setShowName(filterItem.getName())

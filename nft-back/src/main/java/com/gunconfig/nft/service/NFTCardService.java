@@ -48,19 +48,31 @@ public class NFTCardService {
     return nftCardRepo.save(nftCard);
   }
 
+  /**
+   * Find List of NFTCard by parameters
+   **/
   public List<NFTCard> getAllByParameters(Map<String, String> requestParams, Pageable pageable) {
     return nftCardRepo.findAllByParameters(requestParams, pageable, NFTCard.class);
   }
 
+  /**
+   * Find NFT by id
+   **/
   public NFTCard findById(Long nftCardId) {
     return nftCardRepo.findById(nftCardId)
         .orElseThrow(() -> new RuntimeException("There is no nft card with id: " + nftCardId));
   }
 
+  /**
+   * Find 8 NFTs from given collection
+   **/
   public List<NFTCard> findEightNFTsFromSameCollection(String collectionName) {
     return nftCardRepo.findTop8ByCollection(collectionName);
   }
 
+  /**
+   * Find NFTCard by build id
+   **/
   public NFTCard findByBuildId(Long buildId) {
     return nftCardRepo.findByBuildId(buildId)
         .orElseThrow(() -> new RuntimeException("There is no nft with buildId: " + buildId));

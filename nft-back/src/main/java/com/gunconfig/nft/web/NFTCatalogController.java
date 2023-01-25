@@ -60,7 +60,7 @@ public class NFTCatalogController {
   }
 
   /**
-   * Get 8 NFTs from given collection, return List of ShortNFTCardDto
+   * Get 8 NFTs from given collection
    **/
   @CrossOrigin
   @GetMapping(value = "/collection/{collectionName}")
@@ -99,14 +99,22 @@ public class NFTCatalogController {
     return result;
   }
 
+  /**
+   * Get NFT by nftId
+   **/
   @CrossOrigin
   @GetMapping(value = "/{nftCardId}")
   public NFTCardDto getNftCardById(@PathVariable Long nftCardId) {
+    log.info("Start GetNftCardById. Params: nftCardId:<{}>", nftCardId);
     NFTCard nftCard = nftCardService.findById(nftCardId);
     NFTCardDto dto = nftCardMapper.toDto(nftCard);
+    log.info("Finish GetNftCardById. Answer: <{}>", dto);
     return dto;
   }
 
+  /**
+   * Get List of all FilterItem
+   **/
   @CrossOrigin
   @GetMapping(value = "/filters", produces = MediaType.APPLICATION_JSON_VALUE)
   public List<FilterItemDto> getFilterItems() {

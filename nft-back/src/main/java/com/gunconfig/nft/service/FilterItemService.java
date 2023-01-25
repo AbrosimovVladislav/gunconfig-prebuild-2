@@ -17,6 +17,9 @@ public class FilterItemService {
 
     private final FilterItemRepo filterItemRepo;
 
+    /**
+     * Find List of all FilterItem
+     **/
     public List<FilterItem> findAll() {
         List<FilterItem> filterItems = filterItemRepo.findAll();
         filterItems.forEach(this::determineValues);
@@ -24,6 +27,9 @@ public class FilterItemService {
         return filterItems;
     }
 
+    /**
+     * Define possible values for provided filter item
+     **/
     public void determineValues(FilterItem filterItem) {
         FilterItem.FilterType type = filterItem.getType();
         switch (type) {
