@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/nft")
-public class SingleNFTController {
+public class NFTSingleController {
 
   private final NFTCardService nftCardService;
   private final NFTCardMapper nftCardMapper;
