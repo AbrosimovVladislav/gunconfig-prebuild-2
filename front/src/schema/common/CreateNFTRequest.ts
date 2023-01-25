@@ -5,4 +5,5 @@ export interface CreateNFTRequest {
     firstOwner: string;
     name: string;
     mintingPrice: number;
+    rarity: string;
 }

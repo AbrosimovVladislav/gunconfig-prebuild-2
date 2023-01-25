@@ -20,11 +20,17 @@ public class BuildMapper {
     private final ProductService productService;
     private final SchemaNodeConverter converter;
 
+    /**
+     * Convert bse64code to schema node in string view
+     **/
     public String fromBase64ToSchemaNode(String base64Code) {
         String codedSchema = new String(Base64.getDecoder().decode(base64Code));
         return codedSchema;
     }
 
+    /**
+     * Map request (SchemaNode and image) to Build
+     **/
     public Build fromRequestToBuild(BuildCreateRequest request) {
         return new Build()
                 .setSchema(request.getSchemaNode())
@@ -38,6 +44,9 @@ public class BuildMapper {
                 .setBuildImageUrl(image);
     }
 
+    /**
+     * Map Build to BuildWithProductsDto response
+     **/
     public BuildWithProductsDto fromEntityToBuildWithProductsDto(Build savedBuild) {
         List<Long> productIds = new ArrayList<>();
         SchemaNode schemaNode = converter.convertToEntityAttribute(savedBuild.getSchema());

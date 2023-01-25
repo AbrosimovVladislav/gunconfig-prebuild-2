@@ -1,12 +1,16 @@
 package com.gunconfig.nft.model;
 
 import com.gunconfig.querybuilder.BasicEntity;
+import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-
-import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Getter
@@ -14,37 +18,36 @@ import java.util.List;
 @Accessors(chain = true)
 public class NFTCard implements BasicEntity {
 
-    public static final String MINTING_PRICE = "mintingPrice";
+  public static final String MINTING_PRICE = "mintingPrice";
 
-    @Id
-    private Long nftCardId;
-    private String name;
-    private String collection;
-    private Double mintingPrice;
-    private String nftImageUrl;
-    private String mintingDate;
-    private String firstOwner;
-    private String rarity;
+  @Id
+  private Long nftCardId;
+  private String name;
+  private String collection;
+  private Double mintingPrice;
+  private String nftImageUrl;
+  private String mintingDate;
+  private String firstOwner;
+  private String rarity;
 
-    @Enumerated(EnumType.STRING)
-    private Status status;
+  @Enumerated(EnumType.STRING)
+  private Status status;
 
-    @ManyToMany
-    @JoinColumn(name = "product_id")
-    private List<Product> products;
+  @ManyToMany
+  @JoinColumn(name = "product_id")
+  private List<Product> products;
 
-    private Long buildId;
-    private Long rootGunId;
-    private String rootGunDescription;
-    private String rootGunBrand;
-    private String rootGunCaliber;
+  private Long buildId;
+  private Long rootGunId;
+  private String rootGunDescription;
+  private String rootGunBrand;
 
-    public enum Status {
-        DRAFT, MINTED
-    }
+  public enum Status {
+    DRAFT, MINTED
+  }
 
-    public enum Rarity {
-        USUAL, UNUSUAL, RARE, EPIC, LEGENDARY
-    }
+  public enum Rarity {
+    USUAL, UNUSUAL, RARE, EPIC, LEGENDARY
+  }
 
 }

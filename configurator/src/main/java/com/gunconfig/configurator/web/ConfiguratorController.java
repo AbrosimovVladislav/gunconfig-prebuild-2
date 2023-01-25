@@ -106,18 +106,6 @@ public class ConfiguratorController {
   }
 
   @CrossOrigin
-  @PostMapping(value = "/build")
-  public BuildWithProductsDto createBuild(@RequestBody BuildCreateRequest request) {
-    if (request.getSchemaNode() == null && request.getBase64Code() != null) {
-      String schemaNode = buildMapper.fromBase64ToSchemaNode(request.getBase64Code());
-      request.setSchemaNode(schemaNode);
-    }
-    Build build = buildMapper.fromRequestToBuild(request);
-    Build savedBuild = buildService.save(build);
-    return buildMapper.fromEntityToBuildWithProductsDto(savedBuild);
-  }
-
-  @CrossOrigin
   @PostMapping(value = "/coordinates")
   public List<Number> setCoordinatesForParentAndChild(@RequestBody SetCoordinatesRequest request) {
     List<Number> coordinatesUpdateResponse = coordinatesService.setCoordinatesForParentAndChild(

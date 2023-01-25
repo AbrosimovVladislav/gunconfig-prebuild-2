@@ -19,15 +19,20 @@ public class ImageService {
 
   private final AmazonS3 s3Client;
 
+  private static final String IMAGE_CONTENT_TYPE = "image/png";
+
   @Value("${do.spaces.bucket}")
   private String doSpaceBucket;
 
   @Value("${do.spaces.endpoint}")
   private String doSpaceEndpoint;
 
+  /**
+   * Save base64 image to S3 store with provided name
+   **/
   public String saveImageToStore(String name, String base64Image) {
     ObjectMetadata metadata = new ObjectMetadata();
-    metadata.setContentType("image/png");
+    metadata.setContentType(IMAGE_CONTENT_TYPE);
 
     try {
       base64Image = base64Image.replace("data:image/png;base64,","");
@@ -43,4 +48,8 @@ public class ImageService {
     return "https://" + doSpaceBucket + "." + doSpaceEndpoint + "/" + name;
   }
 
+  //ToDo implement creating of real NFT image with background etc here
+  public String createNFTImage(String buildImageUrl) {
+    return buildImageUrl;
+  }
 }

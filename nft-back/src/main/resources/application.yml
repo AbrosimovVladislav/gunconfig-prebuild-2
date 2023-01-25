@@ -47,13 +47,13 @@ logging:
     name: databasefiller-app.log
 
 configurator:
-  create-build: /api/v1/configurator/build
   product: /api/v1/product
   products: /api/v1/product/batch
   products-ids: /api/v1/product/ids
   build-by-schema: /api/v1/configurator/buildBySchema
   base64code-by-build-id: /api/v1/build/base64/
   build-controller:
+    create-build: /api/v1/build
     build-by-base-64-code: /api/v1/build/buildId/
 
 

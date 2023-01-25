@@ -4,7 +4,7 @@ import {
     BUILD_TREE_POSTFIX,
     CONFIGURATOR_POSTFIX,
     GUNS_FOR_CHOOSE_POSTFIX,
-    NFT_CREATION_POSTFIX,
+    NFT_CREATION_ENDPOINT,
 } from "../consts/back-paths";
 import { BuildTree } from "../schema/configurator/BuildTree";
 import { FRONT_CURRENT_PATH } from "../config/env-paths";
@@ -104,7 +104,7 @@ export function useGetBuildTreeByBase64Code(treeBase64Code: String): [BuildTree,
 }
 
 export async function useCreateNFTRequest(createNFTRequest: CreateNFTRequest) {
-    const response = await post(NFT_CREATION_POSTFIX, createNFTRequest);
+    const response = await post(NFT_CREATION_ENDPOINT, createNFTRequest);
     return response;
 }
 

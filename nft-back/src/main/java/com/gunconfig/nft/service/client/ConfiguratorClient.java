@@ -22,9 +22,9 @@ public class ConfiguratorClient {
 
   @Value("${configurator.build-controller.build-by-base-64-code}")
   public String BUILD_ID_BY_BASE_64_CODE;
-
-  @Value("${configurator.create-build}")
+  @Value("${configurator.build-controller.create-build}")
   public String CREATE_BUILD_PATH;
+
   @Value("${configurator.products}")
   public String PRODUCTS_PATH;
   @Value("${configurator.products-ids}")
@@ -49,6 +49,9 @@ public class ConfiguratorClient {
     return response.getBody();
   }
 
+  /**
+   * Create build request to configurator service
+   **/
   public BuildWithProductsDto createBuild(BuildCreateRequest request) {
     String url = CONFIGURATOR_SERVICE + CREATE_BUILD_PATH;
     ResponseEntity<BuildWithProductsDto> response = restTemplate.exchange(

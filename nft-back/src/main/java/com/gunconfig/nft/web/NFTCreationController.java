@@ -11,39 +11,56 @@ import com.gunconfig.nft.web.dto.request.CreateNFTRequest;
 import com.gunconfig.nft.web.mapper.NFTCardMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/nft-creation")
+@RequestMapping("/api/v1/nft-create")
 public class NFTCreationController {
 
-    private final ConfiguratorClient configuratorClient;
-    private final NFTCardService nftCardService;
-    private final NFTCardMapper nftCardMapper;
-    private final ImageService imageService;
+  private final ConfiguratorClient configuratorClient;
+  private final NFTCardService nftCardService;
+  private final NFTCardMapper nftCardMapper;
+  private final ImageService imageService;
 
-    @CrossOrigin
-    @PostMapping
-    public NFTCardDto createNftCard(@RequestBody CreateNFTRequest request) {
-        String imageUrl = imageService.saveImageToStore(request.getName(), request.getBuildImage());
+  /**
+   * Create new nft card with data from request
+   **/
+  @CrossOrigin
+  @PostMapping
+  public ResponseEntity<NFTCardDto> createNftCard(@RequestBody CreateNFTRequest request) {
+    log.info("Start CreateNftCard. Params: request:<{}>", request.getName());
 
-        BuildWithProductsDto response = configuratorClient.createBuild(
-                BuildCreateRequest.builder()
-                        .base64Code(request.getBase64Code())
-                        .buildImageUrl(imageUrl)
-                        .build());
+    String buildImageUrl = imageService.saveImageToStore(request.getName(),
+        request.getBuildImage());
+    BuildWithProductsDto response = configuratorClient.createBuild(
+        BuildCreateRequest.builder()
+            .base64Code(request.getBase64Code())
+            .buildImageUrl(buildImageUrl)
+            .build());
 
-        NFTCard nftCard = nftCardService.create(response.getBuildId(),
-                response.getProductIds(),
-                imageUrl,
-                request.getCollection(),
-                request.getFirstOwner(),
-                request.getName(),
-                request.getMintingPrice());
-        return nftCardMapper.toDto(nftCard);
+    String nftImageUrl = imageService.createNFTImage(buildImageUrl);
+    NFTCard nftCard = nftCardService.create(
+        response.getBuildId(),
+        response.getProductIds(),
+        nftImageUrl,
+        request.getCollection(),
+        request.getFirstOwner(),
+        request.getName(),
+        request.getMintingPrice(),
+        request.getRarity()
+    );
+    NFTCardDto nftCardDto = nftCardMapper.toDto(nftCard);
 
-    }
+    log.info("Finish CreateNftCard. Answer: <{}>", nftCardDto.getName());
+    return ResponseEntity.ok(nftCardDto);
+
+  }
 
 }
