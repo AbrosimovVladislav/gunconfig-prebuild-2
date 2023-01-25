@@ -6,7 +6,6 @@ import com.gunconfig.nft.service.FilterItemService;
 import com.gunconfig.nft.service.NFTCardService;
 import com.gunconfig.nft.service.client.ConfiguratorClient;
 import com.gunconfig.nft.web.dto.FilterItemDto;
-import com.gunconfig.nft.web.dto.NFTCardDto;
 import com.gunconfig.nft.web.dto.ShortNFTCardDto;
 import com.gunconfig.nft.web.mapper.FilterItemMapper;
 import com.gunconfig.nft.web.mapper.NFTCardMapper;
@@ -60,22 +59,6 @@ public class NFTCatalogController {
   }
 
   /**
-   * Get 8 NFTs from given collection
-   **/
-  @CrossOrigin
-  @GetMapping(value = "/collection/{collectionName}")
-  public ResponseEntity<List<ShortNFTCardDto>> getEightNFTsFromSameCollection(
-      @PathVariable String collectionName) {
-    log.info("Start GetEightNFTsFromSameCollection. Params: collectionName:<{}>", collectionName);
-
-    List<NFTCard> nftCards = nftCardService.findEightNFTsFromSameCollection(collectionName);
-    List<ShortNFTCardDto> shortNFTCardDtos = nftCardMapper.toShortDtos(nftCards);
-
-    log.info("Finish GetEightNFTsFromSameCollection. Answer: <{}>", shortNFTCardDtos);
-    return ResponseEntity.ok(shortNFTCardDtos);
-  }
-
-  /**
    * Get NFTs by parameters
    **/
   @CrossOrigin
@@ -101,19 +84,6 @@ public class NFTCatalogController {
   }
 
   /**
-   * Get NFT by nftId
-   **/
-  @CrossOrigin
-  @GetMapping(value = "/{nftCardId}")
-  public ResponseEntity<NFTCardDto> getNftCardById(@PathVariable Long nftCardId) {
-    log.info("Start GetNftCardById. Params: nftCardId:<{}>", nftCardId);
-    NFTCard nftCard = nftCardService.findById(nftCardId);
-    NFTCardDto dto = nftCardMapper.toDto(nftCard);
-    log.info("Finish GetNftCardById. Answer: <{}>", dto);
-    return ResponseEntity.ok(dto);
-  }
-
-  /**
    * Get List of all FilterItem
    **/
   @CrossOrigin
@@ -122,7 +92,7 @@ public class NFTCatalogController {
     log.info("Start GetFilterItems");
     List<FilterItem> filterItems = filterItemService.findAll();
     List<FilterItemDto> dtos = filterItemMapper.toDtos(filterItems);
-    log.info("Finish GetFilterItems. Answer: <{}>", dtos);
+    log.info("Finish GetFilterItems. Answer size: <{}>", dtos.size());
     return ResponseEntity.ok(dtos);
   }
 

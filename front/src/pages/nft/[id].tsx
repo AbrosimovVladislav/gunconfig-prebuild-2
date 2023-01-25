@@ -1,6 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { useGetNFTById, getNFTsByCollection } from "../../services/nftService";
+import { getNFTById, getNFTsByCollection } from "../../services/nftService";
 import { GCImage, GCText } from "../../gc-components";
 import { GCGrid } from "../../gc-components/GCGrid";
 import { GCGridCol } from "../../gc-components/GCGridCol";
@@ -16,8 +16,8 @@ type SingleNFTPageProps = {};
 
 const SingleNFTPage = (props: SingleNFTPageProps) => {
     const id: number = Number(useRouter().query.id);
-    const { data: nftInfo, isLoading, isError, isSuccess } = useGetNFTById(id);
-    const { nftsByCollection } = getNFTsByCollection(nftInfo?.collection);
+    const { nft, isLoading, isError, isSuccess } = getNFTById(id);
+    const { nftsByCollection } = getNFTsByCollection(nft?.collection);
     const { classes } = useStyles();
 
     if (isLoading) {
@@ -33,10 +33,10 @@ const SingleNFTPage = (props: SingleNFTPageProps) => {
             <>
                 <div className={classes.nftContainer}>
                     <div className={classes.nftWrapper}>
-                        <GCImage className={classes.nftImage} src={nftInfo?.nftImageUrl}
+                        <GCImage className={classes.nftImage} src={nft?.nftImageUrl}
                                  alt="gun" />
                     </div>
-                    <NftCardInformation data={nftInfo} />
+                    <NftCardInformation data={nft} />
                 </div>
                 <GCGrid>
                     <GCGridCol sm={12} md={12}>
@@ -44,7 +44,7 @@ const SingleNFTPage = (props: SingleNFTPageProps) => {
                             What was used in this build
                         </GCText>
                         <Catalog>
-                            {nftInfo?.properties?.map((product: Product) => (
+                            {nft?.properties?.map((product: Product) => (
                                 <GunPartCard product={product} key={product.productId} />
                             ))}
                         </Catalog>
