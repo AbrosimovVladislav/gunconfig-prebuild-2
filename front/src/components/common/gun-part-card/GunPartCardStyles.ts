@@ -21,6 +21,12 @@ export const useStyles = createStyles((theme) => ({
     backgroundColor: theme.colors.neutralLight[2],
   },
 
+  icon: {
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+  },
+
   imageSection: {
     display: "flex",
     justifyContent: "center",

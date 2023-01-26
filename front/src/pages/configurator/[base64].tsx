@@ -1,4 +1,4 @@
-import { Box, Button, Center, Group, Modal } from "@mantine/core";
+import { Box, Button, Center, Modal } from "@mantine/core";
 import { useRouter } from "next/router";
 import {
     getBuildLinkFromBuildTree,
@@ -6,7 +6,7 @@ import {
     useGetBuildTreeByBase64Code,
 } from "../../services/configuratorService";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useBuildTreeStore } from "../../store/BuildTreeStore";
 import GunPartsList from "../../components/page-configurator/gun-part-list/GunPartsList";
 import { useClickedGunPartStore } from "../../store/ClickedGunPartStore";
@@ -15,6 +15,8 @@ import * as htmlToImage from "html-to-image";
 import { useBuildImageStore } from "../../store/BuildImageStore";
 import { useGunPartListCarouselStore } from "../../store/GunPartListCarouselStore";
 import { Engine } from "../../components/page-configurator/engine";
+import { GCIconButton } from "../../gc-components/icon-button/GCIconButton";
+import { useStyles } from "./ConfiguratorStyles";
 
 export interface ClickedGunPart {
     itemId: number;
@@ -24,17 +26,17 @@ export interface ClickedGunPart {
 
 const Configurator = () => {
     const router = useRouter();
-    const { base64 } = router.query;
+    const {base64} = router.query;
 
     const [data] = useGetBuildTreeByBase64Code(base64 as string);
-    const { buildTree, setBuildTree } = useBuildTreeStore();
-    const { setBuildImage } = useBuildImageStore();
+    const {buildTree, setBuildTree} = useBuildTreeStore();
+    const {setBuildImage} = useBuildImageStore();
 
     const [currentBuildUrl, setCurrentBuildUrl] = useState("");
     const [isShareLinkModalOpened, setIsShareLinkModalOpened] = useState(false);
-    const [copy, setCopy] = useState({ value: "", isCopied: false });
-    const { setGunParts } = useGunPartListCarouselStore();
-    const { setClickedGunPart } = useClickedGunPartStore();
+    const [copy, setCopy] = useState({value: "", isCopied: false});
+    const {setGunParts} = useGunPartListCarouselStore();
+    const {clickedGunPart, setClickedGunPart} = useClickedGunPartStore();
 
     useEffect(() => {
         setBuildTree(data);
@@ -48,10 +50,10 @@ const Configurator = () => {
     }
 
     function onCopyLinkClick(textToCopy: string) {
-        setCopy({ value: textToCopy, isCopied: true });
+        setCopy({value: textToCopy, isCopied: true});
         setTimeout(() => {
             setIsShareLinkModalOpened(false);
-            setCopy({ value: "", isCopied: false });
+            setCopy({value: "", isCopied: false});
         }, 750);
     }
 
@@ -68,26 +70,29 @@ const Configurator = () => {
     }
 
     const domEl = useRef(null);
+    const {classes} = useStyles();
 
     return (
         <>
-            <Box id="domEl" ref={domEl}
-                //ToDo move styles from here to styles file
-                 sx={{
-                     display: "flex",
-                     justifyContent: "center",
-                     padding: "1rem 0",
-                 }}>
-                {buildTree && <Engine data={buildTree} />}
+            <Box id="domEl" ref={domEl} className={classes.box}>
+                <div className={classes.actions}>
+                    <div className={classes.iconTop}>
+                        <GCIconButton primaryReversed icon="refresh"/>
+                    </div>
+                    <div className={classes.iconTop}>
+                        <GCIconButton primaryReversed icon="question"/>
+                    </div>
+                    <div className={classes.iconTop}>
+                        <GCIconButton primaryReversed onClick={() => onShareYourBuildClick()} icon="share"/>
+                    </div>
+                    <div className={classes.iconBottom}>
+                        <GCIconButton primary={clickedGunPart == null} primaryReversed={clickedGunPart !== null}
+                                      onClick={onShowCurrentPartsClick} icon="eye"/>
+                    </div>
+                </div>
+                {buildTree && <Engine data={buildTree}/>}
             </Box>
-
-            <Center>
-                <Button onClick={onShowCurrentPartsClick} color={"teal"}>
-                    Show current parts
-                </Button>
-            </Center>
-
-            <GunPartsList />
+            <GunPartsList/>
 
             <Center>
                 <Modal
@@ -107,10 +112,6 @@ const Configurator = () => {
 
                     </Center>
                 </Modal>
-
-                <Group position="center">
-                    <Button onClick={() => onShareYourBuildClick()}>Share My Build</Button>
-                </Group>
             </Center>
 
             <Center>
