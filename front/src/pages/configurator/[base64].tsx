@@ -2,7 +2,7 @@ import { Box, Button, Center, Group, Modal } from "@mantine/core";
 import { useRouter } from "next/router";
 import {
     getBuildLinkFromBuildTree,
-    getListOfProducts,
+    mapBuildTreeToProducts,
     useGetBuildTreeByBase64Code,
 } from "../../services/configuratorService";
 import { CopyToClipboard } from "react-copy-to-clipboard";
@@ -18,6 +18,7 @@ import { Engine } from "../../components/page-configurator/engine";
 
 export interface ClickedGunPart {
     itemId: number;
+    productId: number;
     parentId: number;
     type: string;
 }
@@ -38,7 +39,7 @@ const Configurator = () => {
 
     useEffect(() => {
         setBuildTree(data);
-        setGunParts(getListOfProducts(data));
+        setGunParts(mapBuildTreeToProducts(data));
     }, [data]);
 
     function onShareYourBuildClick() {
@@ -63,7 +64,7 @@ const Configurator = () => {
     }
 
     function onShowCurrentPartsClick() {
-        setGunParts(getListOfProducts(buildTree));
+        setGunParts(mapBuildTreeToProducts(buildTree));
         setClickedGunPart(null);
     }
 

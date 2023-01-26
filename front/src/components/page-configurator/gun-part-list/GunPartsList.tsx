@@ -8,6 +8,8 @@ import { useGunPartListCarouselStore } from "../../../store/GunPartListCarouselS
 import { ClickedGunPart } from "../../../pages/configurator/[base64]";
 import { BuildTree } from "../../../schema/configurator/BuildTree";
 import GunPartCard from "../../common/gun-part-card/GunPartCard";
+import { Product } from "../../../schema/common/Product";
+import { getGunPartRenderingInfo } from "../../../services/configuratorService";
 
 
 const GunPartsList = () => {
@@ -16,15 +18,15 @@ const GunPartsList = () => {
     const { gunParts } = useGunPartListCarouselStore();
     const { classes } = useStyles();
 
-    function chooseGunPartFromList(oldGunPart: ClickedGunPart, newGunPart: BuildTree) {
-        //ToDo make backend call for get build tree product info
-        replaceGunPart(oldGunPart.itemId, newGunPart);
+    async function chooseGunPartFromList(oldGunPart: ClickedGunPart, product: Product) {
+        const newGunPartRenderingInfo: BuildTree =
+            await getGunPartRenderingInfo(product, oldGunPart.parentId);
+        replaceGunPart(oldGunPart.itemId, newGunPartRenderingInfo);
         setClickedGunPart({
-            itemId: newGunPart.id,
-            //we take parentId of clicked (existing) gun part,
-            // because we are trying to replace it, by brothers (kids of the same parent)
+            itemId: newGunPartRenderingInfo.id,
+            productId: product.productId,
             parentId: oldGunPart.parentId,
-            type: newGunPart.type,
+            type: product.type,
         });
     }
 
@@ -39,16 +41,16 @@ const GunPartsList = () => {
             </GCText>
             {gunParts && gunParts.length > 0 && <GCCarousel className={classes.carousel}>
                 {gunParts?.map((part) => (
-                    <div key={part.id}
+                    <div key={part.productId}
                          onClick={() => !part.incompatible && clickedGunPart && chooseGunPartFromList(clickedGunPart, part)}>
                         <GunPartCard hoverable
-                                     active={clickedGunPart && part.id == clickedGunPart.itemId}
+                                     active={clickedGunPart && part.productId == clickedGunPart.productId}
                                      disabled={part.incompatible}
                                      sm
                                      product={{
-                                         productId: part.id,
+                                         productId: part.productId,
                                          name: part.name,
-                                         productImageUrl: part.thumbnailImage,
+                                         productImageUrl: part.productImageUrl,
                                          brand: part.brand,
                                          type: part.type,
                                      }} />

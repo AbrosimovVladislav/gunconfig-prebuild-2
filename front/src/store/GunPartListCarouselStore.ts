@@ -1,15 +1,15 @@
 import create from "zustand";
 import { mountStoreDevtool } from "simple-zustand-devtools";
-import { BuildTree } from "../schema/configurator/BuildTree";
+import { Product } from "../schema/common/Product";
 
 interface GunPartListCarouselStore {
-    gunParts: BuildTree[] | null;
-    setGunParts: (gunParts: BuildTree[]) => void;
+    gunParts: Product[] | null;
+    setGunParts: (gunParts: Product[]) => void;
 }
 
 export const useGunPartListCarouselStore = create<GunPartListCarouselStore>((set) => ({
     gunParts: null,
-    setGunParts: (gunParts: BuildTree[]) => {
+    setGunParts: (gunParts: Product[]) => {
         set((state) => ({ gunParts: gunParts }));
     },
 }));

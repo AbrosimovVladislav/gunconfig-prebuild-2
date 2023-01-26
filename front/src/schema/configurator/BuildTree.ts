@@ -1,5 +1,6 @@
 export interface BuildTree {
     id: number;
+    productId: number;
     name: string;
     image: string;
     type: string;

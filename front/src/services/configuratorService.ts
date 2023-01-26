@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import { getConfiguratorBack, post } from "./restClient";
 import {
     BUILD_TREE_POSTFIX,
-    CONFIGURATOR_POSTFIX,
+    CONFIGURATOR_ENDPOINT,
     GUNS_FOR_CHOOSE_POSTFIX,
     NFT_CREATION_ENDPOINT,
 } from "../consts/back-paths";
@@ -13,22 +13,15 @@ import { GunsForChoose } from "../schema/configurator/GunsForChoose";
 import { Product } from "../schema/common/Product";
 import { IdsBuildTree } from "../schema/configurator/IdsBuildTree";
 
-
-export function getListOfProducts(buildTree: BuildTree): BuildTree[] {
-    if (!buildTree) return null;
-    let productsInBuildTreeStyle = [];
-    getChildrenProductsBuildTreeRecursively(buildTree, productsInBuildTreeStyle);
-    return productsInBuildTreeStyle;
+export async function getGunPartRenderingInfo(product: Product, parentId: number): Promise<BuildTree> {
+    const response = await getConfiguratorBack(
+        CONFIGURATOR_ENDPOINT +
+        "/gunpart/" + parentId +
+        "/" + product.productId);
+    return response;
 }
 
-function getChildrenProductsBuildTreeRecursively(buildTree: BuildTree, products: BuildTree[]) {
-    products.push(buildTree);
-    if (buildTree.children && buildTree.children.length > 0) {
-        buildTree.children.forEach(child => getChildrenProductsBuildTreeRecursively(child, products));
-    }
-}
-
-export function getListOfBuildTreeProducts(buildTree: BuildTree): Product[] {
+export function mapBuildTreeToProducts(buildTree: BuildTree): Product[] {
     if (!buildTree) return null;
     let products = [];
     getChildrenProductsRecursively(buildTree, products);
@@ -36,13 +29,13 @@ export function getListOfBuildTreeProducts(buildTree: BuildTree): Product[] {
 }
 
 function getChildrenProductsRecursively(buildTree: BuildTree, products: Product[]) {
-    products.push(mapBuildTreeToProducts(buildTree));
+    products.push(mapBuildTreeToProduct(buildTree));
     if (buildTree.children && buildTree.children.length > 0) {
         buildTree.children.forEach(child => getChildrenProductsRecursively(child, products));
     }
 }
 
-function mapBuildTreeToProducts(buildTree: BuildTree): Product {
+function mapBuildTreeToProduct(buildTree: BuildTree): Product {
     return {
         productId: buildTree.id,
         name: buildTree.name,
@@ -50,6 +43,8 @@ function mapBuildTreeToProducts(buildTree: BuildTree): Product {
         description: buildTree.description,
         brand: buildTree.brand,
         type: buildTree.type,
+        incompatible: false,
+        incompatibleIds: [],
     };
 }
 
@@ -95,7 +90,7 @@ function recursiveFillingOfIdsTree(idsTree: IdsBuildTree, buildTree: BuildTree) 
 export function useGetBuildTreeByBase64Code(treeBase64Code: String): [BuildTree, boolean, boolean, boolean] {
     const { data, isLoading, isError, isSuccess } = useQuery(
         "GetBuildTreeByCode" + treeBase64Code,
-        (): Promise<BuildTree> => getConfiguratorBack(CONFIGURATOR_POSTFIX + BUILD_TREE_POSTFIX + "/" + treeBase64Code),
+        (): Promise<BuildTree> => getConfiguratorBack(CONFIGURATOR_ENDPOINT + BUILD_TREE_POSTFIX + "/" + treeBase64Code),
         {
             refetchOnWindowFocus: false,
         },
@@ -113,7 +108,7 @@ export function useGetGunsForChoosing()
 
     const { data, isLoading, isError, isSuccess } = useQuery(
         "useGetGunsForChoosing",
-        () => getConfiguratorBack(CONFIGURATOR_POSTFIX + GUNS_FOR_CHOOSE_POSTFIX),
+        () => getConfiguratorBack(CONFIGURATOR_ENDPOINT + GUNS_FOR_CHOOSE_POSTFIX),
         {
             refetchOnWindowFocus: false,
         },
@@ -125,9 +120,9 @@ export async function getGunPartsByParentAndType(
     parentId: number,
     typeOfProduct: string,
     currentBuildIds: string,
-) {
+): Promise<Product[]> {
     const response = await getConfiguratorBack(
-        CONFIGURATOR_POSTFIX +
+        CONFIGURATOR_ENDPOINT +
         "/gunpart?parentId=" +
         parentId +
         "&typeOfProduct=" +
@@ -147,7 +142,7 @@ export function useGetGunPartsByParentAndType(
         "GetGunPartsByParentAndType" + parentId + typeOfProduct + currentBuildIds,
         (): Promise<BuildTree[]> =>
             getConfiguratorBack(
-                CONFIGURATOR_POSTFIX +
+                CONFIGURATOR_ENDPOINT +
                 "/gunpart?parentId=" +
                 parentId +
                 "&typeOfProduct=" +

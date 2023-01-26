@@ -5,7 +5,7 @@ import GunPartCard from "../../components/common/gun-part-card/GunPartCard";
 import Catalog from "../../components/common/catalog/Catalog";
 import {
     getBase64CodeByBuildTree,
-    getListOfBuildTreeProducts,
+    mapBuildTreeToProducts,
     useCreateNFTRequest,
 } from "../../services/configuratorService";
 import { useBuildImageStore } from "../../store/BuildImageStore";
@@ -30,7 +30,7 @@ const BuildSummary = ({}) => {
     const router = useRouter();
 
     useEffect(() => {
-        const productsList: Product[] = getListOfBuildTreeProducts(buildTree);
+        const productsList: Product[] = mapBuildTreeToProducts(buildTree);
         setProducts(productsList);
         const code = getBase64CodeByBuildTree(buildTree);
         setBase64Code(code);
