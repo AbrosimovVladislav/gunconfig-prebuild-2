@@ -30,7 +30,9 @@ const GunPartCard = ({ product, hoverable, active, disabled, sm }: GunPartCardPr
                     className={`${classes.card} 
                     ${hoverable && !disabled ? classes.hoverable : ""} 
                     ${disabled ? classes.disabled : ""}`}>
-                {iconButton(active, hovered)}
+                <div className={classes.icon}>
+                    {iconButton(active, hovered)}
+                </div>
                 <GCCardSection className={classes.imageSection}>
                     <GCImage height={sm ? 180 : 304} src={product?.productImageUrl} alt=""
                              fit="contain" />
