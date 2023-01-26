@@ -2,7 +2,7 @@ import { Carousel, CarouselProps } from "@mantine/carousel";
 import React, { ReactNode } from "react";
 import { useStyles } from "./GCCarouselStyles";
 import { useMantineTheme } from "@mantine/core";
-import { GCIconButton } from "../icon/GCIconButton";
+import { GCIconButton } from "../icon-button/GCIconButton";
 
 interface GCCarouselProps extends CarouselProps {
   children: ReactNode[];
@@ -27,7 +27,7 @@ export const GCCarousel = ({ children, ...props }: GCCarouselProps) => {
         ]}
         classNames={classes}
         previousControlIcon={ <GCIconButton primary icon="arrow-previous"/> }
-        nextControlIcon={ <GCIconButton  primary icon="arrow-next"/> }
+        nextControlIcon={ <GCIconButton primary icon="arrow-next"/> }
       {...props}
     >
             {children?.map((child) => (

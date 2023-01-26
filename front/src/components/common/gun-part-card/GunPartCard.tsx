@@ -1,7 +1,7 @@
 import { useStyles } from "./GunPartCardStyles";
 import { GCCard, GCCardSection, GCImage, GCText } from "../../../gc-components";
 import { IconHexagon } from "@tabler/icons";
-import { GCIconButton } from "../../../gc-components/icon/GCIconButton";
+import { GCIconButton } from "../../../gc-components/icon-button/GCIconButton";
 import { useHover } from "@mantine/hooks";
 import React, { ReactNode } from "react";
 import { Product } from "../../../schema/common/Product";

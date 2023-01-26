@@ -4,7 +4,7 @@ import {
     IconChevronRight,
     IconCircleMinus,
     IconCirclePlus,
-    IconPhoto,
+    IconPhoto, IconQuestionMark,
     IconReload,
     IconUpload,
     IconX
@@ -14,7 +14,7 @@ import { MouseEventHandler, ReactNode } from "react";
 import { useStyles } from "./GCIconButtonStyles";
 
 interface GCIconButtonProps {
-    icon?: "arrow-next" | "arrow-previous" | "close" | "confirm" | "share" | "refresh" | "fold" | "unfold",
+    icon?: "arrow-next" | "arrow-previous" | "close" | "confirm" | "share" | "refresh" | "fold" | "unfold" | "question",
     sm?: boolean,
     lg?: boolean,
     top?: boolean,
@@ -57,6 +57,9 @@ export const GCIconButton = ({icon, sm, lg, top, bottom, left, right, primary, p
             break;
         case "unfold":
             iconImage = <IconCirclePlus size={size} color={color}/>;
+            break;
+        case "question":
+            iconImage = <IconQuestionMark size={size} color={color}/>;
             break;
         default:
             iconImage = <IconPhoto size={size} color={color}/>;
