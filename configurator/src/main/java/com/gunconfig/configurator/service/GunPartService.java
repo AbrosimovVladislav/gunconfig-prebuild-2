@@ -1,15 +1,15 @@
 package com.gunconfig.configurator.service;
 
 import com.gunconfig.configurator.model.GunPart;
+import com.gunconfig.configurator.model.Product;
 import com.gunconfig.configurator.repo.GunPartRepo;
+import com.gunconfig.configurator.repo.ProductRepo;
 import com.gunconfig.configurator.web.dto.request.GetGunPartsByParentAndTypeRequest;
-import com.gunconfig.configurator.web.dto.ShortGunPartDto;
+import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -17,6 +17,7 @@ import java.util.Optional;
 public class GunPartService {
 
   private final GunPartRepo gunPartRepo;
+  private final ProductRepo productRepo;
 
   public List<GunPart> findAll() {
     return gunPartRepo.findAll();
@@ -44,9 +45,18 @@ public class GunPartService {
     }
   }
 
-  public GunPart findById(Long id) {
-    return gunPartRepo.findById(id)
-        .orElseThrow(() -> new RuntimeException("There is no gun part with id: " + id));
+  /**
+   * Get gun part by product id
+   */
+  public GunPart findByProductId(Long productId) {
+    Product product = productRepo.findById(productId)
+        .orElseThrow(() -> new RuntimeException(String.format(
+            "There is no product with id %s", productId
+        )));
+    return gunPartRepo.findByProduct(product)
+        .orElseThrow(() -> new RuntimeException(String.format(
+            "There is no gun part with product %s", product
+        )));
   }
 
   //ToDo refactor basic repo method for returning needed children, not full tree (https://app.clickup.com/t/33dx6te)
@@ -56,20 +66,8 @@ public class GunPartService {
             () -> new RuntimeException("There is no gun part with id: " + request.getParentId()));
     List<GunPart> children = parent.getChildren();
     List<GunPart> childrenOfNeededType = children.stream()
-        .filter(child -> request.getTypeOfProduct().equals(child.getProduct().getType()))
+        .filter(child -> request.getProductType().equals(child.getProduct().getType()))
         .toList();
     return childrenOfNeededType;
-  }
-
-  public List<ShortGunPartDto> checkOnIncompatible(List<ShortGunPartDto> shortDtos,
-      List<Long> currentBuildIds) {
-    shortDtos.forEach(shortGunPartDto -> {
-      List<Long> incompatibleIds = shortGunPartDto.getIncompatibleIds();
-      currentBuildIds.stream()
-          .filter(incompatibleIds::contains)
-          .findAny().ifPresent(e -> shortGunPartDto.setIncompatible(true));
-    });
-
-    return shortDtos;
   }
 }

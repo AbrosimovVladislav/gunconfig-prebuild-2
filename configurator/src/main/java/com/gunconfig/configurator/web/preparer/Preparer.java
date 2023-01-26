@@ -41,7 +41,7 @@ public class Preparer {
 
         return GetGunPartsByParentAndTypeRequest.builder()
                 .parentId(parentId)
-                .typeOfProduct(type)
+                .productType(type)
                 .currentBuildIds(currentBuildIds)
                 .build();
     }

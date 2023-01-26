@@ -10,16 +10,15 @@ import com.gunconfig.configurator.service.GunForChooseService;
 import com.gunconfig.configurator.service.GunPartService;
 import com.gunconfig.configurator.service.ProductService;
 import com.gunconfig.configurator.web.dto.BuildGunPartDto;
-import com.gunconfig.configurator.web.dto.BuildWithProductsDto;
-import com.gunconfig.configurator.web.dto.RenderingGunPartDto;
+import com.gunconfig.configurator.web.dto.ProductDto;
 import com.gunconfig.configurator.web.dto.ShortGunPartDto;
-import com.gunconfig.configurator.web.dto.request.BuildCreateRequest;
 import com.gunconfig.configurator.web.dto.request.CreateGunPartRequest;
 import com.gunconfig.configurator.web.dto.request.CreateProductRequest;
 import com.gunconfig.configurator.web.dto.request.GetGunPartsByParentAndTypeRequest;
 import com.gunconfig.configurator.web.dto.request.SetCoordinatesRequest;
 import com.gunconfig.configurator.web.mapper.BuildMapper;
 import com.gunconfig.configurator.web.mapper.GunPartMapper;
+import com.gunconfig.configurator.web.mapper.ProductMapper;
 import com.gunconfig.configurator.web.preparer.Preparer;
 import java.util.List;
 import java.util.Map;
@@ -50,6 +49,8 @@ public class ConfiguratorController {
   private final CoordinatesService coordinatesService;
   private final ProductService productService;
   private final GunForChooseService gunForChooseService;
+  private final ProductMapper productMapper;
+
 
   /**
    * First endpoint Get a tree of gun by provided schema
@@ -68,33 +69,36 @@ public class ConfiguratorController {
    */
   @CrossOrigin
   @GetMapping(value = "/gunpart")
-  public List<ShortGunPartDto> getGunPartsByParentAndType(
+  public List<ProductDto> getGunPartsByParentAndTypeNew(
       @RequestParam Map<String, String> requestParams) {
+    log.info("Start GetGunPartsByParentAndTypeNew. Parameters: <requestParams{}>", requestParams);
+
     GetGunPartsByParentAndTypeRequest request = preparer.prepareRequest(requestParams);
     List<GunPart> gunParts = gunPartService.getGunPartsByParentAndType(request);
-    List<ShortGunPartDto> shortDtos = gunPartMapper.toShortDtos(gunParts);
-    List<ShortGunPartDto> finalShortDtos = gunPartService.checkOnIncompatible(shortDtos,
+    List<ProductDto> productDtos = productMapper.fromGunPartsToProductDtos(gunParts);
+    List<ProductDto> finalProductDtos = productService.checkOnIncompatible(productDtos,
         request.getCurrentBuildIds());
-    //TODO shitty solution, think maybe to split on 3 endpoints???
-    finalShortDtos = finalShortDtos.stream()
-        .map(gunPart -> {
-          Pair<Double, Double> coords = coordinatesService.getCoordinatesByParentIdAndChildId(
-              request.getParentId(), gunPart.getId());
-          gunPart.setX(coords.getFirst());
-          gunPart.setY(coords.getSecond());
-          return gunPart;
-        }).collect(Collectors.toList());
-    return finalShortDtos;
+
+    log.info("Finish GetGunPartsByParentAndTypeNew. Answer size: <{}>", finalProductDtos.size());
+    return finalProductDtos;
   }
 
   /**
    * Third endpoint Get a rendering info for exact gun part by id
    */
+  //ToDo think about returning not buildTree structure,
+  // but some special rendering info without children
   @CrossOrigin
-  @GetMapping(value = "/gunpart/{parentId}/{id}")
-  public RenderingGunPartDto getGunPartById(@PathVariable Long parentId, @PathVariable Long id) {
-    GunPart gunPart = gunPartService.findById(id);
-    RenderingGunPartDto dto = gunPartMapper.toRenderingDto(gunPart, parentId);
+  @GetMapping(value = "/gunpart/{parentId}/{productId}")
+  public BuildGunPartDto getGunPartByParentIdAndProductId(@PathVariable Long parentId,
+      @PathVariable Long productId) {
+    log.info("Start GetGunPartByParentIdAndProductId. Parameters: <parentId{}, productId{}>",
+        parentId, productId);
+
+    GunPart gunPart = gunPartService.findByProductId(productId);
+    BuildGunPartDto dto = gunPartMapper.toBuildGunPartDto(gunPart, parentId);
+
+    log.info("Finish GetGunPartByParentIdAndProductId. Answer: <{}>", dto.getName());
     return dto;
   }
 
