@@ -36,7 +36,6 @@ const Configurator = () => {
     const { setGunParts } = useGunPartListCarouselStore();
     const { setClickedGunPart } = useClickedGunPartStore();
 
-
     useEffect(() => {
         setBuildTree(data);
         setGunParts(getListOfProducts(data));
@@ -59,6 +58,7 @@ const Configurator = () => {
     async function onSummaryClick() {
         const buildImageData = await htmlToImage.toPng(domEl.current);
         setBuildImage(buildImageData);
+        setClickedGunPart(null);
         router.push("/summary");
     }
 

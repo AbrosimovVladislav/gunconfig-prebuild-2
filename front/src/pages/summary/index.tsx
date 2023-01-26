@@ -60,6 +60,13 @@ const BuildSummary = ({}) => {
             <Center>
                 {buildImage && <Image unoptimized width={1080} height={300} src={buildImage} />}
             </Center>
+            <Center>
+                <GCLink href={FRONT_CURRENT_PATH + ":3000/configurator/" + base64Code}>
+                    <Button disabled={!base64Code}>
+                        Return to configure
+                    </Button>
+                </GCLink>
+            </Center>
             <Catalog>
                 {products?.map((product: Product) => (
                     <GunPartCard product={product} key={product.productId} />
