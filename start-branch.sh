@@ -1,4 +1,4 @@
-git checkout sumamary
+git checkout 861m95962-2
 git pull
 
 mvn clean package -P build-docker-image
