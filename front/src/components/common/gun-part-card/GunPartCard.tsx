@@ -1,7 +1,7 @@
 import { useStyles } from "./GunPartCardStyles";
 import { GCCard, GCCardSection, GCImage, GCText } from "../../../gc-components";
 import { IconHexagon } from "@tabler/icons";
-import { GCIconButton } from "../../../gc-components/icon/GCIconButton";
+import { GCIconButton } from "../../../gc-components/icon-button/GCIconButton";
 import { useHover } from "@mantine/hooks";
 import React, { ReactNode } from "react";
 import { Product } from "../../../schema/common/Product";
@@ -30,7 +30,9 @@ const GunPartCard = ({ product, hoverable, active, disabled, sm }: GunPartCardPr
                     className={`${classes.card} 
                     ${hoverable && !disabled ? classes.hoverable : ""} 
                     ${disabled ? classes.disabled : ""}`}>
-                {iconButton(active, hovered)}
+                <div className={classes.icon}>
+                    {iconButton(active, hovered)}
+                </div>
                 <GCCardSection className={classes.imageSection}>
                     <GCImage height={sm ? 180 : 304} src={product?.productImageUrl} alt=""
                              fit="contain" />

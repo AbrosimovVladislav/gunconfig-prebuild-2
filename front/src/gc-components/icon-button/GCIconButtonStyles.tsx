@@ -30,31 +30,26 @@ export const useStyles = createStyles((theme) => ({
         justifyContent: "center",
         alignItems: "center",
         margin: theme.spacing.md,
-        position: "absolute",
         zIndex: 10,
     },
     top: {
         display: "flex",
         alignItems: "flex-start",
-        position: "absolute",
         zIndex: 10,
     },
     bottom: {
         display: "flex",
         alignItems: "flex-end",
-        position: "absolute",
         zIndex: 10,
     },
     left: {
         display: "flex",
         justifyContent: "flex-start",
-        position: "absolute",
         zIndex: 10,
     },
     right: {
         display: "flex",
         justifyContent: "flex-end",
-        position: "absolute",
         zIndex: 10,
     }
 }))
