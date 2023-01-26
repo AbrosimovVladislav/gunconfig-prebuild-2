@@ -1,4 +1,4 @@
-import { Box, Button, Center, Group, Modal } from "@mantine/core";
+import { Box, Button, Center, Modal } from "@mantine/core";
 import { useRouter } from "next/router";
 import {
     getBuildLinkFromBuildTree,
@@ -36,7 +36,7 @@ const Configurator = () => {
     const [isShareLinkModalOpened, setIsShareLinkModalOpened] = useState(false);
     const [copy, setCopy] = useState({value: "", isCopied: false});
     const {setGunParts} = useGunPartListCarouselStore();
-    const {setClickedGunPart} = useClickedGunPartStore();
+    const {clickedGunPart, setClickedGunPart} = useClickedGunPartStore();
 
     useEffect(() => {
         setBuildTree(data);
@@ -76,25 +76,22 @@ const Configurator = () => {
         <>
             <Box id="domEl" ref={domEl} className={classes.box}>
                 <div className={classes.actions}>
-                    <div className={classes.icon}>
+                    <div className={classes.iconTop}>
                         <GCIconButton primaryReversed icon="refresh"/>
                     </div>
-                    <div className={classes.icon}>
+                    <div className={classes.iconTop}>
                         <GCIconButton primaryReversed icon="question"/>
                     </div>
-                    <div className={classes.icon}>
-                        <GCIconButton primaryReversed icon="share"/>
+                    <div className={classes.iconTop}>
+                        <GCIconButton primaryReversed onClick={() => onShareYourBuildClick()} icon="share"/>
+                    </div>
+                    <div className={classes.iconBottom}>
+                        <GCIconButton primary={clickedGunPart == null} primaryReversed={clickedGunPart !== null}
+                                      onClick={onShowCurrentPartsClick} icon="eye"/>
                     </div>
                 </div>
                 {buildTree && <Engine data={buildTree}/>}
             </Box>
-
-            <Center>
-                <Button onClick={onShowCurrentPartsClick} color={"teal"}>
-                    Show current parts
-                </Button>
-            </Center>
-
             <GunPartsList/>
 
             <Center>
@@ -115,10 +112,6 @@ const Configurator = () => {
 
                     </Center>
                 </Modal>
-
-                <Group position="center">
-                    <Button onClick={() => onShareYourBuildClick()}>Share My Build</Button>
-                </Group>
             </Center>
 
             <Center>
