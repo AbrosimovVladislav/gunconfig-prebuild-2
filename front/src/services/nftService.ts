@@ -53,11 +53,11 @@ export function getNFTsByUrlParams(router: NextRouter)
     return { nfts: data, isLoading, isError, isSuccess };
 }
 
-export function getNFTIdByBase64Code(base64Code: string)
+export function useGetNFTIdByBase64Code(base64Code: string)
     : { nftId: number; isLoading: boolean; isError: boolean; isSuccess: boolean } {
 
     const { data, isLoading, isError, isSuccess } = useQuery(
-        "getNFTIdByBase64Code" + base64Code,
+        "useGetNFTIdByBase64Code" + base64Code,
         () => get(NFT_CATALOG_ENDPOINT + NFT_ID_BY_BASE64CODE_POSTFIX + base64Code),
         {
             enabled: !!base64Code,
@@ -65,4 +65,9 @@ export function getNFTIdByBase64Code(base64Code: string)
         },
     );
     return { nftId: data, isLoading, isError, isSuccess };
+}
+
+export async function getNFTIdByBase64Code(base64Code: string): Promise<number> {
+    const response = await get(NFT_CATALOG_ENDPOINT + NFT_ID_BY_BASE64CODE_POSTFIX + base64Code);
+    return await response;
 }

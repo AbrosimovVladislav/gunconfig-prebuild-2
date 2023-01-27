@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { GCCarousel } from "../../../gc-components/carousel/GCCarousel";
 import { GCText } from "../../../gc-components";
 import { useStyles } from "./GunPartsListStyles";
@@ -14,6 +14,7 @@ import {
     getGunPartRenderingInfo,
     getGunPartsByParentAndType,
     getIdsArrOfBuildTree,
+    mapBuildTreeToProducts,
 } from "../../../services/configuratorService";
 
 
@@ -23,6 +24,12 @@ const GunPartsList = () => {
     const { gunParts, setGunParts } = useGunPartListCarouselStore();
     const { classes } = useStyles();
     const { buildTree } = useBuildTreeStore();
+
+    useEffect(() => {
+        //when we render component first time set gun parts from current build tree
+        buildTree && setGunParts(mapBuildTreeToProducts(buildTree));
+        setClickedGunPart(null);
+    }, []);
 
     async function chooseGunPartFromList(oldGunPart: ClickedGunPart, product: Product) {
         const newGunPartRenderingInfo: BuildTree =

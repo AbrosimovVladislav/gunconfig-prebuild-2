@@ -14,7 +14,7 @@ import { CreateNFTRequest } from "../../schema/common/CreateNFTRequest";
 import { GCLink, GCText } from "../../gc-components";
 import { FRONT_CURRENT_PATH } from "../../config/env-paths";
 import { useRouter } from "next/router";
-import { getNFTIdByBase64Code } from "../../services/nftService";
+import { useGetNFTIdByBase64Code } from "../../services/nftService";
 import { Product } from "../../schema/common/Product";
 import { getCurrentUserName } from "../../services/authService";
 import { getNameForNewNFTByRandom } from "../../services/randomService";
@@ -26,7 +26,7 @@ const BuildSummary = ({}) => {
     const { buildImage } = useBuildImageStore();
     const [products, setProducts] = useState<Product[]>([]);
     const [base64Code, setBase64Code] = useState<string>();
-    const { nftId } = getNFTIdByBase64Code(base64Code);
+    const { nftId } = useGetNFTIdByBase64Code(base64Code);
     const router = useRouter();
 
     useEffect(() => {

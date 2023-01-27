@@ -102,10 +102,10 @@ function recursiveFillingOfIdsTree(idsTree: IdsBuildTree, buildTree: BuildTree) 
     }
 }
 
-export function useGetBuildTreeByBase64Code(treeBase64Code: String): [BuildTree, boolean, boolean, boolean] {
+export function useGetBuildTreeByBase64Code(base64Code: String): [BuildTree, boolean, boolean, boolean] {
     const { data, isLoading, isError, isSuccess } = useQuery(
-        "GetBuildTreeByCode" + treeBase64Code,
-        (): Promise<BuildTree> => getConfiguratorBack(CONFIGURATOR_ENDPOINT + BUILD_TREE_POSTFIX + "/" + treeBase64Code),
+        "GetBuildTreeByCode" + base64Code,
+        (): Promise<BuildTree> => getConfiguratorBack(CONFIGURATOR_ENDPOINT + BUILD_TREE_POSTFIX + "/" + base64Code),
         {
             refetchOnWindowFocus: false,
         },
