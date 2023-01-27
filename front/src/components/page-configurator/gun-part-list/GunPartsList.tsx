@@ -9,14 +9,20 @@ import { ClickedGunPart } from "../../../pages/configurator/[base64]";
 import { BuildTree } from "../../../schema/configurator/BuildTree";
 import GunPartCard from "../../common/gun-part-card/GunPartCard";
 import { Product } from "../../../schema/common/Product";
-import { getGunPartRenderingInfo } from "../../../services/configuratorService";
+import {
+    findProductInBuildTree,
+    getGunPartRenderingInfo,
+    getGunPartsByParentAndType,
+    getIdsArrOfBuildTree,
+} from "../../../services/configuratorService";
 
 
 const GunPartsList = () => {
     const { replaceGunPart } = useBuildTreeStore();
     const { clickedGunPart, setClickedGunPart } = useClickedGunPartStore();
-    const { gunParts } = useGunPartListCarouselStore();
+    const { gunParts, setGunParts } = useGunPartListCarouselStore();
     const { classes } = useStyles();
+    const { buildTree } = useBuildTreeStore();
 
     async function chooseGunPartFromList(oldGunPart: ClickedGunPart, product: Product) {
         const newGunPartRenderingInfo: BuildTree =
@@ -28,6 +34,25 @@ const GunPartsList = () => {
             parentId: oldGunPart.parentId,
             type: product.type,
         });
+    }
+
+    async function onGunPartClick(newClickedProduct: Product) {
+        if (clickedGunPart) {
+            !newClickedProduct.incompatible && chooseGunPartFromList(clickedGunPart, newClickedProduct);
+        } else {
+            const { itemId, parentId } = findProductInBuildTree(
+                buildTree, newClickedProduct.productId, buildTree.id)
+            || { itemId: undefined, parentId: undefined };
+            setClickedGunPart({
+                itemId: itemId,
+                productId: newClickedProduct.productId,
+                parentId: parentId,
+                type: newClickedProduct.type,
+            });
+            const gunPartsForChange: Product[] = await getGunPartsByParentAndType(
+                parentId, newClickedProduct.type, getIdsArrOfBuildTree(buildTree));
+            await setGunParts(gunPartsForChange);
+        }
     }
 
     if (!gunParts) {
@@ -42,7 +67,7 @@ const GunPartsList = () => {
             {gunParts && gunParts.length > 0 && <GCCarousel className={classes.carousel}>
                 {gunParts?.map((part) => (
                     <div key={part.productId}
-                         onClick={() => !part.incompatible && clickedGunPart && chooseGunPartFromList(clickedGunPart, part)}>
+                         onClick={() => onGunPartClick(part)}>
                         <GunPartCard hoverable
                                      active={clickedGunPart && part.productId == clickedGunPart.productId}
                                      disabled={part.incompatible}

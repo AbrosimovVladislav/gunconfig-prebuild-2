@@ -116,7 +116,7 @@ const Configurator = () => {
             </Center>
 
             <Center>
-                <Button onClick={onSummaryClick} color={"teal"}>
+                <Button onClick={onSummaryClick} color={"purple"}>
                     Build Summary
                 </Button>
             </Center>

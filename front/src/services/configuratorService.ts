@@ -13,6 +13,21 @@ import { GunsForChoose } from "../schema/configurator/GunsForChoose";
 import { Product } from "../schema/common/Product";
 import { IdsBuildTree } from "../schema/configurator/IdsBuildTree";
 
+export function findProductInBuildTree(buildTree: BuildTree, productId: number, parentId: number): { itemId: number, parentId: number } | undefined {
+    if (buildTree.productId === productId) {
+        return { itemId: buildTree.id, parentId: parentId };
+    }
+    if (buildTree.children && buildTree.children.length > 0) {
+        for (const child of buildTree.children) {
+            const result = findProductInBuildTree(child, productId, buildTree.id);
+            if (result) {
+                return result;
+            }
+        }
+    }
+    return undefined;
+}
+
 export async function getGunPartRenderingInfo(product: Product, parentId: number): Promise<BuildTree> {
     const response = await getConfiguratorBack(
         CONFIGURATOR_ENDPOINT +
