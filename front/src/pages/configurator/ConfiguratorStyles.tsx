@@ -26,10 +26,9 @@ export const useStyles = createStyles((theme) => ({
         justifyContent: "center",
         alignItems: "flex-start",
         marginTop: [`-${theme.spacing.md}px`],
-        "& + &": {
-            marginLeft: [`-${theme.spacing.lg}px`],
-        },
+        marginLeft: [`-${theme.spacing.lg}px`],
     },
+
     iconBottom: {
         display: "flex",
         justifyContent: "center",

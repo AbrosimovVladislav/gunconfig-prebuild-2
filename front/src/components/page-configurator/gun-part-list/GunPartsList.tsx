@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { GCCarousel } from "../../../gc-components/carousel/GCCarousel";
 import { GCText } from "../../../gc-components";
 import { useStyles } from "./GunPartsListStyles";
@@ -11,10 +11,13 @@ import GunPartCard from "../../common/gun-part-card/GunPartCard";
 import { Product } from "../../../schema/common/Product";
 import {
     findProductInBuildTree,
+    getIdsOfBuildTree,
+    mapBuildTreeToProducts,
+} from "../../../services/configuratorService";
+import {
     getGunPartRenderingInfo,
     getGunPartsByParentAndType,
-    getIdsArrOfBuildTree,
-} from "../../../services/configuratorService";
+} from "../../../services/client/configuratorClient";
 
 
 const GunPartsList = () => {
@@ -23,6 +26,12 @@ const GunPartsList = () => {
     const { gunParts, setGunParts } = useGunPartListCarouselStore();
     const { classes } = useStyles();
     const { buildTree } = useBuildTreeStore();
+
+    useEffect(() => {
+        //when we render component first time set gun parts from current build tree
+        buildTree && setGunParts(mapBuildTreeToProducts(buildTree));
+        setClickedGunPart(null);
+    }, []);
 
     async function chooseGunPartFromList(oldGunPart: ClickedGunPart, product: Product) {
         const newGunPartRenderingInfo: BuildTree =
@@ -50,7 +59,7 @@ const GunPartsList = () => {
                 type: newClickedProduct.type,
             });
             const gunPartsForChange: Product[] = await getGunPartsByParentAndType(
-                parentId, newClickedProduct.type, getIdsArrOfBuildTree(buildTree));
+                parentId, newClickedProduct.type, getIdsOfBuildTree(buildTree));
             await setGunParts(gunPartsForChange);
         }
     }

@@ -1,9 +1,9 @@
 import { Box, Button, Center, Modal } from "@mantine/core";
 import { useRouter } from "next/router";
 import {
+    getBase64CodeFromBuildTree,
     getBuildLinkFromBuildTree,
     mapBuildTreeToProducts,
-    useGetBuildTreeByBase64Code,
 } from "../../services/configuratorService";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import React, { useEffect, useRef, useState } from "react";
@@ -17,6 +17,11 @@ import { useGunPartListCarouselStore } from "../../store/GunPartListCarouselStor
 import { Engine } from "../../components/page-configurator/engine";
 import { GCIconButton } from "../../gc-components/icon-button/GCIconButton";
 import { useStyles } from "./ConfiguratorStyles";
+import Link from "next/link";
+import { FRONT_CURRENT_PATH } from "../../config/env-paths";
+import { GCTooltip } from "../../gc-components/tooltip/GCTooltip";
+import { useGetBuildTreeByBase64Code } from "../../services/client/configuratorClient";
+import { getNFTIdByBase64Code } from "../../services/client/nftClient";
 
 export interface ClickedGunPart {
     itemId: number;
@@ -27,17 +32,22 @@ export interface ClickedGunPart {
 
 const Configurator = () => {
     const router = useRouter();
-    const {base64} = router.query;
+    const { base64 } = router.query;
 
     const [data] = useGetBuildTreeByBase64Code(base64 as string);
-    const {buildTree, setBuildTree} = useBuildTreeStore();
-    const {setBuildImage} = useBuildImageStore();
+    const { buildTree, setBuildTree } = useBuildTreeStore();
+    const { setBuildImage } = useBuildImageStore();
 
     const [currentBuildUrl, setCurrentBuildUrl] = useState("");
     const [isShareLinkModalOpened, setIsShareLinkModalOpened] = useState(false);
-    const [copy, setCopy] = useState({value: "", isCopied: false});
-    const {setGunParts} = useGunPartListCarouselStore();
-    const {clickedGunPart, setClickedGunPart} = useClickedGunPartStore();
+    const [copy, setCopy] = useState({ value: "", isCopied: false });
+    const { setGunParts } = useGunPartListCarouselStore();
+    const { clickedGunPart, setClickedGunPart } = useClickedGunPartStore();
+
+    const [isNFTExistsModalOpened, setIsNFTExistsModalOpened] = useState(false);
+    const [isNFTExistsUrl, setIsNFTExistsUrl] = useState("");
+
+    const [isResetToInitialBuildModalOpened, setIsResetToInitialBuildModalOpened] = useState(false);
 
     useEffect(() => {
         setBuildTree(data);
@@ -51,10 +61,10 @@ const Configurator = () => {
     }
 
     function onCopyLinkClick(textToCopy: string) {
-        setCopy({value: textToCopy, isCopied: true});
+        setCopy({ value: textToCopy, isCopied: true });
         setTimeout(() => {
             setIsShareLinkModalOpened(false);
-            setCopy({value: "", isCopied: false});
+            setCopy({ value: "", isCopied: false });
         }, 750);
     }
 
@@ -70,30 +80,57 @@ const Configurator = () => {
         setClickedGunPart(null);
     }
 
+    async function onCheckIfNftExistsClick() {
+        if (buildTree) {
+            const base64Code = getBase64CodeFromBuildTree(buildTree);
+            const nftId = await getNFTIdByBase64Code(base64Code);
+            setIsNFTExistsModalOpened(true);
+            if (nftId > -1) {
+                setIsNFTExistsUrl(FRONT_CURRENT_PATH + ":3000/nft/" + nftId);
+            } else {
+                setIsNFTExistsUrl("");
+            }
+        }
+    }
+
+    async function onResetToInitialBuildClick() {
+        setIsResetToInitialBuildModalOpened(true);
+    }
+
     const domEl = useRef(null);
-    const {classes} = useStyles();
+    const { classes } = useStyles();
 
     return (
         <>
             <Box id="domEl" ref={domEl} className={classes.box}>
                 <div className={classes.actions}>
-                    <div className={classes.iconTop}>
-                        <GCIconButton primaryReversed icon="refresh"/>
-                    </div>
-                    <div className={classes.iconTop}>
-                        <GCIconButton primaryReversed icon="question"/>
-                    </div>
-                    <div className={classes.iconTop}>
-                        <GCIconButton primaryReversed onClick={() => onShareYourBuildClick()} icon="share"/>
-                    </div>
+                    <GCTooltip label="Return to initial build">
+                        <div className={classes.iconTop}>
+                            <GCIconButton primaryReversed onClick={onResetToInitialBuildClick}
+                                          icon="refresh" />
+                        </div>
+                    </GCTooltip>
+                    <GCTooltip label="Is NFT exists?">
+                        <div className={classes.iconTop}>
+                            <GCIconButton primaryReversed onClick={onCheckIfNftExistsClick}
+                                          icon="question" />
+                        </div>
+                    </GCTooltip>
+                    <GCTooltip label="Share build">
+                        <div className={classes.iconTop}>
+                            <GCIconButton primaryReversed onClick={() => onShareYourBuildClick()}
+                                          icon="share" />
+                        </div>
+                    </GCTooltip>
                     <div className={classes.iconBottom}>
-                        <GCIconButton primary={clickedGunPart == null} primaryReversed={clickedGunPart !== null}
-                                      onClick={onShowCurrentPartsClick} icon="eye"/>
+                        <GCIconButton primary={clickedGunPart == null}
+                                      primaryReversed={clickedGunPart !== null}
+                                      onClick={onShowCurrentPartsClick} icon="eye" />
                     </div>
                 </div>
-                {buildTree && <Engine data={buildTree}/>}
+                {buildTree && <Engine data={buildTree} />}
             </Box>
-            <GunPartsList/>
+            <GunPartsList />
 
             <Center>
                 <Modal
@@ -110,8 +147,39 @@ const Configurator = () => {
                                 {copy.isCopied ? "Copied url" : "Copy url"}
                             </Button>
                         </CopyToClipboard>
-
                     </Center>
+                </Modal>
+            </Center>
+
+            <Center>
+                <Modal
+                    opened={isNFTExistsModalOpened}
+                    onClose={() => setIsNFTExistsModalOpened(false)}
+                    title="NFT on this Build">
+                    {
+                        isNFTExistsUrl
+                            ? <Link href={isNFTExistsUrl}>{isNFTExistsUrl}</Link>
+                            : <GCText>"Do not exists"</GCText>
+                    }
+                </Modal>
+            </Center>
+
+            <Center>
+                <Modal
+                    opened={isResetToInitialBuildModalOpened}
+                    onClose={() => setIsResetToInitialBuildModalOpened(false)}
+                    title="Are you sure you want to reset to initial build?">
+                    {
+                        <div>
+                            <Button onClick={() => router.reload()} color={"green"}>
+                                Yes
+                            </Button>
+                            <Button onClick={() => setIsResetToInitialBuildModalOpened(false)}
+                                    color={"red"}>
+                                No
+                            </Button>
+                        </div>
+                    }
                 </Modal>
             </Center>
 

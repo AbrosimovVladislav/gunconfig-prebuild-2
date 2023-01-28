@@ -21,7 +21,7 @@ public class BuildMapper {
     private final SchemaNodeConverter converter;
 
     /**
-     * Convert bse64code to schema node in string view
+     * Convert base64code to schema node in string view
      **/
     public String fromBase64ToSchemaNode(String base64Code) {
         String codedSchema = new String(Base64.getDecoder().decode(base64Code));

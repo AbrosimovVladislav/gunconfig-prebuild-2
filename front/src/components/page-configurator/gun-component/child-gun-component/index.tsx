@@ -4,12 +4,10 @@ import { useClickedGunPartStore } from "../../../../store/ClickedGunPartStore";
 import { useStyles } from "./ChildGunComponentStyles";
 import { Image } from "@mantine/core";
 import { useGunPartListCarouselStore } from "../../../../store/GunPartListCarouselStore";
-import {
-    getGunPartsByParentAndType,
-    getIdsArrOfBuildTree,
-} from "../../../../services/configuratorService";
+import { getIdsOfBuildTree } from "../../../../services/configuratorService";
 import { useBuildTreeStore } from "../../../../store/BuildTreeStore";
 import { Product } from "../../../../schema/common/Product";
+import { getGunPartsByParentAndType } from "../../../../services/client/configuratorClient";
 
 interface ChildGunComponentProps {
     component: BuildTree;
@@ -37,7 +35,7 @@ export const ChildGunComponent = ({ component, ratio, parentId }: ChildGunCompon
     async function onGunPartClick() {
         setClickedGunPart(clickedGunPart);
         const gunPartsForChange: Product[] = await getGunPartsByParentAndType(
-            clickedGunPart.parentId, clickedGunPart.type, getIdsArrOfBuildTree(buildTree));
+            clickedGunPart.parentId, clickedGunPart.type, getIdsOfBuildTree(buildTree));
         await setGunParts(gunPartsForChange);
     }
 
