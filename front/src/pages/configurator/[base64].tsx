@@ -1,4 +1,4 @@
-import { Box, Button, Center, Modal, Tooltip } from "@mantine/core";
+import { Box, Button, Center, Modal } from "@mantine/core";
 import { useRouter } from "next/router";
 import {
     getBase64CodeByBuildTree,
@@ -21,6 +21,7 @@ import { useStyles } from "./ConfiguratorStyles";
 import { getNFTIdByBase64Code } from "../../services/nftService";
 import Link from "next/link";
 import { FRONT_CURRENT_PATH } from "../../config/env-paths";
+import { GCTooltip } from "../../gc-components/tooltip/GCTooltip";
 
 export interface ClickedGunPart {
     itemId: number;
@@ -101,24 +102,24 @@ const Configurator = () => {
         <>
             <Box id="domEl" ref={domEl} className={classes.box}>
                 <div className={classes.actions}>
-                    <Tooltip label="Return to initial build">
+                    <GCTooltip label="Return to initial build">
                         <div className={classes.iconTop}>
                             <GCIconButton primaryReversed onClick={onResetToInitialBuildClick}
                                           icon="refresh" />
                         </div>
-                    </Tooltip>
-                    <Tooltip label="Is NFT exists?">
+                    </GCTooltip>
+                    <GCTooltip label="Is NFT exists?">
                         <div className={classes.iconTop}>
                             <GCIconButton primaryReversed onClick={onCheckIfNftExistsClick}
                                           icon="question" />
                         </div>
-                    </Tooltip>
-                    <Tooltip label="Share build">
+                    </GCTooltip>
+                    <GCTooltip label="Share build">
                         <div className={classes.iconTop}>
                             <GCIconButton primaryReversed onClick={() => onShareYourBuildClick()}
                                           icon="share" />
                         </div>
-                    </Tooltip>
+                    </GCTooltip>
                     <div className={classes.iconBottom}>
                         <GCIconButton primary={clickedGunPart == null}
                                       primaryReversed={clickedGunPart !== null}
