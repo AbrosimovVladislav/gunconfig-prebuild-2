@@ -22,7 +22,7 @@ export function mapBuildTreeToProducts(buildTree: BuildTree): Product[] {
     if (!buildTree) return null;
     let products = [];
     getChildrenProductsRecursively(buildTree, products);
-    return products;
+    return products.filter(product => product.type!=="GUN");
 }
 
 function getChildrenProductsRecursively(buildTree: BuildTree, products: Product[]) {
