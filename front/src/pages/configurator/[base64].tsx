@@ -47,6 +47,8 @@ const Configurator = () => {
     const [isNFTExistsModalOpened, setIsNFTExistsModalOpened] = useState(false);
     const [isNFTExistsUrl, setIsNFTExistsUrl] = useState("");
 
+    const [isResetToInitialBuildModalOpened, setIsResetToInitialBuildModalOpened] = useState(false);
+
     useEffect(() => {
         setBuildTree(data);
         setGunParts(mapBuildTreeToProducts(data));
@@ -92,7 +94,7 @@ const Configurator = () => {
     }
 
     async function onResetToInitialBuildClick() {
-        router.reload();
+        setIsResetToInitialBuildModalOpened(true);
     }
 
     const domEl = useRef(null);
@@ -158,6 +160,25 @@ const Configurator = () => {
                         isNFTExistsUrl
                             ? <Link href={isNFTExistsUrl}>{isNFTExistsUrl}</Link>
                             : <GCText>"Do not exists"</GCText>
+                    }
+                </Modal>
+            </Center>
+
+            <Center>
+                <Modal
+                    opened={isResetToInitialBuildModalOpened}
+                    onClose={() => setIsResetToInitialBuildModalOpened(false)}
+                    title="Are you sure you want to reset to initial build?">
+                    {
+                        <div>
+                            <Button onClick={() => router.reload()} color={"green"}>
+                                Yes
+                            </Button>
+                            <Button onClick={() => setIsResetToInitialBuildModalOpened(false)}
+                                    color={"red"}>
+                                No
+                            </Button>
+                        </div>
                     }
                 </Modal>
             </Center>
