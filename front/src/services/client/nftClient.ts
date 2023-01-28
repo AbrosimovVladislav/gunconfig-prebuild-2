@@ -1,22 +1,40 @@
-import { useQuery } from "react-query";
-import { get } from "./restClient";
+import { CreateNFTRequest } from "../../schema/common/CreateNFTRequest";
+import { get, post } from "../restClient";
 import {
     COLLECTION_POSTFIX,
+    FILTERS_POSTFIX,
     NFT_CATALOG_ENDPOINT,
+    NFT_CREATION_ENDPOINT,
     NFT_ID_BY_BASE64CODE_POSTFIX,
     NFT_SINGLE_ENDPOINT,
-} from "../consts/back-paths";
-import { NFTCard } from "../schema/nft/NFTCard";
+} from "../../consts/back-paths";
+import { FilterItem } from "../../schema/nft/FilterItem";
+import { useQuery } from "react-query";
+import { NFTCard } from "../../schema/nft/NFTCard";
+import { ShortNFTCard } from "../../schema/nft/ShortNFTCard";
 import { NextRouter } from "next/router";
-import { createUrlRequestPostfixFromParams } from "./urlService";
-import { ShortNFTCard } from "../schema/nft/ShortNFTCard";
+import { createUrlRequestPostfixFromParams } from "../urlService";
+
+export async function useCreateNFT(createNFTRequest: CreateNFTRequest) {
+    const response = await post(NFT_CREATION_ENDPOINT, createNFTRequest);
+    return response;
+}
+
+export function useGetFilters(): [FilterItem[], boolean, boolean, boolean] {
+    const { data, isLoading, isError, isSuccess } = useQuery(
+        "useGetFilters",
+        (): Promise<FilterItem[]> => get(NFT_CATALOG_ENDPOINT + FILTERS_POSTFIX),
+        { refetchOnWindowFocus: false },
+    );
+    return [data, isLoading, isError, isSuccess];
+}
 
 /***
- * Get nft by id
+ * Get NFT by id
  */
-export function getNFTById(id: number): { nft: NFTCard; isLoading: boolean; isError: boolean; isSuccess: boolean } {
+export function useGetNftById(id: number): { nft: NFTCard; isLoading: boolean; isError: boolean; isSuccess: boolean } {
     const { data, isLoading, isError, isSuccess } = useQuery(
-        "getNFTById:" + id,
+        "useGetNftById:" + id,
         (): Promise<NFTCard> => get(NFT_SINGLE_ENDPOINT + "/" + id),
         { enabled: !!id, refetchOnWindowFocus: false },
     );
@@ -24,13 +42,13 @@ export function getNFTById(id: number): { nft: NFTCard; isLoading: boolean; isEr
 }
 
 /***
- * Get 8 nfts from collection with the provided name
+ * Get 8 NFTs from collection with the provided name
  */
-export function getNFTsByCollection(collection: string)
+export function useGetNFTsByCollection(collection: string)
     : { nftsByCollection: ShortNFTCard[]; isLoading: boolean; isError: boolean; isSuccess: boolean } {
 
     const { data, isLoading, isError, isSuccess } = useQuery(
-        "getNFTsByCollection" + collection,
+        "useGetNFTsByCollection" + collection,
         (): Promise<ShortNFTCard[]> => get(NFT_SINGLE_ENDPOINT + COLLECTION_POSTFIX + "/" + collection),
         { enabled: !!collection, refetchOnWindowFocus: false },
     );
@@ -38,21 +56,24 @@ export function getNFTsByCollection(collection: string)
 }
 
 /***
- * Get nfts by provided parameters
+ * Get NFTs by provided parameters
  */
-export function getNFTsByUrlParams(router: NextRouter)
+export function useGetNFTsByUrlParams(router: NextRouter)
     : { nfts: ShortNFTCard[], isLoading: boolean, isError: boolean, isSuccess: boolean } {
 
     const urlParams = createUrlRequestPostfixFromParams(router);
 
     const { data, isLoading, isError, isSuccess } = useQuery(
-        "getNFTsByUrlParams" + urlParams,
+        "useGetNFTsByUrlParams" + urlParams,
         (): Promise<ShortNFTCard[]> => get(NFT_CATALOG_ENDPOINT + "?" + urlParams),
         { refetchOnWindowFocus: false },
     );
     return { nfts: data, isLoading, isError, isSuccess };
 }
 
+/***
+ * Get NFT id by base64Code
+ */
 export function useGetNFTIdByBase64Code(base64Code: string)
     : { nftId: number; isLoading: boolean; isError: boolean; isSuccess: boolean } {
 

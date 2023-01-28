@@ -1,10 +1,9 @@
 import { Box, Button, Center, Modal } from "@mantine/core";
 import { useRouter } from "next/router";
 import {
-    getBase64CodeByBuildTree,
+    getBase64CodeFromBuildTree,
     getBuildLinkFromBuildTree,
     mapBuildTreeToProducts,
-    useGetBuildTreeByBase64Code,
 } from "../../services/configuratorService";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import React, { useEffect, useRef, useState } from "react";
@@ -18,10 +17,11 @@ import { useGunPartListCarouselStore } from "../../store/GunPartListCarouselStor
 import { Engine } from "../../components/page-configurator/engine";
 import { GCIconButton } from "../../gc-components/icon-button/GCIconButton";
 import { useStyles } from "./ConfiguratorStyles";
-import { getNFTIdByBase64Code } from "../../services/nftService";
 import Link from "next/link";
 import { FRONT_CURRENT_PATH } from "../../config/env-paths";
 import { GCTooltip } from "../../gc-components/tooltip/GCTooltip";
+import { useGetBuildTreeByBase64Code } from "../../services/client/configuratorClient";
+import { getNFTIdByBase64Code } from "../../services/client/nftClient";
 
 export interface ClickedGunPart {
     itemId: number;
@@ -80,7 +80,7 @@ const Configurator = () => {
 
     async function onCheckIfNftExistsClick() {
         if (buildTree) {
-            const base64Code = getBase64CodeByBuildTree(buildTree);
+            const base64Code = getBase64CodeFromBuildTree(buildTree);
             const nftId = await getNFTIdByBase64Code(base64Code);
             setIsNFTExistsModalOpened(true);
             if (nftId > -1) {

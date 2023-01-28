@@ -4,9 +4,8 @@ import React, { useEffect, useState } from "react";
 import GunPartCard from "../../components/common/gun-part-card/GunPartCard";
 import Catalog from "../../components/common/catalog/Catalog";
 import {
-    getBase64CodeByBuildTree,
+    getBase64CodeFromBuildTree,
     mapBuildTreeToProducts,
-    useCreateNFTRequest,
 } from "../../services/configuratorService";
 import { useBuildImageStore } from "../../store/BuildImageStore";
 import Image from "next/image";
@@ -14,11 +13,11 @@ import { CreateNFTRequest } from "../../schema/common/CreateNFTRequest";
 import { GCLink, GCText } from "../../gc-components";
 import { FRONT_CURRENT_PATH } from "../../config/env-paths";
 import { useRouter } from "next/router";
-import { useGetNFTIdByBase64Code } from "../../services/nftService";
 import { Product } from "../../schema/common/Product";
 import { getCurrentUserName } from "../../services/authService";
 import { getNameForNewNFTByRandom } from "../../services/randomService";
 import { calculateNFTPrice } from "../../services/priceService";
+import { useCreateNFT, useGetNFTIdByBase64Code } from "../../services/client/nftClient";
 
 const BuildSummary = ({}) => {
 
@@ -32,13 +31,13 @@ const BuildSummary = ({}) => {
     useEffect(() => {
         const productsList: Product[] = mapBuildTreeToProducts(buildTree);
         setProducts(productsList);
-        const code = getBase64CodeByBuildTree(buildTree);
+        const code = getBase64CodeFromBuildTree(buildTree);
         setBase64Code(code);
     }, [buildTree]);
 
     async function onMintNFTClick() {
         if (buildImage && buildTree) {
-            const base64Code = getBase64CodeByBuildTree(buildTree);
+            const base64Code = getBase64CodeFromBuildTree(buildTree);
             const collectionName = "GC " + buildTree.name;
             const nftCreateRequest: CreateNFTRequest = {
                 buildImage: buildImage,
@@ -49,7 +48,7 @@ const BuildSummary = ({}) => {
                 mintingPrice: calculateNFTPrice(),
                 rarity: "USUAL",
             };
-            const response = await useCreateNFTRequest(nftCreateRequest);
+            const response = await useCreateNFT(nftCreateRequest);
             await router.push(FRONT_CURRENT_PATH + ":3000/nft/" + response.nftCardId);
         }
     }

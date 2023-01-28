@@ -11,11 +11,13 @@ import GunPartCard from "../../common/gun-part-card/GunPartCard";
 import { Product } from "../../../schema/common/Product";
 import {
     findProductInBuildTree,
-    getGunPartRenderingInfo,
-    getGunPartsByParentAndType,
-    getIdsArrOfBuildTree,
+    getIdsOfBuildTree,
     mapBuildTreeToProducts,
 } from "../../../services/configuratorService";
+import {
+    getGunPartRenderingInfo,
+    getGunPartsByParentAndType,
+} from "../../../services/client/configuratorClient";
 
 
 const GunPartsList = () => {
@@ -57,7 +59,7 @@ const GunPartsList = () => {
                 type: newClickedProduct.type,
             });
             const gunPartsForChange: Product[] = await getGunPartsByParentAndType(
-                parentId, newClickedProduct.type, getIdsArrOfBuildTree(buildTree));
+                parentId, newClickedProduct.type, getIdsOfBuildTree(buildTree));
             await setGunParts(gunPartsForChange);
         }
     }
