@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { GCCarousel } from "../../../gc-components/carousel/GCCarousel";
 import { GCText } from "../../../gc-components";
 import { useStyles } from "./GunPartsListStyles";
@@ -8,24 +8,60 @@ import { useGunPartListCarouselStore } from "../../../store/GunPartListCarouselS
 import { ClickedGunPart } from "../../../pages/configurator/[base64]";
 import { BuildTree } from "../../../schema/configurator/BuildTree";
 import GunPartCard from "../../common/gun-part-card/GunPartCard";
+import { Product } from "../../../schema/common/Product";
+import {
+    findProductInBuildTree,
+    getIdsOfBuildTree,
+    mapBuildTreeToProducts,
+} from "../../../services/configuratorService";
+import {
+    getGunPartRenderingInfo,
+    getGunPartsByParentAndType,
+} from "../../../services/client/configuratorClient";
 
 
 const GunPartsList = () => {
     const { replaceGunPart } = useBuildTreeStore();
     const { clickedGunPart, setClickedGunPart } = useClickedGunPartStore();
-    const { gunParts } = useGunPartListCarouselStore();
+    const { gunParts, setGunParts } = useGunPartListCarouselStore();
     const { classes } = useStyles();
+    const { buildTree } = useBuildTreeStore();
 
-    function chooseGunPartFromList(oldGunPart: ClickedGunPart, newGunPart: BuildTree) {
-        //ToDo make backend call for get build tree product info
-        replaceGunPart(oldGunPart.itemId, newGunPart);
+    useEffect(() => {
+        //when we render component first time set gun parts from current build tree
+        buildTree && setGunParts(mapBuildTreeToProducts(buildTree));
+        setClickedGunPart(null);
+    }, []);
+
+    async function chooseGunPartFromList(oldGunPart: ClickedGunPart, product: Product) {
+        const newGunPartRenderingInfo: BuildTree =
+            await getGunPartRenderingInfo(product, oldGunPart.parentId);
+        replaceGunPart(oldGunPart.itemId, newGunPartRenderingInfo);
         setClickedGunPart({
-            itemId: newGunPart.id,
-            //we take parentId of clicked (existing) gun part,
-            // because we are trying to replace it, by brothers (kids of the same parent)
+            itemId: newGunPartRenderingInfo.id,
+            productId: product.productId,
             parentId: oldGunPart.parentId,
-            type: newGunPart.type,
+            type: product.type,
         });
+    }
+
+    async function onGunPartClick(newClickedProduct: Product) {
+        if (clickedGunPart) {
+            !newClickedProduct.incompatible && chooseGunPartFromList(clickedGunPart, newClickedProduct);
+        } else {
+            const { itemId, parentId } = findProductInBuildTree(
+                buildTree, newClickedProduct.productId, buildTree.id)
+            || { itemId: undefined, parentId: undefined };
+            setClickedGunPart({
+                itemId: itemId,
+                productId: newClickedProduct.productId,
+                parentId: parentId,
+                type: newClickedProduct.type,
+            });
+            const gunPartsForChange: Product[] = await getGunPartsByParentAndType(
+                parentId, newClickedProduct.type, getIdsOfBuildTree(buildTree));
+            await setGunParts(gunPartsForChange);
+        }
     }
 
     if (!gunParts) {
@@ -39,16 +75,16 @@ const GunPartsList = () => {
             </GCText>
             {gunParts && gunParts.length > 0 && <GCCarousel className={classes.carousel}>
                 {gunParts?.map((part) => (
-                    <div key={part.id}
-                         onClick={() => !part.incompatible && clickedGunPart && chooseGunPartFromList(clickedGunPart, part)}>
+                    <div key={part.productId}
+                         onClick={() => onGunPartClick(part)}>
                         <GunPartCard hoverable
-                                     active={clickedGunPart && part.id == clickedGunPart.itemId}
+                                     active={clickedGunPart && part.productId == clickedGunPart.productId}
                                      disabled={part.incompatible}
                                      sm
                                      product={{
-                                         productId: part.id,
+                                         productId: part.productId,
                                          name: part.name,
-                                         productImageUrl: part.thumbnailImage,
+                                         productImageUrl: part.productImageUrl,
                                          brand: part.brand,
                                          type: part.type,
                                      }} />

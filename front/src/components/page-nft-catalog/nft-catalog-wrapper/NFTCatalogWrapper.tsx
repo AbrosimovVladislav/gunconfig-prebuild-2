@@ -3,8 +3,8 @@ import React from "react";
 import { useRouter } from "next/router";
 import { useStyles } from "./NFTCatalogWrapperStyles";
 import NFTMicroCard from "../nft-micro-card/NFTMicroCard";
-import { getNFTsByUrlParams } from "../../../services/nftService";
 import { ShortNFTCard } from "../../../schema/nft/ShortNFTCard";
+import { useGetNFTsByUrlParams } from "../../../services/client/nftClient";
 
 interface NFTCatalogWrapperProps {
     layout: string;
@@ -13,7 +13,7 @@ interface NFTCatalogWrapperProps {
 const NFTCatalogWrapper = ({ layout }: NFTCatalogWrapperProps) => {
     const { classes } = useStyles();
     const router = useRouter();
-    const {nfts, isLoading, isError, isSuccess} = getNFTsByUrlParams(router);
+    const { nfts, isLoading, isError, isSuccess } = useGetNFTsByUrlParams(router);
 
     if (isLoading) {
         return <div>Loading...</div>;

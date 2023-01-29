@@ -8,7 +8,7 @@ export const useStyles = createStyles((theme, {width}: engineStylesProps) => ({
     canvas: {
         height: "300px",
         width: "100%",
-        boxShadow: theme.shadows.md,
+        boxShadow: theme.shadows.xl,
         borderRadius: theme.other.spacing.xxs,
         display: "grid",
         placeItems: "center",

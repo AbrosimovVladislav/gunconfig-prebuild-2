@@ -5,4 +5,7 @@ export interface Product {
     description?: string;
     brand: string;
     type: string;
+    incompatible?: boolean;
+    incompatibleIds?: number[];
+
 }

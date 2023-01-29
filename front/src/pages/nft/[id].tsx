@@ -1,6 +1,5 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { getNFTById, getNFTsByCollection } from "../../services/nftService";
 import { GCImage, GCText } from "../../gc-components";
 import { GCGrid } from "../../gc-components/GCGrid";
 import { GCGridCol } from "../../gc-components/GCGridCol";
@@ -11,13 +10,14 @@ import Catalog from "../../components/common/catalog/Catalog";
 import GunPartCard from "../../components/common/gun-part-card/GunPartCard";
 import NftCarousel from "../../components/page-single-nft/nft-carousel/NftCarousel";
 import { Product } from "../../schema/common/Product";
+import { useGetNftById, useGetNFTsByCollection } from "../../services/client/nftClient";
 
 type SingleNFTPageProps = {};
 
 const SingleNFTPage = (props: SingleNFTPageProps) => {
     const id: number = Number(useRouter().query.id);
-    const { nft, isLoading, isError, isSuccess } = getNFTById(id);
-    const { nftsByCollection } = getNFTsByCollection(nft?.collection);
+    const { nft, isLoading, isError, isSuccess } = useGetNftById(id);
+    const { nftsByCollection } = useGetNFTsByCollection(nft?.collection);
     const { classes } = useStyles();
 
     if (isLoading) {

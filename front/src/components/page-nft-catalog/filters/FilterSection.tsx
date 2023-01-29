@@ -1,10 +1,10 @@
 import React from "react";
-import { useGetFilters } from "../../../services/filterService";
 import { useStyles } from "./FilterSectionStyles";
 import RangeFilter from "./range-filter/RangeFilter";
 import CheckboxFilter from "./checkbox-filter/CheckboxFilter";
 import { GCAccordion } from "../../../gc-components/accordion/GCAccordion";
 import { FilterType } from "../../../schema/nft/FilterType";
+import { useGetFilters } from "../../../services/client/nftClient";
 
 const FilterSection = () => {
     const { classes } = useStyles();

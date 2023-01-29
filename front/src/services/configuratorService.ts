@@ -1,48 +1,38 @@
-import { useQuery } from "react-query";
-import { getConfiguratorBack, post } from "./restClient";
-import {
-    BUILD_TREE_POSTFIX,
-    CONFIGURATOR_POSTFIX,
-    GUNS_FOR_CHOOSE_POSTFIX,
-    NFT_CREATION_ENDPOINT,
-} from "../consts/back-paths";
 import { BuildTree } from "../schema/configurator/BuildTree";
 import { FRONT_CURRENT_PATH } from "../config/env-paths";
-import { CreateNFTRequest } from "../schema/common/CreateNFTRequest";
-import { GunsForChoose } from "../schema/configurator/GunsForChoose";
 import { Product } from "../schema/common/Product";
 import { IdsBuildTree } from "../schema/configurator/IdsBuildTree";
 
-
-export function getListOfProducts(buildTree: BuildTree): BuildTree[] {
-    if (!buildTree) return null;
-    let productsInBuildTreeStyle = [];
-    getChildrenProductsBuildTreeRecursively(buildTree, productsInBuildTreeStyle);
-    return productsInBuildTreeStyle;
-}
-
-function getChildrenProductsBuildTreeRecursively(buildTree: BuildTree, products: BuildTree[]) {
-    products.push(buildTree);
-    if (buildTree.children && buildTree.children.length > 0) {
-        buildTree.children.forEach(child => getChildrenProductsBuildTreeRecursively(child, products));
+export function findProductInBuildTree(buildTree: BuildTree, productId: number, parentId: number): { itemId: number, parentId: number } | undefined {
+    if (buildTree.productId === productId) {
+        return { itemId: buildTree.id, parentId: parentId };
     }
+    if (buildTree.children && buildTree.children.length > 0) {
+        for (const child of buildTree.children) {
+            const result = findProductInBuildTree(child, productId, buildTree.id);
+            if (result) {
+                return result;
+            }
+        }
+    }
+    return undefined;
 }
 
-export function getListOfBuildTreeProducts(buildTree: BuildTree): Product[] {
+export function mapBuildTreeToProducts(buildTree: BuildTree): Product[] {
     if (!buildTree) return null;
     let products = [];
     getChildrenProductsRecursively(buildTree, products);
-    return products;
+    return products.filter(product => product.type!=="GUN");
 }
 
 function getChildrenProductsRecursively(buildTree: BuildTree, products: Product[]) {
-    products.push(mapBuildTreeToProducts(buildTree));
+    products.push(mapBuildTreeToProduct(buildTree));
     if (buildTree.children && buildTree.children.length > 0) {
         buildTree.children.forEach(child => getChildrenProductsRecursively(child, products));
     }
 }
 
-function mapBuildTreeToProducts(buildTree: BuildTree): Product {
+function mapBuildTreeToProduct(buildTree: BuildTree): Product {
     return {
         productId: buildTree.id,
         name: buildTree.name,
@@ -50,10 +40,12 @@ function mapBuildTreeToProducts(buildTree: BuildTree): Product {
         description: buildTree.description,
         brand: buildTree.brand,
         type: buildTree.type,
+        incompatible: false,
+        incompatibleIds: [],
     };
 }
 
-export function getIdsArrOfBuildTree(buildTree: BuildTree): string {
+export function getIdsOfBuildTree(buildTree: BuildTree): string {
     if (!buildTree) return null;
     let idsArr = [];
     getChildrenIdsRecursively(buildTree, idsArr);
@@ -75,7 +67,7 @@ export function getBuildLinkFromBuildTree(buildTree: BuildTree): string {
     return url;
 }
 
-export function getBase64CodeByBuildTree(buildTree: BuildTree): string {
+export function getBase64CodeFromBuildTree(buildTree: BuildTree): string {
     let idsTree: IdsBuildTree = { id: 1, children: [] };
     recursiveFillingOfIdsTree(idsTree, buildTree);
     const base64Code: string = btoa(JSON.stringify(idsTree));
@@ -90,75 +82,4 @@ function recursiveFillingOfIdsTree(idsTree: IdsBuildTree, buildTree: BuildTree) 
             recursiveFillingOfIdsTree(idsTree.children[i], buildTree.children[i]);
         }
     }
-}
-
-export function useGetBuildTreeByBase64Code(treeBase64Code: String): [BuildTree, boolean, boolean, boolean] {
-    const { data, isLoading, isError, isSuccess } = useQuery(
-        "GetBuildTreeByCode" + treeBase64Code,
-        (): Promise<BuildTree> => getConfiguratorBack(CONFIGURATOR_POSTFIX + BUILD_TREE_POSTFIX + "/" + treeBase64Code),
-        {
-            refetchOnWindowFocus: false,
-        },
-    );
-    return [data, isLoading, isError, isSuccess];
-}
-
-export async function useCreateNFTRequest(createNFTRequest: CreateNFTRequest) {
-    const response = await post(NFT_CREATION_ENDPOINT, createNFTRequest);
-    return response;
-}
-
-export function useGetGunsForChoosing()
-    : { data: GunsForChoose[]; isLoading: boolean; isError: boolean; isSuccess: boolean } {
-
-    const { data, isLoading, isError, isSuccess } = useQuery(
-        "useGetGunsForChoosing",
-        () => getConfiguratorBack(CONFIGURATOR_POSTFIX + GUNS_FOR_CHOOSE_POSTFIX),
-        {
-            refetchOnWindowFocus: false,
-        },
-    );
-    return { data, isLoading, isError, isSuccess };
-}
-
-export async function getGunPartsByParentAndType(
-    parentId: number,
-    typeOfProduct: string,
-    currentBuildIds: string,
-) {
-    const response = await getConfiguratorBack(
-        CONFIGURATOR_POSTFIX +
-        "/gunpart?parentId=" +
-        parentId +
-        "&typeOfProduct=" +
-        typeOfProduct +
-        "&currentBuildIds=" +
-        currentBuildIds,
-    );
-    return await response;
-}
-
-export function useGetGunPartsByParentAndType(
-    parentId: number,
-    typeOfProduct: string,
-    currentBuildIds: string,
-): { data: BuildTree[]; isLoading: boolean; isError: boolean; isSuccess: boolean } {
-    const { data, isLoading, isError, isSuccess } = useQuery(
-        "GetGunPartsByParentAndType" + parentId + typeOfProduct + currentBuildIds,
-        (): Promise<BuildTree[]> =>
-            getConfiguratorBack(
-                CONFIGURATOR_POSTFIX +
-                "/gunpart?parentId=" +
-                parentId +
-                "&typeOfProduct=" +
-                typeOfProduct +
-                "&currentBuildIds=" +
-                currentBuildIds,
-            ),
-        {
-            enabled: !!currentBuildIds,
-            refetchOnWindowFocus: false,
-        },
-    );
-    return { data, isLoading, isError, isSuccess };
 }

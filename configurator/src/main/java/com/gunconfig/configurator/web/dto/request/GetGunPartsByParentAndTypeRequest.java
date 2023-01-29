@@ -11,7 +11,7 @@ import java.util.List;
 public class GetGunPartsByParentAndTypeRequest {
 
     private Long parentId;
-    private Product.Type typeOfProduct;
+    private Product.Type productType;
     private List<Long> currentBuildIds;
 
 }

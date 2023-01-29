@@ -4,11 +4,10 @@ import { useClickedGunPartStore } from "../../../../store/ClickedGunPartStore";
 import { useStyles } from "./ChildGunComponentStyles";
 import { Image } from "@mantine/core";
 import { useGunPartListCarouselStore } from "../../../../store/GunPartListCarouselStore";
-import {
-    getGunPartsByParentAndType,
-    getIdsArrOfBuildTree,
-} from "../../../../services/configuratorService";
+import { getIdsOfBuildTree } from "../../../../services/configuratorService";
 import { useBuildTreeStore } from "../../../../store/BuildTreeStore";
+import { Product } from "../../../../schema/common/Product";
+import { getGunPartsByParentAndType } from "../../../../services/client/configuratorClient";
 
 interface ChildGunComponentProps {
     component: BuildTree;
@@ -19,6 +18,7 @@ interface ChildGunComponentProps {
 export const ChildGunComponent = ({ component, ratio, parentId }: ChildGunComponentProps) => {
     const clickedGunPart = {
         itemId: component.id,
+        productId: component.productId,
         parentId: parentId,
         type: component.type,
     };
@@ -32,17 +32,17 @@ export const ChildGunComponent = ({ component, ratio, parentId }: ChildGunCompon
         width: ratio !== 0 ? component?.width * ratio : component?.width,
     });
 
+    async function onGunPartClick() {
+        setClickedGunPart(clickedGunPart);
+        const gunPartsForChange: Product[] = await getGunPartsByParentAndType(
+            clickedGunPart.parentId, clickedGunPart.type, getIdsOfBuildTree(buildTree));
+        await setGunParts(gunPartsForChange);
+    }
+
     return (
         <div className={classes.absoluteWrapper} key={component.id}>
             <div className={classes.relativePlaceholder}>
-                <div className={classes.image} onClick={
-                    async () => {
-                        setClickedGunPart(clickedGunPart);
-                        const gunPartsForChange = await getGunPartsByParentAndType(
-                            clickedGunPart.parentId, clickedGunPart.type, getIdsArrOfBuildTree(buildTree));
-                        await setGunParts(gunPartsForChange);
-                    }
-                }>
+                <div className={classes.image} onClick={onGunPartClick}>
                     <Image src={component.image} />
                 </div>
                 {(component.children ?? []).map((child) => {
