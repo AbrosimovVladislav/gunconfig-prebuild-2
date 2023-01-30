@@ -1,17 +1,6 @@
 import { createStyles } from "@mantine/core";
 
 export const useStyles = createStyles((theme) => ({
-    box: {
-        display: "flex",
-        justifyContent: "center",
-        padding: [`${theme.spacing.md}px 0`],
-        position: "relative",
-    },
-
-    engine: {
-        position: "relative",
-        width: "100%",
-    },
 
     actions: {
         position: "absolute",
@@ -24,7 +13,6 @@ export const useStyles = createStyles((theme) => ({
         alignItems: "flex-start",
         padding: [`${theme.spacing.md}px 0`],
     },
-
 
     iconTop: {
         display: "flex",
@@ -44,4 +32,5 @@ export const useStyles = createStyles((theme) => ({
         marginBottom: [`${theme.spacing.md}px`],
         marginLeft: [`-${theme.spacing.lg}px`],
     },
+
 }));
