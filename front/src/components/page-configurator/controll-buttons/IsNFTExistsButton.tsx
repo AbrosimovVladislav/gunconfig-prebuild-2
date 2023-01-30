@@ -13,7 +13,7 @@ import { useBuildTreeStore } from "../../../store/BuildTreeStore";
 export const IsNFTExistsButton = () => {
 
     const { buildTree } = useBuildTreeStore();
-    const [isNFTExistsUrl, setIsNFTExistsUrl] = useState("");
+    const [existingNFTUrl, setExistingNFTUrl] = useState("");
     const [isNFTExistsModalOpened, setIsNFTExistsModalOpened] = useState(false);
 
     const { classes } = useStyles();
@@ -24,9 +24,9 @@ export const IsNFTExistsButton = () => {
             const nftId = await getNFTIdByBase64Code(base64Code);
             setIsNFTExistsModalOpened(true);
             if (nftId > -1) {
-                setIsNFTExistsUrl(FRONT_CURRENT_PATH + ":3000/nft/" + nftId);
+                setExistingNFTUrl(FRONT_CURRENT_PATH + ":3000/nft/" + nftId);
             } else {
-                setIsNFTExistsUrl("");
+                setExistingNFTUrl("");
             }
         }
     }
@@ -45,8 +45,8 @@ export const IsNFTExistsButton = () => {
                 onClose={() => setIsNFTExistsModalOpened(false)}
                 title="NFT on this Build">
                 {
-                    isNFTExistsUrl
-                        ? <Link href={isNFTExistsUrl}>{isNFTExistsUrl}</Link>
+                    existingNFTUrl
+                        ? <Link href={existingNFTUrl}>{existingNFTUrl}</Link>
                         : <GCText>"Do not exists"</GCText>
                 }
             </Modal>

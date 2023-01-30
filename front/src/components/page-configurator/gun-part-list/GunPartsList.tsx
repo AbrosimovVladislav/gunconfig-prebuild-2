@@ -33,18 +33,6 @@ const GunPartsList = () => {
         setClickedGunPart(null);
     }, []);
 
-    async function chooseGunPartFromList(oldGunPart: ClickedGunPart, product: Product) {
-        const newGunPartRenderingInfo: BuildTree =
-            await getGunPartRenderingInfo(product, oldGunPart.parentId);
-        replaceGunPart(oldGunPart.itemId, newGunPartRenderingInfo);
-        setClickedGunPart({
-            itemId: newGunPartRenderingInfo.id,
-            productId: product.productId,
-            parentId: oldGunPart.parentId,
-            type: product.type,
-        });
-    }
-
     async function onGunPartClick(newClickedProduct: Product) {
         if (clickedGunPart) {
             !newClickedProduct.incompatible && chooseGunPartFromList(clickedGunPart, newClickedProduct);
@@ -62,6 +50,18 @@ const GunPartsList = () => {
                 parentId, newClickedProduct.type, getIdsOfBuildTree(buildTree));
             await setGunParts(gunPartsForChange);
         }
+    }
+
+    async function chooseGunPartFromList(oldGunPart: ClickedGunPart, product: Product) {
+        const newGunPartRenderingInfo: BuildTree =
+            await getGunPartRenderingInfo(product, oldGunPart.parentId);
+        replaceGunPart(oldGunPart.itemId, newGunPartRenderingInfo);
+        setClickedGunPart({
+            itemId: newGunPartRenderingInfo.id,
+            productId: product.productId,
+            parentId: oldGunPart.parentId,
+            type: product.type,
+        });
     }
 
     if (!gunParts) {
