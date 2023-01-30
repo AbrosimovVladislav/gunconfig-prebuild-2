@@ -57,7 +57,7 @@ const BuildSummary = ({}) => {
         <div>
             Build Summary Page
             <Center>
-                {buildImage && <Image unoptimized width={1080} height={300} src={buildImage} />}
+                {buildImage && <Image unoptimized width={1280} height={300} src={buildImage} />}
             </Center>
             <Center>
                 <GCLink href={FRONT_CURRENT_PATH + ":3000/configurator/" + base64Code}>
