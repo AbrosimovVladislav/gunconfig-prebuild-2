@@ -2,8 +2,8 @@ import { createStyles } from "@mantine/core";
 
 export const useStyles = createStyles((theme) => ({
     header: {
-        paddingLeft: theme.spacing.md,
-        paddingRight: theme.spacing.md,
+        paddingLeft: theme.other.spacing.md,
+        paddingRight: theme.other.spacing.md,
         marginBottom: "0px !important",
     },
 

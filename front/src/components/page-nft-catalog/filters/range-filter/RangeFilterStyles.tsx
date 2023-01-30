@@ -5,7 +5,7 @@ export const useStyles = createStyles((theme) => ({
         display: "grid",
         gridTemplateColumns: "auto auto",
         gap: "5px",
-        margin: [`${theme.spacing.sm}px 0 0`],
+        margin: [`${theme.other.spacing.sm}px 0 0`],
         maxWidth: "100%",
         fontWeight: 400,
     },

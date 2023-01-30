@@ -5,7 +5,7 @@ export const useStyles = createStyles((theme) => ({
         display: "flex",
         alignItems: "flex-start",
         justifyContent: "space-between",
-        margin: [`${theme.spacing.lg}px 0`],
+        margin: [`${theme.other.spacing.lg}px 0`],
         maxWidth: "100%",
     },
 
@@ -19,12 +19,12 @@ export const useStyles = createStyles((theme) => ({
     controls: {
         display: "grid",
         gridTemplateColumns: "auto auto",
-        gap: theme.spacing.md,
+        gap: theme.other.spacing.md,
         justifyContent: "flex-end",
         alignItems: "center",
         width: "100%",
 
-        [`@media (max-width: ${theme.breakpoints.md}px)`]: {
+        [`@media (max-width: ${theme.other.breakpoints.laptopS}px)`]: {
             display: "none",
         },
     },
@@ -34,8 +34,8 @@ export const useStyles = createStyles((theme) => ({
         width: "100%",
         flexDirection: "column",
         alignItems: "center",
-        margin: [`${theme.spacing.md}px 0`],
-        [`@media (max-width: ${theme.breakpoints.md}px)`]: {
+        margin: [`${theme.other.spacing.md}px 0`],
+        [`@media (max-width: ${theme.other.breakpoints.laptopS}px)`]: {
             alignItems: "center",
         },
     }

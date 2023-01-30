@@ -9,8 +9,8 @@ export const useStyles = createStyles((theme, _params, getRef) => ({
 
     viewport: {
         ref: getRef('viewport'),
-        padding: [`${theme.spacing.xl}px 0`],
-        margin: [`-${theme.spacing.xl}px 0 0 0`]
+        padding: [`${theme.other.spacing.xl}px 0`],
+        margin: [`-${theme.other.spacing.xl}px 0 0 0`]
     },
 
     controls: {
@@ -22,9 +22,9 @@ export const useStyles = createStyles((theme, _params, getRef) => ({
             margin: 0,
         },
         "& button:last-child": {
-            marginRight: [`-${theme.spacing.xl}px`],
+            marginRight: [`-${theme.other.spacing.xl}px`],
         },
-        [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
+        [`@media (max-width: ${theme.other.breakpoints.tablet}px)`]: {
             display: "none"
         }
     },
@@ -36,7 +36,7 @@ export const useStyles = createStyles((theme, _params, getRef) => ({
         boxShadow: "none",
         background: "transparent",
         "& + &": {
-            marginLeft: [`-${theme.spacing.md}px`],
+            marginLeft: [`-${theme.other.spacing.md}px`],
         },
     }
 }))

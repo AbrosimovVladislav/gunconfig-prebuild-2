@@ -4,14 +4,14 @@ export const useStyles = createStyles((theme) => ({
   nftContainer: {
     display: "flex",
     flexDirection: "column",
-    rowGap: theme.spacing.lg,
-    columnGap: theme.spacing.md,
-    margin: [`${theme.spacing.xl}px 0`],
-    [`@media (min-width: ${theme.breakpoints.md}px)`]: {
+    rowGap: theme.other.spacing.lg,
+    columnGap: theme.other.spacing.md,
+    margin: [`${theme.other.spacing.xl}px 0`],
+    [`@media (min-width: ${theme.other.breakpoints.laptopS}px)`]: {
       flexDirection: "row",
     },
-    [`@media (min-width: ${theme.breakpoints.xl}px)`]: {
-      columnGap: theme.spacing.lg,
+    [`@media (min-width: ${theme.other.breakpoints.laptopL}px)`]: {
+      columnGap: theme.other.spacing.lg,
     },
   },
 
@@ -27,10 +27,10 @@ export const useStyles = createStyles((theme) => ({
       display: "block",
       width: "100%",
     },
-    [`@media (min-width: ${theme.breakpoints.sm}px)`]: {
+    [`@media (min-width: ${theme.other.breakpoints.tablet}px)`]: {
       paddingTop: "80%",
     },
-    [`@media (min-width: ${theme.breakpoints.md}px)`]: {
+    [`@media (min-width: ${theme.other.breakpoints.laptopS}px)`]: {
       paddingTop: "0",
     },
   },
@@ -49,11 +49,11 @@ export const useStyles = createStyles((theme) => ({
   },
 
   header: {
-    margin: [`${theme.spacing.xl}px 0`],
+    margin: [`${theme.other.spacing.xl}px 0`],
   },
 
   carousel: {
-    margin: [`${theme.spacing.xl}px 0`],
+    margin: [`${theme.other.spacing.xl}px 0`],
   },
 
 }));

@@ -29,7 +29,7 @@ export const useStyles = createStyles((theme) => ({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        margin: theme.spacing.md,
+        margin: theme.other.spacing.md,
         zIndex: 10,
     },
     top: {
