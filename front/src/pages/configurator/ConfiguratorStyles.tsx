@@ -8,6 +8,11 @@ export const useStyles = createStyles((theme) => ({
         position: "relative",
     },
 
+    engine: {
+        position: "relative",
+        width: "100%",
+    },
+
     actions: {
         position: "absolute",
         width: "100%",

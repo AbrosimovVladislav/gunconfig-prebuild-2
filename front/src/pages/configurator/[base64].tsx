@@ -102,7 +102,7 @@ const Configurator = () => {
 
     return (
         <>
-            <Box id="domEl" ref={domEl} className={classes.box}>
+            <Box className={classes.box}>
                 <div className={classes.actions}>
                     <GCTooltip label="Return to initial build">
                         <div className={classes.iconTop}>
@@ -128,7 +128,9 @@ const Configurator = () => {
                                       onClick={onShowCurrentPartsClick} icon="eye" />
                     </div>
                 </div>
-                {buildTree && <Engine data={buildTree} />}
+                {buildTree && <div id="domEl" ref={domEl} className={classes.engine}>
+                    <Engine data={buildTree} />
+                </div>}
             </Box>
             <GunPartsList />
 
