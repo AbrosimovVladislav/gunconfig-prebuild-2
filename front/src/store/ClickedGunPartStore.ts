@@ -1,6 +1,6 @@
-import { ClickedGunPart } from "../pages/configurator/[base64]";
 import create from "zustand";
 import { mountStoreDevtool } from "simple-zustand-devtools";
+import { ClickedGunPart } from "../schema/configurator/ClickedGunPart";
 
 
 interface ClickedGunPartStore {
