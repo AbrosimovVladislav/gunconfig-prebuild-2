@@ -5,7 +5,6 @@ import { useStyles } from "./GunPartsListStyles";
 import { useBuildTreeStore } from "../../../store/BuildTreeStore";
 import { useClickedGunPartStore } from "../../../store/ClickedGunPartStore";
 import { useGunPartListCarouselStore } from "../../../store/GunPartListCarouselStore";
-import { ClickedGunPart } from "../../../pages/configurator/[base64]";
 import { BuildTree } from "../../../schema/configurator/BuildTree";
 import GunPartCard from "../../common/gun-part-card/GunPartCard";
 import { Product } from "../../../schema/common/Product";
@@ -18,6 +17,7 @@ import {
     getGunPartRenderingInfo,
     getGunPartsByParentAndType,
 } from "../../../services/client/configuratorClient";
+import { ClickedGunPart } from "../../../schema/configurator/ClickedGunPart";
 
 
 const GunPartsList = () => {

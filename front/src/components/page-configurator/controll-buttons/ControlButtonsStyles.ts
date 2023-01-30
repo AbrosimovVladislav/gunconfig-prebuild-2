@@ -25,7 +25,6 @@ export const useStyles = createStyles((theme) => ({
         padding: [`${theme.other.spacing.md}px 0`],
     },
 
-
     iconTop: {
         display: "flex",
         justifyContent: "center",
