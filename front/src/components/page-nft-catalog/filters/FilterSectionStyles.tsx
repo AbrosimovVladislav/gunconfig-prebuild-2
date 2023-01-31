@@ -5,14 +5,14 @@ export const useStyles = createStyles((theme) => ({
         display: "grid",
         gridTemplateColumns: "280px",
         gridGap: "16px",
-        margin: [`0 ${theme.spacing.md}px ${theme.spacing.md}px 0`],
-        [`@media (max-width: ${theme.breakpoints.md}px)`]: {
+        margin: [`0 ${theme.other.spacing.md}px ${theme.other.spacing.md}px 0`],
+        [`@media (max-width: ${theme.other.breakpoints.laptopS}px)`]: {
             display: "none",
         },
     },
 
     filter: {
-        padding: theme.spacing.md,
+        padding: theme.other.spacing.md,
         boxShadow: theme.shadows.md,
         borderRadius: "8px",
         fontWeight: 700,

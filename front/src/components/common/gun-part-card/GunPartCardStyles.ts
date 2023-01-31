@@ -44,12 +44,12 @@ export const useStyles = createStyles((theme) => ({
   },
 
   brandIcon: {
-    margin: [`0 ${theme.spacing.xs}px 0 0`],
+    margin: [`0 ${theme.other.spacing.xs}px 0 0`],
     fill: theme.colors.neutral[2],
   },
 
   name: {
-    margin: [`0 0 ${theme.spacing.sm}px 0`],
+    margin: [`0 0 ${theme.other.spacing.sm}px 0`],
   },
 
   infoSection: {
@@ -58,7 +58,7 @@ export const useStyles = createStyles((theme) => ({
     justifyContent: "flex-end",
     alignItems: "flex-start",
     padding: [
-      `${theme.spacing.lg}px ${theme.spacing.sm}px 0 ${theme.spacing.sm}px`,
+      `${theme.other.spacing.lg}px ${theme.other.spacing.sm}px 0 ${theme.other.spacing.sm}px`,
     ],
   },
 }));

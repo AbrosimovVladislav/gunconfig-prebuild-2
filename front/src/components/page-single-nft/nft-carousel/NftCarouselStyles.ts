@@ -2,10 +2,10 @@ import { createStyles } from "@mantine/core";
 
 export const useStyles = createStyles((theme) => ({
     header: {
-        margin: [`${theme.spacing.xl}px 0 ${theme.spacing.sm}px`],
+        margin: [`${theme.other.spacing.xl}px 0 ${theme.other.spacing.sm}px`],
     },
 
     carousel: {
-        margin: [`${theme.spacing.xl}px 0`],
+        margin: [`${theme.other.spacing.xl}px 0`],
     }
 }));

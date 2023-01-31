@@ -5,34 +5,34 @@ export const useStyles = createStyles((theme) => ({
         display: "grid",
         width: "100%",
         gridTemplateColumns: "1fr",
-        gap: theme.spacing.md,
+        gap: theme.other.spacing.md,
         justifyContent: "center",
         alignItems: "flex-start",
-        [`@media (min-width: ${theme.breakpoints.xs}px)`]: {
+        [`@media (min-width: ${theme.other.breakpoints.mobileL}px)`]: {
             gridTemplateColumns: "1fr 1fr",
         },
     },
 
     catalog233: {
-        [`@media (min-width: ${theme.breakpoints.md}px)`]: {
+        [`@media (min-width: ${theme.other.breakpoints.laptopS}px)`]: {
             gridTemplateColumns: "1fr 1fr",
         },
-        [`@media (min-width: ${theme.breakpoints.lg}px)`]: {
+        [`@media (min-width: ${theme.other.breakpoints.laptopM}px)`]: {
             gridTemplateColumns: "1fr 1fr 1fr",
         },
-        [`@media (min-width: ${theme.breakpoints.xl}px)`]: {
+        [`@media (min-width: ${theme.other.breakpoints.laptopL}px)`]: {
             gridTemplateColumns: "1fr 1fr 1fr",
         },
     },
 
     catalog344: {
-        [`@media (min-width: ${theme.breakpoints.md}px)`]: {
+        [`@media (min-width: ${theme.other.breakpoints.laptopS}px)`]: {
             gridTemplateColumns: "1fr 1fr 1fr",
         },
-        [`@media (min-width: ${theme.breakpoints.lg}px)`]: {
+        [`@media (min-width: ${theme.other.breakpoints.laptopM}px)`]: {
             gridTemplateColumns: "1fr 1fr 1fr 1fr",
         },
-        [`@media (min-width: ${theme.breakpoints.xl}px)`]: {
+        [`@media (min-width: ${theme.other.breakpoints.laptopL}px)`]: {
             gridTemplateColumns: "1fr 1fr 1fr 1fr",
         },
     },

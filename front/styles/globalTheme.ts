@@ -26,13 +26,6 @@ export const globalTheme: MantineThemeOverride = {
     md: "0px 4px 10px rgba(0, 0, 0, 0.04)",
     xl: "0px 4px 40px rgba(0, 0, 0, 0.1)",
   },
-  spacing: {
-    xs: 12,
-    sm: 16,
-    md: 20,
-    lg: 24,
-    xl: 30,
-  },
   other: {
     spacing: {
       xxs: 8,
@@ -42,5 +35,15 @@ export const globalTheme: MantineThemeOverride = {
       lg: 24,
       xl: 30,
     },
+    breakpoints: {
+      mobileM: 375,
+      mobileL: 425,
+      tablet: 768,
+      laptopS: 1024,
+      laptopM: 1200,
+      laptopL: 1600,
+      laptopXL: 2256,
+      LaptopXXL: 2560,
+    }
   }
 };

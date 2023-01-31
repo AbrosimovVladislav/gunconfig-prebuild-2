@@ -30,7 +30,7 @@ export const useStyles = createStyles((theme, _params, getRef) => ({
 
     imageSection: {
         ref: getRef("imageSection"),
-        padding: theme.spacing.sm,
+        padding: theme.other.spacing.sm,
         display: "flex",
         alignItems: "flex-start",
         justifyContent: "center",
@@ -44,11 +44,11 @@ export const useStyles = createStyles((theme, _params, getRef) => ({
         left: 0,
         display: "grid",
         gridTemplateColumns: "1fr 1fr",
-        gap: theme.spacing.xs,
+        gap: theme.other.spacing.xs,
         alignItems: "center",
         justifyContent: "space-between",
         width: "100%",
-        padding: [`0 ${theme.spacing.lg}px ${theme.spacing.xs}px`],
+        padding: [`0 ${theme.other.spacing.lg}px ${theme.other.spacing.xs}px`],
         marginTop: "0 !important",
     },
 }));
