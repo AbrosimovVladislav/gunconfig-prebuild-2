@@ -54,7 +54,7 @@ public class BuildController {
   @GetMapping("/buildId/{base64Code}")
   public ResponseEntity<Long> getBuildIdByBase64Code(@PathVariable String base64Code) {
     String schemaNode = buildMapper.fromBase64ToSchemaNode(base64Code);
-    Build build = buildService.findByBase64Code(schemaNode);
+    Build build = buildService.findBySchema(schemaNode);
     return ResponseEntity.ok(build.getBuildId());
   }
 
