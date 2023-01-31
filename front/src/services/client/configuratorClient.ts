@@ -17,7 +17,12 @@ export async function getGunPartRenderingInfo(product: Product, parentId: number
     return response;
 }
 
-export function useGetBuildTreeByBase64Code(base64Code: String): [BuildTree, boolean, boolean, boolean] {
+export function useGetBuildTreeByBase64Code(base64Code: String): {
+    initialBuildTree: BuildTree,
+    isLoading: boolean,
+    isError: boolean,
+    isSuccess: boolean
+} {
     const { data, isLoading, isError, isSuccess } = useQuery(
         "GetBuildTreeByCode" + base64Code,
         (): Promise<BuildTree> => getConfiguratorBack(
@@ -27,7 +32,7 @@ export function useGetBuildTreeByBase64Code(base64Code: String): [BuildTree, boo
             refetchOnWindowFocus: false,
         },
     );
-    return [data, isLoading, isError, isSuccess];
+    return { initialBuildTree: data, isLoading, isError, isSuccess };
 }
 
 export function useGetGunsForChoosing()

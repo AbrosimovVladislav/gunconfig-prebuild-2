@@ -16,7 +16,7 @@ import ControlButtons from "../../components/page-configurator/controll-buttons/
 const Configurator = () => {
     const router = useRouter();
     const { base64 } = router.query;
-    const [data] = useGetBuildTreeByBase64Code(base64 as string);
+    const { initialBuildTree } = useGetBuildTreeByBase64Code(base64 as string);
 
     const { buildTree, setBuildTree } = useBuildTreeStore();
     const { setBuildImage } = useBuildImageStore();
@@ -24,9 +24,9 @@ const Configurator = () => {
     const { setClickedGunPart } = useClickedGunPartStore();
 
     useEffect(() => {
-        setBuildTree(data);
-        setGunParts(mapBuildTreeToProducts(data));
-    }, [data]);
+        setBuildTree(initialBuildTree);
+        setGunParts(mapBuildTreeToProducts(initialBuildTree));
+    }, [initialBuildTree]);
 
     async function onSummaryClick() {
         const buildImageData = await htmlToImage.toPng(domEl.current);
