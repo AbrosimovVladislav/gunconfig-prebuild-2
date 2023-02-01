@@ -4,7 +4,7 @@ import { GCText } from "../../../gc-components";
 import { useStyles } from "./GunPartsListStyles";
 import { useBuildTreeStore } from "../../../store/BuildTreeStore";
 import { useClickedGunPartStore } from "../../../store/ClickedGunPartStore";
-import { useGunPartListCarouselStore } from "../../../store/GunPartListCarouselStore";
+import { useGunPartListStore } from "../../../store/GunPartListStore";
 import { BuildTree } from "../../../schema/configurator/BuildTree";
 import GunPartCard from "../../common/gun-part-card/GunPartCard";
 import { Product } from "../../../schema/common/Product";
@@ -23,7 +23,7 @@ import { ClickedGunPart } from "../../../schema/configurator/ClickedGunPart";
 const GunPartsList = () => {
     const { replaceGunPart } = useBuildTreeStore();
     const { clickedGunPart, setClickedGunPart } = useClickedGunPartStore();
-    const { gunParts, setGunParts } = useGunPartListCarouselStore();
+    const { gunParts, setGunParts } = useGunPartListStore();
     const { classes } = useStyles();
     const { buildTree } = useBuildTreeStore();
 

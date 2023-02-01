@@ -3,7 +3,7 @@ import { BuildTree } from "../../../../schema/configurator/BuildTree";
 import { useClickedGunPartStore } from "../../../../store/ClickedGunPartStore";
 import { useStyles } from "./ChildGunComponentStyles";
 import { Image } from "@mantine/core";
-import { useGunPartListCarouselStore } from "../../../../store/GunPartListCarouselStore";
+import { useGunPartListStore } from "../../../../store/GunPartListStore";
 import { getIdsOfBuildTree } from "../../../../services/configuratorService";
 import { useBuildTreeStore } from "../../../../store/BuildTreeStore";
 import { Product } from "../../../../schema/common/Product";
@@ -24,7 +24,7 @@ export const ChildGunComponent = ({ component, ratio, parentId }: ChildGunCompon
     };
 
     const { buildTree } = useBuildTreeStore();
-    const { setGunParts } = useGunPartListCarouselStore();
+    const { setGunParts } = useGunPartListStore();
     const { setClickedGunPart } = useClickedGunPartStore();
     const { classes } = useStyles({
         left: component.x,
