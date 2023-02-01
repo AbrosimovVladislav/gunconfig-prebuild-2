@@ -34,9 +34,13 @@ const GunPartsList = () => {
     }, []);
 
     async function onGunPartClick(newClickedProduct: Product) {
+        // if customer clicks on build part to change it,
+        // and we have list of gun parts candidates for change
         if (clickedGunPart) {
-            !newClickedProduct.incompatible && chooseGunPartFromList(clickedGunPart, newClickedProduct);
+            !newClickedProduct.incompatible && await chooseGunPartFromList(clickedGunPart, newClickedProduct);
         } else {
+            // if in gpList we have current gun parts,
+            // and we want to click on gp to get list of candidates for change
             const { itemId, parentId } = findProductInBuildTree(
                 buildTree, newClickedProduct.productId, buildTree.id)
             || { itemId: undefined, parentId: undefined };
@@ -52,15 +56,16 @@ const GunPartsList = () => {
         }
     }
 
-    async function chooseGunPartFromList(oldGunPart: ClickedGunPart, product: Product) {
+    async function chooseGunPartFromList(oldGunPart: ClickedGunPart, newProduct: Product) {
         const newGunPartRenderingInfo: BuildTree =
-            await getGunPartRenderingInfo(product, oldGunPart.parentId);
+            await getGunPartRenderingInfo(newProduct, oldGunPart.parentId);
+        //ToDo test this function when some gp will have more than one kid
         replaceGunPart(oldGunPart.itemId, newGunPartRenderingInfo);
         setClickedGunPart({
             itemId: newGunPartRenderingInfo.id,
-            productId: product.productId,
+            productId: newProduct.productId,
             parentId: oldGunPart.parentId,
-            type: product.type,
+            type: newProduct.type,
         });
     }
 

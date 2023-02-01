@@ -30,7 +30,7 @@ export function useGetFilters(): [FilterItem[], boolean, boolean, boolean] {
 }
 
 /***
- * Get NFT by id
+ * Get NFT by id hook
  */
 export function useGetNftById(id: number): { nft: NFTCard; isLoading: boolean; isError: boolean; isSuccess: boolean } {
     const { data, isLoading, isError, isSuccess } = useQuery(
@@ -42,7 +42,7 @@ export function useGetNftById(id: number): { nft: NFTCard; isLoading: boolean; i
 }
 
 /***
- * Get 8 NFTs from collection with the provided name
+ * Get 8 NFTs from collection with the provided name hook
  */
 export function useGetNFTsByCollection(collection: string)
     : { nftsByCollection: ShortNFTCard[]; isLoading: boolean; isError: boolean; isSuccess: boolean } {
@@ -56,7 +56,7 @@ export function useGetNFTsByCollection(collection: string)
 }
 
 /***
- * Get NFTs by provided parameters
+ * Get NFTs by provided parameters hook
  */
 export function useGetNFTsByUrlParams(router: NextRouter)
     : { nfts: ShortNFTCard[], isLoading: boolean, isError: boolean, isSuccess: boolean } {
@@ -72,7 +72,7 @@ export function useGetNFTsByUrlParams(router: NextRouter)
 }
 
 /***
- * Get NFT id by base64Code
+ * Get NFT id by base64Code hook
  */
 export function useGetNFTIdByBase64Code(base64Code: string)
     : { nftId: number; isLoading: boolean; isError: boolean; isSuccess: boolean } {
@@ -88,6 +88,9 @@ export function useGetNFTIdByBase64Code(base64Code: string)
     return { nftId: data, isLoading, isError, isSuccess };
 }
 
+/***
+ * Get NFT id by base64Code
+ */
 export async function getNFTIdByBase64Code(base64Code: string): Promise<number> {
     const response = await get(NFT_CATALOG_ENDPOINT + NFT_ID_BY_BASE64CODE_POSTFIX + base64Code);
     return await response;
