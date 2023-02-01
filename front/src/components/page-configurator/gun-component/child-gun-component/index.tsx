@@ -16,21 +16,22 @@ interface ChildGunComponentProps {
 }
 
 export const ChildGunComponent = ({ component, ratio, parentId }: ChildGunComponentProps) => {
+    const { buildTree } = useBuildTreeStore();
+    const { setGunParts } = useGunPartListStore();
+    const { setClickedGunPart } = useClickedGunPartStore();
+
+    const { classes } = useStyles({
+        left: component.x,
+        top: component.y,
+        width: ratio !== 0 ? component?.width * ratio : component?.width,
+    });
+
     const clickedGunPart = {
         itemId: component.id,
         productId: component.productId,
         parentId: parentId,
         type: component.type,
     };
-
-    const { buildTree } = useBuildTreeStore();
-    const { setGunParts } = useGunPartListStore();
-    const { setClickedGunPart } = useClickedGunPartStore();
-    const { classes } = useStyles({
-        left: component.x,
-        top: component.y,
-        width: ratio !== 0 ? component?.width * ratio : component?.width,
-    });
 
     async function onGunPartClick() {
         setClickedGunPart(clickedGunPart);
@@ -45,7 +46,7 @@ export const ChildGunComponent = ({ component, ratio, parentId }: ChildGunCompon
                 <div className={classes.image} onClick={onGunPartClick}>
                     <Image src={component.image} />
                 </div>
-                {(component.children ?? []).map((child) => {
+                {component.children && component.children.map((child) => {
                     return <ChildGunComponent key={child.id} component={child}
                                               parentId={component.id} ratio={ratio} />;
                 })}
