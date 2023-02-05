@@ -1,17 +1,41 @@
 import {Background} from "../schema/nft/Background";
+import {BuildTree} from "../schema/configurator/BuildTree";
+import {getCollectionName, getRarity} from "./nftService";
 
-const gunWidth = 4000;
-const gunHeight = 855;
+export async function preCreateNftImage(buildTree: BuildTree, buildImage: string) {
+  if (buildTree && buildImage) {
+    const background = getBackgroundByCollectionAndRarity(getCollectionName(buildTree.name), getRarity())
+    const result = await convertToBase64(background.backgroundUrl)
+    .then(async image => {
+      return await mergeImages(image, buildImage, background.gunPlaceholderXCoordinate, background.gunPlaceholderYCoordinate, background.gunWidth, background.gunHeight);
+    })
 
-export function getBackgroundByCollectionAndRarity(collection:string, rarity:string) : Background{
-  return {
-    backgroundUrl: "https://gunmarket.fra1.digitaloceanspaces.com/pexels-fwstudio-129731.jpg",
-    gunPlaceholderXCoordinate: -650,
-    gunPlaceholderYCoordinate: 1000
+    return result;
   }
 }
 
-export const mergeImages = async (imageSrc1:string, imageSrc2:string, xCoordinate:number, yCoordinate:number) : Promise<string> => {
+function getBackgroundByCollectionAndRarity(collection: string, rarity: string): Background {
+
+  const woodenBack: Background = {
+    backgroundUrl: "https://gunmarket.fra1.digitaloceanspaces.com/pexels-fwstudio-129731.jpg",
+    gunPlaceholderXCoordinate: -650,
+    gunPlaceholderYCoordinate: 1000,
+    gunWidth: 4000,
+    gunHeight: 855
+  }
+
+  const wallBack: Background = {
+    backgroundUrl: "https://gunmarket.fra1.digitaloceanspaces.com/wall-back-2.jpg",
+    gunPlaceholderXCoordinate: 130,
+    gunPlaceholderYCoordinate: 410,
+    gunWidth: 780,
+    gunHeight: 195
+  }
+
+  return wallBack;
+}
+
+const mergeImages = async (imageSrc1: string, imageSrc2: string, xCoordinate: number, yCoordinate: number, gunWidth, gunHeight): Promise<string> => {
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
 
@@ -34,12 +58,12 @@ export const mergeImages = async (imageSrc1:string, imageSrc2:string, xCoordinat
   canvas.height = image1.height;
 
   ctx.drawImage(image1, 0, 0);
-  ctx.drawImage(image2, xCoordinate, yCoordinate, gunWidth,gunHeight);
+  ctx.drawImage(image2, xCoordinate, yCoordinate, gunWidth, gunHeight);
 
   return canvas.toDataURL();
 };
 
-export const convertToBase64 = (url) : Promise<string> => {
+const convertToBase64 = (url): Promise<string> => {
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.setAttribute('crossOrigin', 'anonymous');

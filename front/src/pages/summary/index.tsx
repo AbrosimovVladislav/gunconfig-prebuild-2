@@ -19,10 +19,8 @@ import {getNameForNewNFTByRandom} from "../../services/randomService";
 import {calculateNFTPrice} from "../../services/priceService";
 import {useCreateNFT, useGetNFTIdByBase64Code} from "../../services/client/nftClient";
 import {NextResponse} from "next/server";
-import {
-  convertToBase64, getBackgroundByCollectionAndRarity,
-  mergeImages
-} from "../../services/imageService";
+import {preCreateNftImage} from "../../services/imageService";
+import {getCollectionName, getRarity} from "../../services/nftService";
 
 const BuildSummary = ({}) => {
 
@@ -46,30 +44,6 @@ const BuildSummary = ({}) => {
     }
   }, [buildTree]);
 
-  useEffect(() => {
-    preCreateNftImage();
-  }, [buildImage])
-
-  function getCollectionName(gunName){
-    return "GC " + gunName
-  }
-
-  function getRarity(){
-    return "USUAL";
-  }
-
-  async function preCreateNftImage() {
-    if (buildTree && buildImage) {
-      const background = getBackgroundByCollectionAndRarity(getCollectionName(buildTree.name), getRarity())
-      const result = await convertToBase64(background.backgroundUrl)
-      .then(async image => {
-        return await mergeImages(image, buildImage, background.gunPlaceholderXCoordinate, background.gunPlaceholderYCoordinate);
-      })
-
-      setNftImage(result);
-    }
-  }
-
   async function mintNft() {
     if (buildImage && buildTree && nftImage) {
       setIsMintingInProcess(true);
@@ -91,7 +65,8 @@ const BuildSummary = ({}) => {
     }
   }
 
-  function onMintNFTClick() {
+  async function onMintNFTClick() {
+    setNftImage(await preCreateNftImage(buildTree, buildImage));
     setIsMintingModalOpened(true);
   }
 
@@ -146,7 +121,7 @@ const BuildSummary = ({}) => {
                   </Button>
                 </Center>
                 <div hidden={!isMintingInProcess}>
-                  <GCText >Loading ...</GCText>
+                  <GCText>Loading ...</GCText>
                 </div>
 
               </div>
