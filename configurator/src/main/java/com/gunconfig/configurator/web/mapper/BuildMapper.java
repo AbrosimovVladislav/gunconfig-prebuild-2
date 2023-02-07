@@ -47,7 +47,7 @@ public class BuildMapper {
     return BuildWithProductsDto.builder()
         .buildId(savedBuild.getBuildId())
         .productIds(productIds)
-        .schema(converter.convertToEntityAttribute(savedBuild.getSchema()))
+        .schema(schemaNode)
         .buildImageUrl(savedBuild.getBuildImageUrl())
         .build();
   }

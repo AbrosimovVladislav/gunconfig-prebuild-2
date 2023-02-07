@@ -18,6 +18,7 @@ import { getCurrentUserName } from "../../services/authService";
 import { getNameForNewNFTByRandom } from "../../services/randomService";
 import { calculateNFTPrice } from "../../services/priceService";
 import { useCreateNFT, useGetNFTIdByBase64Code } from "../../services/client/nftClient";
+import { NextResponse } from "next/server";
 
 const BuildSummary = ({}) => {
 
@@ -29,10 +30,12 @@ const BuildSummary = ({}) => {
     const router = useRouter();
 
     useEffect(() => {
-        const productsList: Product[] = mapBuildTreeToProducts(buildTree);
-        setProducts(productsList);
-        const code = getBase64CodeFromBuildTree(buildTree);
-        setBase64Code(code);
+        if (buildTree) {
+            const productsList: Product[] = mapBuildTreeToProducts(buildTree);
+            setProducts(productsList);
+            const code = getBase64CodeFromBuildTree(buildTree);
+            setBase64Code(code);
+        }
     }, [buildTree]);
 
     async function onMintNFTClick() {
@@ -51,6 +54,11 @@ const BuildSummary = ({}) => {
             const response = await useCreateNFT(nftCreateRequest);
             await router.push(FRONT_CURRENT_PATH + ":3000/nft/" + response.nftCardId);
         }
+    }
+
+    //ToDo refactor this in Summary Page refactoring
+    if (!buildTree) {
+        NextResponse.redirect(FRONT_CURRENT_PATH + ":3000/");
     }
 
     return (

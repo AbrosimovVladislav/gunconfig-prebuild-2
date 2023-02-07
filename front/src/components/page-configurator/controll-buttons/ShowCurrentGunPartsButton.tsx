@@ -4,13 +4,13 @@ import { useStyles } from "./ControlButtonsStyles";
 import { mapBuildTreeToProducts } from "../../../services/configuratorService";
 import { useClickedGunPartStore } from "../../../store/ClickedGunPartStore";
 import { useBuildTreeStore } from "../../../store/BuildTreeStore";
-import { useGunPartListCarouselStore } from "../../../store/GunPartListCarouselStore";
+import { useGunPartListStore } from "../../../store/GunPartListStore";
 
 export const ShowCurrentGunPartsButton = () => {
 
     const { clickedGunPart, setClickedGunPart } = useClickedGunPartStore();
     const { buildTree } = useBuildTreeStore();
-    const { setGunParts } = useGunPartListCarouselStore();
+    const { setGunParts } = useGunPartListStore();
 
     const { classes } = useStyles();
 

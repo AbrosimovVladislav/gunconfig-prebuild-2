@@ -48,6 +48,9 @@ export function useGetGunsForChoosing()
     return { data, isLoading, isError, isSuccess };
 }
 
+/**
+ * Get list of gun part kids, by parent id and provided type
+ **/
 export async function getGunPartsByParentAndType(
     parentId: number,
     typeOfProduct: string,

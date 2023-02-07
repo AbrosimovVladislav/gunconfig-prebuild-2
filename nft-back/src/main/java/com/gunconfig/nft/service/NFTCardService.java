@@ -27,11 +27,11 @@ public class NFTCardService {
       String collection, String firstOwner, String name, Double mintingPrice, Rarity rarity) {
     Product rootGun = productService.findById(productIds.get(0));
 
-    Long nftId = nftCardRepo.getMaxNftId() + 1L;
+    Long nftId = nftCardRepo.getMaxNftId() != null ? nftCardRepo.getMaxNftId() + 1L : 1L;
 
     NFTCard nftCard = new NFTCard()
         .setNftCardId(nftId)
-        .setName(name)
+        .setName(name + " - " + nftId)
         .setCollection(collection)
         .setMintingPrice(mintingPrice)
         .setNftImageUrl(nftImageUrl)

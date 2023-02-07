@@ -7,7 +7,7 @@ import GunPartsList from "../../components/page-configurator/gun-part-list/GunPa
 import { useClickedGunPartStore } from "../../store/ClickedGunPartStore";
 import * as htmlToImage from "html-to-image";
 import { useBuildImageStore } from "../../store/BuildImageStore";
-import { useGunPartListCarouselStore } from "../../store/GunPartListCarouselStore";
+import { useGunPartListStore } from "../../store/GunPartListStore";
 import { Engine } from "../../components/page-configurator/engine";
 import { useStyles } from "./ConfiguratorStyles";
 import { useGetBuildTreeByBase64Code } from "../../services/client/configuratorClient";
@@ -20,7 +20,7 @@ const Configurator = () => {
 
     const { buildTree, setBuildTree } = useBuildTreeStore();
     const { setBuildImage } = useBuildImageStore();
-    const { setGunParts } = useGunPartListCarouselStore();
+    const { setGunParts } = useGunPartListStore();
     const { setClickedGunPart } = useClickedGunPartStore();
 
     useEffect(() => {

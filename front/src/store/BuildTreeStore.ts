@@ -10,7 +10,6 @@ interface BuildTreeStore {
 
 export const useBuildTreeStore = create<BuildTreeStore>((set) => ({
     buildTree: null,
-    buildIds: null,
     setBuildTree: (buildTree: BuildTree) => {
         set((state) => ({
             buildTree: buildTree,

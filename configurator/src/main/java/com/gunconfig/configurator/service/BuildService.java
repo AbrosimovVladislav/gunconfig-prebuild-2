@@ -30,7 +30,7 @@ public class BuildService {
    * Save new build with id = MaxId+1
    **/
   public Build save(Build build) {
-    Long newBuildId = buildRepo.getMaxBuildId() + 1L;
+    Long newBuildId = buildRepo.getMaxBuildId()!=null ? buildRepo.getMaxBuildId() + 1L : 1L;
     build.setBuildId(newBuildId);
     return buildRepo.save(build);
   }

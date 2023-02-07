@@ -3,7 +3,7 @@ import { useStyles } from "./GCContainerStyles";
 
 type Props = {
     children: ReactNode;
-    size?: "mobileM" | "mobileL" | "tablet" | "laptopS" | "laptopM" | "laptopL" | "laptopXL" | "LaptopXXL";
+    size?: "mobileM" | "mobileL" | "tablet" | "laptopS" | "laptopM" | "laptopL" | "laptopXL" | "laptopXXL";
 };
 
 export default function GCContainer({ children, size }: Props) {
@@ -16,6 +16,6 @@ export default function GCContainer({ children, size }: Props) {
 }
 
 GCContainer.defaultProps = {
-    size: "LaptopXXL"
+    size: "laptopXXL"
 };
 

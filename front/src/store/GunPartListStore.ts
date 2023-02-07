@@ -2,12 +2,12 @@ import create from "zustand";
 import { mountStoreDevtool } from "simple-zustand-devtools";
 import { Product } from "../schema/common/Product";
 
-interface GunPartListCarouselStore {
+interface GunPartListStore {
     gunParts: Product[] | null;
     setGunParts: (gunParts: Product[]) => void;
 }
 
-export const useGunPartListCarouselStore = create<GunPartListCarouselStore>((set) => ({
+export const useGunPartListStore = create<GunPartListStore>((set) => ({
     gunParts: null,
     setGunParts: (gunParts: Product[]) => {
         set((state) => ({ gunParts: gunParts }));
@@ -15,4 +15,4 @@ export const useGunPartListCarouselStore = create<GunPartListCarouselStore>((set
 }));
 
 
-mountStoreDevtool("GunPartListCarouselStore", useGunPartListCarouselStore);
+mountStoreDevtool("GunPartListStore", useGunPartListStore);
