@@ -1,9 +1,9 @@
 package com.gunconfig.nft.service;
 
 import com.gunconfig.nft.model.NFTCard;
-import com.gunconfig.nft.model.NFTCard.Rarity;
 import com.gunconfig.nft.model.NFTCard.Status;
 import com.gunconfig.nft.model.Product;
+import com.gunconfig.nft.model.Rarity;
 import com.gunconfig.nft.repo.NFTCardRepo;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;

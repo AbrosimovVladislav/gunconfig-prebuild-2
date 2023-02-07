@@ -1,10 +1,11 @@
 import {Background} from "../schema/nft/Background";
 import {BuildTree} from "../schema/configurator/BuildTree";
 import {getCollectionName, getRarity} from "./nftService";
+import {findBackgroundByCollectionAndRarity} from "./client/nftClient";
 
 export async function preCreateNftImage(buildTree: BuildTree, buildImage: string) {
   if (buildTree && buildImage) {
-    const background = getBackgroundByCollectionAndRarity(getCollectionName(buildTree.name), getRarity())
+    const background: Background = await getBackgroundByCollectionAndRarity(getCollectionName(buildTree.name), getRarity())
     const result = await convertToBase64(background.backgroundUrl)
     .then(async image => {
       return await mergeImages(image, buildImage, background.gunPlaceholderXCoordinate, background.gunPlaceholderYCoordinate, background.gunWidth, background.gunHeight);
@@ -14,25 +15,9 @@ export async function preCreateNftImage(buildTree: BuildTree, buildImage: string
   }
 }
 
-function getBackgroundByCollectionAndRarity(collection: string, rarity: string): Background {
-
-  const woodenBack: Background = {
-    backgroundUrl: "https://gunmarket.fra1.digitaloceanspaces.com/pexels-fwstudio-129731.jpg",
-    gunPlaceholderXCoordinate: -650,
-    gunPlaceholderYCoordinate: 1000,
-    gunWidth: 4000,
-    gunHeight: 855
-  }
-
-  const wallBack: Background = {
-    backgroundUrl: "https://gunmarket.fra1.digitaloceanspaces.com/wall-back-2.jpg",
-    gunPlaceholderXCoordinate: 130,
-    gunPlaceholderYCoordinate: 410,
-    gunWidth: 780,
-    gunHeight: 195
-  }
-
-  return wallBack;
+async function getBackgroundByCollectionAndRarity(collection: string, rarity: string): Promise<Background> {
+  const background: Background = await findBackgroundByCollectionAndRarity(collection, rarity);
+  return background;
 }
 
 const mergeImages = async (imageSrc1: string, imageSrc2: string, xCoordinate: number, yCoordinate: number, gunWidth, gunHeight): Promise<string> => {
