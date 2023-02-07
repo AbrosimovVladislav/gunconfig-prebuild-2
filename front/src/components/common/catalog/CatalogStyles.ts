@@ -35,11 +35,14 @@ export const useStyles = createStyles((theme) => ({
         [`@media (min-width: ${theme.other.breakpoints.tablet}px)`]: {
             gridTemplateColumns: "1fr 1fr 1fr",
         },
-        [`@media (min-width: ${theme.other.breakpoints.laptopM}px)`]: {
+        [`@media (min-width: ${theme.other.breakpoints.laptopS}px)`]: {
             gridTemplateColumns: "1fr 1fr 1fr 1fr",
         },
-        [`@media (min-width: ${theme.other.breakpoints.laptopL}px)`]: {
+        [`@media (min-width: ${theme.other.breakpoints.laptopM}px)`]: {
             gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
+        },
+        [`@media (min-width: ${theme.other.breakpoints.laptopL}px)`]: {
+            gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr",
         },
         [`@media (min-width: ${theme.other.breakpoints.laptopXL}px)`]: {
             gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr",

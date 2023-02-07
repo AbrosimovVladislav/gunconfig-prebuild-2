@@ -20,6 +20,6 @@ export const useStyles = createStyles((theme, {width}: engineStylesProps) => ({
         position: "relative",
         maxWidth: [`${width}px`],
         left: "10%",
-        top: "-15%",
+        top: "-13%",
     }
 }));

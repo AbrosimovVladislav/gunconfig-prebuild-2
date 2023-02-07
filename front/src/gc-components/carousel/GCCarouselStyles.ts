@@ -10,8 +10,7 @@ export const useStyles = createStyles((theme, _params, getRef) => ({
 
     viewport: {
         ref: getRef('viewport'),
-
-        margin: [`-${theme.other.spacing.xl}px 0 0 0`]
+        margin: [`-${theme.other.spacing.xl}px 0 0 0`],
     },
 
     controls: {

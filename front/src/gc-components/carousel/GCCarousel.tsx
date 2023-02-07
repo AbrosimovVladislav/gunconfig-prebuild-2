@@ -18,14 +18,15 @@ export const GCCarousel = ({ children, ...props }: GCCarouselProps) => {
         align="start"
         loop
         slidesToScroll={1}
-        slideGap="xl"
+        slideGap="lg"
         withControls
         breakpoints={[
             { maxWidth: theme.other.breakpoints.mobileL, slideSize: "100%" },
             { maxWidth: theme.other.breakpoints.tablet, slideSize: "50%" },
-            { maxWidth: theme.other.breakpoints.laptopM, slideSize: "33%" },
-            { maxWidth: theme.other.breakpoints.laptopL, slideSize: "25%" },
-            { maxWidth: theme.other.breakpoints.laptopXL, slideSize: "20%" },
+            { maxWidth: theme.other.breakpoints.laptopS, slideSize: "33%" },
+            { maxWidth: theme.other.breakpoints.laptopM, slideSize: "25%" },
+            { maxWidth: theme.other.breakpoints.laptopL, slideSize: "20%" },
+            { maxWidth: theme.other.breakpoints.laptopXL, slideSize: "16.6%" },
             { maxWidth: theme.other.breakpoints.laptopXXL, slideSize: "12.5%" },
         ]}
         classNames={classes}
