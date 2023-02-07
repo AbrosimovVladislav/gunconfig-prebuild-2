@@ -4,19 +4,20 @@ export const useStyles = createStyles((theme, _params, getRef) => ({
     root: {
         ref: getRef('root'),
         margin: "0 !important",
+        padding: [`${theme.other.spacing.xl}px 0`],
         overflow: "visible !important"
     },
 
     viewport: {
         ref: getRef('viewport'),
-        padding: [`${theme.other.spacing.xl}px 0`],
+
         margin: [`-${theme.other.spacing.xl}px 0 0 0`]
     },
 
     controls: {
         ref: getRef('controls'),
         left: 0,
-        top: -50,
+        top: -80,
         justifyContent: "end",
         "& button:first-child": {
             margin: 0,
