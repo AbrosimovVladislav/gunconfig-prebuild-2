@@ -1,5 +1,6 @@
 package com.gunconfig.nft.service;
 
+import com.gunconfig.nft.model.Background;
 import com.gunconfig.nft.model.NFTCard;
 import com.gunconfig.nft.model.NFTCard.Status;
 import com.gunconfig.nft.model.Product;
@@ -24,7 +25,7 @@ public class NFTCardService {
    * Create new nft card with provided parameters
    **/
   public NFTCard create(Long buildId, List<Long> productIds, String nftImageUrl,
-      String collection, String firstOwner, String name, Double mintingPrice, Rarity rarity) {
+      String collection, String firstOwner, String name, Double mintingPrice, Rarity rarity, Background background) {
     Product rootGun = productService.findById(productIds.get(0));
 
     Long nftId = nftCardRepo.getMaxNftId() != null ? nftCardRepo.getMaxNftId() + 1L : 1L;
@@ -44,7 +45,8 @@ public class NFTCardService {
         .setProducts(productService.findByIds(productIds))
         .setRootGunId(rootGun.getProductId())
         .setRootGunDescription(rootGun.getDescription())
-        .setRootGunBrand(rootGun.getBrand());
+        .setRootGunBrand(rootGun.getBrand())
+        .setBackground(background);
 
     return nftCardRepo.save(nftCard);
   }

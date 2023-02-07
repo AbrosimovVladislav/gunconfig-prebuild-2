@@ -18,4 +18,5 @@ public class CreateNFTRequest {
     private String name;
     private Double mintingPrice;
     private Rarity rarity;
+    private Long backgroundId;
 }

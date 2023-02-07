@@ -19,7 +19,7 @@ import {getNameForNewNFTByRandom} from "../../services/randomService";
 import {calculateNFTPrice} from "../../services/priceService";
 import {useCreateNFT, useGetNFTIdByBase64Code} from "../../services/client/nftClient";
 import {NextResponse} from "next/server";
-import {preCreateNftImage} from "../../services/imageService";
+import {prepareNFTImage} from "../../services/imageService";
 import {getCollectionName, getRarity} from "../../services/nftService";
 
 const BuildSummary = ({}) => {
@@ -27,6 +27,7 @@ const BuildSummary = ({}) => {
   const {buildTree} = useBuildTreeStore();
   const {buildImage} = useBuildImageStore();
   const [nftImage, setNftImage] = useState<string>();
+  const [backgroundId, setBackgroundId] = useState<string>();
   const [products, setProducts] = useState<Product[]>([]);
   const [base64Code, setBase64Code] = useState<string>();
   const {nftId} = useGetNFTIdByBase64Code(base64Code);
@@ -58,6 +59,7 @@ const BuildSummary = ({}) => {
         name: getNameForNewNFTByRandom(collectionName),
         mintingPrice: calculateNFTPrice(),
         rarity: getRarity(),
+        backgroundId: backgroundId ? backgroundId : "-1L"
       };
       const response = await useCreateNFT(nftCreateRequest);
       setIsMintingModalOpened(false);
@@ -66,7 +68,9 @@ const BuildSummary = ({}) => {
   }
 
   async function onMintNFTClick() {
-    setNftImage(await preCreateNftImage(buildTree, buildImage));
+    const {finalNFTImage, backgroundId} = await prepareNFTImage(buildTree, buildImage);
+    setNftImage(finalNFTImage);
+    setBackgroundId(backgroundId);
     setIsMintingModalOpened(true);
   }
 

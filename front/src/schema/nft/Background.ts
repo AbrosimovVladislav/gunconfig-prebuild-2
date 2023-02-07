@@ -1,4 +1,5 @@
 export interface Background{
+  backgroundId: string;
   backgroundUrl: string,
   collection: string,
   rarity: string,

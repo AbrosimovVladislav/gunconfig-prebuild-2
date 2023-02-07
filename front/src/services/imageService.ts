@@ -3,15 +3,15 @@ import {BuildTree} from "../schema/configurator/BuildTree";
 import {getCollectionName, getRarity} from "./nftService";
 import {findBackgroundByCollectionAndRarity} from "./client/nftClient";
 
-export async function preCreateNftImage(buildTree: BuildTree, buildImage: string) {
+export async function prepareNFTImage(buildTree: BuildTree, buildImage: string) {
   if (buildTree && buildImage) {
     const background: Background = await getBackgroundByCollectionAndRarity(getCollectionName(buildTree.name), getRarity())
-    const result = await convertToBase64(background.backgroundUrl)
+    const finalNFTImage = await convertToBase64(background.backgroundUrl)
     .then(async image => {
       return await mergeImages(image, buildImage, background.gunPlaceholderXCoordinate, background.gunPlaceholderYCoordinate, background.gunWidth, background.gunHeight);
     })
 
-    return result;
+    return {finalNFTImage, backgroundId: background.backgroundId};
   }
 }
 

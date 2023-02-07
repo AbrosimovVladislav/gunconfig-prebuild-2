@@ -64,6 +64,7 @@ public class NFTCreationController {
             .buildImageUrl(buildImageUrl)
             .build());
 
+    Background background = backgroundService.findById(request.getBackgroundId());
     String nftImageUrl = imageService.createNFTImage(buildImageUrl);
     NFTCard nftCard = nftCardService.create(
         response.getBuildId(),
@@ -73,7 +74,8 @@ public class NFTCreationController {
         request.getFirstOwner(),
         request.getName(),
         request.getMintingPrice(),
-        request.getRarity()
+        request.getRarity(),
+        background
     );
     NFTCardDto nftCardDto = nftCardMapper.toDto(nftCard);
 

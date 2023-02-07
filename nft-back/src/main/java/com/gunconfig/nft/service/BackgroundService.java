@@ -19,4 +19,11 @@ public class BackgroundService {
         .orElseThrow(() -> new RuntimeException(String.format(
             "There is no background with collection: %s and rarity: %s", collection, rarity)));
   }
+
+  public Background findById(Long backgroundId) {
+    return backgroundRepo.findById(backgroundId)
+        .orElseThrow(() -> new RuntimeException(String.format(
+            "There is no background with id: %s", backgroundId
+        )));
+  }
 }
