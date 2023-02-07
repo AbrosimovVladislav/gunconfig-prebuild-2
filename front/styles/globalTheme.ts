@@ -44,6 +44,12 @@ export const globalTheme: MantineThemeOverride = {
       laptopL: 1600,
       laptopXL: 2256,
       laptopXXL: 2560,
+    },
+    ratios: {
+      width: 0.45,
+      bigWidth: 0.5,
+      height: 1.7,
+      bigHeight: 1.3,
     }
   },
 };

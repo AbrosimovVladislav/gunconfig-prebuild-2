@@ -12,11 +12,12 @@ interface EngineProps {
 export const Engine = ({ data }: EngineProps) => {
     const [ratio, setRatio] = useState<number | null>(null);
     const { breakpoints } = useMantineTheme().other;
+    const { ratios } = useMantineTheme().other;
 
     useEffect(() => {
         setRatio(window.innerWidth < breakpoints.laptopXXL ?
-            window.innerWidth * 0.45 / data.width :
-            breakpoints.laptopXXL * 0.5 / data.width);
+            window.innerWidth * ratios.width / data.width :
+            breakpoints.laptopXXL * ratios.bigWidth / data.width);
     }, []);
 
     const { classes } = useStyles({ width: data.width * ratio });

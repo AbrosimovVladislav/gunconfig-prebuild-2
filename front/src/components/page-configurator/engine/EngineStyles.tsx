@@ -6,14 +6,14 @@ interface engineStylesProps {
 
 export const useStyles = createStyles((theme, {width}: engineStylesProps) => ({
     canvas: {
-        height: [`${width / 1.3}px`],
+        height: [`${width / theme.other.ratios.bigHeight}px`],
         width: "100%",
         boxShadow: theme.shadows.xl,
         borderRadius: theme.other.spacing.xxs,
         display: "grid",
         placeItems: "center",
         [`@media (min-width: ${theme.other.breakpoints.laptopM}px)`]: {
-            height: [`${width / 1.7}px`],
+            height: [`${width / theme.other.ratios.height}px`],
         },
     },
     root: {
