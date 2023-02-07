@@ -43,7 +43,7 @@ export const globalTheme: MantineThemeOverride = {
       laptopM: 1200,
       laptopL: 1600,
       laptopXL: 2256,
-      LaptopXXL: 2560,
+      laptopXXL: 2560,
     }
-  }
+  },
 };
