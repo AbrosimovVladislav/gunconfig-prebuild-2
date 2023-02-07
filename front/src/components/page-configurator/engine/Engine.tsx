@@ -15,7 +15,7 @@ export const Engine = ({ data }: EngineProps) => {
 
     useEffect(() => {
         setRatio(window.innerWidth < breakpoints.laptopXXL ?
-            window.innerWidth * 0.4 / data.width :
+            window.innerWidth * 0.45 / data.width :
             breakpoints.laptopXXL * 0.5 / data.width);
     }, []);
 
