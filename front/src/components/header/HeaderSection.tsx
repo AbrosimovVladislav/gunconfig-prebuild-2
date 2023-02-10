@@ -22,7 +22,7 @@ const HeaderSection = ({ links }: HeaderSectionProps) => {
             <div className={classes.inner}>
                 <GCGroup>
                     <GCBurger opened={opened} onClick={toggle} size="sm" />
-                    <GCImage className={classes.logo} src="https://gunmarket.fra1.digitaloceanspaces.com/NFT-LOGO-GUN.png" alt=""/>
+                    <GCImage className={classes.logo} src="https://gunmarket.fra1.digitaloceanspaces.com/NFT_LOGO_REVOLVER.png" alt=""/>
                     <GCLink href={"/"}>Gun config</GCLink>
                 </GCGroup>
 
