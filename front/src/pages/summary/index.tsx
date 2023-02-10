@@ -81,13 +81,13 @@ const BuildSummary = ({}) => {
 
   return (
       <div>
-        Build Summary Page
+        <GCText h2 bold align="center" sx={{margin: "20px 0 auto"}}>Build Summary</GCText>
         <Center>
           {buildImage && <Image unoptimized width={1280} height={300} src={buildImage}/>}
         </Center>
         <Center>
           <GCLink href={FRONT_CURRENT_PATH + ":3000/configurator/" + base64Code}>
-            <Button disabled={!base64Code}>
+            <Button disabled={!base64Code} sx={{margin: "20px auto"}}>
               Return to configure
             </Button>
           </GCLink>
@@ -100,11 +100,11 @@ const BuildSummary = ({}) => {
         <Center>
           {nftId && nftId !== -1 &&
               <GCLink href={FRONT_CURRENT_PATH + ":3000/nft/" + nftId}>
-                <GCText primary>NFT for this build already exists</GCText>
+                <GCText primary sx={{margin: "20px 0 auto"}}>NFT for this build already exists</GCText>
               </GCLink>}
         </Center>
         <Center>
-          <Button disabled={nftId && nftId !== -1} onClick={onMintNFTClick}>
+          <Button disabled={nftId && nftId !== -1} onClick={onMintNFTClick} sx={{margin: "20px auto"}}>
             Mint NFT
           </Button>
         </Center>
@@ -120,7 +120,7 @@ const BuildSummary = ({}) => {
                 </Center>
                 <Center>
                   <Button onClick={mintNft}
-                          color={"teal"}>
+                          color={"teal"} sx={{margin: "20px auto"}}>
                     Mint NFT
                   </Button>
                 </Center>

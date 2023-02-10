@@ -1,7 +1,7 @@
 import { useDisclosure } from "@mantine/hooks";
 import { IconSearch } from "@tabler/icons";
 import { useStyles } from "./HeaderSectionStyles";
-import { GCAutocomplete, GCBurger, GCGroup, GCHeader, GCLink } from "../../gc-components";
+import { GCAutocomplete, GCBurger, GCGroup, GCHeader, GCImage, GCLink } from "../../gc-components";
 
 interface HeaderSectionProps {
     links: { link: string; label: string }[];
@@ -18,10 +18,11 @@ const HeaderSection = ({ links }: HeaderSectionProps) => {
     ));
 
     return (
-        <GCHeader height={56} className={classes.header} mb={120}>
+        <GCHeader height={70} className={classes.header} mb={120}>
             <div className={classes.inner}>
                 <GCGroup>
                     <GCBurger opened={opened} onClick={toggle} size="sm" />
+                    <GCImage className={classes.logo} src="https://gunmarket.fra1.digitaloceanspaces.com/NFT-LOGO-GUN.png" alt=""/>
                     <GCLink href={"/"}>Gun config</GCLink>
                 </GCGroup>
 
