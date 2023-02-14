@@ -15,7 +15,7 @@ const GunComponent = ({ component, ratio }: GunComponentProps) => {
 
     return isRootComponent ? (
         <>
-            <Image className={classes.root} src={component?.image} />
+            <Image className={classes.rootGunImage} src={component?.image} />
             {ratio &&
                 component?.children?.map((gunComponent) => (
                     <ChildGunComponent

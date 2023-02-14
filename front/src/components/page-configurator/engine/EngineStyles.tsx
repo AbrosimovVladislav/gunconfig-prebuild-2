@@ -1,24 +1,21 @@
 import { createStyles } from "@mantine/core";
 
 interface engineStylesProps {
-    width: number,
+    rootGunWidth: number,
 }
 
-export const useStyles = createStyles((theme, {width}: engineStylesProps) => ({
+export const useStyles = createStyles((theme, {rootGunWidth}: engineStylesProps) => ({
     canvas: {
-        height: [`${width / theme.other.ratios.bigHeight}px`],
+        height: [`${rootGunWidth * theme.other.configuratorEngineRatios.boxHeightFactor}px`],
         width: "100%",
         boxShadow: theme.shadows.xl,
         borderRadius: theme.other.spacing.xxs,
         display: "grid",
-        placeItems: "center",
-        [`@media (min-width: ${theme.other.breakpoints.laptopM}px)`]: {
-            height: [`${width / theme.other.ratios.height}px`],
-        },
+        placeItems: "center"
     },
-    root: {
+    rootGunWrapper: {
         position: "relative",
-        maxWidth: [`${width}px`],
+        maxWidth: [`${rootGunWidth}px`],
         left: "10%",
         top: "-13%",
     }
