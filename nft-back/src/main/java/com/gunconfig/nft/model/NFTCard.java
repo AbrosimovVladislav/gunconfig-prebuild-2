@@ -8,6 +8,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -42,12 +43,12 @@ public class NFTCard implements BasicEntity {
   private String rootGunDescription;
   private String rootGunBrand;
 
+  @ManyToOne
+  @JoinColumn(name = "background_id")
+  private Background background;
+
   public enum Status {
     DRAFT, MINTED
-  }
-
-  public enum Rarity {
-    USUAL, UNUSUAL, RARE, EPIC, LEGENDARY
   }
 
 }

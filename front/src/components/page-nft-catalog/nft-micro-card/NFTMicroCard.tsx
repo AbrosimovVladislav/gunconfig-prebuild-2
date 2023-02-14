@@ -24,8 +24,8 @@ const NFTMicroCard = ({ item }: NFTMicroCardProps) => {
                 <GCGroup className={classes.content} position="apart" mt="md">
                     <GCText bold lineClamp={1}>{item.name}</GCText>
                     <GCBadge>{item.collection}</GCBadge>
-                    <GCText gray>Minting price</GCText>
-                    <GCText defaultGradient align="end">{item.mintingPrice} ETH</GCText>
+                    <GCText>Minting price</GCText>
+                    <GCText defaultGradient bold align="end">{item.mintingPrice} ETH</GCText>
                 </GCGroup>
             </GCCard>
         </Link>

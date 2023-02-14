@@ -6,4 +6,5 @@ export interface CreateNFTRequest {
     name: string;
     mintingPrice: number;
     rarity: string;
+    backgroundId: string;
 }

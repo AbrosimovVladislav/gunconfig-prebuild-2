@@ -8,10 +8,14 @@ export const useStyles = createStyles((theme) => ({
     },
 
     inner: {
-        height: 56,
+        height: 70,
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
+    },
+
+    logo: {
+        maxWidth: "60px",
     },
 
     links: {
