@@ -15,7 +15,8 @@ export const useStyles = createStyles((theme, _params, getRef) => ({
             width: "100%",
             height: "100%",
             borderRadius: "8px",
-        },
+            background: "linear-gradient(180deg, rgba(153, 146, 168, 0) 13.54%, rgba(153, 102, 168, 0.05) 65.62%, rgba(153, 146, 168, 0.5) 100%)",
+       },
 
         ":hover": {
             borderColor: "transparent",
@@ -38,7 +39,7 @@ export const useStyles = createStyles((theme, _params, getRef) => ({
     },
 
     content: {
-        zIndex: 1,
+        zIndex: 10,
         position: "absolute",
         bottom: 0,
         left: 0,

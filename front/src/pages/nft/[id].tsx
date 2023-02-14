@@ -34,6 +34,7 @@ const SingleNFTPage = (props: SingleNFTPageProps) => {
                 <div className={classes.nftContainer}>
                     <div className={classes.nftWrapper}>
                         <GCImage className={classes.nftImage} src={nft?.nftImageUrl}
+                                 radius="md"
                                  alt="gun" />
                     </div>
                     <NftCardInformation data={nft} />

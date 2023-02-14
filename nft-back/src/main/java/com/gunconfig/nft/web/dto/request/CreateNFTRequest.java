@@ -1,6 +1,6 @@
 package com.gunconfig.nft.web.dto.request;
 
-import com.gunconfig.nft.model.NFTCard.Rarity;
+import com.gunconfig.nft.model.Rarity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,4 +18,5 @@ public class CreateNFTRequest {
     private String name;
     private Double mintingPrice;
     private Rarity rarity;
+    private Long backgroundId;
 }

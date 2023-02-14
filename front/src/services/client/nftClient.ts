@@ -1,6 +1,7 @@
 import { CreateNFTRequest } from "../../schema/common/CreateNFTRequest";
 import { get, post } from "../restClient";
 import {
+    BACKGROUND_POSTFIX,
     COLLECTION_POSTFIX,
     FILTERS_POSTFIX,
     NFT_CATALOG_ENDPOINT,
@@ -14,6 +15,11 @@ import { NFTCard } from "../../schema/nft/NFTCard";
 import { ShortNFTCard } from "../../schema/nft/ShortNFTCard";
 import { NextRouter } from "next/router";
 import { createUrlRequestPostfixFromParams } from "../urlService";
+
+export async function findBackgroundByCollectionAndRarity(collection: string, rarity: string){
+    const response = await get(NFT_CREATION_ENDPOINT + BACKGROUND_POSTFIX + "/" + collection + "/" + rarity);
+    return response;
+}
 
 export async function useCreateNFT(createNFTRequest: CreateNFTRequest) {
     const response = await post(NFT_CREATION_ENDPOINT, createNFTRequest);
