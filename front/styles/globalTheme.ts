@@ -48,7 +48,8 @@ export const globalTheme: MantineThemeOverride = {
     configuratorEngineRatios: {
       rootGunWidthPercentage: 0.4,
       rootGunWidthPercentageXXL: 0.5,
-      boxHeightFactor: 0.6
+      boxHeightFactorLaptop: 0.6, // laptopS - laptopXXL
+      boxHeightFactorMobileAndTablet: 1 // mobileM - tablet
     }
   },
 };
