@@ -45,11 +45,11 @@ export const globalTheme: MantineThemeOverride = {
       laptopXL: 2256,
       laptopXXL: 2560,
     },
-    ratios: {
-      width: 0.45,
-      bigWidth: 0.5,
-      height: 1.7,
-      bigHeight: 1.3,
+    configuratorEngineRatios: {
+      rootGunWidthPercentage: 0.4,
+      rootGunWidthPercentageXXL: 0.5,
+      boxHeightFactorLaptop: 0.6, // laptopS - laptopXXL
+      boxHeightFactorMobileAndTablet: 1 // mobileM - tablet
     }
   },
 };
