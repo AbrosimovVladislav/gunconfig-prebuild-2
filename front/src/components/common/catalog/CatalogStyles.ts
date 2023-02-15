@@ -39,7 +39,7 @@ export const useStyles = createStyles((theme) => ({
             gridTemplateColumns: "1fr 1fr 1fr 1fr",
         },
         [`@media (min-width: ${theme.other.breakpoints.laptopM}px)`]: {
-            gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
+            gridTemplateColumns: "1fr 1fr 1fr 1fr",
         },
         [`@media (min-width: ${theme.other.breakpoints.laptopL}px)`]: {
             gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr",
