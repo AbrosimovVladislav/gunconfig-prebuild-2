@@ -34,6 +34,7 @@ export const globalTheme: MantineThemeOverride = {
       md: 20,
       lg: 24,
       xl: 30,
+      xxl: 140,
     },
     breakpoints: {
       mobileM: 375,
