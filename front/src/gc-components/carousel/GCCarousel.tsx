@@ -27,7 +27,7 @@ export const GCCarousel = ({ children, ...props }: GCCarouselProps) => {
             { maxWidth: theme.other.breakpoints.laptopS, slideSize: "33%" },
             { maxWidth: theme.other.breakpoints.laptopM, slideSize: "25%" },
             { maxWidth: theme.other.breakpoints.laptopL, slideSize: "20%" },
-            { maxWidth: theme.other.breakpoints.laptopXL, slideSize: "16.6%" },
+            { maxWidth: theme.other.breakpoints.laptopXL, slideSize: "20%" },
             { maxWidth: theme.other.breakpoints.laptopXXL, slideSize: "12.5%" },
         ]}
         classNames={classes}
