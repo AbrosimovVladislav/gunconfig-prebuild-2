@@ -1,7 +1,10 @@
 export function getCollectionName(gunName){
-  return "GC TEST_1";
+  return "GunCraft-Initial";
 }
 
 export function getRarity(){
-  return "USUAL";
+  const rarities = ['USUAL', 'NON-USUAL', 'RARE', 'EPIC', 'OHUEPIC','LEGENDARY'];
+  const randomIndex = Math.floor(Math.random() * rarities.length);
+  rarities[randomIndex];
+  return 'USUAL'
 }

@@ -19,7 +19,7 @@ import {getNameForNewNFTByRandom} from "../../services/randomService";
 import {calculateNFTPrice} from "../../services/priceService";
 import {useCreateNFT, useGetNFTIdByBase64Code} from "../../services/client/nftClient";
 import {NextResponse} from "next/server";
-import {prepareNFTImage} from "../../services/imageService";
+import {getImageSizeFromBase64, prepareNFTImage} from "../../services/imageService";
 import {getCollectionName, getRarity} from "../../services/nftService";
 
 const BuildSummary = ({}) => {
@@ -68,7 +68,10 @@ const BuildSummary = ({}) => {
   }
 
   async function onMintNFTClick() {
-    const {finalNFTImage, backgroundId} = await prepareNFTImage(buildTree, buildImage);
+    const gunBuildRatio: number = await getImageSizeFromBase64(buildImage)
+    .then(size => size.width / size.height);
+    const {finalNFTImage, backgroundId} = await prepareNFTImage(
+        buildTree, buildImage, gunBuildRatio);
     setNftImage(finalNFTImage);
     setBackgroundId(backgroundId);
     setIsMintingModalOpened(true);
@@ -83,7 +86,7 @@ const BuildSummary = ({}) => {
       <div>
         <GCText h2 bold align="center" sx={{margin: "20px 0 auto"}}>Build Summary</GCText>
         <Center>
-          {buildImage && <Image unoptimized width={1280} height={300} src={buildImage}/>}
+          {buildImage && <Image unoptimized width={2728} height={672} src={buildImage}/>}
         </Center>
         <Center>
           <GCLink href={FRONT_CURRENT_PATH + ":3000/configurator/" + base64Code}>
@@ -100,11 +103,13 @@ const BuildSummary = ({}) => {
         <Center>
           {nftId && nftId !== -1 &&
               <GCLink href={FRONT_CURRENT_PATH + ":3000/nft/" + nftId}>
-                <GCText primary sx={{margin: "20px 0 auto"}}>NFT for this build already exists</GCText>
+                <GCText primary sx={{margin: "20px 0 auto"}}>NFT for this build already
+                  exists</GCText>
               </GCLink>}
         </Center>
         <Center>
-          <Button disabled={nftId && nftId !== -1} onClick={onMintNFTClick} sx={{margin: "20px auto"}}>
+          <Button disabled={nftId && nftId !== -1} onClick={onMintNFTClick}
+                  sx={{margin: "20px auto"}}>
             Mint NFT
           </Button>
         </Center>
@@ -116,7 +121,7 @@ const BuildSummary = ({}) => {
             {
               <div>
                 <Center>
-                  {nftImage && <Image unoptimized width={450} height={450} src={nftImage}/>}
+                  {nftImage && <Image unoptimized width={400} height={400} src={nftImage}/>}
                 </Center>
                 <Center>
                   <Button onClick={mintNft}

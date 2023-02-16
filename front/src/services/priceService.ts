@@ -1,3 +1,3 @@
 export function calculateNFTPrice(): number{
-    return 0.50;
+    return Math.floor(Math.random() * 3);
 }
