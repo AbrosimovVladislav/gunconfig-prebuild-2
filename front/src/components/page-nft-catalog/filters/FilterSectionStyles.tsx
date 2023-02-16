@@ -6,7 +6,7 @@ export const useStyles = createStyles((theme) => ({
         gridTemplateColumns: "280px",
         gridGap: "16px",
         margin: [`0 ${theme.other.spacing.md}px ${theme.other.spacing.md}px 0`],
-        [`@media (max-width: ${theme.other.breakpoints.tablet}px)`]: {
+        [`@media (max-width: ${theme.other.breakpoints.laptopS}px)`]: {
             display: "none",
         },
     },
