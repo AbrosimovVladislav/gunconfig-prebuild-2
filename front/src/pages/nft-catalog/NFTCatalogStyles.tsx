@@ -24,7 +24,7 @@ export const useStyles = createStyles((theme) => ({
         alignItems: "center",
         width: "100%",
 
-        [`@media (max-width: ${theme.other.breakpoints.laptopS}px)`]: {
+        [`@media (max-width: ${theme.other.breakpoints.tablet}px)`]: {
             display: "none",
         },
     },
@@ -35,7 +35,7 @@ export const useStyles = createStyles((theme) => ({
         flexDirection: "column",
         alignItems: "center",
         margin: [`${theme.other.spacing.md}px 0`],
-        [`@media (max-width: ${theme.other.breakpoints.laptopS}px)`]: {
+        [`@media (max-width: ${theme.other.breakpoints.tablet}px)`]: {
             alignItems: "center",
         },
     }
