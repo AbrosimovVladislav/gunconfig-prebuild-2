@@ -53,7 +53,6 @@ async function getBackgroundByCollectionAndRarity(collection: string, rarity: st
 const mergeImages = async (imageSrc1: string, imageSrc2: string, xCoordinate: number, yCoordinate: number, gunWidth, gunHeight): Promise<string> => {
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
-  console.log(gunWidth, gunHeight);
   const image1 = new Image();
   image1.src = imageSrc1;
 
@@ -71,9 +70,6 @@ const mergeImages = async (imageSrc1: string, imageSrc2: string, xCoordinate: nu
 
   canvas.width = image1.width;
   canvas.height = image1.height;
-
-  console.log("canvas")
-  console.log(canvas)
 
   ctx.drawImage(image1, 0, 0);
   ctx.drawImage(image2, xCoordinate, yCoordinate, gunWidth, gunHeight);
