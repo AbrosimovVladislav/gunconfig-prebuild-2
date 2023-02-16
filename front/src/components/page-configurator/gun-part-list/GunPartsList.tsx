@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { GCCarousel } from "../../../gc-components/carousel/GCCarousel";
-import { GCText } from "../../../gc-components";
+import { GCAutocomplete, GCText } from "../../../gc-components";
 import { useStyles } from "./GunPartsListStyles";
 import { useBuildTreeStore } from "../../../store/BuildTreeStore";
 import { useClickedGunPartStore } from "../../../store/ClickedGunPartStore";
@@ -18,6 +18,7 @@ import {
     getGunPartsByParentAndType,
 } from "../../../services/client/configuratorClient";
 import { ClickedGunPart } from "../../../schema/configurator/ClickedGunPart";
+import { IconSearch } from "@tabler/icons";
 
 
 const GunPartsList = () => {
@@ -75,9 +76,17 @@ const GunPartsList = () => {
 
     return (
         <div>
-            <GCText className={classes.header} h2 bold>
-                {clickedGunPart ? clickedGunPart.type + " to change" : "Current gun parts"}
-            </GCText>
+            <div className={classes.header}>
+                <GCText h2 bold>
+                    {clickedGunPart ? clickedGunPart.type + " to change" : "Current gun parts"}
+                </GCText>
+                <GCAutocomplete
+                    className={classes.search}
+                    placeholder="Search"
+                    icon={<IconSearch size={16} stroke={1.5} />}
+                    data={["FirstSearch", "SecondSearch", "ThirdSearch"]}
+                />
+            </div>
             {gunParts && gunParts.length > 0 && <GCCarousel className={classes.carousel}>
                 {gunParts?.map((part) => (
                     <div key={part.productId}

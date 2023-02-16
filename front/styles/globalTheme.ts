@@ -34,6 +34,7 @@ export const globalTheme: MantineThemeOverride = {
       md: 20,
       lg: 24,
       xl: 30,
+      xxl: 140,
     },
     breakpoints: {
       mobileM: 375,
@@ -44,6 +45,12 @@ export const globalTheme: MantineThemeOverride = {
       laptopL: 1600,
       laptopXL: 2256,
       laptopXXL: 2560,
+    },
+    configuratorEngineRatios: {
+      rootGunWidthPercentage: 0.4,
+      rootGunWidthPercentageXXL: 0.5,
+      boxHeightFactorLaptop: 0.6, // laptopS - laptopXXL
+      boxHeightFactorMobileAndTablet: 1 // mobileM - tablet
     }
   },
 };

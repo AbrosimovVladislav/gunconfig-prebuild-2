@@ -14,18 +14,27 @@ export const useStyles = createStyles((theme) => ({
     },
 
     catalog233: {
-        [`@media (min-width: ${theme.other.breakpoints.laptopS}px)`]: {
+        [`@media (min-width: ${theme.other.breakpoints.tablet}px)`]: {
             gridTemplateColumns: "1fr 1fr",
         },
         [`@media (min-width: ${theme.other.breakpoints.laptopM}px)`]: {
             gridTemplateColumns: "1fr 1fr 1fr",
         },
         [`@media (min-width: ${theme.other.breakpoints.laptopL}px)`]: {
-            gridTemplateColumns: "1fr 1fr 1fr",
+            gridTemplateColumns: "1fr 1fr 1fr 1fr",
+        },
+        [`@media (min-width: ${theme.other.breakpoints.laptopXL}px)`]: {
+            gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
+        },
+        [`@media (min-width: ${theme.other.breakpoints.laptopXXL}px)`]: {
+            gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr",
         },
     },
 
     catalog344: {
+        [`@media (min-width: ${theme.other.breakpoints.tablet}px)`]: {
+            gridTemplateColumns: "1fr 1fr 1fr",
+        },
         [`@media (min-width: ${theme.other.breakpoints.laptopS}px)`]: {
             gridTemplateColumns: "1fr 1fr 1fr",
         },
@@ -33,7 +42,13 @@ export const useStyles = createStyles((theme) => ({
             gridTemplateColumns: "1fr 1fr 1fr 1fr",
         },
         [`@media (min-width: ${theme.other.breakpoints.laptopL}px)`]: {
-            gridTemplateColumns: "1fr 1fr 1fr 1fr",
+            gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
+        },
+        [`@media (min-width: ${theme.other.breakpoints.laptopXL}px)`]: {
+            gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr",
+        },
+        [`@media (min-width: ${theme.other.breakpoints.laptopXXL}px)`]: {
+            gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr",
         },
     },
 }));

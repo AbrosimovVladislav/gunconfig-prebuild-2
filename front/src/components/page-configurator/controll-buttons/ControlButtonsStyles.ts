@@ -23,6 +23,9 @@ export const useStyles = createStyles((theme) => ({
         justifyContent: "flex-end",
         alignItems: "flex-start",
         padding: [`${theme.other.spacing.md}px 0`],
+        [`@media (max-width: ${theme.other.breakpoints.tablet}px)`]: {
+            display: "none"
+        }
     },
 
     iconTop: {

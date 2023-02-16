@@ -6,7 +6,7 @@ export const useStyles = createStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-start",
-    boxShadow: theme.shadows.xl,
+    boxShadow: theme.shadows.lg,
     border: "1px solid transparent",
   },
 
