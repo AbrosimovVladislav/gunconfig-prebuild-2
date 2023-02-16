@@ -17,6 +17,7 @@ export const GCCarousel = ({ children, ...props }: GCCarouselProps) => {
         slideSize="10%"
         align="start"
         loop
+        dragFree
         slidesToScroll={1}
         slideGap="lg"
         withControls
