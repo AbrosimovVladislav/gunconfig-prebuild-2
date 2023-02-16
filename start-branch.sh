@@ -1,4 +1,4 @@
-git checkout demo
+git checkout 861m8y5fg-4
 git pull
 
 mvn clean package -P build-docker-image
