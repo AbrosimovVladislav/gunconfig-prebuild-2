@@ -14,7 +14,7 @@ export const GCCarousel = ({ children, ...props }: GCCarouselProps) => {
 
   return (
     <Carousel
-        slideSize="10%"
+        slideSize="12.5%"
         align="start"
         loop
         dragFree
