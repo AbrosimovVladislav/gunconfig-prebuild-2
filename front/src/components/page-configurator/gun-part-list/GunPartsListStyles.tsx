@@ -9,7 +9,7 @@ export const useStyles = createStyles((theme) => ({
     },
 
     search: {
-        [`@media (min-width: ${theme.other.breakpoints.tablet}px)`]: {
+        [`@media (min-width: ${theme.other.breakpoints.tablet+1}px)`]: {
             margin: [`0 ${theme.other.spacing.xxl}px`]
         },
     },
