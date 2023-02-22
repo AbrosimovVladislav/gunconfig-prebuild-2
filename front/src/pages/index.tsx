@@ -12,7 +12,7 @@ export default function Home() {
         }}>
           <GCImage src="https://gunmarket.fra1.digitaloceanspaces.com/NFT_LOGO_REVOLVER.png" alt=""
                    sx={{animation: "mirror 8s infinite linear", maxWidth: "400px"}}/>
-          <GCImage sx={{maxWidth: "240px"}} src="https://gunmarket.fra1.digitaloceanspaces.com/GunCraft-Logo.png" alt=""/>
+            #861m9x6en          <GCImage sx={{maxWidth: "240px"}} src="https://gunmarket.fra1.digitaloceanspaces.com/GunCraft.svg" alt=""/>
           <h2> NFT platform which connects the world of firearms and NFTs together</h2>
         </div>
       </div>

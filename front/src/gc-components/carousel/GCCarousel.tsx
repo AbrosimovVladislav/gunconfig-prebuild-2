@@ -16,7 +16,6 @@ export const GCCarousel = ({ children, ...props }: GCCarouselProps) => {
     <Carousel
         slideSize="12.5%"
         align="start"
-        loop
         dragFree
         slidesToScroll={1}
         slideGap="lg"
@@ -31,6 +30,7 @@ export const GCCarousel = ({ children, ...props }: GCCarouselProps) => {
             { maxWidth: theme.other.breakpoints.laptopXXL, slideSize: "12.5%" },
         ]}
         classNames={classes}
+        containScroll="keepSnaps"
         previousControlIcon={ <GCIconButton primary icon="arrow-previous"/> }
         nextControlIcon={ <GCIconButton primary icon="arrow-next"/> }
       {...props}

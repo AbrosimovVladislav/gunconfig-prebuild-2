@@ -1,7 +1,8 @@
 import { createStyles } from "@mantine/core";
 
-export const useStyles = createStyles((theme) => ({
+export const useStyles = createStyles((theme, _params, getRef) => ({
     button: {
+        ref: getRef('icon-button'),
         borderRadius: "50%",
         boxShadow: theme.shadows.sm,
         cursor: "pointer",
@@ -11,7 +12,7 @@ export const useStyles = createStyles((theme) => ({
         backgroundColor: theme.colors.neutralLight[4],
     },
     buttonPrimary: {
-        backgroundColor: theme.fn.primaryColor()
+        backgroundColor: theme.fn.primaryColor(),
     },
     sm: {
         width: "32px",

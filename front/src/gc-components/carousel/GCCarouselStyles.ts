@@ -38,5 +38,15 @@ export const useStyles = createStyles((theme, _params, getRef) => ({
         "& + &": {
             marginLeft: [`-${theme.other.spacing.md}px`],
         },
+        '&[data-inactive]': {
+            opacity: 0.3,
+            cursor: "default",
+            "&:hover": {
+                cursor: "default",
+                [`& .${getRef('icon-button')}`]: {
+                    cursor: "default",
+                }
+            }
+        },
     }
 }))
