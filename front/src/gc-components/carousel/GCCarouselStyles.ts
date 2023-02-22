@@ -42,7 +42,6 @@ export const useStyles = createStyles((theme, _params, getRef) => ({
             opacity: 0.3,
             cursor: "default",
             "&:hover": {
-                cursor: "default",
                 [`& .${getRef('icon-button')}`]: {
                     cursor: "default",
                 }
