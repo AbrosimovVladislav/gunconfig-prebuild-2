@@ -7,7 +7,7 @@ export const useStyles = createStyles(() => ({
         "&::after": {
             content: "''",
             display: "block",
-            paddingBottom: "80%",
+            paddingBottom: "100%",
         },
     },
     content: {

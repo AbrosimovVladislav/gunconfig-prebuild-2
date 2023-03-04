@@ -24,18 +24,21 @@ export const useStyles = createStyles((theme, _params, getRef) => ({
             outlineOffset: "-1px",
             borderRadius: "8px",
             [`& .${getRef("imageSection")}`]: {
-                padding: 0,
+                transform: "scale(1.1)",
             },
         },
     },
 
     imageSection: {
         ref: getRef("imageSection"),
-        padding: theme.other.spacing.sm,
+        padding: 0,
         display: "flex",
         alignItems: "flex-start",
         justifyContent: "center",
-        transition: "padding 0.3s",
+        objectFit: "contain",
+        width: "100%",
+        margin: "auto",
+        transition: "transform 0.3s",
     },
 
     content: {
