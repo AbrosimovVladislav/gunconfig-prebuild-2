@@ -22,8 +22,11 @@ export const useStyles = createStyles((theme, _params, getRef) => ({
             outline: [`1px solid ${theme.colors.primary[3]}`],
             borderRadius: "8px",
             [`& .${getRef("imageSection")}`]: {
-                padding: [`-${theme.other.spacing.sm}px`],
+                padding: 0,
+                transform: "scale(1.05)",
+                overflow: "hidden",
             },
+
         },
     },
     imageSection: {
@@ -36,7 +39,7 @@ export const useStyles = createStyles((theme, _params, getRef) => ({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        transition: "padding 0.3s",
+        transition: "transform 0.3s",
     },
 
     image: {
@@ -50,7 +53,7 @@ export const useStyles = createStyles((theme, _params, getRef) => ({
         margin: 0,
     },
 
-    content : {
+    content: {
         position: "absolute",
         top: "80%",
         left: theme.spacing.md,

@@ -16,11 +16,12 @@ export const useStyles = createStyles((theme, {left, top, width}: childGunCompon
     },
     relativePlaceholder: {
         position: "relative",
-        [`&:hover`]: {
-            filter: "drop-shadow(2px 0 2px red) drop-shadow(0 2px 2px red) drop-shadow(-2px 0 2px red) drop-shadow(0 -2px 2px red)"
-        }
     },
     image: {
-        width: "100%"
+        width: "100%",
+        filter: "drop-shadow(0 30px 10px rgba(0, 0, 0, 0.3))",
+        [`&:hover`]: {
+            filter: [`drop-shadow(2px 0 2px rgba(94, 73, 225, 1)) drop-shadow(0 2px 2px rgba(94, 73, 225, 1)) drop-shadow(-2px 0 2px rgba(94, 73, 225, 1)) drop-shadow(0 -2px 2px rgba(94, 73, 225, 1)) drop-shadow(0 25px 10px rgba(0, 0, 0, 0.3))`]
+        }
     }
 }));
