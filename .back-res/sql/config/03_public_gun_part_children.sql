@@ -58,7 +58,7 @@ INSERT INTO public.gun_part_children (x, y, children_gun_part_id, parent_gun_par
 INSERT INTO public.gun_part_children (x, y, children_gun_part_id, parent_gun_part_id, parent_id, children_id) VALUES (-45, 3, 57, 3, 3, 57);
 INSERT INTO public.gun_part_children (x, y, children_gun_part_id, parent_gun_part_id, parent_id, children_id) VALUES (-25, 1, 58, 3, 3, 58);
 INSERT INTO public.gun_part_children (x, y, children_gun_part_id, parent_gun_part_id, parent_id, children_id) VALUES (-25, 1, 59, 3, 3, 59);
-INSERT INTO public.gun_part_children (x, y, children_gun_part_id, parent_gun_part_id, parent_id, children_id) VALUES (-38, -0, 68, 3, 3, 68);
+INSERT INTO public.gun_part_children (x, y, children_gun_part_id, parent_gun_part_id, parent_id, children_id) VALUES (-38, 0, 68, 3, 3, 68);
 INSERT INTO public.gun_part_children (x, y, children_gun_part_id, parent_gun_part_id, parent_id, children_id) VALUES (-25, 1, 63, 3, 3, 63);
 INSERT INTO public.gun_part_children (x, y, children_gun_part_id, parent_gun_part_id, parent_id, children_id) VALUES (-24, 1, 60, 3, 3, 60);
 INSERT INTO public.gun_part_children (x, y, children_gun_part_id, parent_gun_part_id, parent_id, children_id) VALUES (-18, -1, 61, 3, 3, 61);
@@ -78,7 +78,7 @@ INSERT INTO public.gun_part_children (x, y, children_gun_part_id, parent_gun_par
 INSERT INTO public.gun_part_children (x, y, children_gun_part_id, parent_gun_part_id, parent_id, children_id) VALUES (-45, 3, 55, 43, 43, 55);
 INSERT INTO public.gun_part_children (x, y, children_gun_part_id, parent_gun_part_id, parent_id, children_id) VALUES (-37, 1, 65, 43, 43, 65);
 INSERT INTO public.gun_part_children (x, y, children_gun_part_id, parent_gun_part_id, parent_id, children_id) VALUES (-58, -17, 70, 43, 43, 70);
-INSERT INTO public.gun_part_children (x, y, children_gun_part_id, parent_gun_part_id, parent_id, children_id) VALUES (-38, -0, 68, 43, 43, 68);
+INSERT INTO public.gun_part_children (x, y, children_gun_part_id, parent_gun_part_id, parent_id, children_id) VALUES (-38, 0, 68, 43, 43, 68);
 INSERT INTO public.gun_part_children (x, y, children_gun_part_id, parent_gun_part_id, parent_id, children_id) VALUES (-25, 1, 63, 43, 43, 63);
 INSERT INTO public.gun_part_children (x, y, children_gun_part_id, parent_gun_part_id, parent_id, children_id) VALUES (-29, -1, 64, 43, 43, 64);
 INSERT INTO public.gun_part_children (x, y, children_gun_part_id, parent_gun_part_id, parent_id, children_id) VALUES (-25, 1, 58, 43, 43, 58);
@@ -99,7 +99,7 @@ INSERT INTO public.gun_part_children (x, y, children_gun_part_id, parent_gun_par
 INSERT INTO public.gun_part_children (x, y, children_gun_part_id, parent_gun_part_id, parent_id, children_id) VALUES (-37.5, 40, 102, 100, 100, 102);
 INSERT INTO public.gun_part_children (x, y, children_gun_part_id, parent_gun_part_id, parent_id, children_id) VALUES (-37, 1, 65, 3, 3, 65);
 INSERT INTO public.gun_part_children (x, y, children_gun_part_id, parent_gun_part_id, parent_id, children_id) VALUES (-29, -1, 67, 3, 3, 67);
-INSERT INTO public.gun_part_children (x, y, children_gun_part_id, parent_gun_part_id, parent_id, children_id) VALUES (-38, -0, 68, 42, 42, 68);
+INSERT INTO public.gun_part_children (x, y, children_gun_part_id, parent_gun_part_id, parent_id, children_id) VALUES (-38, 0, 68, 42, 42, 68);
 INSERT INTO public.gun_part_children (x, y, children_gun_part_id, parent_gun_part_id, parent_id, children_id) VALUES (-25, 1, 63, 42, 42, 63);
 INSERT INTO public.gun_part_children (x, y, children_gun_part_id, parent_gun_part_id, parent_id, children_id) VALUES (-29, -1, 64, 42, 42, 64);
 INSERT INTO public.gun_part_children (x, y, children_gun_part_id, parent_gun_part_id, parent_id, children_id) VALUES (-18, -1, 61, 42, 42, 61);
