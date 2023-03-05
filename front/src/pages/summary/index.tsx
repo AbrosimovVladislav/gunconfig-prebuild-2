@@ -1,4 +1,4 @@
-import {Button, Center, Modal} from "@mantine/core";
+import {Button, Center, Modal, Select} from "@mantine/core";
 import {useBuildTreeStore} from "../../store/BuildTreeStore";
 import React, {useEffect, useState} from "react";
 import GunPartCard from "../../components/common/gun-part-card/GunPartCard";
@@ -30,6 +30,8 @@ const BuildSummary = ({}) => {
   const [backgroundId, setBackgroundId] = useState<string>();
   const [products, setProducts] = useState<Product[]>([]);
   const [base64Code, setBase64Code] = useState<string>();
+  const [collectionName, setCollectionName] = useState<string>(null);
+  const [rarityName, setRarityName] = useState<string>("USUAL");
   const {nftId} = useGetNFTIdByBase64Code(base64Code);
   const router = useRouter();
 
@@ -49,16 +51,16 @@ const BuildSummary = ({}) => {
     if (buildImage && buildTree && nftImage) {
       setIsMintingInProcess(true);
       const base64Code = getBase64CodeFromBuildTree(buildTree);
-      const collectionName = getCollectionName(buildTree.name);
+      const resultCollectionName = collectionName ? collectionName : getCollectionName(buildTree.name);
       const nftCreateRequest: CreateNFTRequest = {
         //ToDo rename to nftImage in model
         buildImage: nftImage ? nftImage : buildImage,
         base64Code: base64Code,
-        collection: collectionName,
+        collection: resultCollectionName,
         firstOwner: getCurrentUserName(),
-        name: getNameForNewNFTByRandom(collectionName),
+        name: getNameForNewNFTByRandom(resultCollectionName),
         mintingPrice: calculateNFTPrice(),
-        rarity: getRarity(),
+        rarity: rarityName ? rarityName : getRarity(),
         backgroundId: backgroundId ? backgroundId : "-1L"
       };
       const response = await useCreateNFT(nftCreateRequest);
@@ -71,7 +73,7 @@ const BuildSummary = ({}) => {
     const gunBuildRatio: number = await getImageSizeFromBase64(buildImage)
     .then(size => size.width / size.height);
     const {finalNFTImage, backgroundId} = await prepareNFTImage(
-        buildTree, buildImage, gunBuildRatio);
+        buildTree, buildImage, gunBuildRatio, collectionName, rarityName);
     setNftImage(finalNFTImage);
     setBackgroundId(backgroundId);
     setIsMintingModalOpened(true);
@@ -106,6 +108,34 @@ const BuildSummary = ({}) => {
                 <GCText primary sx={{margin: "20px 0 auto"}}>NFT for this build already
                   exists</GCText>
               </GCLink>}
+        </Center>
+        <Center>
+          <Select
+              label="Choose collection for image"
+              placeholder="Pick one"
+              value={collectionName}
+              onChange={setCollectionName}
+              data={[
+                {value: 'GC-Origin', label: 'GC-Origin'},
+                {value: 'GC-SIMPLE', label: 'GC-SIMPLE'},
+                {value: 'GC-Origin-Mirror', label: 'GC-Origin-Mirror'},
+                {value: 'GC-Origin-Metal', label: 'GC-Origin-Metal'},
+                {value: 'GC-Origin-Extra-Mirror', label: 'GC-Origin-Extra-Mirror'},
+              ]}
+          />
+          <Select
+              label="Choose rarity for image"
+              placeholder="Pick one"
+              value={rarityName}
+              onChange={setRarityName}
+              data={[
+                {value: 'USUAL', label: 'USUAL'},
+                {value: 'UNUSUAL', label: 'UNUSUAL'},
+                {value: 'RARE', label: 'RARE'},
+                {value: 'EPIC', label: 'EPIC'},
+                {value: 'LEGENDARY', label: 'LEGENDARY'},
+              ]}
+          />
         </Center>
         <Center>
           <Button disabled={nftId && nftId !== -1} onClick={onMintNFTClick}

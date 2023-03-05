@@ -26,18 +26,21 @@ export function getImageSizeFromBase64(base64: string): Promise<ImageSize> {
     for (let i = 0; i < binaryData.length; i++) {
       imageData[i] = binaryData.charCodeAt(i);
     }
-    const blob = new Blob([imageData], { type: 'image/png' });
+    const blob = new Blob([imageData], {type: 'image/png'});
     const url = URL.createObjectURL(blob);
     image.src = url;
   });
 }
 
-export async function prepareNFTImage(buildTree: BuildTree, buildImage: string, gunBuildRatio:number) {
+export async function prepareNFTImage(buildTree: BuildTree, buildImage: string, gunBuildRatio: number,
+                                      collectionName?: string, rarityName?: string) {
   if (buildTree && buildImage) {
-    const background: Background = await getBackgroundByCollectionAndRarity(getCollectionName(buildTree.name), getRarity())
+    const resultCollection = collectionName ? collectionName : getCollectionName(buildTree.name);
+    const resultRarity = rarityName ? rarityName : getRarity();
+    const background: Background = await getBackgroundByCollectionAndRarity(resultCollection, resultRarity)
     const finalNFTImage = await convertToBase64(background.backgroundUrl)
     .then(async image => {
-      const gunHeight = background.gunWidth/gunBuildRatio;
+      const gunHeight = background.gunWidth / gunBuildRatio;
       return await mergeImages(image, buildImage, background.gunPlaceholderXCoordinate, background.gunPlaceholderYCoordinate, background.gunWidth, gunHeight);
     })
 
